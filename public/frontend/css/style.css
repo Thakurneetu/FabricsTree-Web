@@ -1,0 +1,724 @@
+body {
+    overflow-x: hidden !important;
+    font-family: Times New Roman;
+}
+
+.topnav {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.container-fluid {
+    --bs-gutter-x: unset !important;
+}
+
+.topnav p {
+    margin: unset !important;
+}
+
+.maincolor {
+    background: #78239B;
+    color: #fff;
+}
+
+.me-auto {
+    margin: auto !important;
+}
+
+.Searchcustom {
+    width: 500px;
+}
+
+.login {
+    color: black;
+    border: 1px solid black;
+}
+
+.bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    background-color: #fff !important;
+    height: 70px !important;
+}
+
+.bg-body-tertiarys {
+    --bs-bg-opacity: 1;
+    background-color: #F6F6F6 !important;
+    padding: 15px;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: #000;
+    font-size: 15px;
+}
+
+.btn-outline-success {
+    border-radius: 5px !important;
+}
+
+.carousel-item img {
+    height: 435px;
+}
+
+
+.topsliderright img {
+    height: 435px;
+}
+
+.topsliderrightgreige {
+    margin-top: 3rem;
+}
+
+.topsliderrightgreige img {
+    height: 400px;
+}
+
+.carousel-caption {
+    bottom: 6.5rem !important;
+}
+
+.carousel-dark .carousel-caption {
+    color: #fff !important;
+}
+
+.carousel-caption button {
+    width: 200px !important;
+}
+
+.Greigefabric {
+    font-family: Times New Roman;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 46px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.Greigefabricpad {
+    font-family: Times New Roman;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 46px;
+    text-align: center;
+    padding: 70PX;
+    margin: unset;
+}
+
+.Productss div {
+    display: flex;
+    justify-content: center;
+}
+
+.Productss img {
+    padding: 5px;
+    width: 100%;
+}
+
+.Gfabric {
+    font-family: Times New Roman;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 65.05px;
+    text-align: left;
+    margin: unset;
+}
+
+.playout {
+    width: 530px;
+}
+
+.aboutusdiuv {
+    padding: 0px 0px 4rem;
+}
+
+.productcolor {
+    background-color: #F5F5F5;
+    padding: 1px 1px 5rem;
+}
+
+.gallerycolor {
+    background-color: #F8E8FF80;
+    padding: 1px 1px 5rem;
+}
+
+.KnowMore {
+    width: 100%;
+    line-height: 2rem;
+}
+
+
+.Greigepadding {
+    padding: 0rem 5rem;
+    margin-top: -8rem;
+}
+
+.columnimage {
+    gap: 1rem !important;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+.secbothimg img {
+    height: 192px !important;
+}
+
+.fabric_bac {
+    background-color: #F6F6F6;
+    height: 125px;
+}
+
+.dedigne {
+    font-family: Times New Roman;
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 35.65px;
+    text-align: left;
+    margin: unset;
+    padding-top: 2rem;
+
+}
+
+.Greigepaddingsec {
+    padding: 5rem;
+    padding-bottom: unset;
+}
+
+.Greigepaddingsec img {
+    width: 100%;
+    height: 400px;
+}
+
+.imagetextrelative {
+    position: relative;
+}
+
+.imagetext {
+    position: absolute;
+    color: #fff !important;
+    bottom: 1rem;
+    left: 2rem;
+}
+
+.imagetext h2 {
+    font-size: 2rem;
+    text-align: left;
+}
+
+.imagetext p {
+    font-size: .8rem;
+    text-align: left;
+}
+
+.imagetext button {
+    padding: 20px 50px;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+.secbothimg .img {
+    display: flex;
+}
+
+.img-fluid {
+    object-fit: cover;
+}
+
+.aboutusHeading {
+    display: flex;
+    align-items: center;
+}
+
+.aboutus {
+    font-family: Times New Roman;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 46px;
+    text-align: center;
+
+}
+
+
+.Categoriesbtn {
+    padding: 0px 65px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Categoriesbtn button {
+    background-color: #ECECEC;
+    color: #000;
+    border: none;
+    font-size: 20px;
+    font-family: Times New Roman;
+    margin: 5px;
+}
+
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+    background-color: #78239B !important;
+}
+
+.CategoriesbtnGRID {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2rem 22rem;
+    font-family: Times New Roman;
+    font-size: 20px;
+}
+
+.CategoriesbtnGRID .active {
+    border-bottom: 2px solid #78239b;
+    color: #78239b;
+
+}
+
+
+/* slidercode */
+
+.slider {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    margin: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider .slide {
+    display: flex;
+    position: absolute;
+    left: 0;
+    transition: 0.3s left ease-in-out;
+}
+
+.slider .item {
+    margin-right: 10px;
+    margin-right: 10px;
+    width: 325px;
+    object-fit: scale-down;
+    height: 200px;
+}
+
+.slider .item:last-child {
+    margin-right: 0;
+}
+
+.ctrl {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.ctrl-btn {
+    padding: 15px 20px;
+    min-width: 50px;
+    background: #78239B;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    margin-top: -27.5px;
+}
+
+.ctrl-btn.pro-prev {
+    left: 0px;
+}
+
+.ctrl-btn.pro-next {
+    right: 0;
+}
+
+
+
+/* testominial code */
+
+.testimonialfluid {
+    background-color: #F5F5F5;
+}
+
+#testimonials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.testimonial-heading {
+    letter-spacing: 1px;
+    margin: 30px 0px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.testimonial-heading span {
+    font-size: 1.3rem;
+    color: #252525;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.testimonial-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.testimonial-box {
+    width: 600px;
+    box-shadow: 2px 2px 30px rgb(0 0 0 / 10%);
+    background-color: #fff;
+    padding: 20px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.name-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-user strong {
+    color: #3d3d3d;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.name-user span {
+    color: #979797;
+    font-size: 0.8rem;
+}
+
+.reviews {
+    color: #f9d71c;
+}
+
+.box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.client-comment p {
+    font-size: 0.9rem;
+    color: #4b4b4b;
+}
+
+.testimonial-box:hover {
+    transform: translateY(-10px);
+    transition: all ease 0.3s;
+}
+
+
+
+/* contactformcode */
+
+.icondiv {
+    display: flex;
+}
+
+.icondiv h4 {
+    font-size: x-large;
+    font-weight: bolder;
+    font-family: Times New Roman;
+
+}
+
+.icondiv p {
+    font-size: medium;
+    font-family: Times New Roman;
+}
+
+.icondiv i {
+    font-size: xx-large;
+    color: #78239B;
+    padding: 0rem 1rem 0rem 0rem;
+}
+
+.inputcss input {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    border: solid 1px #767676;
+
+}
+
+.flotingdiv {
+    height: 288px !important;
+    border: 1px solid #767676;
+
+}
+
+.inputcss div input {
+    text-indent: 30px;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+    font-size: larger;
+}
+
+.lastbutton {
+    text-align: center;
+}
+
+.lastbutton button {
+    width: 50%;
+    padding: 10px;
+    margin: 16px;
+    background-color: #78239B;
+    color: #ECECEC;
+    font-size: x-large;
+    font-family: 'Times New Roman';
+}
+
+.leftpadding {
+    padding: 0px 50px;
+}
+
+::selection {
+    color: #ffffff;
+    background-color: #252525;
+}
+
+
+.modal-header {
+    border-bottom: unset !important;
+}
+.modal-footer{
+    border-top: unset !important;
+}
+
+.login {
+    font-family: Times New Roman;
+}
+
+.Forgot {
+    text-align: right;
+    font-family: Times New Roman;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.loginbtn {
+    background-color: rgba(120, 35, 155, 1);
+}
+
+.newregistation {
+    font-family: Times New Roman;
+    font-size: 15px;
+    font-weight: 400;
+    margin: unset !important;
+}
+
+.form-control{
+    font-size: .8rem !important;
+}
+
+.modal-content{
+    border-radius: 15px !important;
+}
+
+@media only screen and (max-width: 3000px) {
+
+    .playout {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1379px) {
+
+    .playout {
+        width: 100%;
+    }
+
+    .testimonial-box {
+        width: 438px;
+    }
+
+    .imagetext button {
+        padding: 15px 35px;
+    }
+}
+
+@media only screen and (max-width: 1179px) {
+    .Searchcustom {
+        width: 100% !important;
+    }
+
+    .bg-body-tertiary {
+        height: unset !important;
+    }
+
+    .testimonial-box {
+        width: 400px;
+    }
+
+}
+
+@media(max-width:1060px) {
+    .testimonial-box {
+        width: 45%;
+        padding: 10px;
+    }
+
+    .CategoriesbtnGRID {
+        padding: 1.5rem;
+    }
+
+    .imagetext button {
+        padding: 5px 10px;
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    #searchmob {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .Productss img {
+        width: 100%;
+    }
+
+    .Greigepaddingsec {
+        padding-top: 5rem;
+    }
+
+    .Greigecontainer {
+        margin-top: 2rem;
+    }
+
+    .Greigefabric {
+        padding-top: 0rem;
+    }
+
+    .Greigepadding {
+        padding: 1rem;
+    }
+
+    .productcolor {
+        padding: 1rem;
+    }
+
+    .Categoriesbtn {
+        padding: 0px 25px;
+    }
+}
+
+@media(max-width:790px) {
+    .testimonial-box {
+        width: 100%;
+    }
+
+    .testimonial-heading h1 {
+        font-size: 1.4rem;
+    }
+
+    .dedigne {
+        text-align: center;
+    }
+
+    .Gfabric {
+        text-align: center;
+    }
+
+    .row {
+        --bs-gutter-x: unset !important;
+    }
+
+    .container-fluid {
+        --bs-gutter-x: 1.5rem !important;
+    }
+
+    .columnimage {
+        padding-top: 8px;
+    }
+
+    .slider .item {
+        width: 240px;
+    }
+
+    .Greigepaddingsec {
+        padding: 1rem;
+    }
+
+
+}
+
+@media(max-width:767px) {
+    .Greigepadding {
+        margin-top: -9rem;
+    }
+}
+
+@media(max-width:600px) {
+
+    .leftpadding {
+        padding: 40px 50px;
+    }
+
+    .Categoriesbtn {
+        padding: 0px 16px;
+    }
+}
+
+@media(max-width:340px) {
+    .box-top {
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    .reviews {
+        margin-top: 10px;
+    }
+
+}

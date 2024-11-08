@@ -17,6 +17,11 @@
         </svg> Dashboard</a>
     </li>
     <li class="nav-divider"></li>
+    <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ url('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
+        </svg> Customers</a>
+    </li>
   </ul>
   <div class="sidebar-footer border-top d-none d-md-flex">
     <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
