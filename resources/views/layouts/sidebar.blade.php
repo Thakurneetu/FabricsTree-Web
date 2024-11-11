@@ -16,8 +16,7 @@
           <use xlink:href="{{ url('vendors/@coreui/icons/svg/free.svg#cil-speedometer') }}"></use>
         </svg> Dashboard</a>
     </li>
-    <li class="nav-divider"></li>
-    <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">
+    <li class="nav-item mt-1"><a class="nav-link" href="#">
         <svg class="nav-icon">
           <use xlink:href="{{ url('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
         </svg> Customers</a>
