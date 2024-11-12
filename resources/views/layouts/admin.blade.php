@@ -14,10 +14,10 @@
     <title>{{ config('app.name', 'Fabrics Tree') }}</title>
     <meta name="theme-color" content="#000000">
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="{{url('vendors/simplebar/css/simplebar.css')}}">
-    <link rel="stylesheet" href="{{url('css/vendors/simplebar.css')}}">
+    <link rel="stylesheet" href="{{asset('vendors/simplebar/css/simplebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/vendors/simplebar.css')}}">
     <!-- Main styles for this application-->
-    <link href="{{url('css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     @yield('style')
   </head>
   <body>
@@ -28,8 +28,8 @@
       @include('layouts.footer')
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="{{url('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
-    <script src="{{url('vendors/simplebar/js/simplebar.min.js')}}"></script>
+    <script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/simplebar/js/simplebar.min.js')}}"></script>
     <script>
       const header = document.querySelector('header.header');
 

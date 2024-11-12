@@ -14,7 +14,7 @@
                 @csrf
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
-                      <use xlink:href="{{url('vendors/@coreui/icons/svg/free.svg#cil-user')}}"></use>
+                      <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-user')}}"></use>
                     </svg></span>
                   <input class="form-control @error('email') is-invalid @enderror" type="text" placeholder="Email" value="{{ old('email') }}" name="email" required autocomplete="email" autofocus>
                   @error('email')
@@ -25,7 +25,7 @@
                 </div>
                 <div class="input-group mb-4"><span class="input-group-text">
                     <svg class="icon">
-                      <use xlink:href="{{url('vendors/@coreui/icons/svg/free.svg#cil-lock-locked')}}"></use>
+                      <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-lock-locked')}}"></use>
                     </svg></span>
                   <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" placeholder="Password" required autocomplete="current-password">
                   @error('password')
