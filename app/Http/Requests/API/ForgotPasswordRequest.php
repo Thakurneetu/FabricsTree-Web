@@ -6,22 +6,25 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CustomerRegisterRequest extends FormRequest
+class ForgotPasswordRequest extends FormRequest
 {
-    public function authorize()
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
     {
-        return true; // Allow all users to make this request
+        return true;
     }
 
-    public function rules()
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
     {
         return [
-          'name' => 'required|string|max:255',
-          'email' => 'required|string|email|max:255|unique:customers',
-          'phone' => 'required|string||unique:customers',
-          'address' => 'required|string|max:500',
-          'pincode' => 'required|string|max:10',
-          'password' => 'required|string|confirmed',
+            "email" => 'required|exists:customers,email'
         ];
     }
 

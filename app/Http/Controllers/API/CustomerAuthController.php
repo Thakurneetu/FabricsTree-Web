@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Customer;
 use App\Http\Requests\API\CustomerLoginRequest;
 use App\Http\Requests\API\CustomerRegisterRequest;
+use App\Http\Requests\API\ForgotPasswordRequest;
+use App\Http\Requests\API\ResetPasswordRequest;
 
 class CustomerAuthController extends Controller
 {
@@ -67,5 +69,54 @@ class CustomerAuthController extends Controller
             'errors' => $th->getMessage(),
         ], 500);
       }
+    }
+
+    public function sendForgotOTP(ForgotPasswordRequest $request)
+    {
+        try {
+            $customer = Customer::where('email', $request->email)->first();
+            $otp = rand(1000, 9999);
+            $customer->update([
+                'otp' => $otp
+            ]);
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'OTP Sent Successfully!!',
+                'otp_for_testing' => (string)$otp
+            ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        try {
+            $customer = Customer::where('email', $request->email)->first();
+            if($customer->otp == $request->otp){
+              $customer->update([
+                  'password' => Hash::make($request->password)
+              ]);
+              return response()->json([
+                  'status' => true,
+                  'message' => 'Password Updated Successfully!!'
+              ],200);
+            }
+            else{
+              return response()->json([
+                  'status' => false,
+                  'message' => 'Please enter a valid OTP!'
+              ],500);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
     }
 }

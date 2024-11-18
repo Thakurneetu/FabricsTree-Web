@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
           $table->string('pincode', 20)->after('address')->nullable();
+          $table->string('otp', 20)->after('pincode')->nullable();
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('customers', function (Blueprint $table) {
           $table->dropColumn('pincode');
+          $table->dropColumn('otp');
         });
     }
 };

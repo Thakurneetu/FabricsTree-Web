@@ -11,6 +11,8 @@ Route::get('/user', function (Request $request) {
 Route::controller(CustomerAuthController::class)->group(function(){
   Route::post('/login', 'login');
   Route::post('/register', 'register');
+  Route::post('/send-forgot-otp', 'sendForgotOTP');
+  Route::post('/reset-password', 'resetPassword');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
