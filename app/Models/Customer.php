@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Customer extends Authenticatable
 {
-  use HasFactory;
+  use HasFactory, HasApiTokens;
 
   protected $guard = 'customer';
 
-  protected $fillable = ['name' ,'email', 'phone', 'address','password',];
+  protected $fillable = ['name' ,'email', 'phone', 'address','password','pincode'];
 
   protected $hidden = ['password'];
 
