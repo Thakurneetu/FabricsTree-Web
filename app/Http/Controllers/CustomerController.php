@@ -96,6 +96,6 @@ class CustomerController extends Controller
         $customer->save();
         //if($request->ajax())
         return Reply::redirect(url('customer/dashboard'), 'You have registered successfully');
-        //return redirect()->intended('customer/dashboard');
+        return redirect()->intended('customer/dashboard');
     }
 }
