@@ -8,8 +8,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/login', [CustomerAuthController::class, 'login']);
-Route::post('/register', [CustomerAuthController::class, 'register']);
+Route::controller(CustomerAuthController::class)->group(function(){
+  Route::post('/login', 'login');
+  Route::post('/register', 'register');
+});
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', function (Request $request) {
