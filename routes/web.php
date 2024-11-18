@@ -18,3 +18,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
   });
 });
+
+
+Route::get('product/index', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+Route::get('product/lists', [App\Http\Controllers\ProductController::class, 'list'])->name('product.lists');
+Route::get('product/category', [App\Http\Controllers\ProductController::class, 'category'])->name('product.category');
+
