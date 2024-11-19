@@ -23,6 +23,7 @@
   </head>
   <body>
     @include('layouts.sidebar')
+    @include('sweetalert::alert')
     <div class="wrapper d-flex flex-column min-vh-100">
       @include('layouts.header')
       @yield('content')
@@ -36,6 +37,7 @@
     <!-- CoreUI and necessary plugins-->
     <script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
     <script src="{{asset('vendors/simplebar/js/simplebar.min.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       const header = document.querySelector('header.header');
 

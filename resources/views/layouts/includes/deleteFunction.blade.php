@@ -14,7 +14,7 @@
     })
     .then((willDelete) => {
       if (willDelete) {
-        $("#delete_form-"+id ).submit();
+        jQuery("#delete_form-"+id ).submit();
       }
     });
   }

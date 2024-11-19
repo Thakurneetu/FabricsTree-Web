@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Customer;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CustomersDataTable extends DataTable
+class CategoryDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,7 +22,7 @@ class CustomersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', 'admin.customer.action')
+        ->addColumn('action', 'admin.category.action')
         ->rawColumns(['action'])
         ->addIndexColumn();
     }
@@ -30,7 +30,7 @@ class CustomersDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Customer $model): QueryBuilder
+    public function query(Category $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -41,7 +41,7 @@ class CustomersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('customers-table')
+                    ->setTableId('category-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->responsive(true)
@@ -65,8 +65,6 @@ class CustomersDataTable extends DataTable
         return [
             Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center'),
             Column::make('name'),
-            Column::make('email'),
-            Column::make('phone'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
@@ -80,6 +78,6 @@ class CustomersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Customers_' . date('YmdHis');
+        return 'Category_' . date('YmdHis');
     }
 }

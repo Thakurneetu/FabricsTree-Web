@@ -21,5 +21,10 @@
           <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
         </svg> Customers</a>
     </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.category.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Category</a>
+    </li>
   </ul>
 </div>
