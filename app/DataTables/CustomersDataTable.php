@@ -22,8 +22,9 @@ class CustomersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'customers.action')
-            ->setRowId('id');
+        ->addColumn('action', 'admin.customer.action')
+        ->rawColumns(['action'])
+        ->addIndexColumn();
     }
 
     /**
@@ -43,7 +44,7 @@ class CustomersDataTable extends DataTable
                     ->setTableId('customers-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    //->dom('Bfrtip')
+                    ->responsive(true)
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
@@ -62,7 +63,7 @@ class CustomersDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
+          Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center'),
             Column::make('name'),
             Column::make('email'),
             Column::make('phone'),

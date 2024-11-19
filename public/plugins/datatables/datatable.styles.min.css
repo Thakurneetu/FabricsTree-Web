@@ -13,8 +13,7 @@
     border-radius: 9px;
     transform: translateY(9px);
     box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
-    font-family: "Caveat", cursive;
-    top:-158%; right:94%;
+    top:-100%; right:94%;
   }
   .tooltip::after {
     content: " ";
