@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,6 +17,10 @@ Route::post('customer/register', [App\Http\Controllers\CustomerController::class
 
 Route::group(['middleware' => 'auth'], function () {
   Route::prefix('admin')->name('admin.')->group(function() {
-    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard-theme/{mode}', [DashboardController::class, 'theme'])->name('dashboard-theme');
+    Route::resources([
+      'customer' => CustomerController::class,
+    ]);
   });
 });

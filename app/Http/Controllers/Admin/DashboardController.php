@@ -26,4 +26,11 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function theme($mode){
+      $user = auth()->user();
+      $user->theme = $mode;
+      $user->save();
+      return redirect()->back();
+    }
 }
