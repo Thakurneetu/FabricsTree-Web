@@ -62,6 +62,10 @@ body {
 }
 
 .carousel-item img {
+    width: 100% !important;
+}
+
+.carousel-item img {
     height: 435px;
 }
 

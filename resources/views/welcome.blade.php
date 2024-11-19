@@ -42,7 +42,7 @@
           <button class="btn btn-outline-success maincolor" type="submit">Search</button>
         </form>
       </ul>
-
+    
       <div class="d-flex justify-content-center gap-2" id="searchmob">
         <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
           data-bs-target="#exampleModal">Login</button>
@@ -51,7 +51,6 @@
 
     </div>
   </nav>
-
   <nav class="navbar navbar-expand-lg bg-body-tertiarys">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"></a>
@@ -640,7 +639,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form method="POST" action="#">
+        <form method="POST" action="{{ route('customer.login') }}">
           @csrf
           <div class="row">
             <div class="mb-3">
@@ -691,7 +690,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="#">
+          <form method="POST" action="{{ route('customer.forgotpassword') }}">
           @csrf
           <div class="row">
             <div class="mb-3">
@@ -730,7 +729,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="#">
+          <form method="POST" action="{{ route('customer.generatepassword') }}">
           @csrf
           <div class="row">
             <div class="mb-3">
