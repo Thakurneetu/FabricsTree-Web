@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class CustomerController extends Controller
@@ -94,6 +96,9 @@ class CustomerController extends Controller
         $customer->password = $request->password;
         $customer->status = 0;
         $customer->save();
+
+        Mail::to($customer->email)->send(new WelcomeMail($customer));
+        
         //if($request->ajax())
         return Reply::redirect(url('customer/dashboard'), 'You have registered successfully');
         return redirect()->intended('customer/dashboard');

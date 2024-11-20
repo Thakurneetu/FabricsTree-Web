@@ -11,6 +11,9 @@ use App\Http\Requests\API\CustomerRegisterRequest;
 use App\Http\Requests\API\ForgotPasswordRequest;
 use App\Http\Requests\API\ResetPasswordRequest;
 use App\Http\Requests\API\verifyOtpRequest;
+use App\Mail\OtpMail;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerAuthController extends Controller
 {
@@ -55,6 +58,8 @@ class CustomerAuthController extends Controller
         // Generate a Sanctum token
         $token = $customer->createToken('customer-token')->plainTextToken;
 
+        Mail::to($customer->email)->send(new WelcomeMail($customer));
+
         // Return response with the token
         return response()->json([
             'status' => true,
@@ -80,7 +85,7 @@ class CustomerAuthController extends Controller
             $customer->update([
                 'otp' => $otp
             ]);
-            
+            Mail::to($request->email)->send(new OtpMail($otp));
             return response()->json([
                 'status' => true,
                 'message' => 'OTP Sent Successfully!!',
