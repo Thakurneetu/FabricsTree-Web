@@ -8,10 +8,13 @@
   <div class="body flex-grow-1">
     <div class="container-lg px-4">
       <div class="card">
-            <div class="card-header">Manage Customers</div>
-            <div class="card-body">
-            {!! $dataTable->table(['class' => 'table table-bordered table-striped dataTable dtr-inline'], false) !!}
-            </div>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            Manage Customers
+            <a href="{{ route('admin.customer.create') }}" class="btn btn-warning">Add New</a>
+          </div>
+          <div class="card-body">
+            {!! $dataTable->table(['class' => 'table table-striped'], false) !!}
+          </div>
         </div>
     </div>
   </div>

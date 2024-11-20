@@ -13,7 +13,7 @@
             <a href="{{ route('admin.category.create') }}" class="btn btn-warning">Add New</a>
           </div>
           <div class="card-body">
-          {!! $dataTable->table(['class' => 'table table-bordered table-striped dataTable dtr-inline'], false) !!}
+          {!! $dataTable->table(['class' => 'table table-striped'], false) !!}
           </div>
       </div>
     </div>
