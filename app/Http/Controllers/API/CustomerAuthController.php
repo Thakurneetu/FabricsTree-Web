@@ -10,6 +10,7 @@ use App\Http\Requests\API\CustomerLoginRequest;
 use App\Http\Requests\API\CustomerRegisterRequest;
 use App\Http\Requests\API\ForgotPasswordRequest;
 use App\Http\Requests\API\ResetPasswordRequest;
+use App\Http\Requests\API\verifyOtpRequest;
 
 class CustomerAuthController extends Controller
 {
@@ -83,7 +84,7 @@ class CustomerAuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'OTP Sent Successfully!!',
-                'otp_for_testing' => (string)$otp
+                'otp_for_testing' => (string)$otp  // TODO::Remove
             ],200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -99,7 +100,8 @@ class CustomerAuthController extends Controller
             $customer = Customer::where('email', $request->email)->first();
             if($customer->otp == $request->otp){
               $customer->update([
-                  'password' => Hash::make($request->password)
+                  'password' => Hash::make($request->password),
+                  'otp' => ''
               ]);
               return response()->json([
                   'status' => true,
@@ -112,6 +114,28 @@ class CustomerAuthController extends Controller
                   'message' => 'Please enter a valid OTP!'
               ],500);
             }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function verifyOTP(verifyOtpRequest $request)
+    {
+        try {
+            $customer = Customer::where(['email'=>$request->email, 'otp'=>$request->otp])->first();
+            if($customer)
+            return response()->json([
+                'status' => true,
+                'message' => 'OTP matched Successfully!'
+            ],200);
+            else
+            return response()->json([
+              'status' => false,
+              'message' => 'Please enter a valid OTP!',
+            ],500);
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
