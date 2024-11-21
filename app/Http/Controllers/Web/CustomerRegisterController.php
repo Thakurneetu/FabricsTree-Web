@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Helper\Reply;
@@ -15,7 +15,7 @@ use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
 
 
-class CustomerController extends Controller
+class CustomerRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ class CustomerController extends Controller
     {
         $this->validator($request->all())->validate();
         
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $request->all()));
 
         if ($response = $this->registered($request, $user)) {
             return $response;
