@@ -99,8 +99,6 @@ class CustomerRegisterController extends Controller
 
         Mail::to($customer->email)->send(new WelcomeMail($customer));
         
-        //if($request->ajax())
-        return Reply::redirect(url('customer/dashboard'), 'You have registered successfully');
-        return redirect()->intended('customer/dashboard');
+        return redirect('/')->withSuccess('You have registered successfully');
     }
 }

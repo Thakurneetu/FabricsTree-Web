@@ -3,16 +3,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Helper\Reply;
 use Illuminate\Http\Request;
-use App\GlobalSetting;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 class CustomerLoginController extends Controller
 {
     /*
@@ -26,193 +21,70 @@ class CustomerLoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
     /**
-     * Where to redirect users after login.
+     * Get a validator for an incoming registration request.
      *
-     * @var string
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected $redirectTo = '/home';
-   
-    
-    /**
-     * Handle a login request to the application.
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+          'email_id' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix',
+          'pwd' => 'required|min:8'
+        ],
+        [
+            'email_id.required' =>'The email field is required.',
+            'pwd.required' => 'The password field is required.',
+        ]);
+    }
+
+
+   /**
+     * Write code on Method
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @return response()
      */
     public function login(Request $request)
-    {
-        $this->validateLogin($request);
-
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
-
-            return $this->sendLockoutResponse($request);
+    {   
+        $this->validator($request->all())->validate();
+        
+        $credentials = $request->only('email_id', 'pwd');
+        $data = array();
+        $data['email'] = $credentials['email_id'];
+        $data['password'] = $credentials['pwd'];
+        
+        if (Auth::guard('customer')->attempt($data)) {
+            return redirect()->intended(route("customer.dashboard"))->withSuccess('You have Successfully loggedin');
         }
+        return redirect('/')->withError('Oppes! You have entered invalid credentials');
+    }
 
-        if ($this->attemptLogin($request)) {
-            if ($request->hasSession()) {
-                $request->session()->put('auth.password_confirmed_at', time());
-            }
-
-            return $this->sendLoginResponse($request);
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function dashboard()
+    {
+        if(Auth::guard('customer')->check()){
+            return view('customer.dashboard');
         }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse($request);
+        return Redirect('/');   
     }
 
     /**
-     * Validate the user login request.
+     * Write code on Method
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @return response()
      */
-    protected function validateLogin(Request $request)
+    public function logout()
     {
-        $request->validate([
-            $this->username() => 'required|string',
-            'pwd' => 'required|string',
-        ]);
-    }
+        Auth::guard('customer')->logout();
+        Session::flush();
+        
+        return redirect('/')->withSuccess('You have successfully logout');
 
-    /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
-        return $this->guard()->attempt(
-            $this->credentials($request), $request->boolean('remember')
-        );
-    }
-
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-        return $request->only($this->username(), 'pwd');
-    }
-
-    /**
-     * Send the response after the user was authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
-
-        $this->clearLoginAttempts($request);
-
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-                    ? new JsonResponse([], 204)
-                    : redirect()->intended($this->redirectPath());
-    }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        //
-    }
-
-    /**
-     * Get the failed login response instance.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        throw ValidationException::withMessages([
-            $this->username() => [trans('auth.failed')],
-        ]);
-    }
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return 'email';
-    }
-
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/');
-    }
-
-    /**
-     * The user has logged out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
-     */
-    protected function loggedOut(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard('customer');
     }
 
 }

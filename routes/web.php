@@ -1,9 +1,10 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CategoryController;
+
 
 use App\Http\Controllers\Web\CustomerRegisterController;
 use App\Http\Controllers\Web\CustomerLoginController;
@@ -19,6 +20,10 @@ Route::post('customer/register', [CustomerRegisterController::class, 'register']
 Route::post('customer/login', [CustomerLoginController::class, 'login'])->name('customer.login');
 Route::post('customer/forgotpassword', [CustomerRegisterController::class, 'forgotpassword'])->name('customer.forgotpassword');
 Route::post('customer/generatepassword', [CustomerRegisterController::class, 'generatepassword'])->name('customer.generatepassword');
+
+Route::get('customer/dashboard', [CustomerLoginController::class, 'dashboard'])->name('customer.dashboard');
+Route::get('customer/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
+
 
 Route::get('product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('product/lists', [ProductController::class, 'list'])->name('product.lists');

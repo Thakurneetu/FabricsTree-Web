@@ -44,8 +44,13 @@
       </ul>
     
       <div class="d-flex justify-content-center gap-2" id="searchmob">
+        @if(Auth::guard('customer')->check())
+        <a href="{{ route('customer.logout')}}" ><button class="btn btn-outline-success login" type="button" >Logout</button></a>
+        @else
         <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
           data-bs-target="#exampleModal">Login</button>
+        @endif
+        
         <button class="btn btn-outline-success maincolor" type="submit">Request a call back</button>
       </div>
 
@@ -641,6 +646,11 @@
         <div class="modal-body">
         <form method="POST" action="{{ route('customer.login') }}">
           @csrf
+          @session('error')
+              <div class="alert alert-danger" role="alert"> 
+                  {{ $value }}
+              </div>
+          @endsession
           <div class="row">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">{{ __('Email') }}*</label>
@@ -776,6 +786,11 @@
         <div class="modal-body">
         <form method="POST" action="{{ route('customer.register') }}">
         @csrf  
+        @session('success')
+            <div class="alert alert-success" role="alert"> 
+              {{ $value }}
+            </div>
+        @endsession
         <div class="row">
             <div class="col-md-6 col-sm-12">
               <div class="mb-3">
@@ -907,13 +922,28 @@
       }
     }
   </script>
+  @session('success')
   <script type="text/javascript">
-  @if (count($errors) > 0)
     $( document ).ready(function() {
-        console.log( "ready!" );
-        $('#exampleModalregistation').modal('show');
+        console.log( "ready-3" );
+       $('#exampleModalregistation').modal('show');
     });
-      
+  </script>      
+  @endsession
+  @session('error')
+  <script type="text/javascript">
+    $( document ).ready(function() {
+        console.log( "ready-2" );
+       $('#exampleModal').modal('show');
+    });
+  </script>   
+  @endsession
+  <script type="text/javascript">
+   @if (count($errors) > 0)
+    $( document ).ready(function() {
+        console.log( "ready-1" );
+       $('#exampleModalregistation').modal('show');
+    });
   @endif
   </script>
 
