@@ -75,7 +75,9 @@ class CustomerForgotPasswordController extends Controller
     public function showResetPasswordForm($token) { 
 
         $getData = DB::table('password_reset_tokens')->where(['token' => $token])->first();
-        
+        if(!$getData){
+            return redirect('/')->withError('Oppes! reset passowrd link is expired');
+        }
         return view('welcome', ['token' => $token,'email'=>$getData->email]);
     }
 }

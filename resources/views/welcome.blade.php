@@ -943,7 +943,7 @@
   </script>   
   @endsession
   <script type="text/javascript">
-   @if ((count($errors) > 0) && !$token && !$email)
+   @if((count($errors) > 0) && !$token && !$email)
     $( document ).ready(function() {
         console.log( "ready-1" );
        $('#exampleModalregistation').modal('show');
