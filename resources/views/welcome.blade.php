@@ -700,7 +700,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="{{ route('customer.forgotpassword') }}">
+          <form method="POST" action="{{ route('customer.forgetpassword') }}">
           @csrf
           <div class="row">
             <div class="mb-3">
@@ -712,7 +712,7 @@
                       <strong>{{ $message }}</strong>
                   </span>
               @enderror
-              <p class="Forgot" data-bs-toggle="modal" data-bs-target="#exampleModalforgetnew">Forgot Your Password?</p>
+              <!-- <p class="Forgot" data-bs-toggle="modal" data-bs-target="#exampleModalforgetnew">Forgot Your Password?</p> -->
 
             </div>
           </div>
@@ -739,12 +739,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="{{ route('customer.generatepassword') }}">
+          <form method="POST" action="{{ route('customer.resetpassword') }}">
           @csrf
           <div class="row">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">New Password</label>
               <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="new_password" placeholder="New Password">
+
+              <input id="token" type="hidden" class="form-control" name="token" required autocomplete="token" placeholder="Token" value="{{@$token}}">
+
+              <input id="user_email" type="hidden" class="form-control" name="user_email" required autocomplete="user_email" placeholder="Email" value="{{@$email}}">
 
                 @error('new_password')
                     <span class="invalid-feedback" role="alert">
@@ -939,13 +943,22 @@
   </script>   
   @endsession
   <script type="text/javascript">
-   @if (count($errors) > 0)
+   @if ((count($errors) > 0) && !$token && !$email)
     $( document ).ready(function() {
         console.log( "ready-1" );
        $('#exampleModalregistation').modal('show');
     });
   @endif
   </script>
+
+  @if(@$token && @$email)
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        console.log( "ready-4" );
+       $('#exampleModalforgetnew').modal('show');
+    });
+  </script>  
+  @endif
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

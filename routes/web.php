@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\CategoryController;
 
 use App\Http\Controllers\Web\CustomerRegisterController;
 use App\Http\Controllers\Web\CustomerLoginController;
+use App\Http\Controllers\Web\CustomerForgotPasswordController;
+use App\Http\Controllers\Web\CustomerResetPasswordController;
 use App\Http\Controllers\Web\ProductController;
 
 Route::get('/', function () {
@@ -18,8 +20,9 @@ Auth::routes();
 
 Route::post('customer/register', [CustomerRegisterController::class, 'register'])->name('customer.register');
 Route::post('customer/login', [CustomerLoginController::class, 'login'])->name('customer.login');
-Route::post('customer/forgotpassword', [CustomerRegisterController::class, 'forgotpassword'])->name('customer.forgotpassword');
-Route::post('customer/generatepassword', [CustomerRegisterController::class, 'generatepassword'])->name('customer.generatepassword');
+Route::post('customer/forgot-password', [CustomerForgotPasswordController::class, 'forgetpassword'])->name('customer.forgetpassword');
+Route::get('customer/reset-password/{token}', [CustomerForgotPasswordController::class, 'showResetPasswordForm'])->name('customer.resetpassword.get');
+Route::post('customer/reset-password', [CustomerResetPasswordController::class, 'resetpassword'])->name('customer.resetpassword');
 
 Route::get('customer/dashboard', [CustomerLoginController::class, 'dashboard'])->name('customer.dashboard');
 Route::get('customer/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
