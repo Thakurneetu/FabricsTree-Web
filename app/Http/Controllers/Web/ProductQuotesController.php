@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductQuotesController extends Controller
 {
     /**
      * Show the application product.
@@ -14,16 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product.index');
+        return view('product.productquotes');
     }
 
-    public function productdetail()
-    {
-        return view('product.productdetail');
-    }
-
-    public function productcart()
-    {
-        return view('product.productcart');
-    }
+    
 }

@@ -1,10 +1,11 @@
 .secondpage {
-    display: grid;
+    display: flex;
 }
 
 .secondpage img {
-    height: 143px;
-    width: 100%;
+    height: 100px;
+    width: 25%;
+    margin: 5px;
 }
 
 .largeimage img {
@@ -59,13 +60,16 @@
     border: none;
     font-family: 'Times New Roman', Times, serif;
 }
- .inputform input{
+
+.inputform input {
     text-indent: 30px !important;
 }
+
 .inputform {
     position: relative;
 }
-.inputform i{
+
+.inputform i {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -78,19 +82,20 @@
 }
 
 .buttonsection2 button {
-    width: 164px;
-    height: 52px;
-    border-radius: 80px;
+    width: 116px;
+    border-radius: 8px;
     border: none;
     font-family: 'Times New Roman', Times, serif;
     background: #78239B;
     color: #F0F0F0;
+    padding: 9px;
 }
-.lastrowparent{
+
+.lastrowparent {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding:0px 70px 0px 70px;
+    padding: 0px 70px 0px 70px;
 }
 
 .lastrow {
@@ -103,11 +108,12 @@
     padding: 30px;
     margin-bottom: -30px;
 }
-.headingclass{
- font-family: Times New Roman;
-font-size: 40px;
-font-weight: 700;
-line-height: 45px;
+
+.headingclass {
+    font-family: Times New Roman;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 45px;
 }
 
 .inputform input {
@@ -123,6 +129,7 @@ line-height: 45px;
     margin-top: 10px;
     margin-left: 10px;
 }
+
 .inputformtwo button {
     width: 339px;
     height: 42px;
@@ -131,121 +138,207 @@ line-height: 45px;
     border: none;
     font-family: 'Times New Roman', Times, serif;
 }
-.navbardiv{
+
+.navbardiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px;
 }
-.icondivtwo{
+
+.icondivtwo {
     display: flex;
 }
-.icondivtwo i{
+
+.icondivtwo i {
     padding: 0px 12px;
 }
-.nav-item a{
-font-family: Times New Roman;
-font-size: 20px;
-font-weight: 400;
-line-height: 23px;
+
+.nav-item a {
+    font-family: Times New Roman;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
 }
-.nav-items{
+
+.nav-items {
     display: flex;
 }
-.nav-items i{
+
+.nav-items i {
     padding: 11px 6px 11px 2px;
 }
-.nav-items a{
- font-family: Times New Roman;
-font-size: 20px;
-font-weight: 400;
-line-height: 23px;
+
+.nav-items a {
+    font-family: Times New Roman;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
 }
-.photodiv{
-    background-color: #F1F4FF;
+
+
+
+
+.photodivimage {
+    padding: 15px 30px;
+    width: 241.71px;
+    height: 100px;
+
+}
+
+.photodivimage img {
+    width: 65%;
+}
+
+.photodivtwo {
     width: 100%;
-    margin-top: 30px;
+}
+
+.headparagraphbg {
+    background-color: #EEF1F6;
+    border-radius: 5px;
+}
+
+.headparagraph {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #B2BAC9;
+    padding: 12px;
+}
+
+.alignment2 {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    position: relative;
+}
+
+.top {
+    position: absolute;
+    top: 1rem;
+    right: 10px;
+
+}
+
+.alignment {
+    display: flex;
+    align-items: center;
+}
+
+.headparagraph h3 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: unset;
+}
+
+.headparagraph p {
+    font-size: 10px;
+    color: #83848A;
+}
+
+
+.headparagraph img {
+    width: 130px;
+}
+
+.deteprod i {
+    background-color: #252525;
+    border-radius: 50%;
+    padding: 7px;
+    color: #fff;
+    font-size: 11px;
+}
+
+
+span.badge.badge-light {
+    color: #000;
+}
+
+.fouesec {
     display: flex;
     justify-content: space-between;
-    border-radius: 10px;
-}
-.sectionlast{
-    padding: 0rem 13rem 0rem 13rem;
-}
-.photodivimage{
-    padding:15px 30px 30px 23px;
-    width: 241.71px;
-height: 161.8px;
-
-}
-.photodivimage img{
+    padding: 0 2rem;
     width: 100%;
-}
-.photodivtwo{
-width: 100%;
-}
-.headparagraph{
-    padding: 20px;
-}
-.headparagraph h3{
-    font-family: Times New Roman;
-font-size: 19.81px;
-font-weight: 700;
-line-height: 22.78px;
-}
-.headparagraph p{
-    font-family: Times New Roman;
-font-size: 16.51px;
-font-weight: 400;
-line-height: 18.98px;
-text-align: left;
-color: #646464;
 
 }
-.headparagraphtwo h6{
-font-family: Times New Roman;
-padding: 12px;
 
+button.badge.badge-light {
+    background: #fff;
+    color: #000;
+    border: none;
+    margin: 0 5px;
 }
-.headparagraphtwo p{
-    font-family: Times New Roman;
-font-size: 16.51px;
-font-weight: 400;
-line-height: 18.98px;
-text-align: left;
 
-
-}
-.headparagraphtwo{
-    font-family: Times New Roman;
-font-size: 14px;
-font-weight: 400;
-line-height: 18.98px;
-text-align:end;
-color: #646464;
-margin-left: 20px;
-
-}
-.bottom{
+.bottom {
     display: flex;
-    justify-content: center;
-    padding: 40px;
+    justify-content: left;
 }
-.bottom button{
-    width:204px;
-height: 60px;
-border-radius: 10px;
-background-color: #78239B;
-color: #F0F0F0;
-border: none;
+
+.headparass {
+    padding: 2rem;
+}
+
+.colorhed {
+    display: flex;
+}
+
+.colorhed div {
+    margin: 5px;
+    margin-left: unset;
 }
 
 
-@media screen and (max-width : 769px) {
+.alignment3 {
+    display: flex;
+    align-items: baseline;
+    justify-content: end;
+    position: relative;
+}
+
+.colorpicker {
+    background-color: #F4EBEB;
+    border-radius: 50%;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.bottom button {
+    border-radius: 5px;
+    background-color: #78239B;
+    color: #F0F0F0;
+    border: none;
+    padding: 2px 16px;
+    margin: 5px;
+}
+
+.nav-pills .nav-link {
+    color: #000;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: unset;
+    color: #78239b;
+}
+
+.MyQuotes {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width : 767px) {
+
+    .secondpage {
+        display: flex;
+    }
 
     .secondpage img {
         height: 100%;
-        width: 100%;
+        width: 4rem;
+        display: flex;
+        margin: 2px;
     }
 
     .largeimage {
@@ -256,6 +349,20 @@ border: none;
         margin-top: 30px;
     }
 
+    .secondpagediv {
+        padding: 1rem 1rem;
+        width: 100%;
+    }
+
+    .siedaemo {
+        padding: unset;
+    }
+
+    .top {
+        position: absolute;
+        top: -6rem;
+        right: 10px;
+    }
 }
 
 @media screen and (max-width : 1150px) {
@@ -264,26 +371,29 @@ border: none;
     }
 
 }
-@media screen and (max-width: 1000px )   {
-    .inputformtwo button{
+
+@media screen and (max-width: 1000px) {
+    .inputformtwo button {
         width: 100%;
     }
-    .inputform input{
+
+    .inputform input {
         width: 100%;
     }
-    
+
+    .Product {
+        padding: unset;
+    }
 }
+
 @media screen and (max-width : 620px) {
-    .bottom button{
+    .bottom button {
         height: 100%;
     }
-    .sectionlast{
-        display: flex;
-        justify-content: center;
-    }
-    .photodiv{
+
+
+    .photodiv {
         width: 200px;
     }
 
 }
-

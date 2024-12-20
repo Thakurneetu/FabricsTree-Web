@@ -11,9 +11,14 @@ use App\Http\Controllers\Web\CustomerLoginController;
 use App\Http\Controllers\Web\CustomerForgotPasswordController;
 use App\Http\Controllers\Web\CustomerResetPasswordController;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\ContactController;
+use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\ProductQuotesController;
+
+
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
@@ -28,9 +33,13 @@ Route::get('customer/dashboard', [CustomerLoginController::class, 'dashboard'])-
 Route::get('customer/logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
 
 
-Route::get('product/index', [ProductController::class, 'index'])->name('product.index');
-Route::get('product/lists', [ProductController::class, 'list'])->name('product.lists');
-Route::get('product/category', [ProductController::class, 'category'])->name('product.category');
+Route::get('product', [ProductController::class,'index'])->name('product.index');
+Route::get('productdetail', [ProductController::class, 'productdetail'])->name('product.productdetail');
+Route::get('productcart', [ProductController::class, 'productcart'])->name('product.productcart');
+Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
+
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('contactus', [ContactController::class, 'index'])->name('contactus');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::prefix('admin')->name('admin.')->group(function() {
