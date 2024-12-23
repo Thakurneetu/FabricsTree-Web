@@ -7,7 +7,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 <div class="container-fluid" style="justify-content: space-around;">
 
-    <a class="navbar-brand" href="#"><img src="{{ asset('frontend/images/FT LOGO Ver.3 1.png') }}" alt="ss" style="width: 11rem;"></a>
+    <a class="navbar-brand" href="{{url('/')}}"><img src="{{ asset('frontend/images/FT LOGO Ver.3 1.png') }}" alt="ss" style="width: 11rem;"></a>
 
     <div>
 
@@ -22,16 +22,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContents">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Products</a>
+                <a class="nav-link active" aria-current="page" href="{{route('product.index')}}">Products</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
+                <a class="nav-link active" aria-current="page" href="{{route('contactus')}}">Contact Us</a>
             </li>
             </ul>
         </div>

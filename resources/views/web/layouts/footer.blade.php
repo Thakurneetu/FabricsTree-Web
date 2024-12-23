@@ -7,11 +7,11 @@
               <img src="{{ asset('frontend/images/Footerlogo.png') }}">
             </div>
             <div class="social-links gap-5">
-              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="#"><i class="fa-brands fa-youtube"></i></a>
-              <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-facebook-f" style="line-height: 2.5;"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram" style="line-height: 2.5;"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin-in" style="line-height: 2.5;"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube" style="line-height: 2.5;" ></i></a>
+              <a href="#"><i class="fa-brands fa-x-twitter" style="line-height: 2.5;"></i></a>
             </div>
           </div>
           <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
