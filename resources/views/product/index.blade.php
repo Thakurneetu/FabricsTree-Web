@@ -191,7 +191,7 @@
 
               <div class="card-group">
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap">
+                  <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -201,14 +201,14 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px"  class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
 
                 </div>
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -218,14 +218,14 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
 
                 </div>
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -235,14 +235,14 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
 
                 </div>
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -252,78 +252,7 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="card-group">
-                <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
@@ -333,7 +262,7 @@
 
               <div class="card-group">
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -343,14 +272,14 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
 
                 </div>
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -360,14 +289,14 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
 
                 </div>
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -377,14 +306,14 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>
 
                 </div>
                 <div class="card m-3">
-                  <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
                   <div class="card-body">
                     <h5 class="card-titles">Textile Suiting Fabric</h5>
                     <div class="reviews">
@@ -394,7 +323,78 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
+
+
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="card-group">
+                <div class="card m-3">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap"></a>
+                  <div class="card-body">
+                    <h5 class="card-titles">Textile Suiting Fabric</h5>
+                    <div class="reviews">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
+
+
+                  </div>
+
+                </div>
+                <div class="card m-3">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap"></a>
+                  <div class="card-body">
+                    <h5 class="card-titles">Textile Suiting Fabric</h5>
+                    <div class="reviews">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
+
+
+                  </div>
+
+                </div>
+                <div class="card m-3">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
+                  <div class="card-body">
+                    <h5 class="card-titles">Textile Suiting Fabric</h5>
+                    <div class="reviews">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
+
+
+                  </div>
+
+                </div>
+                <div class="card m-3">
+                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
+                  <div class="card-body">
+                    <h5 class="card-titles">Textile Suiting Fabric</h5>
+                    <div class="reviews">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
 
 
                   </div>

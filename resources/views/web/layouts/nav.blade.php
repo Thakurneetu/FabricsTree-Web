@@ -45,9 +45,15 @@
         <input class="form-control me-2" type="search" placeholder="Search...." aria-label="Search">
     </form>
 
-    <button class="btn-outline-success login" type="submit" data-bs-toggle="modal"
+    @if(Auth::guard('customer')->check())
+    <a href="{{ route('customer.logout')}}" ><button class="btn btn-outline-success login" type="button" >Logout</button></a>
+    @else
+    <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
         data-bs-target="#exampleModal">Login</button>
-    </div>
+    @endif
+    <!-- <button class="btn-outline-success login" type="submit" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Login</button>
+    </div> -->
 
 </div>
 </nav>
