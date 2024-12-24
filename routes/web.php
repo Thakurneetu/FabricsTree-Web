@@ -57,5 +57,6 @@ Route::group(['middleware' => 'auth'], function () {
       'tag' => TagController::class,
       'product' => AdminProductController::class,
     ]);
+    Route::post('/delete-product-image', [AdminProductController::class, 'deleteImage'])->name('delete-product-image');
   });
 });

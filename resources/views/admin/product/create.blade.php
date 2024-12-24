@@ -49,7 +49,7 @@
           Add Product
           <a href="{{ route('admin.product.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.product.store') }}" method="post">
+        <form action="{{ route('admin.product.store') }}" method="post" enctype='multipart/form-data'>
           @csrf
           @include('admin.product.form')
         </form>

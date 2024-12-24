@@ -39,6 +39,17 @@
       }
     </style>
   @endif
+  <style>
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .gallery .col-md-4 {
+      margin-bottom: 15px;
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -49,7 +60,7 @@
           Edit Product
           <a href="{{ route('admin.product.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.product.update', $product->id) }}" method="post">
+        <form action="{{ route('admin.product.update', $product->id) }}" method="post" enctype='multipart/form-data'>
           @csrf @method('patch')
           @include('admin.product.form')
         </form>
@@ -71,5 +82,37 @@
       jQuery.getScript('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js', function () 
        { jQuery('.summernote').summernote(); });
     });
+
+    function delete_image(id){
+      swal({
+        title:'Are you sure?',
+        dangerMode: true,
+        buttons: {  cancel: { text: "Cancel",visible:true, value: null, className: "bg-light"},
+                    confirm: { text: "Delete", value: true, className: "bg-warning"},
+                  },
+        icon: "warning",
+        text: 'Image will be deleted permanently!', 
+        className: "btn-danger",
+        closeModal: true
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          jQuery.ajax({
+              method: "POST",
+              url: "{{ route('admin.delete-product-image') }}",
+              data: {_token: "{{csrf_token()}}", id: id},              
+          })
+          .done(function (response) {
+            if(response.success)
+            window.location.reload();
+            else
+            swal({title:response.message, timer: 2000, icon:"error"});
+          })
+          .fail(function (err) {
+              console.log(err);              
+          });
+        }
+      });
+    }
   </script>
 @endsection

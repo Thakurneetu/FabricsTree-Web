@@ -111,6 +111,24 @@
       <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>
+    <!-- Images -->
+    <div class="form-group col-md-6 col-12 mb-3">
+      <label for="name">Product Images</label>
+      <input type="file" name="images[]" multiple="multiple" class="form-control">
+      <br>
+      @if(isset($product) && count($product->images) > 0)
+      <div class="row col-12 gallery">
+        @foreach($product->images as $image)
+        <div class="col-md-4 col-sm-6 position-relative">
+          <div class="position-absolute text-danger" style="right:20px;top:4px;" onclick="delete_image({{$image->id}})">
+            <i class="icon icon-sm cil-trash"></i>
+          </div>
+          <img src="{{url($image->path)}}" alt="Gallery Image 1" class="img-fluid">
+        </div>
+        @endforeach
+      </div>
+      @endif
+    </div>
   </div>
 </div>
 

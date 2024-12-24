@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use File;
 use App\Models\Tag;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Requirement;
 use Illuminate\Http\Request;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductDataTable;
@@ -47,6 +49,13 @@ class ProductController extends Controller
         $product = Product::create($data);
         $tags = $request->tag_ids;
         $product->tags()->sync($tags);
+        if($request->has('images')){
+          $image['product_id'] = $product->id;
+          foreach ($request->images as $key => $value) {
+            $image['path'] = $this->save_image($request->file('file'), '/uploads/product/image');
+            ProductImage::create($image);
+          }
+        }
         DB::commit();
         Alert::toast('Product Added Successfully','success');
         return redirect(route('admin.product.index'));
@@ -89,6 +98,13 @@ class ProductController extends Controller
         $product->update($data);
         $tags = $request->tag_ids;
         $product->tags()->sync($tags);
+        if($request->has('images')){
+          $image['product_id'] = $product->id;
+          foreach ($request->images as $image_file) {
+            $image['path'] = $this->save_image($image_file, '/uploads/product/image');
+            ProductImage::create($image);
+          }
+        }
         DB::commit();
         Alert::toast('Product Updated Successfully','success');
         return redirect(route('admin.product.index'));
@@ -105,7 +121,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
       try{
+        DB::beginTransaction();
         $product->delete();
+        DB::commit();
         Alert::toast('Product Deleted Successfully','success');
         return redirect()->back();
       }catch (\Throwable $th) {
@@ -113,5 +131,38 @@ class ProductController extends Controller
         DB::rollback();
         return redirect()->back();
       }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function deleteImage(Request $request)
+    {
+      try{
+        DB::beginTransaction();
+        $image = ProductImage::find($request->id);
+        if (file_exists(public_path($image->path))) {
+          unlink(public_path($image->path));
+        }
+        $image->delete();
+        DB::commit();
+        return response()->json([
+          'success' => true,
+          'message' => 'Image Deleted Successfully',
+        ]);
+      }catch (\Throwable $th) {
+        DB::rollback();
+        return response()->json([
+          'success' => false,
+          'message' => $th->getMessage(),
+        ]);
+      }
+    }
+
+    private function save_image($file, $store_path){
+      $extension = File::extension($file->getClientOriginalName());
+      $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
+      $file->move(public_path($store_path), $filename);
+      return $store_path.'/'.$filename;
     }
 }
