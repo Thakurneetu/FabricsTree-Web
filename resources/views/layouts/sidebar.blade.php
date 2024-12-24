@@ -26,5 +26,25 @@
           <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
         </svg> Category</a>
     </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.requirement.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Requirement</a>
+    </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.subcategory.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Subcategory</a>
+    </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.tag.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Tag</a>
+    </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.product.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Product</a>
+    </li>
   </ul>
 </div>
