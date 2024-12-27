@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
   protected $fillable = ['product_id', 'path'];
+
+  public function getPathAttribute($value)
+  {
+      return asset($value);
+  }
 }

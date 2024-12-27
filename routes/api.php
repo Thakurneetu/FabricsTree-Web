@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CustomerAuthController;
 use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\ProductsController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,6 +24,10 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::controller(HomeController::class)->group(function(){
       Route::get('/categories', 'categories');
+    });
+    Route::controller(ProductsController::class)->group(function(){
+      Route::post('/products', 'products');
+      Route::get('/filters', 'filters');
     });
 });
 
