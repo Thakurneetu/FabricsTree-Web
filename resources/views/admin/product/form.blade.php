@@ -118,7 +118,7 @@
         <input type="text" class="coloris" value="#1369d2" id="color">
       </div>
       <button type="button" onclick="addColor()" class="btn btn-sm btn-info mt-3">Add This Color</button>
-      <div class="d-flex flex-wrap mt-3 ps-2 pt-2" style="background:white;border-radius: 5px;" id="color_div">
+      <div class="d-flex flex-wrap mt-3 ps-2 pt-2" style="background:white;border-radius: 5px;min-height: 66px;" id="color_div">
         @if(isset($product) && count($product->colors) > 0)
           @foreach($product->colors as $color)
             <div class="color-box rounded me-2 mb-2" style="background-color:{{$color->code}}">
