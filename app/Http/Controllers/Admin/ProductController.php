@@ -10,6 +10,7 @@ use App\Models\Subcategory;
 use App\Models\Requirement;
 use Illuminate\Http\Request;
 use App\Models\ProductImage;
+use App\Models\ProductColors;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductDataTable;
@@ -51,10 +52,15 @@ class ProductController extends Controller
         $product->tags()->sync($tags);
         if($request->has('images')){
           $image['product_id'] = $product->id;
-          foreach ($request->images as $key => $value) {
-            $image['path'] = $this->save_image($request->file('file'), '/uploads/product/image');
+          foreach ($request->images as $image_file) {
+            $image['path'] = $this->save_image($image_file, '/uploads/product/image');
             ProductImage::create($image);
           }
+        }
+        $color['product_id'] = $product->id;
+        foreach ($request->colors as $value) {
+          $color['code'] = $value;
+          ProductColors::updateOrCreate($color, $color);
         }
         DB::commit();
         Alert::toast('Product Added Successfully','success');
@@ -104,6 +110,12 @@ class ProductController extends Controller
             $image['path'] = $this->save_image($image_file, '/uploads/product/image');
             ProductImage::create($image);
           }
+        }
+        ProductColors::where('product_id', $product->id)->whereNotIn('code', $request->colors)->delete();
+        $color['product_id'] = $product->id;
+        foreach ($request->colors as $value) {
+          $color['code'] = $value;
+          ProductColors::updateOrCreate($color, $color);
         }
         DB::commit();
         Alert::toast('Product Updated Successfully','success');

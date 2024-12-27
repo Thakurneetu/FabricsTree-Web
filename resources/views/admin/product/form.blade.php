@@ -111,6 +111,24 @@
       <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>
+    <!-- Colors -->
+    <div class="form-group col-md-6 col-12 mb-3">
+      <label for="name">Product Colors</label>
+      <div class="example square">
+        <input type="text" class="coloris" value="#1369d2" id="color">
+      </div>
+      <button type="button" onclick="addColor()" class="btn btn-sm btn-info mt-3">Add This Color</button>
+      <div class="d-flex flex-wrap mt-3 ps-2 pt-2" style="background:white;border-radius: 5px;" id="color_div">
+        @if(isset($product) && count($product->colors) > 0)
+          @foreach($product->colors as $color)
+            <div class="color-box rounded me-2 mb-2" style="background-color:{{$color->code}}">
+              <div class="remove-icon">x</div>
+              <input type="hidden" name="colors[]" value="{{$color->code}}">
+            </div>
+          @endforeach
+        @endif
+      </div>
+    </div>
     <!-- Images -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Images</label>
