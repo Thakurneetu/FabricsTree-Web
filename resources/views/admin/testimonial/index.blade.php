@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Customer | 
+Testimonial | 
 @endsection
 
 @section('style')
@@ -13,13 +13,13 @@ Customer |
     <div class="container-lg px-4">
       <div class="card">
           <div class="card-header d-flex justify-content-between align-items-center">
-            Manage Customers
-            <a href="{{ route('admin.customer.create') }}" class="btn btn-warning">Add New</a>
+            Manage Testimonial
+            <a href="{{ route('admin.testimonial.create') }}" class="btn btn-warning">Add New</a>
           </div>
           <div class="card-body">
-            {!! $dataTable->table(['class' => 'table table-striped'], false) !!}
+          {!! $dataTable->table(['class' => 'table table-striped'], false) !!}
           </div>
-        </div>
+      </div>
     </div>
   </div>
 @endsection

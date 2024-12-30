@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\RequirementController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\ContactUsController;
 
 
 use App\Http\Controllers\Web\CustomerRegisterController;
@@ -48,6 +54,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
       'customer' => CustomerController::class,
       'category' => CategoryController::class,
+      'subcategory' => SubcategoryController::class,
+      'requirement' => RequirementController::class,
+      'tag' => TagController::class,
+      'product' => AdminProductController::class,
+      'contact-us' => ContactUsController::class,
+      'testimonial' => TestimonialController::class,
     ]);
+    Route::post('/delete-product-image', [AdminProductController::class, 'deleteImage'])->name('delete-product-image');
   });
 });

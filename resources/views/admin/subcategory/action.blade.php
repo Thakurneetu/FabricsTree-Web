@@ -1,5 +1,5 @@
 <div class="btn-group">
-  <a href="{{ route('admin.category.edit', $id) }}" class='btn btn-sm btn-info tooltip-box'>
+  <a href="{{ route('admin.subcategory.edit', $id) }}" class='btn btn-sm btn-info tooltip-box'>
     <i class="text-white icon icon-sm cil-pen-alt"></i>
     <div class="tooltip text-white text-xs -top-full"> 
       <span>Edit</span>
@@ -12,6 +12,6 @@
     </div>
   </a>
 </div>
-<form id="delete_form-{{$id}}" action="{{ route('admin.category.destroy', $id) }}" method="post">
+<form id="delete_form-{{$id}}" action="{{ route('admin.subcategory.destroy', $id) }}" method="post">
     @csrf @method('delete')
 </form>

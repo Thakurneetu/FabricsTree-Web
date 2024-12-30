@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+Category | 
+@endsection
+
 @section('style')
   @include('layouts.includes.datatablesCss') 
 @endsection
