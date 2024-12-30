@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CustomerAuthController;
 use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\ProductsController;
+use App\Http\Controllers\API\OrderController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -30,6 +31,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(ProductsController::class)->group(function(){
       Route::post('/products', 'products');
       Route::get('/filters', 'filters');
+    });
+    Route::controller(OrderController::class)->group(function(){
+      Route::get('/cart/list', 'getCart');
+      Route::post('/cart/add', 'addToCart');
+      Route::get('/cart/delete/{id}', 'deleteCart');
     });
 });
 

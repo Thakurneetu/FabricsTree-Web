@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use File;
 use App\Models\Tag;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -134,6 +135,7 @@ class ProductController extends Controller
     {
       try{
         DB::beginTransaction();
+        Cart::where('product_id', $product->id)->delete();
         $product->delete();
         DB::commit();
         Alert::toast('Product Deleted Successfully','success');
