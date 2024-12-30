@@ -26,9 +26,14 @@
             <div class="form-group col-12 mb-3">
               <label for="name">Message:</label> {{$contactUs->message}}
             </div>
-            <!-- <div class="form-group col-12 mb-3">
+            <div class="form-group col-12 mb-3">
               <label for="name">Status:</label> {{ucfirst($contactUs->status)}}
-            </div> -->
+            </div>
+            @if($contactUs->status == 'pending')
+            <div class="form-group col-12 mb-3">
+              <button class="btn btn-success text-white" onclick="reviewed({{$contactUs->id}})">Mark as Reviewed</button>
+            </div>
+            @endif
           </div>
         </div>
       </div>
@@ -37,5 +42,37 @@
 @endsection
 
 @section('script')
-
+<script>
+  function reviewed(id){
+    swal({
+      title:'Are you sure?',
+      // timer: 3000,
+      buttons: {  cancel: { text: "Cancel",visible:true, value: null, className: "bg-light"},
+                  confirm: { text: "Yes Reviewed", value: true, className: "bg-warning"},
+                },
+      icon: "warning",
+      text: 'Message will be marked as reviewed!', 
+      className: "btn-danger",
+      closeModal: true
+    })
+    .then((reviewed) => {
+      if (reviewed) {
+        jQuery.ajax({
+            method: "PUT",
+            url: "{{ route('admin.contact-us.index') }}/"+id,
+            data: {_token: "{{csrf_token()}}", status: 'reviewed'},
+        })
+        .done(function (response) {
+          if(response.success)
+          window.location.reload();
+          else
+          swal({title:response.message, timer: 2000, icon:"error"});
+        })
+        .fail(function (err) {
+            console.log(err);              
+        });
+      }
+    });
+  }
+</script>
 @endsection

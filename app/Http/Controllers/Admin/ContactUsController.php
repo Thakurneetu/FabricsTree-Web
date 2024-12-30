@@ -55,9 +55,10 @@ class ContactUsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ContactUs $contactUs)
+    public function update(Request $request, $id)
     {
-        //
+      ContactUs::find($id)->update(['status'=>$request->status]);
+      return response()->json(['success'=>true]);
     }
 
     /**

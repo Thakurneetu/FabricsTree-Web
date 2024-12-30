@@ -23,7 +23,13 @@ class ContactUsDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', 'admin.contact_us.action')
-        ->rawColumns(['action'])
+        ->editColumn('status', function ($data) {
+          if($data->status == 'pending')
+            return '<span class="badge text-bg-warning text-white">'.ucfirst($data->status).'</span>';
+          else
+            return '<span class="badge text-bg-success text-white">'.ucfirst($data->status).'</span>';
+        })
+        ->rawColumns(['action','status'])
         ->addIndexColumn();
     }
 
@@ -68,6 +74,7 @@ class ContactUsDataTable extends DataTable
           Column::make('email'),
           Column::make('phone'),
           Column::make('message'),
+          Column::make('status'),
           Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

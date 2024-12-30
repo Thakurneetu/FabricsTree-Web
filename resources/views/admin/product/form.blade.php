@@ -139,7 +139,7 @@
         @foreach($product->images as $image)
         <div class="col-md-4 col-sm-6 position-relative">
           <div class="position-absolute text-danger" style="right:20px;top:4px;" onclick="delete_image({{$image->id}})">
-            <i class="icon icon-sm cil-trash"></i>
+            <i class="text-white icon icon-sm cil-trash"></i>
           </div>
           <img src="{{asset($image->path)}}" alt="Gallery Image 1" class="img-fluid">
         </div>

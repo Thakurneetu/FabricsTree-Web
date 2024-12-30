@@ -25,5 +25,37 @@ Contact Us |
 
 @section('script')
   @include('layouts.includes.datatablesJs') 
-  @include('layouts.includes.deleteFunction')
+  <script>
+  function reviewed(id){
+    swal({
+      title:'Are you sure?',
+      // timer: 3000,
+      buttons: {  cancel: { text: "Cancel",visible:true, value: null, className: "bg-light"},
+                  confirm: { text: "Yes Reviewed", value: true, className: "bg-warning"},
+                },
+      icon: "warning",
+      text: 'Message will be marked as reviewed!', 
+      className: "btn-danger",
+      closeModal: true
+    })
+    .then((reviewed) => {
+      if (reviewed) {
+        jQuery.ajax({
+            method: "PUT",
+            url: "{{ route('admin.contact-us.index') }}/"+id,
+            data: {_token: "{{csrf_token()}}", status: 'reviewed'},
+        })
+        .done(function (response) {
+          if(response.success)
+          window.location.reload();
+          else
+          swal({title:response.message, timer: 2000, icon:"error"});
+        })
+        .fail(function (err) {
+            console.log(err);              
+        });
+      }
+    });
+  }
+</script>
 @endsection
