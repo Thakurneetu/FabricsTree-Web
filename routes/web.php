@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\ContactUsController;
 
 
 use App\Http\Controllers\Web\CustomerRegisterController;
@@ -56,6 +58,8 @@ Route::group(['middleware' => 'auth'], function () {
       'requirement' => RequirementController::class,
       'tag' => TagController::class,
       'product' => AdminProductController::class,
+      'contact-us' => ContactUsController::class,
+      'testimonial' => TestimonialController::class,
     ]);
     Route::post('/delete-product-image', [AdminProductController::class, 'deleteImage'])->name('delete-product-image');
   });

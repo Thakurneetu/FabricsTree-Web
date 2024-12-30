@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::controller(HomeController::class)->group(function(){
       Route::get('/categories', 'categories');
+      Route::get('/testimonials', 'testimonials');
+      Route::post('/contact-us', 'saveContactUs');
     });
     Route::controller(ProductsController::class)->group(function(){
       Route::post('/products', 'products');

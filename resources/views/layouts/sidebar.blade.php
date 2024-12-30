@@ -46,5 +46,15 @@
           <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
         </svg> Product</a>
     </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.testimonial.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Testimonial</a>
+    </li>
+    <li class="nav-item mt-1"><a class="nav-link" href="{{ route('admin.contact-us.index') }}">
+        <svg class="nav-icon">
+          <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}"></use>
+        </svg> Contact Us</a>
+    </li>
   </ul>
 </div>
