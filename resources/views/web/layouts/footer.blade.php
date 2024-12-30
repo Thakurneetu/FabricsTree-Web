@@ -38,7 +38,6 @@
         </div>
       </div>
     </footer>
-
     
   <!-- Modal Log in-->
   <div class="modal fade login" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
