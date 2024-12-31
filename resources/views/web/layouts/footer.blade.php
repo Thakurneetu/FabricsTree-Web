@@ -1,43 +1,87 @@
-    <footer class="footer">
+<footer class="footer">
 
-      <div class="container">
-        <div class="row">
-          <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
+<div style="margin: 0 3rem;">
+    <div class="row">
+        <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
             <div class="footerlogo">
-              <img src="{{ asset('frontend/images/Footerlogo.png') }}">
+                <img src="{{ asset('frontend/images/Footerlogo.png') }}">
+
+                <ul>
+                    <li>Lorem ipsum is typically a corrupted version of De minibus Bono rum et malform, a
+                        1st-century.</a></li>
+                    <li><a href="#">Download the mobile app</a></li>
+
+                    <div class="d-flex">
+                        <li><a href="#"> <img src="{{ asset('frontend/images/pngwing.com 1.png') }}" alt=""> </a></li>
+                        <li><a href="#"> <img src="{{ asset('frontend/images/pngwing.com 2.png') }}" alt=""> </a></li>
+                    </div>
+                </ul>
+
             </div>
-            <div class="social-links gap-5">
-              <a href="#"><i class="fa-brands fa-facebook-f" style="line-height: 2.5;"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram" style="line-height: 2.5;"></i></a>
-              <a href="#"><i class="fa-brands fa-linkedin-in" style="line-height: 2.5;"></i></a>
-              <a href="#"><i class="fa-brands fa-youtube" style="line-height: 2.5;" ></i></a>
-              <a href="#"><i class="fa-brands fa-x-twitter" style="line-height: 2.5;"></i></a>
-            </div>
-          </div>
-          <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
-            <ul>
-              <li><a href="#"><i class="fa fa-angle-right"></i> About us</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i> Products</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i> Terms & Condition</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i> Privacy Policy</a></li>
-            </ul>
-          </div>
-          <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12 thirdsecfooter">
-            <h3>Contact Us</h3>
-            <ul>
-              <li><a href="#"><i class="fa fa-phone"></i> +91 8920 392 418</a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i> mail@ Fabricstree.com</a></li>
-            </ul>
-          </div>
-          <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
-            <ul>
-              <li><a href="#">Download the mobile app</a></li>
-              <li><a href="#"> <img src="{{ asset('frontend/images/playstore.png') }}" alt=""> </a></li>
-          </div>
 
         </div>
-      </div>
-    </footer>
+        <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12"
+            style="display: flex;justify-content: center;">
+
+            <ul>
+                <h3>Pages</h3>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Terms & Condition</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12 thirdsecfooter"
+            style="display: flex;justify-content: center;">
+
+            <ul>
+                <h3>Contact Us</h3>
+                <div>
+                    <div class="d-flex" style="align-items: center; color: #fff;">
+                        <li class="social-links"><a href="#"
+                                style="display: flex; justify-content: center; align-items: center;"><i
+                                    class="fa fa-phone"></i>
+                            </a></li>
+                        <div>+91 8920 392 418</div>
+                    </div>
+                    <div class="d-flex" style="align-items: center; color: #fff;">
+                        <li class="social-links"><a href="#"
+                                style="display: flex; justify-content: center; align-items: center;"><i
+                                    class="fa fa-envelope"></i></a></li>
+                        <div> mail@ Fabricstree.com</div>
+
+                    </div>
+
+                </div>
+            </ul>
+        </div>
+        <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
+
+
+            <ul>
+                <h3>Social Media</h3>
+                <div class="social-links gap-5">
+                    <a href="#"><i style="line-height: 2.5;" class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i style="line-height: 2.5;" class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i style="line-height: 2.5;" class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i style="line-height: 2.5;" class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i style="line-height: 2.5;" class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </ul>
+
+            <ul>
+                <h3>Newsletter</h3>
+                <div class="col-md-12 col-sm-12 footerinp">
+                    <input type="text" class="form-control" placeholder="Enter your email address">
+                    <button class="btn-outline-success maincolor mt-3" type="submit">Subscribe</button>
+                </div>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+</footer>
     
   <!-- Modal Log in-->
   <div class="modal fade login" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

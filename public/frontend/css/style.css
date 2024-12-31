@@ -1,6 +1,6 @@
 body {
     overflow-x: hidden !important;
-    font-family: Times New Roman;
+    font-family: Outfit;
 }
 
 .topnav {
@@ -62,7 +62,6 @@ body {
     border-radius: 5px !important;
     border: none !important;
     padding: 5px 15px;
-    margin: 0 0px 18px 0;
 }
 
 .carousel-item img {
@@ -75,12 +74,10 @@ body {
     padding: 2rem 0;
 }
 
-.topsliderrightgreige {
-    margin-top: 3rem;
-}
+
 
 .topsliderrightgreige img {
-    height: 435px;
+    height: 315px;
 }
 
 .carousel-caption {
@@ -89,10 +86,21 @@ body {
 
 .carousel-dark .carousel-caption {
     color: #fff !important;
+    font-family: Outfit;
 }
 
 .carousel-caption button {
-    width: 200px !important;
+    width: 140px !important;
+    padding: 7px;
+}
+
+.carousel-caption h1 {
+    font-family: Outfit;
+    font-size: 55px;
+}
+
+.carousel-caption p {
+    width: 50vw;
 }
 
 .bannerlogo {
@@ -105,23 +113,37 @@ body {
     border-radius: 4%;
 }
 
+.aligcra {
+    display: flex;
+    justify-content: center;
+}
+
 .banneerlogo div {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 230px;
-    background-image: url('../images/Mask\ group.png'); /* Specify the image URL */
-    background-size: cover; /* Makes sure the image covers the entire container */
-    background-position: center; /* Centers the image */
+    background-image: url('../images/Mask\ group.png');
+    /* Specify the image URL */
+    background-size: cover;
+    /* Makes sure the image covers the entire container */
+    background-position: center;
+    /* Centers the image */
     background-color: #000;
     color: #fff;
 
 
 }
 
+.aboutsbg {
+    background-image: url('../images/Mask\ group.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #EEF1F6;
+}
 
 .Greigefabricpad {
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 29px;
     font-weight: 600;
     text-align: center;
@@ -140,7 +162,7 @@ body {
 }
 
 .Gfabric {
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 27px;
     font-weight: 700;
     line-height: 40px;
@@ -151,6 +173,13 @@ body {
 .playout {
     width: 530px;
 }
+
+.playout p {
+    color: #83848A;
+    font-size: 15px;
+    padding: 0 3rem 0px 0px;
+}
+
 
 .aboutusdiuv {
     padding: 0px 0px 4rem;
@@ -189,7 +218,7 @@ body {
 }
 
 .dedigne {
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 31px;
     font-weight: 400;
     line-height: 35.65px;
@@ -279,41 +308,42 @@ body {
 }
 
 .aboutus {
-    font-family: Times New Roman;
-    font-size: 40px;
+    font-family: Outfit;
+    font-size: 35px;
     font-weight: 400;
     line-height: 46px;
     text-align: left;
 
 }
 
-.startlogo{
+.startlogo {
     position: absolute;
-    top: 35%;
+    top: 5%;
     left: 45%
 }
 
-.startlogo img{
+.startlogo img {
     width: 8rem;
-} 
+}
 
-.Maindiv input{
+.Maindiv input {
     margin: 8px;
 }
 
-.Maindiv{
+.Maindiv {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 16px;
     border-radius: 8px;
 }
-.Maindivtwo{
+
+.Maindivtwo {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 16px;
     border-radius: 8px;
 }
 
 .Categoriesbtn {
-    padding: 0px 14rem;
+    padding: 0px 16rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -321,12 +351,12 @@ body {
 
 .Categoriesbtn button {
     background-color: #ffffff;
-    color: #000;
+    color: #252525;
     border: none;
     font-size: 15px;
-    font-family: Times New Roman;
-    margin: 5px;
-    font-weight: 600;
+    font-family: Outfit;
+    padding: 5px 18px;
+
 }
 
 .btn-check:checked+.btn,
@@ -343,7 +373,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem 22rem;
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 16px;
     font-weight: bold;
 }
@@ -377,14 +407,20 @@ body {
 .slider .slide {
     display: flex;
     position: absolute;
-    left: 0;
+    left: 80px;
     transition: 0.3s left ease-in-out;
+    gap: 4rem;
+}
+
+.slidername {
+    color: #252525;
+    font-weight: 600;
+    font-family: Outfit;
 }
 
 .slider .item {
     width: 15rem;
     border-radius: 50%;
-    margin-right: 4rem;
 }
 
 .slider .item:last-child {
@@ -397,7 +433,7 @@ body {
 }
 
 .ctrl-btn {
-    padding: 15px 20px;
+    /* padding: 13px 20px; */
     min-width: 50px;
     background: #78239B;
     border: none;
@@ -410,6 +446,8 @@ body {
     position: absolute;
     top: 50%;
     margin-top: -27.5px;
+    width: 45px;
+    height:45px;
 }
 
 .ctrl-btn.pro-prev {
@@ -510,6 +548,8 @@ body {
 
 .reviews {
     color: #f9d71c;
+    text-align: center;
+    padding: 5px;
 }
 
 .box-top {
@@ -529,7 +569,10 @@ body {
     transition: all ease 0.3s;
 }
 
-
+.headparass h2 {
+    font-size: 22px;
+    font-weight: 400;
+}
 
 /* contactformcode */
 
@@ -538,16 +581,22 @@ body {
 }
 
 .icondiv h4 {
-    font-size: x-large;
-    font-weight: bolder;
-    font-family: Times New Roman;
-
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Outfit;
+    margin: unset;
+    margin-left: 6px;
 }
 
 .icondiv p {
-    font-size: medium;
-    font-family: Times New Roman;
+    font-size: 14px;
+    font-family: Outfit;
+    color: #6E7386;
+    margin-left: 6px;
+
 }
+
+
 
 .icondiv i {
     font-size: 20px;
@@ -595,7 +644,7 @@ body {
     background-color: #78239B;
     color: #ECECEC;
     font-size: x-large;
-    font-family: 'Times New Roman';
+    /* font-family: 'Times New Roman'; */
 }
 
 .leftpadding {
@@ -625,12 +674,25 @@ body {
 }
 
 .login {
-    font-family: Times New Roman;
+    font-family: Outfit;
+    padding: 8px 15px 7px 40px;
+    /* background-color: #f2eaf5; */
 }
+
+.searchbar {
+    position: relative;
+}
+
+.searchbar i {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+}
+
 
 .Forgot {
     text-align: left;
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 13px;
     color: red;
     margin-left: 5px;
@@ -638,7 +700,7 @@ body {
 
 .Forgots {
     text-align: right;
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 13px;
     color: #78239B;
     font-weight: bold;
@@ -654,7 +716,7 @@ body {
 }
 
 .newregistation {
-    font-family: Times New Roman;
+    font-family: Outfit;
     font-size: 15px;
     font-weight: 400;
 }
@@ -771,15 +833,15 @@ body {
 
 .card-titles {
     font-family: Outfit;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
     line-height: 16px;
     text-align: center;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
 }
 
-.card-body{
+.card-body {
     display: inline-grid;
     justify-content: center;
     align-items: center;
@@ -911,7 +973,8 @@ body {
         display: flex;
         flex-wrap: wrap;
     }
-    .Product{
+
+    .Product {
         padding: unset !important;
     }
 

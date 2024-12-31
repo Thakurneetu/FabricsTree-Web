@@ -1,7 +1,7 @@
 <div class="topnav gap-2">
-<p><i class="fa fa-envelope"></i> Fabricstree@gmail.com</p>
-<p><i class="fa fa-envelope"></i> Free Shipping World wide for all orders</p>
-<p> <i class="fa fa-phone"></i> +123 456 7890</p>
+    <p><i class="fa fa-envelope"></i>&nbsp; Fabricstree@gmail.com</p>
+    <p><i class="fa fa-truck"></i>&nbsp; Free Shipping World wide for all orders</p>
+    <p> <i class="fa fa-phone"></i>&nbsp; +123 456 7890</p>
 </div>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,6 +41,30 @@
 
     <div class="d-flex justify-content-center gap-2" id="searchmob">
 
+        <form class="d-flex" role="search">
+          <div class="searchbar">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input class="form-control me-2" type="search" placeholder="Search...." aria-label="Search"
+              style="background-color: #EEF1F6; text-indent: 32px;color: #83848A;">
+          </div>
+        </form>
+
+        <div class="searchbar">
+          <i class="fa fa-user" aria-hidden="true" style="color: #78239B;"></i>
+          
+            @if(Auth::guard('customer')->check())
+            <a href="{{ route('customer.logout')}}" ><button class="btn btn-outline-success login" type="button" >Logout</button></a>
+            @else
+            <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Login</button>
+            @endif
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="d-flex justify-content-center gap-2" id="searchmob">
+
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search...." aria-label="Search">
     </form>
@@ -51,9 +75,7 @@
     <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
         data-bs-target="#exampleModal">Login</button>
     @endif
-    <!-- <button class="btn-outline-success login" type="submit" data-bs-toggle="modal"
-        data-bs-target="#exampleModal">Login</button>
-    </div> -->
+    
 
-</div>
+</div> -->
 </nav>
