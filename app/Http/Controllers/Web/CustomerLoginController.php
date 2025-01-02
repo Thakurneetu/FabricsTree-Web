@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 class CustomerLoginController extends Controller
 {
     /*
@@ -47,6 +48,7 @@ class CustomerLoginController extends Controller
      */
     public function login(Request $request)
     {   
+        try {
         $this->validator($request->all())->validate();
         
         $credentials = $request->only('email_id', 'pwd');
@@ -54,10 +56,31 @@ class CustomerLoginController extends Controller
         $data['email'] = $credentials['email_id'];
         $data['password'] = $credentials['pwd'];
         
-        if (Auth::guard('customer')->attempt($data)) {
-            return redirect()->intended(route("customer.dashboard"))->withSuccess('You have Successfully loggedin');
+        if(Auth::guard('customer')->attempt($data)){
+            return response()->json([
+                'status' => true,
+                'message' => 'You have Successfully loggedin.',
+                'data' => $data,
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Oppes! You have entered invalid credentials',
+                'errors' => 'Oppes! You have entered invalid credentials',
+            ], 400);
         }
-        return redirect('/')->withError('Oppes! You have entered invalid credentials');
+        // return redirect()->intended(route("customer.dashboard"))->withSuccess('You have Successfully loggedin');
+        
+        //return redirect('/')->withError('Oppes! You have entered invalid credentials');
+
+            
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $this->transformErrors($e),
+                'errors' => $e->getMessage(),
+            ], 400);
+        }
     }
 
     /**
@@ -85,6 +108,22 @@ class CustomerLoginController extends Controller
         
         return redirect('/')->withSuccess('You have successfully logout');
 
+    }
+
+    // transform the error messages,
+    private function transformErrors(ValidationException $exception)
+    {
+        $errors = [];
+
+        foreach ($exception->errors() as $field => $message) {
+            //    $errors[] = [
+            //        'field' => $field,
+            //        'message' => $message,
+            //    ];
+            $errors[] = $message;     
+        }
+
+        return $errors;
     }
 
 }

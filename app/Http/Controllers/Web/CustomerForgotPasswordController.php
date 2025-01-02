@@ -10,7 +10,9 @@ use Carbon\Carbon;
 use App\Mail\ForgetPasswordMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\Customer;
+use App\Mail\OtpMail;
+use Illuminate\Validation\ValidationException;
 class CustomerForgotPasswordController extends Controller
 {
     /*
@@ -33,7 +35,7 @@ class CustomerForgotPasswordController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-          'email_address' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix'
+          'email_address' => 'required|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix'
         ],
         [
             'email_address.required' =>'The email field is required.',
@@ -47,24 +49,100 @@ class CustomerForgotPasswordController extends Controller
      */
     public function forgetpassword(Request $request)
     {
-        $this->validator($request->all())->validate();
+        // $this->validator($request->all())->validate();
        
-        $token = Str::random(64);
+        // $token = Str::random(64);
 
-        DB::table('password_reset_tokens')->where(['email'=> $request->email_address])->delete();
+        // DB::table('password_reset_tokens')->where(['email'=> $request->email_address])->delete();
 
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->email_address, 
-            'token' => $token, 
-            'created_at' => Carbon::now()
+        // DB::table('password_reset_tokens')->insert([
+        //     'email' => $request->email_address, 
+        //     'token' => $token, 
+        //     'created_at' => Carbon::now()
+        // ]);
+
+        // $data = array();
+        
+        // Mail::to($request->email_address)->send(new ForgetPasswordMail($token));
+        
+        // return redirect('/')->withSuccess('We have e-mailed your password reset link!');
+        try {    
+        $this->validator($request->all())->validate();
+            
+        $customer = Customer::where('email', $request->email_address)->first();
+        if($customer){
+            $otp = rand(1000, 9999);
+            $customer->update([
+                'otp' => $otp
+            ]);
+            
+            Mail::to($request->email_address)->send(new OtpMail($otp));
+
+            return response()->json([
+                'status' => true,
+                'message' => 'OTP successfully sent your registered email!',
+                'data' => $otp,
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Please entered registered email!!',
+                'errors' => 'Please entered registered email!!',
+            ], 400);
+        }
+
+        //return redirect('/')->withSuccess('OTP successfully sent your registered email!');
+           
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $this->transformErrors($e),
+                'errors' => $e->getMessage(),
+            ], 400);
+        }
+    }
+
+    /**
+     * Get a validator for an incoming otp valid request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function otpvalidator(array $data)
+    {
+        return Validator::make($data, [
+          'otp[]' => 'required'
+        ],
+        [
+            'otp.required' =>'The otp field is required.',
+            //'otp.min' =>'Enter valid otp.',
         ]);
+    }
 
-        $data = array();
-        
-        Mail::to($request->email_address)->send(new ForgetPasswordMail($token));
-        
-        return redirect('/')->withSuccess('We have e-mailed your password reset link!');
-
+    public function forgototpverify(Request $request)
+    {
+        try {
+            $this->otpvalidator($request->all())->validate();
+            $customer = Customer::where(['email'=>$request->email_address, 'otp'=>$request->otp])->first();
+            if($customer)
+                return response()->json([
+                    'status' => true,
+                    'message' => 'OTP matched successfully',
+                    'data' => '',
+                ], 200);
+            else
+            return response()->json([
+                'status' => false,
+                'message' => 'Please enter a valid OTP!',
+                'errors' => 'Please enter a valid OTP!',
+            ], 400);
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $this->transformErrors($e),
+                'errors' => $e->getMessage(),
+            ], 400);
+        }
     }
 
     /**
@@ -78,6 +156,22 @@ class CustomerForgotPasswordController extends Controller
         if(!$getData){
             return redirect('/')->withError('Oppes! reset passowrd link is expired');
         }
-        return view('welcome', ['token' => $token,'email'=>$getData->email]);
+        return view('index', ['token' => $token,'email'=>$getData->email]);
+    }
+
+    // transform the error messages,
+    private function transformErrors(ValidationException $exception)
+    {
+        $errors = [];
+
+        foreach ($exception->errors() as $field => $message) {
+            //    $errors[] = [
+            //        'field' => $field,
+            //        'message' => $message,
+            //    ];
+            $errors[] = $message;     
+        }
+
+        return $errors;
     }
 }

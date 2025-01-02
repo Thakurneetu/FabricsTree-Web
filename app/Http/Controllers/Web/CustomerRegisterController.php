@@ -13,7 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Validation\ValidationException;
 
 class CustomerRegisterController extends Controller
 {
@@ -80,6 +80,7 @@ class CustomerRegisterController extends Controller
      */
     public function register(Request $request)
     {
+        try {
         $this->validator($request->all())->validate();
         
         event(new Registered($user = $request->all()));
@@ -99,6 +100,34 @@ class CustomerRegisterController extends Controller
 
         Mail::to($customer->email)->send(new WelcomeMail($customer));
         
-        return redirect('/')->withSuccess('You have registered successfully');
+        // return redirect('/')->withSuccess('You have registered successfully');
+        return response()->json([
+                'status' => true,
+                'message' => 'Your account has been created successfully.',
+                'data' => $customer,
+            ], 200);
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $this->transformErrors($e),
+                'errors' => $e->getMessage(),
+            ], 400);
+        }
+    }
+
+    // transform the error messages,
+    private function transformErrors(ValidationException $exception)
+    {
+        $errors = [];
+
+        foreach ($exception->errors() as $field => $message) {
+            //    $errors[] = [
+            //        'field' => $field,
+            //        'message' => $message,
+            //    ];
+            $errors[] = $message;     
+        }
+
+        return $errors;
     }
 }

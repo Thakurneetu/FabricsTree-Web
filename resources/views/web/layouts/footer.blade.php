@@ -82,9 +82,9 @@
     </div>
 </div>
 </footer>
-    
+
   <!-- Modal Log in-->
-  <div class="modal fade login" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -104,7 +104,8 @@
                 <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Sign In</h1>
             </div>
         </div>
-        <form method="POST" action="{{ route('customer.login') }}">
+        <!-- action="{{ route('customer.login') }}" -->
+        <form method="POST" id="loginfrom" name="loginfrom">
           @csrf
           @session('error')
               <div class="alert alert-danger" role="alert"> 
@@ -135,7 +136,7 @@
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center  ">
-              <button class="btn-outline-success maincolor" type="submit">{{ __('Submit') }}</button>
+              <button class="btn-outline-success maincolor" id="save_login" type="button">{{ __('Submit') }}</button>
           </div>
           <div class="text-center">
               <p class="newregistation mb-3" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModalregistation">
@@ -159,22 +160,33 @@
   </div>
 
   <!-- Modal Forgot Password-->
-  <div class="modal fade login" id="exampleModalforget" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="exampleModalforget" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <div class="text-center w-100">
-            <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Forgot Password</h1>
+            <!-- <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Forgot Password</h1> -->
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="{{ route('customer.forgetpassword') }}">
+        <div class="d-flex justify-content-center" style="margin-top: -6rem;">
+            <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
+                <img class="p-3" src="{{ asset('frontend/images/Group.png') }}" alt="thanks" width="80">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center w-100  mb-3">
+            <div class="text-center verify">
+                <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Forgot Password</h1>
+            </div>
+        </div>
+        <!-- action="{{ route('customer.forgetpassword') }}" -->
+          <form method="POST" id="forgotpwdform" name="forgotpwdform" >
           @csrf
           <div class="row">
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email</label>
+              <!-- <label for="exampleFormControlInput1" class="form-label">Email</label> -->
               <input id="email_address" type="email" class="form-control @error('email_address') is-invalid @enderror" name="email_address" value="{{ old('email_address') }}" required autocomplete="email_address" placeholder="Enter your email address">
 
               @error('email_address')
@@ -182,38 +194,100 @@
                       <strong>{{ $message }}</strong>
                   </span>
               @enderror
-              <!-- <p class="Forgot" data-bs-toggle="modal" data-bs-target="#exampleModalforgetnew">Forgot Your Password?</p> -->
+              <p style="display: none;" class="hide" data-bs-toggle="modal" data-bs-target="#exampleModalverify">Forgot verify</p>
 
             </div>
           </div>
-          <div class="modal-footer">
+          <!-- <div class="modal-footer">
             <button type="submit" class="btn btn-primary w-100 loginbtn">Submit</button>
 
-          </div>
+          </div> -->
+          <div class="modal-footer d-flex justify-content-center  ">
+                <button class="btn-outline-success maincolor" id="save_forgotpwd" type="button">Submit</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Modal Verify Account-->
+  <div class="modal fade" id="exampleModalverify" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <div class="text-center w-100">
+                  </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body verify">
 
-  <!-- Modal Forgot New & confirm Password-->
-  <div class="modal fade login" id="exampleModalforgetnew" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  <div class="d-flex justify-content-center" style="margin-top: -6rem;">
+                      <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
+                          <img class="p-2" src="{{ asset('frontend/images/Vector (1).png') }}" alt="thanks" width="80">
+                      </div>
+                  </div>
+                  <div class="d-flex justify-content-center w-100">
+                      <div class="text-center verify">
+                          <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Verify Account</h1>
+                          <h6 class="mb-4" style="color: #83848A; width: 20rem;">Verify your account by entering
+                              verification code
+                          </h6>
+                      </div>
+                  </div>
+
+                  <form method="POST" id="forgotpwdverifyform" name="forgotpwdverifyform" >
+                  @csrf
+                      <div class="flex mb-6">
+                          <input type="text" name="otp[]" maxlength="1" />
+                          <input type="text" name="otp[]" maxlength="1" />
+                          <input type="text" name="otp[]" maxlength="1" />
+                          <input type="text" name="otp[]" maxlength="1" />
+                      </div>
+                      <p style="margin: unset;"><a href="#">Resend</a></p>
+                  </form>
+              </div>
+              <div class="modal-footer d-flex justify-content-center  ">
+                  <button class="btn-outline-success maincolor" id="save_forgotpwd_verify" type="button">Submit</button>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+    <!-- Modal Forgot New & confirm Password-->
+  <div class="modal fade" id="exampleModalforgetnew" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <div class="text-center w-100">
-            <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Forgot Password</h1>
+            <!-- <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Forgot Password</h1> -->
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+        <div class="d-flex justify-content-center" style="margin-top: -6rem;">
+            <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
+                <img class="p-3" src="{{ asset('frontend/images/Group.png') }}" alt="thanks" width="80">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center w-100">
+            <div class="text-center verify">
+                <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Reset Password</h1>
+
+                <h6 class="mb-4" style="color: #83848A; width: 18rem;">Passwords are case sensitive and must
+                    be at least 6
+                    characters long
+                </h6>
+            </div>
+        </div>
           <form method="POST" action="{{ route('customer.resetpassword') }}">
           @csrf
           <div class="row">
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">New Password</label>
+              <!-- <label for="exampleFormControlInput1" class="form-label">New Password</label> -->
               <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="new_password" placeholder="New Password">
 
               <input id="token" type="hidden" class="form-control" name="token" required autocomplete="token" placeholder="Token" value="{{@$token}}">
@@ -227,7 +301,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+              <!-- <label for="exampleFormControlInput1" class="form-label">Confirm Password</label> -->
               <input id="confirm_password" type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" required autocomplete="confirm_password" placeholder="Confirm Password">
 
                 @error('confirm_password')
@@ -247,7 +321,7 @@
   </div>
 
   <!-- Modal Registration From-->
-  <div class="modal fade login" id="exampleModalregistation" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="exampleModalregistation" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -268,7 +342,9 @@
                 <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Sign Up</h1>
             </div>
         </div>
-        <form method="POST" action="{{ route('customer.register') }}">
+        
+        <!-- action="{{ route('customer.register') }}" -->
+        <form method="POST" id="registerform" name="registerform" >
         @csrf  
         @session('success')
             <div class="alert alert-success" role="alert"> 
@@ -285,6 +361,9 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+                @if ($errors->has('name'))
+                    <span class="invalid-feedback">{{ $errors->first('name') }}</span>
+                @endif
               </div>
             </div>
 
@@ -360,7 +439,7 @@
 
         </div>
         <div class="modal-footer d-flex justify-content-center  ">
-            <button class="btn-outline-success maincolor" type="submit">{{ __('Submit') }}</button>
+            <button class="btn-outline-success maincolor" id="save_register" type="button" >{{ __('Submit') }}</button>
         </div>
         <div class="text-center">
             <p class="newregistation" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"> Already have an account? <span  style="text-decoration: underline; color: #78239B; font-weight: bold;">Sign in</span>
@@ -373,80 +452,148 @@
       </div>
     </div>
   </div>
-     
-    <script>
-      productScroll();
 
-      function productScroll() {
-        let slider = document.getElementById("slider");
-        let next = document.getElementsByClassName("pro-next")[0];
-        let prev = document.getElementsByClassName("pro-prev")[0];
-        let slide = document.getElementById("slide");
-        let items = slide.getElementsByClassName("item");
-
-        let position = 0; // Initialize position outside of event listeners
-
-        prev.addEventListener("click", function () {
-          if (position > 0) {
-            position -= 1;
-            translateX(position); //translate items
+  <!--<div class="loader"></div>-->
+  <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+        <i class="stack-interface stack-up-open-big"></i>
+  </a>
+  
+<link rel="stylesheet" href="{{asset('frontend/css/helper.css')}}">
+<link rel="stylesheet" href="{{asset('frontend/css/sweetalert.css')}}">
+<link rel="stylesheet" href="{{asset('frontend/css/jquery.toast.css')}}">
+<script src="{{asset('frontend/js/jquery-3.1.1.min.js')}}"></script>
+<script src="{{asset('frontend/js/smooth-scroll.min.js')}}"></script>
+<script src="{{asset('frontend/js/helper.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.toast.js')}}"></script>
+<script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
+<script>
+    $('#save_register').click(function () {               
+      $.easyAjax({
+        url: "{{ route('customer.register') }}",
+        container: '#registerform',
+        type: "POST",
+        redirect: true,
+        data: $('#registerform').serialize(),
+        success: function(response) {
+          if (response.status) {
+            $('#exampleModalregistation').modal('hide');
+            swal("Sent!", response.message, "success");
+            setInterval(function () {
+              window.location.reload();
+            }, 4000);
           }
-        });
+        }                    
+      })
+    });
 
-        next.addEventListener("click", function () {
-          if (position < hiddenItems()) {
-            position += 1;
-            translateX(position); //translate items
+    $('#save_login').click(function () {               
+      $.easyAjax({
+        url: "{{ route('customer.login') }}",
+        container: '#loginfrom',
+        type: "POST",
+        redirect: true,
+        data: $('#loginfrom').serialize(),
+        success: function(response) {
+          if (response.status) {
+            $('#exampleModal').modal('hide');
+            swal("Sent!", response.message, "success");
+            setInterval(function () {
+              window.location.assign('{{ route("profile");}} ');
+            }, 2000);
           }
-        });
+        }                    
+      })
+    });
 
-        function hiddenItems() {
-          // Get hidden items
-          return items.length - Math.floor(slider.offsetWidth / 210);
-        }
+    $('#save_forgotpwd').click(function () {               
+      $.easyAjax({
+        url: "{{ route('customer.forgetpassword') }}",
+        container: '#forgotpwdform',
+        type: "POST",
+        redirect: true,
+        data: $('#forgotpwdform').serialize(),
+        success: function(response) {
+          if (response.status) {
+            $('#exampleModalforget').modal('hide');
+            swal("Sent!", response.message, "success");
+            $('#exampleModalverify').modal('show');
+          }
+        }                    
+      })
+    });
 
-        function translateX(position) {
-          // Translate items
-          slide.style.transform = `translateX(${position * -210}px)`;
-        }
+    $('#save_forgotpwd_verify').click(function () {               
+      $.easyAjax({
+        url: "{{ route('customer.forgototpverify') }}",
+        container: '#forgotpwdverifyform',
+        type: "POST",
+        redirect: true,
+        data: $('#forgotpwdverifyform').serialize(),
+        success: function(response) {
+          if (response.status) {
+            $('#exampleModalverify').modal('hide');
+            swal("Sent!", response.message, "success");
+            $('#exampleModalforgetnew').modal('show');
+          }
+        }                    
+      })
+    });
+          
+  productScroll();
+  function productScroll() {
+    let slider = document.getElementById("slider");
+    let next = document.getElementsByClassName("pro-next")[0];
+    let prev = document.getElementsByClassName("pro-prev")[0];
+    let slide = document.getElementById("slide");
+    let items = slide.getElementsByClassName("item");
+
+    let position = 0; // Initialize position outside of event listeners
+
+    prev.addEventListener("click", function () {
+      if (position > 0) {
+        position -= 1;
+        translateX(position); //translate items
       }
-    </script>
-    @session('success')
-    <script type="text/javascript">
-      $( document ).ready(function() {
-          console.log( "ready-3" );
-        $('#exampleModalregistation').modal('show');
-      });
-    </script>      
-    @endsession
-    @session('error')
-    <script type="text/javascript">
-      $( document ).ready(function() {
-          console.log( "ready-2" );
-        $('#exampleModal').modal('show');
-      });
-    </script>   
-    @endsession
-    <script type="text/javascript">
-    @if((count($errors) > 0) && (!@$token) && (!@$email))
-      $( document ).ready(function() {
-          console.log( "ready-1" );
-        $('#exampleModalregistation').modal('show');
-      });
-    @endif
-    </script>
+    });
 
-    @if(@$token && @$email)
-      <script type="text/javascript">
-      $( document ).ready(function() {
-          console.log( "ready-4" );
-        $('#exampleModalforgetnew').modal('show');
-      });
-    </script>  
-    @endif
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-      </script>
+    next.addEventListener("click", function () {
+      if (position < hiddenItems()) {
+        position += 1;
+        translateX(position); //translate items
+      }
+    });
+
+    function hiddenItems() {
+      // Get hidden items
+      return items.length - Math.floor(slider.offsetWidth / 210);
+    }
+
+    function translateX(position) {
+      // Translate items
+      slide.style.transform = `translateX(${position * -210}px)`;
+    }
+  }
+</script>
+
+@session('success')
+<script type="text/javascript">
+  $( document ).ready(function() {
+      console.log( "ready-3" );
+    $('#exampleModalregistation').modal('show');
+  });
+</script>      
+@endsession
+
+@session('error')
+<script type="text/javascript">
+  $( document ).ready(function() {
+      console.log( "ready-2" );
+    $('#exampleModal').modal('show');
+  });
+</script>   
+@endsession
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
       
     

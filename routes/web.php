@@ -32,7 +32,8 @@ Auth::routes();
 Route::post('customer/register', [CustomerRegisterController::class, 'register'])->name('customer.register');
 Route::post('customer/login', [CustomerLoginController::class, 'login'])->name('customer.login');
 Route::post('customer/forgot-password', [CustomerForgotPasswordController::class, 'forgetpassword'])->name('customer.forgetpassword');
-Route::get('customer/reset-password/{token}', [CustomerForgotPasswordController::class, 'showResetPasswordForm'])->name('customer.resetpassword.get');
+Route::post('customer/forgot-otp-verify', [CustomerResetPasswordController::class, 'forgototpverify'])->name('customer.forgototpverify');
+//Route::get('customer/reset-password/{token}', [CustomerForgotPasswordController::class, 'showResetPasswordForm'])->name('customer.resetpassword.get');
 Route::post('customer/reset-password', [CustomerResetPasswordController::class, 'resetpassword'])->name('customer.resetpassword');
 
 Route::get('customer/dashboard', [CustomerLoginController::class, 'dashboard'])->name('customer.dashboard');
