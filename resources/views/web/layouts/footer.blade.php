@@ -240,12 +240,13 @@
                   <form method="POST" id="forgotpwdverifyform" name="forgotpwdverifyform" >
                   @csrf
                       <div class="flex mb-6">
+                          <input type="hidden" readonly name="email_otp" id="email_otp"/>
+                          <input type="text" class="form-control" name="otp" id="otp" maxlength="4" minlength="4" onkeypress="return onlyNumbers(event)"/>
+                          <!-- <input type="text" name="otp[]" maxlength="1" />
                           <input type="text" name="otp[]" maxlength="1" />
-                          <input type="text" name="otp[]" maxlength="1" />
-                          <input type="text" name="otp[]" maxlength="1" />
-                          <input type="text" name="otp[]" maxlength="1" />
+                          <input type="text" name="otp[]" maxlength="1" /> -->
                       </div>
-                      <p style="margin: unset;"><a href="#">Resend</a></p>
+                      <p style="margin: unset;"><a href="#" id="resend_btn">Resend</a></p>
                   </form>
               </div>
               <div class="modal-footer d-flex justify-content-center  ">
@@ -283,16 +284,15 @@
                 </h6>
             </div>
         </div>
-          <form method="POST" action="{{ route('customer.resetpassword') }}">
+        <!-- action="{{ route('customer.resetpassword') }}" -->
+          <form method="POST" name="resetpasswordform" id="resetpasswordform" >
           @csrf
           <div class="row">
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">New Password</label> -->
-              <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="new_password" placeholder="New Password">
+              <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password"  autocomplete="new_password" placeholder="Enter your new password">
 
-              <input id="token" type="hidden" class="form-control" name="token" required autocomplete="token" placeholder="Token" value="{{@$token}}">
-
-              <input id="user_email" type="hidden" class="form-control" name="user_email" required autocomplete="user_email" placeholder="Email" value="{{@$email}}">
+              <input id="reset_email" readonly type="hidden" class="form-control" name="reset_email" required autocomplete="reset_email" placeholder="Email" value="">
 
                 @error('new_password')
                     <span class="invalid-feedback" role="alert">
@@ -302,7 +302,7 @@
             </div>
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">Confirm Password</label> -->
-              <input id="confirm_password" type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" required autocomplete="confirm_password" placeholder="Confirm Password">
+              <input id="confirm_password" type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password"  autocomplete="confirm_password" placeholder="Enter your confirm password">
 
                 @error('confirm_password')
                     <span class="invalid-feedback" role="alert">
@@ -311,8 +311,8 @@
                 @enderror
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary w-100 loginbtn">Submit</button>
+          <div class="modal-footer d-flex justify-content-center  ">
+              <button class="btn-outline-success maincolor" id="save_reset_password" type="button">Submit</button>
           </div>
           </form>
         </div>
@@ -467,6 +467,15 @@
 <script src="{{asset('frontend/js/jquery.toast.js')}}"></script>
 <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
 <script>
+    function onlyNumbers(e)
+    {
+      var c=e.which?e.which:e.keyCode; 
+      if(c<48||c>57)
+      {
+        return false;
+      }
+    }
+    
     $('#save_register').click(function () {               
       $.easyAjax({
         url: "{{ route('customer.register') }}",
@@ -516,7 +525,23 @@
           if (response.status) {
             $('#exampleModalforget').modal('hide');
             swal("Sent!", response.message, "success");
+            $('#email_otp').val(response.data.email);
             $('#exampleModalverify').modal('show');
+          }
+        }                    
+      })
+    });
+
+    $('#resend_btn').click(function () {               
+      $.easyAjax({
+        url: "{{ route('customer.resent_otp') }}",
+        container: '#forgotpwdverifyform',
+        type: "POST",
+        redirect: true,
+        data: $('#forgotpwdverifyform').serialize(),
+        success: function(response) {
+          if (response.status) {
+            swal("Sent!", response.message, "success");
           }
         }                    
       })
@@ -533,7 +558,27 @@
           if (response.status) {
             $('#exampleModalverify').modal('hide');
             swal("Sent!", response.message, "success");
+            $('#reset_email').val(response.data.email);
             $('#exampleModalforgetnew').modal('show');
+          }
+        }                    
+      })
+    });
+
+    $('#save_reset_password').click(function () {               
+      $.easyAjax({
+        url: "{{ route('customer.resetpassword') }}",
+        container: '#resetpasswordform',
+        type: "POST",
+        redirect: true,
+        data: $('#resetpasswordform').serialize(),
+        success: function(response) {
+          if (response.status) {
+            $('#exampleModalforgetnew').modal('hide');
+            swal("Sent!", response.message, "success");
+            setInterval(function () {
+              window.location.assign('/');
+            }, 2000);
           }
         }                    
       })

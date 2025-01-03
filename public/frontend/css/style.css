@@ -766,7 +766,7 @@ body {
 
 /* Individual input fields within verify */
 .verify input[type="text"] {
-    width: 2.5rem;
+    width: 4.5rem;
     height: 2.5rem;
     border: 1px solid #D1D5DB;
     /* Gray border */

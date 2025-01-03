@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 
 class CustomerResetPasswordController extends Controller
@@ -54,25 +55,50 @@ class CustomerResetPasswordController extends Controller
     * @return response()
     */
     public function resetpassword(Request $request)
-    { //dd($request);
-        $this->validator($request->all())->validate();
-       
-        $updatePassword = DB::table('password_reset_tokens')
-                            ->where([
-                                'email' => $request->user_email, 
-                                'token' => $request->token
-                            ])
-                            ->first();
-        if(!$updatePassword){
-            return back()->withInput()->with('error', 'Invalid token!');
+    {
+        try {
+            $this->validator($request->all())->validate();
+
+            $customer = Customer::where('email', $request->reset_email)->first();
+            if($customer){
+                $user = Customer::where('email', $request->reset_email)->update(['password' => Hash::make($request->new_password)]);
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Your password has been successfully changed!',
+                    'data' => [],
+                ], 200);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'No record Found!',
+                    'errors' => 'No record Found!',
+                ], 400);
+            }
+
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $this->transformErrors($e),
+                'errors' => $e->getMessage(),
+            ], 400);
+        }
+    }
+
+
+    // transform the error messages,
+    private function transformErrors(ValidationException $exception)
+    {
+        $errors = [];
+
+        foreach ($exception->errors() as $field => $message) {
+            //    $errors[] = [
+            //        'field' => $field,
+            //        'message' => $message,
+            //    ];
+            $errors[] = $message;     
         }
 
-        $user = Customer::where('email', $request->user_email)
-                    ->update(['password' => Hash::make($request->new_password)]);
-
-        DB::table('password_reset_tokens')->where(['email'=> $request->user_email])->delete();
-
-        //return redirect('/')->with('message', 'Your password has been changed!');
-        return redirect('/')->withSuccess('Your password has been changed!');
+        return $errors;
     }
 }

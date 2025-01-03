@@ -49,49 +49,30 @@ class CustomerForgotPasswordController extends Controller
      */
     public function forgetpassword(Request $request)
     {
-        // $this->validator($request->all())->validate();
-       
-        // $token = Str::random(64);
-
-        // DB::table('password_reset_tokens')->where(['email'=> $request->email_address])->delete();
-
-        // DB::table('password_reset_tokens')->insert([
-        //     'email' => $request->email_address, 
-        //     'token' => $token, 
-        //     'created_at' => Carbon::now()
-        // ]);
-
-        // $data = array();
-        
-        // Mail::to($request->email_address)->send(new ForgetPasswordMail($token));
-        
-        // return redirect('/')->withSuccess('We have e-mailed your password reset link!');
         try {    
-        $this->validator($request->all())->validate();
-            
-        $customer = Customer::where('email', $request->email_address)->first();
-        if($customer){
-            $otp = rand(1000, 9999);
-            $customer->update([
-                'otp' => $otp
-            ]);
-            
-            Mail::to($request->email_address)->send(new OtpMail($otp));
+            $this->validator($request->all())->validate();
+                
+            $customer = Customer::where('email', $request->email_address)->first();
+            if($customer){
+                $otp = rand(1000, 9999);
+                $customer->update([
+                    'otp' => $otp
+                ]);
+                
+                Mail::to($request->email_address)->send(new OtpMail($otp));
 
-            return response()->json([
-                'status' => true,
-                'message' => 'OTP successfully sent your registered email!',
-                'data' => $otp,
-            ], 200);
-        }else{
-            return response()->json([
-                'status' => false,
-                'message' => 'Please entered registered email!!',
-                'errors' => 'Please entered registered email!!',
-            ], 400);
-        }
-
-        //return redirect('/')->withSuccess('OTP successfully sent your registered email!');
+                return response()->json([
+                    'status' => true,
+                    'message' => 'OTP successfully sent your registered email!',
+                    'data' => array('otp'=>$otp,'email'=>$request->email_address),
+                ], 200);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Please entered registered email!!',
+                    'errors' => 'Please entered registered email!!',
+                ], 400);
+            }
            
         } catch(\Exception $e) {
             return response()->json([
@@ -111,24 +92,29 @@ class CustomerForgotPasswordController extends Controller
     protected function otpvalidator(array $data)
     {
         return Validator::make($data, [
-          'otp[]' => 'required'
+          'otp' => 'required|min:4'
         ],
         [
             'otp.required' =>'The otp field is required.',
-            //'otp.min' =>'Enter valid otp.',
+            'otp.min' =>'Please enter valid 4 digit otp.',
         ]);
     }
 
+    /**
+    * Write code on Method
+    *
+    * @return response()
+    */
     public function forgototpverify(Request $request)
     {
         try {
             $this->otpvalidator($request->all())->validate();
-            $customer = Customer::where(['email'=>$request->email_address, 'otp'=>$request->otp])->first();
+            $customer = Customer::where(['email'=>$request->email_otp, 'otp'=>$request->otp])->first();
             if($customer)
                 return response()->json([
                     'status' => true,
                     'message' => 'OTP matched successfully',
-                    'data' => '',
+                    'data' => array('otp'=>$request->otp,'email'=>$request->email_otp),
                 ], 200);
             else
             return response()->json([
@@ -150,13 +136,37 @@ class CustomerForgotPasswordController extends Controller
     *
     * @return response()
     */
-    public function showResetPasswordForm($token) { 
+    public function resent_otp(Request $request)
+    {
+        try {
+            $customer = Customer::where('email', $request->email_otp)->first();
+            if($customer){
+                $otp = rand(1000, 9999);
+                $customer->update([
+                    'otp' => $otp
+                ]);
+                
+                Mail::to($request->email_otp)->send(new OtpMail($otp));
 
-        $getData = DB::table('password_reset_tokens')->where(['token' => $token])->first();
-        if(!$getData){
-            return redirect('/')->withError('Oppes! reset passowrd link is expired');
+                return response()->json([
+                    'status' => true,
+                    'message' => 'OTP Resend successfully!',
+                    'data' => $otp,
+                ], 200);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Please entered registered email!!',
+                    'errors' => 'Please entered registered email!!',
+                ], 400);
+            }
+        } catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $this->transformErrors($e),
+                'errors' => $e->getMessage(),
+            ], 400);
         }
-        return view('index', ['token' => $token,'email'=>$getData->email]);
     }
 
     // transform the error messages,
