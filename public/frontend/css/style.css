@@ -419,8 +419,11 @@ body {
 }
 
 .slider .item {
+    /* width: 15rem;
+    border-radius: 50%; */
     width: 15rem;
     border-radius: 50%;
+    height: 15rem;
 }
 
 .slider .item:last-child {
@@ -827,8 +830,11 @@ body {
 .card-img,
 .card-img-bottom,
 .card-img-top {
-    width: 100%;
+    /* width: 100%;
+    padding: 10px; */
+    width: 250px;
     padding: 10px;
+    height: 250px;
 }
 
 .card-titles {

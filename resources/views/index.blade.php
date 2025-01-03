@@ -83,7 +83,7 @@
   </div>
   <div class="col-md-6 col-sm-12">
     <div class="topsliderrightgreige">
-      <img src="{{ asset('frontend/images/fabric.png') }}" class="d-block w-100" alt="...">
+      <img src="{{ asset('frontend/images/greige-fabric.jpeg') }}" class="d-block w-100" alt="...">
     </div>
   </div>
 </div>
@@ -99,10 +99,10 @@
 
     <div class="Categoriesbtn">
       <button type="button" class="btn btn-secondary active">Cotton</button>
+      <button type="button" class="btn btn-secondary">Nylon</button>
+      <button type="button" class="btn btn-secondary">Polyester</button>
       <button type="button" class="btn btn-secondary">Rayon</button>
       <button type="button" class="btn btn-secondary">Denim</button>
-      <button type="button" class="btn btn-secondary">Polyester</button>
-      <button type="button" class="btn btn-secondary">Nylon</button>
       <button type="button" class="btn btn-secondary">Linen</button>
       <button type="button" class="btn btn-secondary">Sustainable</button>
     </div>
@@ -122,45 +122,48 @@
     <div class="slider mt-2" id="slider">
       <div class="slide" id="slide">
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p1.png') }}">
+          <img class="item" src="{{ asset('frontend/images/cotton.jpeg') }}">
           <p class="mt-2 slidername">Cotton</p>
         </div>
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p2.png') }}">
+          <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
           <p class="mt-2 slidername">Nylon</p>
         </div>
 
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p5.png') }}">
+          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
           <p class="mt-2 slidername">Polyester</p>
         </div>
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p1.png') }}">
+          <img class="item" src="{{ asset('frontend/images/rayon.png') }}">
           <p class="mt-2 slidername">Rayon</p>
         </div>
+
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p2.png') }}">
+          <img class="item" src="{{ asset('frontend/images/denim.jpg') }}">
+          <p class="mt-2 slidername">Denim</p>
+        </div>
+        <div class="text-center">
+          <img class="item" src="{{ asset('frontend/images/linen.jpg') }}">
+          <p class="mt-2 slidername">Linen</p>
+        </div>
+        <div class="text-center">
+          <img class="item" src="{{ asset('frontend/images/sustainable.jpg') }}">
+          <p class="mt-2 slidername">Sustainable</p>
+        </div>
+        
+        <div class="text-center">
+          <img class="item" src="{{ asset('frontend/images/cotton.jpeg') }}">
           <p class="mt-2 slidername">Cotton</p>
         </div>
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p5.png') }}">
-          <p class="mt-2 slidername">Cotton</p>
+          <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
+          <p class="mt-2 slidername">Nylon</p>
         </div>
+
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p5.png') }}">
+          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
           <p class="mt-2 slidername">Polyester</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p1.png') }}">
-          <p class="mt-2 slidername">Rayon</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p2.png') }}">
-          <p class="mt-2 slidername">Cotton</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/p5.png') }}">
-          <p class="mt-2 slidername">Cotton</p>
         </div>
 
       </div>
@@ -237,7 +240,7 @@
   <p class="Greigefabric">Top Product</p>
   <div class="card-group">
     <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap">
+      <img class="card-img-top" src="{{ asset('frontend/images/cotton.jpeg') }}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-titles">Textile Suiting Fabric</h5>
         <div class="reviews">
@@ -254,7 +257,7 @@
 
     </div>
     <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap">
+      <img class="card-img-top" src="{{ asset('frontend/images/nylon.png') }}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-titles">Textile Suiting Fabric</h5>
         <div class="reviews">
@@ -271,7 +274,7 @@
 
     </div>
     <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
+      <img class="card-img-top" src="{{ asset('frontend/images/polyster.jpg') }}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-titles">Textile Suiting Fabric</h5>
         <div class="reviews">
@@ -288,7 +291,7 @@
 
     </div>
     <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap">
+      <img class="card-img-top" src="{{ asset('frontend/images/rayon.png') }}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-titles">Textile Suiting Fabric</h5>
         <div class="reviews">
@@ -452,10 +455,7 @@
       </div>
 
       <div class="client-comment">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident
-          temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur
-          voluptates
-          incidunt blanditiis sed atque cumque.</p>
+        <p>"The quality of fabrics I purchased from [Your Business Name] is outstanding. The textures are luxurious, and the colors are vibrant, just as shown on their website. My clients were thrilled with the final products. Highly recommend them!"</p>
       </div>
 
       <div class="box-top">
@@ -467,7 +467,7 @@
           </div>
 
           <div class="name-user">
-            <strong>Liam mendes</strong>
+            <strong>— Aarti Sharma, Boutique Owner</strong>
           </div>
         </div>
       </div>
@@ -494,10 +494,7 @@
       </div>
 
       <div class="client-comment">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident
-          temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur
-          voluptates
-          incidunt blanditiis sed atque cumque.</p>
+        <p>"I had a fantastic experience with [Your Business Name]. Their team helped me select the perfect fabric for my project, and the delivery was super fast. They truly go above and beyond for their customers!"</p>
       </div>
 
       <div class="box-top">
@@ -509,7 +506,7 @@
           </div>
 
           <div class="name-user">
-            <strong>Noah Wood</strong>
+            <strong>— Michael Lee, Interior Designer</strong>
           </div>
         </div>
       </div>
@@ -536,10 +533,7 @@
       </div>
 
       <div class="client-comment">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quaerat quis? Provident
-          temporibus architecto asperiores nobis maiores nisi a. Quae doloribus ipsum aliquam tenetur
-          voluptates
-          incidunt blanditiis sed atque cumque.</p>
+        <p>"From silk to cotton, [Your Business Name] offers an incredible variety of fabrics. It’s a one-stop shop for all my needs, whether it’s for clothing or upholstery. The quality and pricing are unbeatable!"</p>
       </div>
 
       <div class="box-top">
@@ -551,11 +545,89 @@
           </div>
 
           <div class="name-user">
-            <strong>Oliver Queen</strong>
+            <strong>— Radhika Verma, Tailor</strong>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- <div class="testimonial-box">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>I’ve been sourcing fabrics from [Your Business Name] for years, and they’ve never let me down. Their fabrics are durable, and the patterns are always trendy. A trusted partner for my business!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— John Mathews, Fashion Designer</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-box">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>"I’m so impressed by the affordability of the premium fabrics at [Your Business Name]. The quality exceeded my expectations, and my customers love the designs. I’ll definitely be back for more!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— Priya Das, Small Business Owner</strong>
+          </div>
+        </div>
+      </div>
+    </div> -->
 
   </div>
 
