@@ -862,7 +862,8 @@ body {
     }
 
     .testimonial-box {
-        width: 438px;
+        width: 366px;
+        /* width: 438px; */
     }
 
     .imagetext button {
