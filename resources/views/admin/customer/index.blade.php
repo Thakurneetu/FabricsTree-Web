@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Customer | 
+Buyers | 
 @endsection
 
 @section('style')
@@ -13,7 +13,7 @@ Customer |
     <div class="container-lg px-4">
       <div class="card">
           <div class="card-header d-flex justify-content-between align-items-center">
-            Manage Customers
+            Manage Buyers
             <a href="{{ route('admin.customer.create') }}" class="btn btn-warning">Add New</a>
           </div>
           <div class="card-body">

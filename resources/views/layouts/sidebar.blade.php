@@ -1,13 +1,7 @@
 <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
   <div class="sidebar-header border-bottom">
-    <div class="sidebar-brand bg-light">
-      <img src="{{ asset('frontend/images/FT LOGO Ver.3 1.png') }}" width="88" height="32" alt="Logo">
-      <!-- <svg class="sidebar-brand-full" width="88" height="32" alt="CoreUI Logo">
-        <use xlink:href="{{ asset('assets/brand/coreui.svg#full') }}"></use>
-      </svg> -->
-      <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
-        <use xlink:href="{{ asset('assets/brand/coreui.svg#signet') }}"></use>
-      </svg>
+    <div class="sidebar-brand bg-light w-100 rounded">
+      <img class=" img-fluid mx-auto d-block" src="{{ asset('frontend/images/FT LOGO Ver.3 1.png') }}" height="32" alt="Logo">
     </div>
     <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
   </div>

@@ -63,6 +63,22 @@
       <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>
+    <!-- Wrap -->
+    <div class="form-group col-md-6 col-12 mb-3">
+      <label for="name">Product Wrap</label>
+      <input type="text" name="wrap" value="{{old('wrap') ?? (@$product->wrap ?? '')}}" class="form-control @error('wrap') is-invalid @enderror" placeholder="Enter Product Wrap">
+      @error('wrap')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror
+    </div>
+    <!-- Weft -->
+    <div class="form-group col-md-6 col-12 mb-3">
+      <label for="name">Product Weft</label>
+      <input type="text" name="weft" value="{{old('weft') ?? (@$product->weft ?? '')}}" class="form-control @error('weft') is-invalid @enderror" placeholder="Enter Product Weft">
+      @error('weft')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror
+    </div>
     <!-- Count -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Count</label>

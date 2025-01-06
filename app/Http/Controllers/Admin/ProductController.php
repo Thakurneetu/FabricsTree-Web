@@ -46,7 +46,7 @@ class ProductController extends Controller
     {
       try{
         DB::beginTransaction();
-        $data = $request->only('title','subtitle','description','key_features','disclaimer',
+        $data = $request->only('title','subtitle','description','key_features','disclaimer','wrap','weft',
               'category_id','requirement_id','subcategory_id','width','count','reed','pick');
         $product = Product::create($data);
         $tags = $request->tag_ids;
@@ -100,7 +100,7 @@ class ProductController extends Controller
     {
       try{
         DB::beginTransaction();
-        $data = $request->only('title','subtitle','description','key_features','disclaimer',
+        $data = $request->only('title','subtitle','description','key_features','disclaimer','wrap','weft',
               'category_id','requirement_id','subcategory_id','width','count','reed','pick');
         $product->update($data);
         $tags = $request->tag_ids;
