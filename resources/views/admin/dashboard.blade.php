@@ -4,106 +4,187 @@
   <div class="body flex-grow-1">
     <div class="container-lg px-4">
       <div class="row g-4 mb-4">
+
         <div class="col-sm-6 col-xl-3">
           <div class="card text-white bg-primary">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">26K <span class="fs-6 fw-normal">(-12.4%
-                    <svg class="icon">
-                      <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom') }}"></use>
-                    </svg>)</span></div>
-                <div>Users</div>
+                <div class="fs-4 fw-semibold">26</div>
+                <div>Customers</div>
               </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-options') }}"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-              <canvas class="chart" id="card-chart1" height="70"></canvas>
             </div>
           </div>
         </div>
-        <!-- /.col-->
-        <div class="col-sm-6 col-xl-3">
-          <div class="card text-white bg-info">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-              <div>
-                <div class="fs-4 fw-semibold">$6.200 <span class="fs-6 fw-normal">(40.9%
-                    <svg class="icon">
-                      <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-arrow-top') }}"></use>
-                    </svg>)</span></div>
-                <div>Income</div>
-              </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-options') }}"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-              <canvas class="chart" id="card-chart2" height="70"></canvas>
-            </div>
-          </div>
-        </div>
-        <!-- /.col-->
+
         <div class="col-sm-6 col-xl-3">
           <div class="card text-white bg-warning">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">2.49% <span class="fs-6 fw-normal">(84.7%
-                    <svg class="icon">
-                      <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-arrow-top') }}"></use>
-                    </svg>)</span></div>
-                <div>Conversion Rate</div>
+                <div class="fs-4 fw-semibold">26</div>
+                <div>Manufacturers</div>
               </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-options') }}"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3" style="height:70px;">
-              <canvas class="chart" id="card-chart3" height="70"></canvas>
             </div>
           </div>
         </div>
-        <!-- /.col-->
+
         <div class="col-sm-6 col-xl-3">
-          <div class="card text-white bg-danger">
-            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+          <div class="card text-white bg-secondary">
+            <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">44K <span class="fs-6 fw-normal">(-23.6%
-                    <svg class="icon">
-                      <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom') }}"></use>
-                    </svg>)</span></div>
-                <div>Sessions</div>
+                <div class="fs-4 fw-semibold">26</div>
+                <div>Products</div>
               </div>
-              <div class="dropdown">
-                <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="icon">
-                    <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-options') }}"></use>
-                  </svg>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
-              </div>
-            </div>
-            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-              <canvas class="chart" id="card-chart4" height="70"></canvas>
             </div>
           </div>
         </div>
-        <!-- /.col-->
+
+        <div class="col-sm-6 col-xl-3">
+          <div class="card text-white bg-success">
+            <div class="card-body d-flex justify-content-between align-items-start">
+              <div>
+                <div class="fs-4 fw-semibold">26</div>
+                <div>Orders</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              Top 10 Active Buyers
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Customer One</td>
+                    <td>7645674568</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Customer Two</td>
+                    <td>7645674568</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Customer Three</td>
+                    <td>7645674568</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              Top 10 Active Manufacturers
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Manufacturer One</td>
+                    <td>7645674568</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Manufacturer Two</td>
+                    <td>7645674568</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Manufacturer Three</td>
+                    <td>7645674568</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              Top 10 Selling Products
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Product One</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Product Two</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Product Three</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              Top 10 Least Selling Products
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Product One</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Product Two</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Product Three</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>

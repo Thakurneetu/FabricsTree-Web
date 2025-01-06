@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\ManufacturerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\TagController;
@@ -54,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard-theme/{mode}', [DashboardController::class, 'theme'])->name('dashboard-theme');
     Route::resources([
       'customer' => CustomerController::class,
+      'manufacturer' => ManufacturerController::class,
       'category' => CategoryController::class,
       'subcategory' => SubcategoryController::class,
       'requirement' => RequirementController::class,
