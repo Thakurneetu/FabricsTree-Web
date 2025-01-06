@@ -1,5 +1,53 @@
 @include('web.layouts.header')
+<style> 
+    /* .carousel img {
+  width: 70px;
+  max-height: 70px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+.carousel-inner {
+  padding: 1em;
+}
 
+@media screen and (min-width: 576px) {
+  .carousel-inner {
+    display: flex;
+    width: 90%;
+    margin-inline: auto;
+    padding: 1em 0;
+    overflow: hidden;
+  }
+  .carousel-item {
+    display: block;
+    margin-right: 0;
+    flex: 0 0 calc(100% / 2);
+  }
+}
+@media screen and (min-width: 768px) {
+  .carousel-item {
+    display: block;
+    margin-right: 0;
+    flex: 0 0 calc(100% / 3);
+  }
+}
+ */
+/* .carousel .card {
+  margin: 0 0.5em;
+  border: 0;
+}  */
+/* .carousel-control-prev,
+.carousel-control-next {
+  width: 3rem;
+  height: 3rem;
+  background-color: grey;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+} */
+
+  </style>
   <div class="row slidermain">
   <div class="col-md-12 col-sm-12 mb-3 mb-sm-0">
       <div id="carouselExampleDark" class="carousel carousel-dark slide">
@@ -15,10 +63,9 @@
           <div class="carousel-item active" data-bs-interval="10000">
             <img src="{{ asset('frontend/images/slider.png') }}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h1>Largest Choice of Fabrics at Best Prices</h1>
+              <h1>Largest choices when it comes to fabrics</h1>
               <div class="aligcra">
-                <p>Source fabrics directly from the large base of textile mills, thereby enjoying competitive price,
-                  faster delivery and wide variety on a single online platform.</p>
+                <p>Unmatched sourcing from proven mills, reliable pricing and timely deliveries with a vast range under solely dedicated online platform.</p>
               </div>
               <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
             </div>
@@ -26,10 +73,9 @@
           <div class="carousel-item" data-bs-interval="2000">
             <img src="{{ asset('frontend/images/slider.png') }}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h1>Largest Choice of Fabrics at Best Prices</h1>
+              <h1>Procure fabrics from nation’s leading platform</h1>
               <div class="aligcra">
-                <p>Source fabrics directly from the large base of textile mills, thereby enjoying competitive price,
-                  faster delivery and wide variety on a single online platform.</p>
+                <p>Our committed supply chain, unfolding challenges and support excellence drove us to establish long term business relationship with our clients.</p>
               </div>
               <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
             </div>
@@ -37,10 +83,19 @@
           <div class="carousel-item">
             <img src="{{ asset('frontend/images/slider.png') }}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h1>Largest Choice of Fabrics at Best Prices</h1>
+              <h1>Live tracking & trusted logistics</h1>
               <div class="aligcra">
-                <p>Source fabrics directly from the large base of textile mills, thereby enjoying competitive price,
-                  faster delivery and wide variety on a single online platform.</p>
+                <p>Splendid logistics partner from the industry and across the country, unrivaled prompt deliveries.</p>
+              </div>
+              <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="{{ asset('frontend/images/slider.png') }}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Together we can and we will</h1>
+              <div class="aligcra">
+                <p>Partner with us to explore the best deals across the country.</p>
               </div>
               <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
             </div>
@@ -432,9 +487,9 @@
 <section id="testimonials">
 
   <p class="Greigefabric_gal">Testimonial</p>
-  <div class="testimonial-box-container">
+   <div class="testimonial-box-container">
 
-    <div class="testimonial-box">
+  <!--  <div class="testimonial-box">
 
       <div class="box-top">
 
@@ -551,7 +606,7 @@
       </div>
     </div>
 
-    <!-- <div class="testimonial-box">
+    <div class="testimonial-box">
 
       <div class="box-top">
 
@@ -627,7 +682,218 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>  -->
+
+    <div class="container-fluid bg-body-tertiary py-3">
+  <div id="testimonialCarousel" class="carousel">
+    <div class="carousel-inner">
+     
+    <div class="testimonial-box carousel-item active">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>"The quality of fabrics I purchased from [Your Business Name] is outstanding. The textures are luxurious, and the colors are vibrant, just as shown on their website. My clients were thrilled with the final products. Highly recommend them!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— Aarti Sharma, Boutique Owner</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-box carousel-item">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>"I had a fantastic experience with [Your Business Name]. Their team helped me select the perfect fabric for my project, and the delivery was super fast. They truly go above and beyond for their customers!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— Michael Lee, Interior Designer</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-box carousel-item">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>"From silk to cotton, [Your Business Name] offers an incredible variety of fabrics. It’s a one-stop shop for all my needs, whether it’s for clothing or upholstery. The quality and pricing are unbeatable!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— Radhika Verma, Tailor</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-box carousel-item">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>I’ve been sourcing fabrics from [Your Business Name] for years, and they’ve never let me down. Their fabrics are durable, and the patterns are always trendy. A trusted partner for my business!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— John Mathews, Fashion Designer</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-box carousel-item">
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/ddd.png') }}" />
+          </div>
+        </div>
+
+        <div class="reviews">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+
+      <div class="client-comment">
+        <p>"I’m so impressed by the affordability of the premium fabrics at [Your Business Name]. The quality exceeded my expectations, and my customers love the designs. I’ll definitely be back for more!"</p>
+      </div>
+
+      <div class="box-top">
+
+        <div class="profile">
+
+          <div class="profile-img">
+            <img src="{{ asset('frontend/images/girl.png') }}" />
+          </div>
+
+          <div class="name-user">
+            <strong>— Priya Das, Small Business Owner</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
 
   </div>
 
