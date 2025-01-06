@@ -12,7 +12,7 @@ class Product extends Model
   protected $appends = ['color_list','image_list'];
   protected $hidden = ['colors', 'images'];
 
-  protected $fillable = ['title','subtitle','description','key_features','disclaimer',
+  protected $fillable = ['title','subtitle','description','key_features','disclaimer','wrap','weft',
                          'category_id','requirement_id','subcategory_id','width','count','reed',
                          'pick','total_ratings','customers_rated'];
 

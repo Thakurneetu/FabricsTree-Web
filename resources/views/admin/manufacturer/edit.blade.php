@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Add Buyers | 
+  Edit Manufacturer | 
 @endsection
 
 @section('content')
@@ -9,12 +9,12 @@
     <div class="container-lg px-4">
       <div class="card card-info mx-3">
         <div class="card-header d-flex justify-content-between align-items-center">
-          Add Buyers
-          <a href="{{ route('admin.customer.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
+          Edit Manufacturer
+          <a href="{{ route('admin.manufacturer.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.customer.store') }}" method="post">
-          @csrf
-          @include('admin.customer.form')
+        <form action="{{ route('admin.manufacturer.update', $customer->id) }}" method="post">
+          @csrf @method('patch')
+          @include('admin.manufacturer.form')
         </form>
       </div>
     </div>
