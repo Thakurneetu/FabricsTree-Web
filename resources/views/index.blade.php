@@ -46,7 +46,7 @@
   top: 50%;
   transform: translateY(-50%);
 } */
-
+ 
   </style>
   <div class="row slidermain">
   <div class="col-md-12 col-sm-12 mb-3 mb-sm-0">
