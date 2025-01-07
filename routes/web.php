@@ -11,6 +11,10 @@ use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
 
 
 use App\Http\Controllers\Web\CustomerRegisterController;
@@ -28,7 +32,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes();
+// Auth::routes();
+Route::get('admin-login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::post('customer/register', [CustomerRegisterController::class, 'register'])->name('customer.register');
 Route::post('customer/login', [CustomerLoginController::class, 'login'])->name('customer.login');
@@ -49,8 +54,18 @@ Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('pr
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('contactus', [ContactController::class, 'index'])->name('contactus');
 
-Route::group(['middleware' => 'auth'], function () {
-  Route::prefix('admin')->name('admin.')->group(function() {
+Route::prefix('admin')->name('admin.')->group(function() {
+  Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+  Route::post('login', [LoginController::class, 'login']);
+  Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+  Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+  Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+  Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+  Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+  Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+  Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
+
+  Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard-theme/{mode}', [DashboardController::class, 'theme'])->name('dashboard-theme');
     Route::resources([
