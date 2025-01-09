@@ -21,12 +21,14 @@ use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\ProductQuotesController;
+use App\Http\Controllers\Web\HomeController;
 
 
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/', function () {
-    return view('index');
-});
 
 Auth::routes();
 
@@ -42,7 +44,8 @@ Route::get('customer/logout', [CustomerLoginController::class, 'logout'])->name(
 
 
 Route::get('product', [ProductController::class,'index'])->name('product.index');
-Route::get('productdetail', [ProductController::class, 'productdetail'])->name('product.productdetail');
+Route::get('productdetail/{id?}', [ProductController::class, 'productdetail'])->name('product.productdetail');
+
 Route::get('productcart', [ProductController::class, 'productcart'])->name('product.productcart');
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
 

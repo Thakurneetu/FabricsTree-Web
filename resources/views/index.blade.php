@@ -1,6 +1,6 @@
 @include('web.layouts.header')
 <style> 
-    /* .carousel img {
+  .carousel img {
   width: 70px;
   max-height: 70px;
   border-radius: 50%;
@@ -14,9 +14,9 @@
 @media screen and (min-width: 576px) {
   .carousel-inner {
     display: flex;
-    width: 90%;
+    width: 100%;
     margin-inline: auto;
-    padding: 1em 0;
+    padding: 0;
     overflow: hidden;
   }
   .carousel-item {
@@ -32,12 +32,12 @@
     flex: 0 0 calc(100% / 3);
   }
 }
- */
-/* .carousel .card {
+.carousel .card {
   margin: 0 0.5em;
   border: 0;
-}  */
-/* .carousel-control-prev,
+} 
+
+.carousel-control-prev,
 .carousel-control-next {
   width: 3rem;
   height: 3rem;
@@ -45,7 +45,7 @@
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
-} */
+} 
  
   </style>
   <div class="row slidermain">
@@ -294,10 +294,13 @@
 
   <p class="Greigefabric">Top Product</p>
   <div class="card-group">
+    @foreach($products as $products_val)
     <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/cotton.jpeg') }}" alt="Card image cap">
+      @if(isset($products_val) && count($products_val->images) > 0)
+      <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
+      @endif
       <div class="card-body">
-        <h5 class="card-titles">Textile Suiting Fabric</h5>
+        <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
         <div class="reviews">
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
@@ -305,63 +308,11 @@
           <i class="fa fa-star"></i>
           <i class="far fa-star"></i>
         </div>
-        <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
+        <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
+        <!-- maincolor -->
       </div>
-
     </div>
-    <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/nylon.png') }}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-titles">Textile Suiting Fabric</h5>
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-      </div>
-
-    </div>
-    <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/polyster.jpg') }}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-titles">Textile Suiting Fabric</h5>
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-      </div>
-
-    </div>
-    <div class="card m-3">
-      <img class="card-img-top" src="{{ asset('frontend/images/rayon.png') }}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-titles">Textile Suiting Fabric</h5>
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-        <button class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button>
-
-
-      </div>
-
-    </div>
+    @endforeach
   </div>
 </div>
 
@@ -429,7 +380,7 @@
 
 <div class="container-fluid">
 
-<div class="row Greigepaddingsec">
+<div class="row Greigepaddingsec GallSinglepadding" style="padding: 3rem 0rem">
 
   <div class="text-center mb-2">
     <p class="Greigefabric_gal">Gallery</p>
@@ -489,400 +440,51 @@
   <p class="Greigefabric_gal">Testimonial</p>
    <div class="testimonial-box-container">
 
-  <!--  <div class="testimonial-box">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"The quality of fabrics I purchased from [Your Business Name] is outstanding. The textures are luxurious, and the colors are vibrant, just as shown on their website. My clients were thrilled with the final products. Highly recommend them!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— Aarti Sharma, Boutique Owner</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"I had a fantastic experience with [Your Business Name]. Their team helped me select the perfect fabric for my project, and the delivery was super fast. They truly go above and beyond for their customers!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— Michael Lee, Interior Designer</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"From silk to cotton, [Your Business Name] offers an incredible variety of fabrics. It’s a one-stop shop for all my needs, whether it’s for clothing or upholstery. The quality and pricing are unbeatable!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— Radhika Verma, Tailor</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>I’ve been sourcing fabrics from [Your Business Name] for years, and they’ve never let me down. Their fabrics are durable, and the patterns are always trendy. A trusted partner for my business!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— John Mathews, Fashion Designer</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"I’m so impressed by the affordability of the premium fabrics at [Your Business Name]. The quality exceeded my expectations, and my customers love the designs. I’ll definitely be back for more!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— Priya Das, Small Business Owner</strong>
-          </div>
-        </div>
-      </div>
-    </div>  -->
-
     <div class="container-fluid bg-body-tertiary py-3">
-  <div id="testimonialCarousel" class="carousel">
-    <div class="carousel-inner">
-     
-    <div class="testimonial-box carousel-item active">
+      <div id="testimonialCarousel" class="carousel">
+        <div class="carousel-inner ">
+        @foreach($testimonials as $testimonial_val)  
+        <div class="testimonial-box carousel-item active">
 
-      <div class="box-top">
+          <div class="box-top">
 
-        <div class="profile">
+            <div class="profile">
 
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
+              <div class="profile-img">
+                <img src="{{ asset('frontend/images/ddd.png') }}" />
+              </div>
+            </div>
 
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"The quality of fabrics I purchased from [Your Business Name] is outstanding. The textures are luxurious, and the colors are vibrant, just as shown on their website. My clients were thrilled with the final products. Highly recommend them!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
+            <div class="reviews">
+            @for ($x = 1; $x <= $testimonial_val->rating ; $x++) 
+              <i class="fa fa-star"></i>
+            @endfor
+            @for ($x = 1; $x <= (5-$testimonial_val->rating) ; $x++) 
+              <i class="far fa-star"></i>
+            @endfor
+            </div>
           </div>
 
-          <div class="name-user">
-            <strong>— Aarti Sharma, Boutique Owner</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box carousel-item">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"I had a fantastic experience with [Your Business Name]. Their team helped me select the perfect fabric for my project, and the delivery was super fast. They truly go above and beyond for their customers!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
+          <div class="client-comment">
+            <p>{{ $testimonial_val->comment }}</p>
           </div>
 
-          <div class="name-user">
-            <strong>— Michael Lee, Interior Designer</strong>
+          <div class="box-top">
+
+            <div class="profile">
+
+              <div class="profile-img">
+                <img src="{{ asset('frontend/images/girl.png') }}" />
+              </div>
+
+              <div class="name-user">
+                <strong>— {{ $testimonial_val->name }}, {{ $testimonial_val->designation }}</strong>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box carousel-item">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"From silk to cotton, [Your Business Name] offers an incredible variety of fabrics. It’s a one-stop shop for all my needs, whether it’s for clothing or upholstery. The quality and pricing are unbeatable!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— Radhika Verma, Tailor</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box carousel-item">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>I’ve been sourcing fabrics from [Your Business Name] for years, and they’ve never let me down. Their fabrics are durable, and the patterns are always trendy. A trusted partner for my business!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— John Mathews, Fashion Designer</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonial-box carousel-item">
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/ddd.png') }}" />
-          </div>
-        </div>
-
-        <div class="reviews">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="far fa-star"></i>
-        </div>
-      </div>
-
-      <div class="client-comment">
-        <p>"I’m so impressed by the affordability of the premium fabrics at [Your Business Name]. The quality exceeded my expectations, and my customers love the designs. I’ll definitely be back for more!"</p>
-      </div>
-
-      <div class="box-top">
-
-        <div class="profile">
-
-          <div class="profile-img">
-            <img src="{{ asset('frontend/images/girl.png') }}" />
-          </div>
-
-          <div class="name-user">
-            <strong>— Priya Das, Small Business Owner</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-      
+        @endforeach 
+        
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

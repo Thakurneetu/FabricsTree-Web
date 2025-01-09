@@ -23,26 +23,15 @@
             <li>
 
               <div class="p-1">
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Cotton
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Rayon
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Denim
-                  </label>
-                </div>
+                
+                @foreach($categories as $category)
+                  <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$category->id}}">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    {{$category->name}}
+                    </label>
+                  </div>
+                @endforeach
               </div>
 
 
@@ -54,26 +43,14 @@
           <ul class="collapse list-unstyled" id="Requirement">
             <li>
               <div class="p-1">
+                @foreach($requirements as $requirement)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$requirement->id}}">
                   <label class="form-check-label" for="flexRadioDefault1">
-                    Cotton
+                  {{$requirement->name}}
                   </label>
                 </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Rayon
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Denim
-                  </label>
-                </div>
+                @endforeach
               </div>
 
             </li>
@@ -84,26 +61,14 @@
           <ul class="collapse list-unstyled" id="Subcategory">
             <li>
               <div class="p-1">
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Cotton
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Rayon
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Denim
-                  </label>
-                </div>
+              @foreach($subcategories as $subcategory)
+              <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$subcategory->id}}">
+                <label class="form-check-label" for="flexRadioDefault1">
+                {{$subcategory->name}}
+                </label>
+              </div>
+              @endforeach
               </div>
             </li>
           </ul>
@@ -186,14 +151,16 @@
               </div>
               <hr>
             </div>
-
             <div class="row Productscat mt-4">
-
               <div class="card-group">
+              @foreach($products as $products_val)
+              
                 <div class="card m-3">
-                  <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap"></a>
+                  @if(isset($products_val) && count($products_val->images) > 0)
+                  <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
+                  @endif
                   <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
+                    <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
                     <div class="reviews">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -201,218 +168,17 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px"  class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
+                    <!-- maincolor -->
+                    <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
                   </div>
-
                 </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="card-group">
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="card-group">
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p1.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p2.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
-                <div class="card m-3">
-                <a href="{{route('product.productdetail')}}"><img class="card-img-top" src="{{ asset('frontend/images/p3.png') }}" alt="Card image cap"></a>
-                  <div class="card-body">
-                    <h5 class="card-titles">Textile Suiting Fabric</h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    <a href="{{route('product.productcart')}}"><button  style="width:175px" class="btn-outline-success maincolor KnowMore" type="submit">Add to Cart</button></a>
-
-
-                  </div>
-
-                </div>
+              @endforeach
               </div>
             </div>
-
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
-
 </div>
 @include('web.layouts.footer')
 
