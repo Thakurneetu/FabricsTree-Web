@@ -277,6 +277,8 @@ body {
 
 .imagetextrelative {
     position: relative;
+    padding-left: unset;
+    padding-right: unset;
 }
 
 .imagetext {
@@ -866,12 +868,45 @@ body {
     text-decoration-skip-ink: none;
 }
 
+.card-titles a {
+    text-decoration: none !important;
+    color: #252525 !important;
+}
+
+.card-group>.card+.card{
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color) !important;
+}
+
 .card-body {
     display: inline-grid;
     justify-content: center;
     align-items: center;
 }
+#testimonialCarousel .carousel-control-prev-icon {
+    background-color: #EEF1F6;
+    border-radius: 50%;
+}
+#testimonialCarousel .carousel-control-next-icon {
+    background-color: #EEF1F6;
+    border-radius: 50%;
+}
 
+#testimonialCarousel .carousel-control-prev-icon:hover {
+    background-color: #78239B;
+    border-radius: 50%;
+}
+#testimonialCarousel .carousel-control-next-icon:hover {
+    background-color: #78239B;
+    border-radius: 50%;
+}
+
+#testimonialCarousel .carousel-control-next {
+    right: -70px;
+}
+
+#testimonialCarousel .carousel-control-prev {
+    left: -60px;
+}
 
 @media only screen and (max-width: 3000px) {
 

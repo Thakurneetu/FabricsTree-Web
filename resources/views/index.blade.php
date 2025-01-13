@@ -22,14 +22,14 @@
   .carousel-item1 {
     display: block;
     margin-right: 0;
-    flex: 0 0 calc(100% / 2);
+    flex: 0 0 calc(95% / 2);
   }
 }
 @media screen and (min-width: 768px) {
   .carousel-item1 {
     display: block;
     margin-right: 0;
-    flex: 0 0 calc(100% / 3);
+    flex: 0 0 calc(95% / 3);
   }
 }
 #testimonialCarousel.carousel .card {
@@ -411,7 +411,7 @@
     <img src="{{ asset('frontend/images/imagef1.png') }}" alt="Image 1">
   </div>
 
-  <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 secbothimg">
+  <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 secbothimg" style="padding-right:unset;">
     <div class="column columnimage">
       <div class="col-12 imagetextrelative">
         <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Image 2" class="img-fluid">
@@ -421,7 +421,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 imagetextrelative">
+  <div class="col-md-2 col-sm-12 mb-3 mb-sm-0">
     <img src="{{ asset('frontend/images/imagef4.png') }}" alt="Image 4">
 
   </div>
@@ -486,13 +486,17 @@
         @endforeach 
         
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+        
+
+        <button class="carousel-control-prev ctrl-btn pro-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span> -->
+          <i class="fa fa-arrow-left"></i>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+        <button class="carousel-control-next ctrl-btn pro-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span> -->
+          <i class="fa fa-arrow-right"></i>
         </button>
       </div>
     </div>
