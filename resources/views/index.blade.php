@@ -1,44 +1,44 @@
 @include('web.layouts.header')
 <style> 
-  .carousel img {
+  #testimonialCarousel.carousel img {
   width: 70px;
   max-height: 70px;
   border-radius: 50%;
   margin-right: 1rem;
   overflow: hidden;
 }
-.carousel-inner {
+#testimonialCarousel.carousel-inner1 {
   padding: 1em;
 }
 
 @media screen and (min-width: 576px) {
-  .carousel-inner {
+  .carousel-inner1 {
     display: flex;
     width: 100%;
     margin-inline: auto;
     padding: 0;
     overflow: hidden;
   }
-  .carousel-item {
+  .carousel-item1 {
     display: block;
     margin-right: 0;
     flex: 0 0 calc(100% / 2);
   }
 }
 @media screen and (min-width: 768px) {
-  .carousel-item {
+  .carousel-item1 {
     display: block;
     margin-right: 0;
     flex: 0 0 calc(100% / 3);
   }
 }
-.carousel .card {
+#testimonialCarousel.carousel .card {
   margin: 0 0.5em;
   border: 0;
 } 
 
-.carousel-control-prev,
-.carousel-control-next {
+#testimonialCarousel.carousel-control-prev,
+#testimonialCarousel.carousel-control-next {
   width: 3rem;
   height: 3rem;
   background-color: grey;
@@ -442,9 +442,9 @@
 
     <div class="container-fluid bg-body-tertiary py-3">
       <div id="testimonialCarousel" class="carousel">
-        <div class="carousel-inner ">
+        <div class="carousel-inner1 ">
         @foreach($testimonials as $testimonial_val)  
-        <div class="testimonial-box carousel-item active">
+        <div class="testimonial-box carousel-item1 active">
 
           <div class="box-top">
 
@@ -485,17 +485,17 @@
         </div>
         @endforeach 
         
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
 
   </div>
 

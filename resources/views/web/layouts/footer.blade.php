@@ -627,8 +627,8 @@ if (window.matchMedia("(min-width:576px)").matches) {
     interval: false
   });
 
-  var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-  var cardWidth = $(".carousel-item").width();
+  var carouselWidth = $(".carousel-inner1")[0].scrollWidth;
+  var cardWidth = $(".carousel-item1").width();
 
   var scrollPosition = 0;
 
@@ -636,13 +636,13 @@ if (window.matchMedia("(min-width:576px)").matches) {
     if (scrollPosition < carouselWidth - cardWidth * 3) {
       console.log("next");
       scrollPosition = scrollPosition + cardWidth;
-      $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 800);
+      $(".carousel-inner1").animate({ scrollLeft: scrollPosition }, 800);
     }
   });
   $(".carousel-control-prev").on("click", function () {
     if (scrollPosition > 0) {
       scrollPosition = scrollPosition - cardWidth;
-      $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 800);
+      $(".carousel-inner1").animate({ scrollLeft: scrollPosition }, 800);
     }
   });
 } else {
