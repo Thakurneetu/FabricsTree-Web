@@ -90,6 +90,7 @@ class CustomerRegisterController extends Controller
         }
         
         $customer = new Customer();
+        $customer->user_type = $request->user_type;
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;

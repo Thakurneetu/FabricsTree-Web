@@ -10,6 +10,8 @@ use App\Models\Subcategory;
 use App\Models\Requirement;
 use App\Models\Tag;
 use App\Models\Cart;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -25,6 +27,9 @@ class ProductController extends Controller
         $data['subcategories'] = Subcategory::get();
         $data['requirements'] = Requirement::get();
         $data['tags'] = Tag::get();
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        $data['customer'] = $customer;
         return view('product.index',$data);
     }
 
@@ -32,11 +37,17 @@ class ProductController extends Controller
     {
         $data['products_data'] = Product::find($id);
         $data['products'] = Product::all();
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        $data['customer'] = $customer;
         return view('product.productdetail',$data);
     }
 
     public function productcart()
     {
-        return view('product.productcart');
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        $data['customer'] = $customer;
+        return view('product.productcart',$data);
     }
 }

@@ -50,11 +50,17 @@
         </form>
 
         <div class="searchbar">
-          <i class="fa fa-user" aria-hidden="true" style="color: #78239B;"></i>
-          
             @if(Auth::guard('customer')->check())
-            <a href="{{ route('customer.logout')}}" ><button class="btn btn-outline-success login" type="button" >Logout</button></a>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{@$customer->name}} &nbsp;</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('profile')}}">Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile')}}">Change Password</a></li>
+                    <li><a class="dropdown-item" href="{{ route('customer.logout')}}" >Logout</a></li>
+                </ul>
+            </div>
             @else
+            <i class="fa fa-user" aria-hidden="true" style="color: #78239B;"></i>
             <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Login</button>
             @endif

@@ -26,6 +26,5 @@
   <link rel="stylesheet" href="{{ asset('frontend/css/productCatg.css') }}">
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-  
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
   @extends('web.layouts.nav')

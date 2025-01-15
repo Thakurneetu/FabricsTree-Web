@@ -50,6 +50,9 @@ Route::get('productcart', [ProductController::class, 'productcart'])->name('prod
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
 
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('update-profile', [ProfileController::class, 'update_profile'])->name('customer.updateprofile');
+Route::post('change-password', [ProfileController::class, 'change_password'])->name('customer.changepassword');
+
 Route::get('contactus', [ContactController::class, 'index'])->name('contactus');
 
 Route::group(['middleware' => 'auth'], function () {

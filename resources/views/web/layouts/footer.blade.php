@@ -353,6 +353,17 @@
         @endsession
         <div class="row">
             <div class="col-md-12 col-sm-12">
+            <div class="mb-3">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="user_type" id="user_type1" value="Customer" checked>
+                <label class="form-check-label" for="user_type1" >As a Customer</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="user_type" id="user_type2" value="Manufacturer">
+                <label class="form-check-label" for="user_type2">As a Manufacturer</label>
+              </div>
+            </div>
+            </div>
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Full Name') }}*</label> -->
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="fullname" autofocus placeholder="Enter your name">
@@ -667,8 +678,4 @@ if (window.matchMedia("(min-width:576px)").matches) {
   });
 </script>   
 @endsession
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-      
-    
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
