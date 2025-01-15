@@ -594,6 +594,24 @@
         }                    
       })
     });
+
+    $('#save_contactus').click(function () {               
+      $.easyAjax({
+        url: "{{ route('save.contactus') }}",
+        container: '#contactForm',
+        type: "POST",
+        redirect: true,
+        data: $('#contactForm').serialize(),
+        success: function(response) {
+          if (response.status) {
+            swal("Sent!", response.message, "success");
+            setInterval(function () {
+              window.location.reload();
+            }, 4000);
+          }
+        }                    
+      })
+    });
           
   productScroll();
   function productScroll() {

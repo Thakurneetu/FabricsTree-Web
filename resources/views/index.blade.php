@@ -512,30 +512,31 @@
 
     <div class="col-md-6 testimonialfluid">
       <h2 style="font-weight: bold mb-2">Get in Touch</h2>
-      <form id="contactForm">
+      <form method="POST" id="contactForm" name="contactForm" >
+          @csrf
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="mb-3">
-              <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
+              <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" />
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="mb-3">
-              <input type="text" class="form-control" id="name" placeholder="Enter your mobile number"
-                required />
+              <input type="text" class="form-control" name="phone" id="phone"
+                                        placeholder="Enter your mobile number" />
             </div>
           </div>
         </div>
 
         <div class="mb-3">
-          <input type="email" class="form-control" id="email" placeholder="Enter your email address" required />
+          <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email address" />
         </div>
         <div class="mb-3">
-          <textarea class="form-control" id="message" rows="5" placeholder="Type a message..."
+          <textarea class="form-control" name="message" id="message" rows="5" placeholder="Type a message..."
             style="height: 120px;"></textarea>
         </div>
 
-        <button class="btn-outline-success maincolor" type="submit">Submit</button>
+        <button class="btn-outline-success maincolor" name="save_contactus" id="save_contactus" type="button">Submit</button>
 
       </form>
     </div>

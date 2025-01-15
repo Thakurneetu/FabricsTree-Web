@@ -54,6 +54,7 @@ Route::post('update-profile', [ProfileController::class, 'update_profile'])->nam
 Route::post('change-password', [ProfileController::class, 'change_password'])->name('customer.changepassword');
 
 Route::get('contactus', [ContactController::class, 'index'])->name('contactus');
+Route::post('save-contactus', [ContactController::class, 'save_contactus'])->name('save.contactus');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::prefix('admin')->name('admin.')->group(function() {
