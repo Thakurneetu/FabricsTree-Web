@@ -26,7 +26,7 @@
                 
                 @foreach($categories as $category)
                   <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$category->id}}">
+                    <input class="form-check-input" type="checkbox" name="category_id" id="category_id_{{$category->id}}" value="{{$category->id}}">
                     <label class="form-check-label" for="flexRadioDefault1">
                     {{$category->name}}
                     </label>
@@ -45,7 +45,7 @@
               <div class="p-1">
                 @foreach($requirements as $requirement)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$requirement->id}}">
+                  <input class="form-check-input" type="checkbox" name="requirement_id" id="requirement_id_{{$requirement->id}}" value="{{$requirement->id}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$requirement->name}}
                   </label>
@@ -63,7 +63,7 @@
               <div class="p-1">
               @foreach($subcategories as $subcategory)
               <div class="form-check mt-3">
-                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$subcategory->id}}">
+                <input class="form-check-input" type="checkbox" name="subcategory_id" id="subcategory_id_{{$subcategory->id}}" value="{{$subcategory->id}}">
                 <label class="form-check-label" for="flexRadioDefault1">
                 {{$subcategory->name}}
                 </label>
@@ -171,6 +171,8 @@
               </div>
             </li>
           </ul>
+          <br/>
+          <button class="btn-outline-success KnowMore maincolor" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCustomizeRequirement">Customize</button>
         </li>
       </ul>
 
@@ -230,6 +232,123 @@
       </div>
     </div>
 </div>
+
+<!-- Modal Customize as per your requirement-->
+<div class="modal fade" id="exampleModalCustomizeRequirement" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="text-center w-100">
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="d-flex justify-content-center" style="margin-top: -6rem;">
+                        <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
+                            <img class="p-3" src="{{ asset('frontend/images/seeting.png') }}" alt="thanks" width="80">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center w-100  mb-3">
+                        <div class="text-center verify">
+                            <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Customize as per your
+                                requirement</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="mb-3 registerss">
+
+                                <label for="FabricCategory" style="font-weight: bold;">Fabric Category</label>
+                                <input type="text" class="form-control" placeholder="Please enter here">
+
+                                <label for="Requirement" style="font-weight: bold;">Requirement</label>
+                                <input type="text" class="form-control" placeholder="Please enter here">
+
+
+                                <hr>
+
+                                <div class="dropdown">
+                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
+                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
+                                        Subcategory
+                                        <!-- Arrow Icon (initially pointing down) -->
+                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
+                                    </div>
+
+                                    <!-- Custom Dropdown Menu -->
+                                    <div class="custom-dropdown-menu" id="dropdownMenu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="dropdown">
+                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
+                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
+                                        Width
+                                        <!-- Arrow Icon (initially pointing down) -->
+                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="dropdown">
+                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
+                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
+                                        Count
+                                        <!-- Arrow Icon (initially pointing down) -->
+                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="dropdown">
+                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
+                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
+                                        Reed
+                                        <!-- Arrow Icon (initially pointing down) -->
+                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="dropdown">
+                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
+                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
+                                        Pik
+                                        <!-- Arrow Icon (initially pointing down) -->
+                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <textarea class="form-control" placeholder="Enter your message"
+                                    id="exampleFormControlTextarea1" rows="3" style="height: 90px;"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer d-flex justify-content-center  ">
+                        <button class="btn-outline-success maincolor" type="submit">Submit</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 @include('web.layouts.footer')
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

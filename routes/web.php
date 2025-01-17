@@ -43,6 +43,7 @@ Route::get('customer/logout', [CustomerLoginController::class, 'logout'])->name(
 
 
 Route::get('product', [ProductController::class,'index'])->name('product.index');
+Route::post('product-filter', [ProductController::class,'filter'])->name('product.filter');
 Route::get('productdetail/{id?}', [ProductController::class, 'productdetail'])->name('product.productdetail');
 
 Route::get('productcart', [ProductController::class, 'productcart'])->name('product.productcart');
