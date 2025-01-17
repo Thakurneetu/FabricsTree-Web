@@ -38,14 +38,21 @@
           <div class="dropdown-menu dropdown-menu-end pt-0">
             <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold my-2">
               <div class="fw-semibold">Settings</div>
-            </div><a class="dropdown-item" href="#">
+            </div>
+            <a class="dropdown-item" href="#">
               <svg class="icon me-2">
                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
-              </svg> Profile</a><a class="dropdown-item" href="#">
-              <a class="dropdown-item" href="#">
+              </svg> Profile
+            </a>
+            <a class="dropdown-item" href="#"
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <svg class="icon me-2">
                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}"></use>
-              </svg> Logout</a>
+              </svg> Logout
+            </a>
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
           </div>
         </li>
       </ul>

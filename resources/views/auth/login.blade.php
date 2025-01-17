@@ -10,7 +10,7 @@
               <div class="card-body">
                 <h1>Login</h1>
                 <p class="text-body-secondary">Sign In to your account</p>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('admin.login') }}">
                 @csrf
                 <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">
@@ -47,7 +47,7 @@
                     <button class="btn btn-primary px-4" type="submit">Login</button>
                   </div>
                   <div class="col-6 text-end">
-                    <a href="{{ route('password.request') }}" class="btn btn-link px-0">Forgot password?</a>
+                    <a href="{{ route('admin.password.request') }}" class="btn btn-link px-0">Forgot password?</a>
                   </div>
                 </div>
               </div>
