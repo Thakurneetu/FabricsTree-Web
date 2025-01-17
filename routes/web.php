@@ -27,14 +27,8 @@ use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\ProductQuotesController;
 use App\Http\Controllers\Web\HomeController;
 
-
-// Route::get('/', function () {
-//     return view('index');
-// });
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-
-// Auth::routes();
 Route::get('admin-login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::post('customer/register', [CustomerRegisterController::class, 'register'])->name('customer.register');
