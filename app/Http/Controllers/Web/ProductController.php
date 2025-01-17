@@ -26,6 +26,12 @@ class ProductController extends Controller
         $data['categories'] = Category::get();
         $data['subcategories'] = Subcategory::get();
         $data['requirements'] = Requirement::get();
+        $data['widths'] = Product::pluck('width')->unique()->toArray();
+        $data['wraps'] = Product::pluck('wrap')->unique()->toArray();
+        $data['wefts'] = Product::pluck('weft')->unique()->toArray();
+        $data['counts'] = Product::pluck('count')->unique()->toArray();
+        $data['reeds'] = Product::pluck('reed')->unique()->toArray();
+        $data['picks'] = Product::pluck('pick')->unique()->toArray();
         $data['tags'] = Tag::get();
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);

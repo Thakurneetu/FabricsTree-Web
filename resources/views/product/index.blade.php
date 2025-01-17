@@ -78,49 +78,99 @@
           <ul class="collapse list-unstyled" id="width">
             <li>
               <div class="p-1">
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Cotton
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Rayon
-                  </label>
-                </div>
-                <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2"
-                    checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Denim
-                  </label>
-                </div>
+
+                @foreach($widths as $width)
+                  <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$width}}">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    {{$width}}
+                    </label>
+                  </div>
+                @endforeach
+                
               </div>
             </li>
           </ul>
           <hr>
-          <a href="#Wrap" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Warp</a>
-          <ul class="collapse list-unstyled" id="wrap">
+          <a href="#wraps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Warp</a>
+          <ul class="collapse list-unstyled" id="wraps">
             <li>
-              <button type="button" class="btn btn-outline-secondary dropbutton">Cambric</button>
-              <button type="button" class="btn btn-outline-secondary dropbutton">Voile</button>
-              <button type="button" class="btn btn-outline-secondary dropbutton">Poplin</button> <br>
-              <button type="button" class="btn btn-outline-secondary dropbutton">Double Cloth</button>
-              <button type="button" class="btn btn-outline-secondary dropbutton">Sheeting</button>
+            <div class="p-1">
+              @foreach($wraps as $wrap)
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$wrap}}">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  {{$wrap}}
+                  </label>
+                </div>
+              @endforeach
+              </div>
             </li>
           </ul>
           <hr>
           <a href="#Weft" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Weft</a>
+          <ul class="collapse list-unstyled" id="Weft">
+            <li>
+            <div class="p-1">
+              @foreach($wefts as $weft)
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$weft}}">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  {{$weft}}
+                  </label>
+                </div>
+              @endforeach
+              </div>
+            </li>
+          </ul>
           <hr>
           <a href="#Count" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Count</a>
+          <ul class="collapse list-unstyled" id="Count">
+            <li>
+            <div class="p-1">
+              @foreach($counts as $count)
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$count}}">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  {{$count}}
+                  </label>
+                </div>
+              @endforeach
+              </div>
+            </li>
+          </ul>
           <hr>
           <a href="#Reed" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reed</a>
+          <ul class="collapse list-unstyled" id="Reed">
+            <li>
+            <div class="p-1">
+              @foreach($reeds as $reed)
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$reed}}">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  {{$reed}}
+                  </label>
+                </div>
+              @endforeach
+              </div>
+            </li>
+          </ul>
           <hr>
-          <a href="#Pik" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pik</a>
-
+          <a href="#Pik" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pick</a>
+          <ul class="collapse list-unstyled" id="Pik">
+            <li>
+            <div class="p-1">
+              @foreach($picks as $pick)
+                <div class="form-check mt-3">
+                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$pick}}">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                  {{$pick}}
+                  </label>
+                </div>
+              @endforeach
+              </div>
+            </li>
+          </ul>
         </li>
       </ul>
 
