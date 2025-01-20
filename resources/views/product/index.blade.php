@@ -13,7 +13,8 @@
       <div class="sidebar-header">
         <h4> <i class="fa fa-filter" aria-hidden="true"></i> <b>Filter</b></h4>
       </div>
-
+      <form method="POST" id="filterFrom" name="filterFrom">
+          @csrf
       <ul class="list-unstyled components">
         <li class="active">
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle mainbottom">Fabric
@@ -26,7 +27,7 @@
                 
                 @foreach($categories as $category)
                   <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" name="category_id" id="category_id_{{$category->id}}" value="{{$category->id}}">
+                    <input title="{{$category->name}}" class="form-check-input search_filter" type="checkbox" name="category_id[]" id="category_id_{{$category->id}}" value="{{$category->id}}">
                     <label class="form-check-label" for="flexRadioDefault1">
                     {{$category->name}}
                     </label>
@@ -45,7 +46,7 @@
               <div class="p-1">
                 @foreach($requirements as $requirement)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="requirement_id" id="requirement_id_{{$requirement->id}}" value="{{$requirement->id}}">
+                  <input title="{{$requirement->name}}" class="form-check-input search_filter" type="checkbox" name="requirement_id[]" id="requirement_id_{{$requirement->id}}" value="{{$requirement->id}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$requirement->name}}
                   </label>
@@ -63,7 +64,7 @@
               <div class="p-1">
               @foreach($subcategories as $subcategory)
               <div class="form-check mt-3">
-                <input class="form-check-input" type="checkbox" name="subcategory_id" id="subcategory_id_{{$subcategory->id}}" value="{{$subcategory->id}}">
+                <input title="{{$subcategory->name}}" class="form-check-input search_filter" type="checkbox" name="subcategory_id[]" id="subcategory_id_{{$subcategory->id}}" value="{{$subcategory->id}}">
                 <label class="form-check-label" for="flexRadioDefault1">
                 {{$subcategory->name}}
                 </label>
@@ -81,7 +82,7 @@
 
                 @foreach($widths as $width)
                   <div class="form-check mt-3">
-                    <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$width}}">
+                    <input class="form-check-input search_filter" type="checkbox" name="width[]" id="width_{{$width}}" value="{{$width}}">
                     <label class="form-check-label" for="flexRadioDefault1">
                     {{$width}}
                     </label>
@@ -98,7 +99,7 @@
             <div class="p-1">
               @foreach($wraps as $wrap)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$wrap}}">
+                  <input class="form-check-input search_filter" type="checkbox" name="wrap[]" id="wrap_{{$wrap}}" value="{{$wrap}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$wrap}}
                   </label>
@@ -114,7 +115,7 @@
             <div class="p-1">
               @foreach($wefts as $weft)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$weft}}">
+                  <input class="form-check-input search_filter" type="checkbox" name="weft[]" id="weft_{{$weft}}" value="{{$weft}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$weft}}
                   </label>
@@ -130,7 +131,7 @@
             <div class="p-1">
               @foreach($counts as $count)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$count}}">
+                  <input class="form-check-input search_filter" type="checkbox" name="count[]" id="count_{{$count}}" value="{{$count}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$count}}
                   </label>
@@ -146,7 +147,7 @@
             <div class="p-1">
               @foreach($reeds as $reed)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$reed}}">
+                  <input class="form-check-input search_filter" type="checkbox" name="reed[]" id="reed_{{$reed}}" value="{{$reed}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$reed}}
                   </label>
@@ -162,7 +163,7 @@
             <div class="p-1">
               @foreach($picks as $pick)
                 <div class="form-check mt-3">
-                  <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" value="{{$pick}}">
+                  <input class="form-check-input search_filter" type="checkbox" name="pick[]" id="pick_{{$pick}}" value="{{$pick}}">
                   <label class="form-check-label" for="flexRadioDefault1">
                   {{$pick}}
                   </label>
@@ -175,7 +176,7 @@
           <button class="btn-outline-success KnowMore maincolor" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCustomizeRequirement">Customize</button>
         </li>
       </ul>
-
+      </form>
     </nav>
 
     <!-- Page Content  -->
@@ -187,24 +188,17 @@
             <div class="headingbtn">
               <hr>
               <div class="headingbtn d-flex justify-content-between">
-                <div>
-                  <button type="button" class="btn btn-outline-dark">Cotton &nbsp;<i class="fa fa-times"
-                      aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-outline-dark">RFD &nbsp;<i class="fa fa-times"
-                      aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-outline-dark">Crepe &nbsp;<i class="fa fa-times"
-                      aria-hidden="true"></i></button>
-                  <button type="button" class="btn btn-outline-dark">44/45 inches &nbsp;<i class="fa fa-times"
-                      aria-hidden="true"></i></button>
+                <div id="filterVal">
+                  <!-- <button type="button" class="btn btn-outline-dark">Cotton &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button> -->
                 </div>
-                <div style="color: #78239B; text-decoration: underline;">
-                  Reset All
+                <div style="color: #78239B; text-decoration: underline; cursor:pointer;" id="resetFilter">
+                  <a href="{{route('product.index')}}" style="color: #78239B;">Reset All</a>
                 </div>
               </div>
               <hr>
             </div>
-            <div class="row Productscat mt-4">
-              <div class="card-group">
+            <div class="row Productscat mt-4" id="proHtml">
+              <!-- <div class="card-group">
               @foreach($products as $products_val)
               
                 <div class="card m-3">
@@ -220,12 +214,12 @@
                       <i class="fa fa-star"></i>
                       <i class="far fa-star"></i>
                     </div>
-                    <!-- maincolor -->
+                    
                     <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
                   </div>
                 </div>
               @endforeach
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -350,13 +344,13 @@
     </div>
 
 @include('web.layouts.footer')
-
+<!-- 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
 integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-crossorigin="anonymous"></script>
+crossorigin="anonymous"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
 integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
 crossorigin="anonymous"></script>
@@ -367,5 +361,154 @@ crossorigin="anonymous"></script>
         $('#sidebar').toggleClass('active');
         $('#sidebarCollapse').find('#collapseIcon').toggleClass('fa-arrow-left').toggleClass('fa-arrow-right');
       });
+      search_filter();
+      $("#filterVal").html('');
+      $('.search_filter').change(function () {  
+        search_filter();
+      });
+
+      // $('#resetFilter').click(function () { 
+      //   $("#filterVal").html('') ;
+      //   //search_filter();
+      // });
+
+      function search_filter(){
+        $("#filterVal").html('&nbsp;');
+        var categoryId = [];
+        var categoryhtml = [];
+        $.each($("input[name='category_id[]']:checked"), function() {
+          categoryId.push($(this).val());
+          categoryhtml.push($(this).attr('title'));
+        });
+        categoryId = categoryId.join(",");
+        categoryhtml = categoryhtml.join(",");
+        //console.log('categoryId:'+categoryId);
+        if(categoryhtml!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Category:'+categoryhtml+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var requirementId = [];
+        var requirementhtml = [];
+        $.each($("input[name='requirement_id[]']:checked"), function() {
+          requirementId.push($(this).val());
+          requirementhtml.push($(this).attr('title'));
+        });
+        requirementId = requirementId.join(",");
+        requirementhtml = requirementhtml.join(",");
+        //console.log('requirementId:'+requirementId);
+        if(requirementhtml!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Requirement:'+requirementhtml+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var subcategoryId = [];
+        var subcategoryhtml = [];
+        $.each($("input[name='subcategory_id[]']:checked"), function() {
+          subcategoryId.push($(this).val());
+          subcategoryhtml.push($(this).attr('title'));
+        });
+        subcategoryId = subcategoryId.join(",");
+        subcategoryhtml = subcategoryhtml.join(",");
+        //console.log('subcategoryId:'+subcategoryId);
+        if(subcategoryhtml!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Sub Category:'+subcategoryhtml+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var width = [];
+        $.each($("input[name='width[]']:checked"), function() {
+          width.push($(this).val());
+        });
+        width = width.join(",");
+        //console.log('width:'+width);
+
+        if(width!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Width:'+width+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+        var wrap = [];
+        $.each($("input[name='wrap[]']:checked"), function() {
+          wrap.push($(this).val());
+        });
+        wrap = wrap.join(",");
+        //console.log('wrap:'+wrap);
+        if(wrap!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Wrap:'+wrap+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var weft = [];
+        $.each($("input[name='weft[]']:checked"), function() {
+          weft.push($(this).val());
+        });
+        weft = weft.join(",");
+        //console.log('weft:'+weft);
+        if(weft!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Weft:'+weft+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var count = [];
+        $.each($("input[name='count[]']:checked"), function() {
+          count.push($(this).val());
+        });
+        count = count.join(",");
+        //console.log('count:'+count);
+        if(count!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Count:'+count+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var reed = [];
+        $.each($("input[name='reed[]']:checked"), function() {
+          reed.push($(this).val());
+        });
+        reed = reed.join(",");
+        //console.log('reed:'+reed);
+        if(reed!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Reed:'+reed+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+
+        var pick = [];
+        $.each($("input[name='pick[]']:checked"), function() {
+          pick.push($(this).val());
+        });
+        pick = pick.join(",");
+        //console.log('pick:'+pick);
+        if(pick!=""){
+          $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Pick:'+pick+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
+        }
+
+        if(categoryhtml=="" && requirementId=="" && subcategoryId=="" && width=="" && wrap=="" && weft=="" && count=="" && reed=="" && pick==""){
+          $("#filterVal").html('');
+        }
+        $.easyAjax({
+          url: "{{ route('product.filter') }}",
+          container: '#filterFrom',
+          type: "POST",
+          redirect: true,
+          data: {
+            _token:$("input[name='_token']").val(),
+            categoryId:categoryId,
+            requirementId:requirementId,
+            subcategoryId:subcategoryId,
+            width:width,
+            wrap:wrap,
+            weft:weft,
+            count:count,
+            reed:reed,
+            pick:pick
+          },
+          success: function(response) {
+            if (response.status) {//alert(response.data);
+              //swal("Sent!", response.message, "success");
+              $('#proHtml').html(response.data);
+            }
+          }                    
+        })
+      }
+
     });
   </script>

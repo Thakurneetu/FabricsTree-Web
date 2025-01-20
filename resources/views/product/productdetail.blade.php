@@ -34,14 +34,14 @@
 
             <p>68 x 58 | 48” | Air Jet</p>
 
-            <div class="colorhed">
+            <!-- <div class="colorhed">
                 <div>Color:</div>
                 @if(isset($products_data) && count($products_data->colors) > 0)
                 @foreach($products_data->colors as $color)
                     <div class="colorpicker" style="background: {{$color->code}}">&nbsp;</div>
                 @endforeach
                 @endif
-            </div>
+            </div> -->
 
             <div style="display: flex;" class="sp-quantity">
                 <div>Quantity: &nbsp;</div>

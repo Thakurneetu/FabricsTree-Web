@@ -21,9 +21,7 @@ class ProductsController extends Controller
       $reed = $request->input('reed');
       $pick = $request->input('pick');
 
-      $query = Product::select('id','title','subtitle','description','key_features','disclaimer',
-                                  'category_id','requirement_id','subcategory_id','width','count',
-                                  'reed','pick');
+      $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id','requirement_id','subcategory_id','width','count','reed','pick');
       
       if ($categoryId)
         $query->where('category_id', $categoryId);

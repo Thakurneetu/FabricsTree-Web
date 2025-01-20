@@ -488,7 +488,7 @@
 
                   <div class="d-flex justify-content-center" style="margin-top: -6rem;">
                       <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
-                          <img class="p-2" src="./images/thanks.png" alt="thanks" width="80">
+                          <img class="p-2" src="{{ asset('frontend/images/thanks.png') }}" alt="thanks" width="80">
                       </div>
                   </div>
 
@@ -527,7 +527,7 @@
 
                       <div class="d-flex justify-content-center" style="margin-top: -6rem;">
                           <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
-                              <img class="p-2" src="./images/Group 56622.png" alt="thanks" width="80">
+                              <img class="p-2" src="{{ asset('frontend/images/Group 56622.png') }}" alt="thanks" width="80">
                           </div>
                       </div>
 
@@ -584,7 +584,7 @@
 
                       <div class="d-flex justify-content-center" style="margin-top: -6rem;">
                           <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
-                              <img class="p-2" src="./images/Group 56622.png" alt="thanks" width="80">
+                              <img class="p-2" src="{{ asset('frontend/images/Group 56622.png') }}" alt="thanks" width="80">
                           </div>
                       </div>
 

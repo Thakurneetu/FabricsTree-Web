@@ -41,17 +41,17 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-        $data['products'] = Product::all();
-        $data['categories'] = Category::get();
-        $data['subcategories'] = Subcategory::get();
-        $data['requirements'] = Requirement::get();
-        $data['widths'] = Product::pluck('width')->unique()->toArray();
-        $data['wraps'] = Product::pluck('wrap')->unique()->toArray();
-        $data['wefts'] = Product::pluck('weft')->unique()->toArray();
-        $data['counts'] = Product::pluck('count')->unique()->toArray();
-        $data['reeds'] = Product::pluck('reed')->unique()->toArray();
-        $data['picks'] = Product::pluck('pick')->unique()->toArray();
-        $data['tags'] = Tag::get();
+        //$data['products'] = Product::all();
+        // $data['categories'] = Category::get();
+        // $data['subcategories'] = Subcategory::get();
+        // $data['requirements'] = Requirement::get();
+        // $data['widths'] = Product::pluck('width')->unique()->toArray();
+        // $data['wraps'] = Product::pluck('wrap')->unique()->toArray();
+        // $data['wefts'] = Product::pluck('weft')->unique()->toArray();
+        // $data['counts'] = Product::pluck('count')->unique()->toArray();
+        // $data['reeds'] = Product::pluck('reed')->unique()->toArray();
+        // $data['picks'] = Product::pluck('pick')->unique()->toArray();
+        // $data['tags'] = Tag::get();
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
@@ -65,9 +65,7 @@ class ProductController extends Controller
             $reed = $request->input('reed');
             $pick = $request->input('pick');
 
-            $query = Product::select('id','title','subtitle','description','key_features','disclaimer',
-                                        'category_id','requirement_id','subcategory_id','width','count',
-                                        'reed','pick');
+            $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id','requirement_id','subcategory_id','width','count','reed','pick');
             
             if ($categoryId)
                 $query->where('category_id', $categoryId);
@@ -85,9 +83,36 @@ class ProductController extends Controller
                 $query->where('pick', $pick);
 
             $products = $query->paginate(); 
-            $data['products'] = $products;
+            //dd($products);
+            //$data['products'] = $products;
         }
-        return view('product.index',$data);
+        $html = '<div class="card-group">';
+        foreach($products as $products_val){
+        $html .= '<div class="card m-3">';
+            if(isset($products_val) && count($products_val->images) > 0){
+            $html .= '<a href="'.route('product.productdetail').'/'.$products_val->id.'"><img class="card-img-top" src="'.asset($products_val->images[0]->path).'" alt="Card image cap"></a>';
+            }
+            $html .= '<div class="card-body">
+            <h5 class="card-titles"><a href="'.route('product.productdetail').'/'.$products_val->id.'">'.$products_val->title.'</a></h5>
+            <div class="reviews">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
+            </div>
+        </div>';
+        }
+        $html .= '</div>';
+        return response()->json([
+            'status' => true,
+            'message' => 'Your account has been created successfully.',
+            'data' => $html,
+        ], 200);
+
+        //return view('product.product_grid_view',$data)->render();
     }
 
     public function productdetail($id)
