@@ -474,7 +474,11 @@
             <div class="profile">
 
               <div class="profile-img">
+                @if($testimonial_val->image != '')
+                <img src="{{ asset($testimonial_val->image) }}" />
+                @else
                 <img src="{{ asset('frontend/images/girl.png') }}" />
+                @endif
               </div>
 
               <div class="name-user">

@@ -32,7 +32,7 @@ class RequirementDataTable extends DataTable
      */
     public function query(Requirement $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('category');
     }
 
     /**
@@ -65,6 +65,7 @@ class RequirementDataTable extends DataTable
         return [
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false),
           Column::make('name'),
+          Column::make('category.name')->title('Category')->orderable(false)->defaultContent(''),
           Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

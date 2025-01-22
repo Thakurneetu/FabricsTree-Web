@@ -22,7 +22,9 @@ class HomeController extends Controller
 
     public function testimonials()
     {
-      $testimonials = Testimonial::select('name', 'designation', 'comment', 'rating')->get();
+      $testimonials = Testimonial::select('name', 'designation', 'comment', 'rating', 'image')->get();
+      foreach($testimonials as $testimonial)
+      $testimonial->image = url('/').$testimonial->image;
         return response()->json([
             'status' => true,
             'testimonials' => $testimonials,

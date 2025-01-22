@@ -12,7 +12,7 @@
           Add Testimonial
           <a href="{{ route('admin.testimonial.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.testimonial.store') }}" method="post">
+        <form action="{{ route('admin.testimonial.store') }}" method="post" enctype='multipart/form-data'>
           @csrf
           @include('admin.testimonial.form')
         </form>

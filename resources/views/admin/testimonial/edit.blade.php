@@ -12,7 +12,7 @@
           Edit Testimonial
           <a href="{{ route('admin.testimonial.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.testimonial.update', $testimonial->id) }}" method="post">
+        <form action="{{ route('admin.testimonial.update', $testimonial->id) }}" method="post" enctype='multipart/form-data'>
           @csrf @method('patch')
           @include('admin.testimonial.form')
         </form>

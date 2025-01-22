@@ -97,7 +97,7 @@
     </div>
     <!-- Pick -->
     <div class="form-group col-md-6 col-12 mb-3">
-      <label for="name">Product Pick</label>
+      <label for="name">Product Pik</label>
       <input type="text" name="pick" value="{{old('pick') ?? (@$product->pick ?? '')}}" class="form-control @error('pick') is-invalid @enderror" placeholder="Enter Product Pick">
       @error('pick')
       <div class="text-danger">{{ $message }}</div>

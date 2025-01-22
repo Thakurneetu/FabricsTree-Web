@@ -65,6 +65,8 @@ class TestimonialDataTable extends DataTable
         return [
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false),
           Column::make('name'),
+          Column::make('designation'),
+          Column::make('rating'),
           Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

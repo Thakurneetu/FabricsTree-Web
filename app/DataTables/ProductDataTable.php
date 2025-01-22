@@ -65,6 +65,12 @@ class ProductDataTable extends DataTable
         return [
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false),
           Column::make('title'),
+          Column::make('wrap'),
+          Column::make('weft'),
+          Column::make('width'),
+          Column::make('count'),
+          Column::make('reed'),
+          Column::make('pick')->title('Pik'),
           Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

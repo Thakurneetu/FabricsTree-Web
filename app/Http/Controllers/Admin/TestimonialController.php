@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\TestimonialDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
+use File;
 
 class TestimonialController extends Controller
 {
@@ -34,7 +35,10 @@ class TestimonialController extends Controller
     {
       try{
         DB::beginTransaction();
-        $data = $request->except('_token');
+        $data = $request->except('_token','image');
+        if($request->hasFile('image')){
+          $data['image'] = $this->save_image($request->image, '/uploads/testimonials');
+        }
         Testimonial::create($data);
         DB::commit();
         Alert::toast('Testimonial Added Successfully','success');
@@ -69,7 +73,10 @@ class TestimonialController extends Controller
     {
       try{
         DB::beginTransaction();
-        $data = $request->except('_token', '_method');
+        $data = $request->except('_token', '_method','image');
+        if($request->hasFile('image')){
+          $data['image'] = $this->save_image($request->image, '/uploads/testimonials');
+        }
         $testimonial->update($data);
         DB::commit();
         Alert::toast('Testimonial Update Successfully','success');
@@ -95,5 +102,12 @@ class TestimonialController extends Controller
         DB::rollback();
         return redirect()->back();
       }
+    }
+
+    private function save_image($file, $store_path){
+      $extension = File::extension($file->getClientOriginalName());
+      $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
+      $file->move(public_path($store_path), $filename);
+      return $store_path.'/'.$filename;
     }
 }
