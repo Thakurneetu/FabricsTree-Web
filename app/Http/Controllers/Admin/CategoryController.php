@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\DataTables\CategoryDataTable;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use File;
 
 class CategoryController extends Controller
 {
@@ -35,6 +36,9 @@ class CategoryController extends Controller
       try{
         DB::beginTransaction();
         $data = $request->only('name');
+        if($request->hasFile('image')){
+          $data['image'] = $this->save_image($request->image, '/uploads/category');
+        }
         Category::create($data);
         DB::commit();
         Alert::toast('Category Added Successfully','success');
@@ -70,6 +74,9 @@ class CategoryController extends Controller
       try{
         DB::beginTransaction();
         $data = $request->only('name');
+        if($request->hasFile('image')){
+          $data['image'] = $this->save_image($request->image, '/uploads/category');
+        }
         $category->update($data);
         DB::commit();
         Alert::toast('Category Update Successfully','success');
@@ -95,5 +102,12 @@ class CategoryController extends Controller
         DB::rollback();
         return redirect()->back();
       }
+    }
+
+    private function save_image($file, $store_path){
+      $extension = File::extension($file->getClientOriginalName());
+      $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
+      $file->move(public_path($store_path), $filename);
+      return $store_path.'/'.$filename;
     }
 }

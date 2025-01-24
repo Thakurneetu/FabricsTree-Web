@@ -12,7 +12,7 @@
           Add Category
           <a href="{{ route('admin.category.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.category.store') }}" method="post">
+        <form action="{{ route('admin.category.store') }}" method="post" enctype='multipart/form-data'>
           @csrf
           @include('admin.category.form')
         </form>

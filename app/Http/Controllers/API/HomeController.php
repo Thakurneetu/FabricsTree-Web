@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function categories()
     {
-      $categories = Category::select('id', 'name')->get();
+      $categories = Category::select('id', 'name', 'image')->get();
         return response()->json([
             'status' => true,
             'categories' => $categories,
