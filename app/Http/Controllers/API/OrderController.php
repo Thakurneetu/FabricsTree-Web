@@ -44,6 +44,7 @@ class OrderController extends Controller
       $carts = [];
       foreach ($request->user()->carts as $key => $cart) {
         $carts[$key]['id'] = $cart->id;
+        $carts[$key]['product_id'] = $cart->product->id;
         $carts[$key]['quantity'] = $cart->quantity;
         $carts[$key]['title'] = $cart->product->title??'';
         $carts[$key]['subtitle'] = $cart->product->subtitle??'';
@@ -52,6 +53,7 @@ class OrderController extends Controller
         $carts[$key]['pick'] = $cart->product->pick;
         $carts[$key]['count'] = $cart->product->count;
         $carts[$key]['reed'] = $cart->product->reed;
+        $carts[$key]['image_url'] = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
       }
 
       return response()->json([
