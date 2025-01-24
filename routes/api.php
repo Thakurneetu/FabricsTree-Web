@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', function (Request $request) {
         return $request->user();
     });
+    Route::post('/profile', [CustomerAuthController::class, 'profile']);
     Route::controller(HomeController::class)->group(function(){
       Route::get('/categories', 'categories');
       Route::get('/testimonials', 'testimonials');

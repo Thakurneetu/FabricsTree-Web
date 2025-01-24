@@ -11,6 +11,7 @@ use App\Http\Requests\API\CustomerRegisterRequest;
 use App\Http\Requests\API\ForgotPasswordRequest;
 use App\Http\Requests\API\ResetPasswordRequest;
 use App\Http\Requests\API\verifyOtpRequest;
+use App\Http\Requests\API\ProfileRequest;
 use App\Mail\OtpMail;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
@@ -147,5 +148,28 @@ class CustomerAuthController extends Controller
                 'message' => $th->getMessage(),
             ], 500);
         }
+    }
+
+    public function profile(ProfileRequest $request){
+      try {
+        $data = $request->only('name', 'email', 'phone', 'pincode', 'address');
+        if($request->password != ''){
+          $data['password'] = Hash::make($request->password);
+        }
+        $customer = $request->user()->update($data);
+
+        // Return response with the token
+        return response()->json([
+            'status' => true,
+            'message' => 'Your account has been updated successfully.',
+            'customer' => $request->user(),
+        ], 200);
+      } catch (\Throwable $th) {
+        return response()->json([
+            'status' => false,
+            'message' => $th->getMessage(),
+            'errors' => $th->getMessage(),
+        ], 500);
+      }
     }
 }
