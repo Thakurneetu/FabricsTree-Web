@@ -1,7 +1,7 @@
 @include('web.layouts.header')
 <style> 
   #testimonialCarousel.carousel img {
-  width: 70px;
+  /* width: 70px; */
   max-height: 70px;
   border-radius: 50%;
   margin-right: 1rem;
@@ -153,13 +153,9 @@
 
 
     <div class="Categoriesbtn">
-      <button type="button" class="btn btn-secondary active">Cotton</button>
-      <button type="button" class="btn btn-secondary">Nylon</button>
-      <button type="button" class="btn btn-secondary">Polyester</button>
-      <button type="button" class="btn btn-secondary">Rayon</button>
-      <button type="button" class="btn btn-secondary">Denim</button>
-      <button type="button" class="btn btn-secondary">Linen</button>
-      <button type="button" class="btn btn-secondary">Sustainable</button>
+    @foreach($categories as $key => $categories_val)
+    <button type="button" class="btn btn-secondary @if($key==0) active  @endif">{{$categories_val->name}}</button>
+    @endforeach
     </div>
 
 
@@ -170,13 +166,18 @@
       <div>RFD</div>
       <div>Dyed</div>
       <div>Printed</div>
-
     </div>
 
 
     <div class="slider mt-2" id="slider">
       <div class="slide" id="slide">
+      @foreach($categories as $key => $categories_val)
         <div class="text-center">
+          <img class="item" src="{{asset($categories_val->image)}}">
+          <p class="mt-2 slidername">{{$categories_val->name}}</p>
+        </div>
+      @endforeach
+        <!-- <div class="text-center">
           <img class="item" src="{{ asset('frontend/images/cotton.jpeg') }}">
           <p class="mt-2 slidername">Cotton</p>
         </div>
@@ -214,6 +215,21 @@
         <div class="text-center">
           <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
           <p class="mt-2 slidername">Nylon</p>
+        </div>
+
+        <div class="text-center">
+          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
+          <p class="mt-2 slidername">Polyester</p>
+        </div> -->
+
+        <div class="text-center">
+          <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
+          <p class="mt-2 slidername">Nylon</p>
+        </div>
+
+        <div class="text-center">
+          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
+          <p class="mt-2 slidername">Polyester</p>
         </div>
 
         <div class="text-center">
