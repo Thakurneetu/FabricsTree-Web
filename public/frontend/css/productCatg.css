@@ -92,7 +92,7 @@ a[data-toggle="collapse"] {
   display: block;
   position: absolute;
   top: 50%;
-  right: 70px;
+  right: 8px;
   transform: translateY(-50%);
 }
 
