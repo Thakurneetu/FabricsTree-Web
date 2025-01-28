@@ -25,9 +25,13 @@ class ContactUsDataTable extends DataTable
         ->addColumn('action', 'admin.contact_us.action')
         ->editColumn('status', function ($data) {
           if($data->status == 'pending')
+          {
             return '<span class="badge text-bg-warning text-white">'.ucfirst($data->status).'</span>';
+          }
           else
+          {
             return '<span class="badge text-bg-success text-white">'.ucfirst($data->status).'</span>';
+          }
         })
         ->rawColumns(['action','status'])
         ->addIndexColumn();
