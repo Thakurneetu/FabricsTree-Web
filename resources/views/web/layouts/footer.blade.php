@@ -48,7 +48,7 @@
                         <li class="social-links"><a href="#"
                                 style="display: flex; justify-content: center; align-items: center;"><i
                                     class="fa fa-envelope"></i></a></li>
-                        <div> mail@ Fabricstree.com</div>
+                        <div> mail@fabricstree.com</div>
 
                     </div>
 
@@ -69,13 +69,13 @@
                 </div>
             </ul>
 
-            <ul>
+            <!-- <ul>
                 <h3>Newsletter</h3>
                 <div class="col-md-12 col-sm-12 footerinp">
                     <input type="text" class="form-control" placeholder="Enter your email address">
                     <button class="btn-outline-success maincolor mt-3" type="submit">Subscribe</button>
                 </div>
-            </ul>
+            </ul> -->
 
         </div>
 
@@ -411,6 +411,18 @@
                 @error('address')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+              <div class="mb-3">
+                <!-- <label for="exampleFormControlTextarea1" class="form-label">{{ __('Pincode') }}*</label> -->
+                <input type="text" id="pincode" class="form-control @error('pincode') is-invalid @enderror" name="pincode" required placeholder="Enter pincode" value="{{ old('pincode') }}">
+                @error('pincode')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $pincode }}</strong>
                     </span>
                 @enderror
               </div>

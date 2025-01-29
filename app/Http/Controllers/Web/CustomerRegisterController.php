@@ -42,6 +42,7 @@ class CustomerRegisterController extends Controller
           'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
           'phone' => 'required|min:10|max:10|unique:customers',
           'address' => 'required',
+          'pincode' => 'required|integer',
           'password' => 'required|min:8',
           'password_confirmation'=>'required|min:8|same:password',
         ],
@@ -51,7 +52,7 @@ class CustomerRegisterController extends Controller
             'phone.required' => 'The mobile no. field is required.',
             'phone.unique' => 'The mobile no. has already exist.',
             'phone.min' => 'The mobile no. must be at least 8 digits.',
-
+            'pincode.integer' => 'The pincode field must be an numeric.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 8 characters.',
             'password_confirmation.required' => 'The confirm password field is required.',
@@ -95,6 +96,7 @@ class CustomerRegisterController extends Controller
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
+        $customer->pincode = $request->pincode;
         $customer->password = $request->password;
         $customer->status = 0;
         $customer->save();

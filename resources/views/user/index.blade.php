@@ -21,15 +21,22 @@
                     <input type="text" class="form-control" placeholder="Enter your mobile number" value="{{ $customer->phone }}" name="phone" id="phone" readonly>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control" placeholder="Enter your email" value="{{ $customer->email }}" name="email" id="email" readonly>
+                    <input type="text" class="form-control" placeholder="Enter your email address" value="{{ $customer->email }}" name="email" id="email" readonly>
                 </div>
 
                 <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control" placeholder="Enter your address" value="{{ $customer->address }}" name="address" id="address">
+                    <input type="text" class="form-control" placeholder="Enter your firm name (optional)" value="{{ $customer->firm_name }}" name="firm_name" id="firm_name" >
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Enter your gst number (optional)" value="{{ $customer->gst_number }}" name="gst_number" id="gst_number" >
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Enter your residential or billing address" value="{{ $customer->address }}" name="address" id="address">
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center mt-3 ">
-                <button class="btn-outline-success maincolor" type="button" id="save_profile">Submit</button>
+                <button class="btn-outline-success maincolor" type="button" id="save_profile">Save</button>
             </div>
         </form>
     </div>
@@ -48,7 +55,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center  mt-3">
-                <button class="btn-outline-success maincolor" type="button" id="save_chnagepwd">Submit</button>
+                <button class="btn-outline-success maincolor" type="button" id="save_chnagepwd">Save</button>
             </div>
         </form>
     </div>

@@ -67,7 +67,7 @@
               <div class="aligcra">
                 <p>Unmatched sourcing from proven mills, reliable pricing and timely deliveries with a vast range under solely dedicated online platform.</p>
               </div>
-              <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
+              <a href="{{route('product.index')}}"><button class="btn-outline-success maincolor" type="submit">Shop Now</button></a>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
@@ -77,7 +77,7 @@
               <div class="aligcra">
                 <p>Our committed supply chain, unfolding challenges and support excellence drove us to establish long term business relationship with our clients.</p>
               </div>
-              <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
+              <a href="{{route('product.index')}}"><button class="btn-outline-success maincolor" type="submit">Shop Now</button></a>
             </div>
           </div>
           <div class="carousel-item">
@@ -87,7 +87,7 @@
               <div class="aligcra">
                 <p>Splendid logistics partner from the industry and across the country, unrivaled prompt deliveries.</p>
               </div>
-              <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
+              <a href="{{route('product.index')}}"><button class="btn-outline-success maincolor" type="submit">Shop Now</button></a>
             </div>
           </div>
           <div class="carousel-item">
@@ -97,7 +97,7 @@
               <div class="aligcra">
                 <p>Partner with us to explore the best deals across the country.</p>
               </div>
-              <button class="btn-outline-success maincolor" type="submit">Shop Now</button>
+              <a href="{{route('product.index')}}"><button class="btn-outline-success maincolor" type="submit">Shop Now</button></a>
             </div>
           </div>
         </div>

@@ -58,7 +58,7 @@ class ProfileController extends Controller
 
             $customer = Customer::where('email', $request->email)->first();
             if($customer){
-                $user = Customer::where('email', $request->email)->update(['name' => $request->name,'address' => $request->address]);
+                $user = Customer::where('email', $request->email)->update(['name' => $request->name,'address' => $request->address,'firm_name' => $request->firm_name,'gst_number' => $request->gst_number]);
 
                 return response()->json([
                     'status' => true,
