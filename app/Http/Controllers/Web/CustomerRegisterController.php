@@ -89,26 +89,38 @@ class CustomerRegisterController extends Controller
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
-        
-        $customer = new Customer();
-        $customer->user_type = $request->user_type;
-        $customer->name = $request->name;
-        $customer->email = $request->email;
-        $customer->phone = $request->phone;
-        $customer->address = $request->address;
-        $customer->pincode = $request->pincode;
-        $customer->password = $request->password;
-        $customer->status = 0;
-        $customer->save();
 
-        Mail::to($customer->email)->send(new WelcomeMail($customer));
-        
-        // return redirect('/')->withSuccess('You have registered successfully');
-        return response()->json([
-                'status' => true,
-                'message' => 'Your account has been created successfully.',
-                'data' => $customer,
-            ], 200);
+            try{
+                $customer = new Customer();
+                $customer->user_type = $request->user_type;
+                $customer->name = $request->name;
+                $customer->email = $request->email;
+                $customer->phone = $request->phone;
+                $customer->address = $request->address;
+                $customer->pincode = $request->pincode;
+                $customer->password = $request->password;
+                $customer->status = 0;
+                
+                Mail::to($customer->email)->send(new WelcomeMail($customer));
+
+                $customer->save();
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Your account has been created successfully.',
+                    'data' => $customer,
+                ], 200);
+            }
+            catch(\Exception $e){
+            //  dd($e);
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Mail Not Sent',
+                    'errors' => $e->getMessage(),
+                ], 400);
+            }
+       
+       
         } catch(\Exception $e) {
             return response()->json([
                 'status' => false,

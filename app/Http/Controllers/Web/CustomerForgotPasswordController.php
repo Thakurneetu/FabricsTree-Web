@@ -59,13 +59,23 @@ class CustomerForgotPasswordController extends Controller
                     'otp' => $otp
                 ]);
                 
-                Mail::to($request->email_address)->send(new OtpMail($otp));
+                try {
+                    Mail::to($request->email_address)->send(new OtpMail($otp));
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'OTP successfully sent your registered email!',
-                    'data' => array('otp'=>$otp,'email'=>$request->email_address),
-                ], 200);
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'OTP successfully sent your registered email!',
+                        'data' => array('otp'=>$otp,'email'=>$request->email_address),
+                    ], 200);
+                }
+                catch(\Exception $e){
+                //  dd($e);
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Mail Not Sent',
+                        'errors' => $e->getMessage(),
+                    ], 400);
+                }
             }else{
                 return response()->json([
                     'status' => false,
@@ -146,13 +156,24 @@ class CustomerForgotPasswordController extends Controller
                     'otp' => $otp
                 ]);
                 
-                Mail::to($request->email_otp)->send(new OtpMail($otp));
+                try {
+                    Mail::to($request->email_otp)->send(new OtpMail($otp));
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'OTP Resend successfully!',
-                    'data' => $otp,
-                ], 200);
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'OTP Resend successfully!',
+                        'data' => $otp,
+                    ], 200);
+
+                }
+                catch(\Exception $e){
+                //  dd($e);
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Mail Not Sent',
+                        'errors' => $e->getMessage(),
+                    ], 400);
+                }
             }else{
                 return response()->json([
                     'status' => false,
