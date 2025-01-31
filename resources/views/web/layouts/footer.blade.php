@@ -126,7 +126,7 @@
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Password') }}*</label> -->
               <input id="pwd" type="password" class="form-control @error('pwd') is-invalid @enderror" name="pwd" required autocomplete="password" placeholder="Please enter password">
-
+              <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
                 @error('pwd')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -291,9 +291,8 @@
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">New Password</label> -->
               <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password"  autocomplete="new_password" placeholder="Enter your new password">
-
+              <span class="password-toggle-icon3"><i class="fas fa-eye"></i></span>
               <input id="reset_email" readonly type="hidden" class="form-control" name="reset_email" required autocomplete="reset_email" placeholder="Email" value="">
-
                 @error('new_password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -303,7 +302,7 @@
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">Confirm Password</label> -->
               <input id="confirm_password" type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password"  autocomplete="confirm_password" placeholder="Enter your confirm password">
-
+              <span class="password-toggle-icon4"><i class="fas fa-eye"></i></span>
                 @error('confirm_password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -432,7 +431,7 @@
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('New Password') }}</label> -->
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password" placeholder="New Password">
-
+                <span class="password-toggle-icon1"><i class="fas fa-eye"></i></span>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -445,6 +444,7 @@
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Confirm Password') }}</label> -->
                 <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation" placeholder="Confirm Password">
+                <span class="password-toggle-icon2"><i class="fas fa-eye"></i></span>
                 @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -881,3 +881,86 @@ if (window.matchMedia("(min-width:576px)").matches) {
 </script>   
 @endsession
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+<script>
+    //For login
+    const passwordField = document.getElementById("pwd");
+    const togglePassword = document.querySelector(".password-toggle-icon i");
+
+    togglePassword.addEventListener("click", function () {
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
+      }
+    });
+
+    //For new passowrd
+    const passwordField1 = document.getElementById("password");
+    const togglePassword1 = document.querySelector(".password-toggle-icon1 i");
+
+    togglePassword1.addEventListener("click", function () {
+      if (passwordField1.type === "password") {
+        passwordField1.type = "text";
+        togglePassword1.classList.remove("fa-eye");
+        togglePassword1.classList.add("fa-eye-slash");
+      } else {
+        passwordField1.type = "password";
+        togglePassword1.classList.remove("fa-eye-slash");
+        togglePassword1.classList.add("fa-eye");
+      }
+    });
+
+    //for confirm passowrd
+    const passwordField2 = document.getElementById("password_confirmation");
+    const togglePassword2 = document.querySelector(".password-toggle-icon2 i");
+
+    togglePassword2.addEventListener("click", function () {
+      if (passwordField2.type === "password") {
+        passwordField2.type = "text";
+        togglePassword2.classList.remove("fa-eye");
+        togglePassword2.classList.add("fa-eye-slash");
+      } else {
+        passwordField2.type = "password";
+        togglePassword2.classList.remove("fa-eye-slash");
+        togglePassword2.classList.add("fa-eye");
+      }
+    });
+
+
+    //for reset form new_password
+    const passwordField3 = document.getElementById("new_password");
+    const togglePassword3 = document.querySelector(".password-toggle-icon3 i");
+
+    togglePassword3.addEventListener("click", function () {
+      if (passwordField3.type === "password") {
+        passwordField3.type = "text";
+        togglePassword3.classList.remove("fa-eye");
+        togglePassword3.classList.add("fa-eye-slash");
+      } else {
+        passwordField3.type = "password";
+        togglePassword3.classList.remove("fa-eye-slash");
+        togglePassword3.classList.add("fa-eye");
+      }
+    });
+
+
+    //for reset form confirm_password
+    const passwordField4 = document.getElementById("confirm_password");
+    const togglePassword4 = document.querySelector(".password-toggle-icon4 i");
+
+    togglePassword4.addEventListener("click", function () {
+      if (passwordField4.type === "password") {
+        passwordField4.type = "text";
+        togglePassword4.classList.remove("fa-eye");
+        togglePassword4.classList.add("fa-eye-slash");
+      } else {
+        passwordField4.type = "password";
+        togglePassword4.classList.remove("fa-eye-slash");
+        togglePassword4.classList.add("fa-eye");
+      }
+    });
+</script>

@@ -49,9 +49,11 @@
                 <div class="col-md-6 col-sm-12">
                     <input type="hidden" readonly class="form-control" placeholder="Enter email" name="reset_email" id="reset_email" value="{{ $customer->email }}" >
                     <input type="password" class="form-control"  placeholder="Please enter your password" name="new_password" id="new_password">
+                    <!-- <span class="password-toggle-icon3"><i class="fas fa-eye"></i></span> -->
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <input type="password" class="form-control" placeholder="Please enter confirm password" name="confirm_password" id="confirm_password">
+                    <!-- <span class="password-toggle-icon4"><i class="fas fa-eye"></i></span> -->
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center  mt-3">
@@ -63,6 +65,7 @@
 @include('web.layouts.footer')
 
 <script>
+    
     $('#save_profile').click(function () {               
       $.easyAjax({
         url: "{{ route('customer.updateprofile') }}",

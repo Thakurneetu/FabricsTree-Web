@@ -1069,3 +1069,117 @@ body {
     }
 
 }
+
+.password-toggle-icon {
+    position: absolute;
+    /* top: 50%; */
+    right: 10px;
+    transform: translateY(-77%);
+    cursor: pointer;
+    padding-right: 15px;
+  }
+  
+  .password-toggle-icon i {
+    font-size: 15px;
+    line-height: 1;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .password-toggle-icon i:hover {
+    color: #000;
+  }
+  
+  /* ******************** */
+  .password-toggle-icon1 {
+    position: absolute;
+    /* top: 50%; */
+    right: 10px;
+    transform: translateY(-77%);
+    cursor: pointer;
+    padding-right: 15px;
+  }
+  
+  .password-toggle-icon1 i {
+    font-size: 15px;
+    line-height: 1;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .password-toggle-icon1 i:hover {
+    color: #000;
+  }
+  
+  
+  /* ******************** */
+  .password-toggle-icon2 {
+    position: absolute;
+    /* top: 50%; */
+    right: 10px;
+    transform: translateY(-77%);
+    cursor: pointer;
+    padding-right: 15px;
+  }
+  
+  .password-toggle-icon2 i {
+    font-size: 15px;
+    line-height: 1;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .password-toggle-icon2 i:hover {
+    color: #000;
+  }
+  
+  
+  
+  /* ******************** */
+  .password-toggle-icon3 {
+    position: absolute;
+    /* top: 50%; */
+    right: 10px;
+    transform: translateY(-77%);
+    cursor: pointer;
+    padding-right: 15px;
+  }
+  
+  .password-toggle-icon3 i {
+    font-size: 15px;
+    line-height: 1;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .password-toggle-icon3 i:hover {
+    color: #000;
+  }
+  
+  
+  
+  /* ******************** */
+  .password-toggle-icon4 {
+    position: absolute;
+    /* top: 50%; */
+    right: 10px;
+    transform: translateY(-77%);
+    cursor: pointer;
+    padding-right: 15px;
+  }
+  
+  .password-toggle-icon4 i {
+    font-size: 15px;
+    line-height: 1;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
+  }
+  
+  .password-toggle-icon4 i:hover {
+    color: #000;
+  }
