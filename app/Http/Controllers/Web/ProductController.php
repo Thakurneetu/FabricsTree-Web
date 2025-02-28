@@ -88,7 +88,6 @@ class ProductController extends Controller
         }
         $html = '<div class="card-group">';
         $i=1;
-        $j=1;
         foreach($products as $products_val){
         $html .= '<div class="card m-3">';
             if(isset($products_val) && count($products_val->images) > 0){
