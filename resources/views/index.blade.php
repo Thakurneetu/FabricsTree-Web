@@ -310,7 +310,9 @@
 
   <p class="Greigefabric">Top Product</p>
   <div class="card-group">
-    @foreach($products as $products_val)
+    
+    @foreach($products as $key=>$products_val)
+    @if( $loop->first or $loop->iteration  <= 4 )
     <div class="card m-3">
       @if(isset($products_val) && count($products_val->images) > 0)
       <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
@@ -324,9 +326,10 @@
           <i class="fa fa-star"></i>
           <i class="far fa-star"></i>
         </div>
-        <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
+        <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit">Add to Cart</button>
         <!-- maincolor -->
       </div>
+      @endif
     </div>
     @endforeach
   </div>
@@ -617,5 +620,13 @@
 
     @include('web.layouts.footer')
   </div>
+
+  <script>
+    $('.add_to_cart').click(function () {
+        var id = $(this).attr('productid');
+        var qty = 1;//$this.attr('quantity').val();
+        add_to_cart(id,qty);
+    });
+  </script>
 
     

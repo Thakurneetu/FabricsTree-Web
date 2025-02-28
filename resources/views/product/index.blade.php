@@ -505,10 +505,16 @@ crossorigin="anonymous"></script>
             if (response.status) {//alert(response.data);
               //swal("Sent!", response.message, "success");
               $('#proHtml').html(response.data);
+              $('.add_to_cart').click(function () {
+                var id = $(this).attr('productid');
+                var qty = 1;//$this.attr('quantity').val();
+                add_to_cart(id,qty);
+              });
             }
           }                    
         })
       }
 
     });
+
   </script>

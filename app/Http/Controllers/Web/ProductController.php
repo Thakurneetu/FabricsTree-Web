@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['products'] = Product::all();
+        $data['products'] = Product::select("*")->inRandomOrder()->get();
         $data['categories'] = Category::get();
         $data['subcategories'] = Subcategory::get();
         $data['requirements'] = Requirement::get();
@@ -87,6 +87,8 @@ class ProductController extends Controller
             //$data['products'] = $products;
         }
         $html = '<div class="card-group">';
+        $i=1;
+        $j=1;
         foreach($products as $products_val){
         $html .= '<div class="card m-3">';
             if(isset($products_val) && count($products_val->images) > 0){
@@ -101,9 +103,14 @@ class ProductController extends Controller
                 <i class="fa fa-star"></i>
                 <i class="far fa-star"></i>
             </div>
-            <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
-            </div>
-        </div>';
+            <button class="btn-outline-success add_to_cart KnowMore" productid="'.$products_val->id.'" type="submit">Add to Cart</button>
+            </div>';
+            $html .= '</div>';
+            if($i==4){
+                $html .= '</div><div class="card-group" >';
+                $i = 0;
+            }
+          $i++;
         }
         $html .= '</div>';
         return response()->json([
@@ -118,18 +125,74 @@ class ProductController extends Controller
     public function productdetail($id)
     {
         $data['products_data'] = Product::find($id);
-        $data['products'] = Product::all();
+        $data['products'] = Product::select("*")->inRandomOrder()->get();
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
         return view('product.productdetail',$data);
     }
 
-    public function productcart()
+    public function productcart(Request $request)
     {
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
+        //dd($customer->carts);
+        $carts = [];
+        foreach ($customer->carts as $key => $cart) {
+            $carts[$key]['id'] = $cart->id;
+            $carts[$key]['product_id'] = $cart->product->id;
+            $carts[$key]['quantity'] = $cart->quantity;
+            $carts[$key]['title'] = $cart->product->title??'';
+            $carts[$key]['subtitle'] = $cart->product->subtitle??'';
+            $carts[$key]['color_code'] = $cart->color_code;
+            $carts[$key]['width'] = $cart->product->width;
+            $carts[$key]['pick'] = $cart->product->pick;
+            $carts[$key]['count'] = $cart->product->count;
+            $carts[$key]['reed'] = $cart->product->reed;
+            $carts[$key]['image_url'] = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
+        }
+        $data['carts'] = $carts;
         return view('product.productcart',$data);
     }
+
+    public function addtocart(Request $request)
+    {
+        $data = $request->only('product_id','quantity','color_code');
+        $id = Auth::guard('customer')->id();
+        if($id){
+            $data['customer_id'] = $id;
+            if($data['quantity'] > 0){
+                Cart::updateOrCreate(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id'],'color_code'=>$data['color_code']],$data);
+                return response()->json([
+                'status' => true,
+                'message' => 'Product added to cart successfully.',
+                ]);
+            }else{
+                Cart::where(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id']])->delete();
+                return response()->json([
+                'status' => true,
+                'message' => 'Product removed successfully.',
+                ]);
+            }
+        }else{
+            return response()->json([
+            'status' => false,
+            'message' => 'Please login as a customer than we can continue to add to cart prodcut',
+            ]);
+        }
+    }
+
+    public function deletecart(Request $request)
+    {
+        $data = $request->only('cart_id');
+        $id = $data['cart_id'];
+        Cart::find($id)->delete();
+        return response()->json([
+        'status' => true,
+        'message' => 'Product removed successfully.',
+        ]);
+        
+    }
+    
 }

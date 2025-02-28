@@ -47,13 +47,14 @@
                 <div>Quantity: &nbsp;</div>
                 <button type="button" id="minus" class="badge badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
                 
-                <span style="font-weight: bold; margin: 4px;"><input type="number" class="quntity-input" value="1" min="1" style="width:50px" readonly/></span>
+                <span style="font-weight: bold; margin: 4px;"><input type="number" class="quntity-input" id="pro-quantity" value="1" min="1" style="width:50px;background: #fff; border: none;text-align:center" readonly/></span>
 
                 <button type="button" id="plus" class="badge badge-light ddd" style="background: #EEF1F6;"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
             </div>
 
             <div class="buttonsection2">
-                <button>Add to cart</button>
+                <input type="hidden" id="productid" value="{{$products_data->id}}"/>
+                <button class="add_to_cart" productid="{{$products_data->id}}">Add to cart</button>
             </div>
 
             <hr>
@@ -108,6 +109,7 @@
                 <p class="Greigefabric_gal">Related Product</p>
                 <div class="card-group">
                 @foreach($products as $products_val)
+                    @if( $loop->first or $loop->iteration  <= 4 )
                     <div class="card m-2">
                         @if(isset($products_val) && count($products_val->images) > 0)
                         <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
@@ -122,9 +124,10 @@
                                 <i class="far fa-star"></i>
                             </div>
                             <!-- maincolor -->
-                            <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
+                            <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit">Add to Cart</button>
                         </div>
                     </div>
+                    @endif
                 @endforeach    
                 </div>
             </div>
@@ -150,5 +153,11 @@
             }
         }
         $(this).closest('.sp-quantity').find("input.quntity-input").val(newVal);
+    });
+
+    $('.add_to_cart').click(function () {
+        var id = $(this).attr('productid');
+        var qty = $('#pro-quantity').val();
+        add_to_cart(id,qty);
     });
 </script>

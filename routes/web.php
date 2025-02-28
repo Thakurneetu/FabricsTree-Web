@@ -46,6 +46,9 @@ Route::post('product-filter', [ProductController::class,'filter'])->name('produc
 Route::get('productdetail/{id?}', [ProductController::class, 'productdetail'])->name('product.productdetail');
 
 Route::get('productcart', [ProductController::class, 'productcart'])->name('product.productcart');
+
+Route::get('addtocart', [ProductController::class, 'addtocart'])->name('product.addtocart');
+Route::get('deletecart', [ProductController::class, 'deletecart'])->name('product.deletecart');
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
 
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
