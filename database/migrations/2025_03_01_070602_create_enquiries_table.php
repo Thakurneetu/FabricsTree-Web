@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('pick')->nullable();
             $table->enum('status', ['submitted', 'invoiced', 'accepted', 'invoked'])->default('submitted');
             $table->string('invoke_reason')->nullable();
+            $table->string('invoice')->nullable();
             $table->timestamps();
         });
     }
