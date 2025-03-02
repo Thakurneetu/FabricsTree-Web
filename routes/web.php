@@ -26,6 +26,7 @@ use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\ProductQuotesController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ProductOrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
@@ -49,6 +50,10 @@ Route::get('productcart', [ProductController::class, 'productcart'])->name('prod
 
 Route::get('addtocart', [ProductController::class, 'addtocart'])->name('product.addtocart');
 Route::get('deletecart', [ProductController::class, 'deletecart'])->name('product.deletecart');
+Route::get('requestaquotes', [ProductController::class, 'requestaquotes'])->name('product.requestaquotes');
+Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
+Route::get('quotesitems/{id?}', [ProductQuotesController::class, 'quotesitems'])->name('product.quotesitems');
+
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
 
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');

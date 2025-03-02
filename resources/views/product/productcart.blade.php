@@ -76,13 +76,15 @@
 
                 </div>
                     @endforeach
+                @else
+                <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Carts list Found</div></div>
                 @endif
             </div>
             <div class="row">
                 <div class="bottom col-md-2" >
-                    <button>Request a quote</button>
+                    <button @if(count($carts)>0) id="request_a_quote" @else onclick="alert('Please add to cart at least one item.');" @endif >Request a quote</button>
                 </div>
-                <div class="bottom  col-md-2" >
+                <div class="bottom col-md-2" >
                     <a class="dropdown-item" href="{{ route('product.index')}}"><button style="background: #83848A;">Add more product </button></a>
                 </div>
             </div>
@@ -111,5 +113,26 @@
         var id = $(this).attr('productid');
         var qty = newVal;
         add_to_cart(id,qty);
+    });
+
+    $('#request_a_quote').click(function () {
+      if (confirm("Are you sure want to request a quote for this cart item?") == true) {  
+      $.easyAjax({
+        url: "{{ route('product.requestaquotes') }}",
+        mtype: "POST",
+        data: {'enquery_type':'selected'},
+        success: function(response) {
+          if (response.status) {
+            $('#exampleModalThankuinterest').modal('show');
+            //swal("Sent!", response.message, "success");
+            setInterval(function () {
+                window.location.assign('{{ route("product.index");}} ');
+            }, 5000);
+          }
+        }                    
+      })
+      }else{
+        return false;
+      }
     });
 </script>

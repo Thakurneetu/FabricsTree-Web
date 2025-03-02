@@ -23,4 +23,9 @@ class Customer extends Authenticatable
   {
       return $this->hasMany(Cart::class);
   }
+
+  public function enquiry()
+  {
+      return $this->hasMany(Enquiry::class);
+  }
 }

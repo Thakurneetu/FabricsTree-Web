@@ -55,7 +55,9 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{@$customer->name}} &nbsp;</button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile')}}">Profile</a></li>
-                    <li><a class="dropdown-item" href="{{ route('product.productcart')}}">Product Cart List</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.productcart')}}">My Carts List</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.productquotes')}}">My Quotes List</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.orders')}}">My Orders List</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile')}}">Change Password</a></li>
                     <li><a class="dropdown-item" href="{{ route('customer.logout')}}" >Logout</a></li>
                 </ul>

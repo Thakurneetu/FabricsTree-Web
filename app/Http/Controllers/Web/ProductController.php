@@ -12,6 +12,8 @@ use App\Models\Tag;
 use App\Models\Cart;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
+use App\Models\EnquiryItems;
+use App\Models\Enquiry;
 
 class ProductController extends Controller
 {
@@ -177,7 +179,7 @@ class ProductController extends Controller
         }else{
             return response()->json([
             'status' => false,
-            'message' => 'Please login as a customer than we can continue to add to cart prodcut',
+            'message' => 'Please login as a customer than we can continue to add to cart product',
             ]);
         }
     }
@@ -192,6 +194,56 @@ class ProductController extends Controller
         'message' => 'Product removed successfully.',
         ]);
         
+    }
+
+    public function requestaquotes(Request $request){
+        
+        $data = $request->only('enquery_type');
+
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        //$data['customer'] = $customer;
+        //dd($customer->carts);
+
+        $enquiry = new Enquiry();
+        $enquiry->enquery_type = $data['enquery_type'];
+        $enquiry->customer_id = $id;
+        $enquiry->save();
+        $enquery_id = $enquiry->id;
+        $carts = [];
+        foreach ($customer->carts as $key => $cart) {
+
+            $enquiryItems = new EnquiryItems();
+            $enquiryItems->enquery_id = $enquery_id;
+            $enquiryItems->product_id = $cart->product->id;
+            $enquiryItems->quantity = $cart->quantity;
+            $enquiryItems->title = $cart->product->title??'';
+            $enquiryItems->subtitle = $cart->product->subtitle??'';
+            $enquiryItems->color_code = $cart->color_code;
+            $enquiryItems->description = $cart->product->description??'';
+            $enquiryItems->key_features = $cart->product->key_features??'';
+            $enquiryItems->disclaimer = $cart->product->disclaimer??'';
+            $enquiryItems->category_id = $cart->product->category_id??'';
+            $enquiryItems->requirement_id = $cart->product->requirement_id??'';
+            $enquiryItems->subcategory_id = $cart->product->subcategory_id??'';
+            $enquiryItems->width = $cart->product->width;
+            $enquiryItems->pick = $cart->product->pick;
+            $enquiryItems->count = $cart->product->count;
+            $enquiryItems->reed = $cart->product->reed;
+            $enquiryItems->warp = $cart->product->wrap;
+            $enquiryItems->weft = $cart->product->weft;
+            //$enquiryItems->image_url = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
+       
+            $enquiryItems->save();
+        }
+       
+        //For delete all cart item
+        Cart::where('customer_id',$id)->delete();
+
+        return response()->json([
+        'status' => true,
+        'message' => 'Request a Quote Successfully Created.',
+        ]);
     }
     
 }

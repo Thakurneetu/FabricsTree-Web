@@ -48,45 +48,49 @@
 
                 <div class="col-lg-8 col-md-8 col-sm-12">
 
-                    <div class="row mt-2 headparagraphbg">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="headparagraph" style="border-bottom:unset;margin: unset;">
-                                <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
+                    @if(count($request_quote)>0)
+                        @foreach($request_quote as $value)
+                            <div class="row mt-2 headparagraphbg">
+                                <div class="col-lg-5 col-md-5 col-sm-12">
+                                    <div class="headparagraph" style="border-bottom:unset;margin: unset;">
+                                        <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
 
-                                <div class="alignment">
-                                    <div style="margin: 5px;">
-                                        <h3>Rayon Plain | 30’s</h3>
-                                        <p style="margin:unset;">68 x 58 | 48” | Air Jet</p>
+                                        <div class="alignment">
+                                            <div style="margin: 5px;">
+                                                <h3>{{$value['enquiry_items'][0]['title']}}</h3>
+                                                <p style="margin:unset;">68 x 58 | 48” | Air Jet</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="bottom">
+                                        <button type="button" class="btn btn-light"
+                                            style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button>
+                                        <a href="{{ route('product.quotesitems')}}/{{$value['enquiry_id']}}" ><button type="button" class="btn btn-light"
+                                            style="background: #fff; color:#78239B;margin: 5px;">View Items</button></a>
                                     </div>
                                 </div>
-                            </div>
+                                <div class=" col-lg-7 col-md-7 col-sm-12 alignment2">
 
-                            <div class="bottom">
-                                <button type="button" class="btn btn-light"
-                                    style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button>
-                            </div>
-                        </div>
-                        <div class=" col-lg-6 col-md-6 col-sm-12 alignment2">
+                                    <div class="top">
+                                        <div>
+                                            <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 14px;"></i>
+                                            Quotes are being prepared
+                                        </div>
+                                    </div>
 
-                            <div class="top">
-                                <div>
-                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 14px;"></i>
-                                    Quotes are being prepared
+                                    <div class="bottom">
+                                        <button>Revoke Order</button>
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span
+                                                style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
+                                    </div>
+
+
                                 </div>
                             </div>
-
-                            <div class="bottom">
-                                <button>Revoke Order</button>
-                                <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span
-                                        style="color:#000;">Created :</span> <span style="color:#78239B;">Nov 15,
-                                        2024</span> </button>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row mt-2 headparagraphbg">
+                        @endforeach
+                    @endif
+                    <!-- <div class="row mt-2 headparagraphbg">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="headparagraph" style="border-bottom:unset;margin: unset;">
                                 <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
@@ -114,110 +118,7 @@
 
 
                         </div>
-                    </div>
-
-                    <div class="row mt-2 headparagraphbg">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="headparagraph" style="border-bottom:unset;margin: unset;">
-                                <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
-
-                                <div class="alignment">
-                                    <div style="margin: 5px;">
-                                        <h3>Rayon Plain | 30’s</h3>
-                                        <p style="margin:unset;">68 x 58 | 48” | Air Jet</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <button type="button" class="btn btn-light" style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button>
-                            </div>
-                        </div>
-                        <div class=" col-lg-6 col-md-6 col-sm-12 alignment2">
-
-                            <div class="top">
-
-                                <button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;">Download
-                                    PDF</button>
-                                <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;">Track
-                                    Order</button>
-                            </div>
-
-                            <div class="bottom">
-                                <button>Revoke Order</button>
-                                <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">Nov 15,
-                                        2024</span> </button>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row mt-2 headparagraphbg">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="headparagraph" style="border-bottom:unset;margin: unset;">
-                                <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
-
-                                <div class="alignment">
-                                    <div style="margin: 5px;">
-                                        <h3>Rayon Plain | 30’s</h3>
-                                        <p style="margin:unset;">68 x 58 | 48” | Air Jet</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <button type="button" class="btn btn-light" style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button>
-                            </div>
-                        </div>
-                        <div class=" col-lg-6 col-md-6 col-sm-12 alignment2">
-
-                            <div class="top">
-
-                                <button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;">Download
-                                    PDF</button>
-                         
-                            </div>
-
-                            <div class="bottom">
-                           
-                                <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">Nov 15,
-                                        2024</span> </button>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row mt-2 headparagraphbg">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="headparagraph" style="border-bottom:unset;margin: unset;">
-                                <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
-
-                                <div class="alignment">
-                                    <div style="margin: 5px;">
-                                        <h3>Rayon Plain | 30’s</h3>
-                                        <p style="margin:unset;">68 x 58 | 48” | Air Jet</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom">
-                                <button type="button" class="btn btn-light" style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button>
-                            </div>
-                        </div>
-                        <div class=" col-lg-6 col-md-6 col-sm-12 alignment2">
-
-                            <div class="top">
-
-                                <button style="background: #EEF1F6; border: 1px solid #B2BAC9;border-radius:4px;"><span style="color:#CB0000;">Return On:</span><span style="color:#78239B;">Nov 15,
-                                        2024</span> </button>
-
-                            </div>
-
-
-                        </div>
-                    </div>
+                    </div> -->
                     
                 </div>
 
