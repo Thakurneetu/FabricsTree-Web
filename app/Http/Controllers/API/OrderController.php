@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Enquiry;
+use App\Models\EnquiryItems;
 use App\Http\Requests\API\AddCartRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,6 +61,83 @@ class OrderController extends Controller
       return response()->json([
         'status' => true,
         'carts' => $carts,
+      ]);
+    }
+
+    public function submitEnquiry(Request $request)
+    {
+      if($request->enquery_type == 'custom')
+      {
+        $enquiry = $request->only('enquery_type','category_id','subcategory_id','width',
+                        'warp','weft','count','reed','pick');
+        $enquiry['customer_id'] = $request->user()->id;
+        Enquiry::create($enquiry);
+        return response()->json([
+          'status' => true,
+          'message' => 'Request submitted successfully.',
+        ]);
+      } else {
+        if(count($request->user()->carts) == 0) {
+          return response()->json([
+            'status' => false,
+            'message' => 'Please add items to cart.',
+          ]);
+        }
+        $enquiry_data['enquery_type'] = 'selected';
+        $enquiry_data['customer_id'] = $request->user()->id;
+        $enquiry = Enquiry::create($enquiry_data);
+        $item['enquery_id'] = $enquiry->id;
+        foreach ($request->user()->carts as $key => $cart) {
+          $item['product_id'] = $cart->product_id;
+          $item['quantity'] = $cart->quantity;
+          $item['color_code'] = $cart->color_code;
+          $item['category_id'] = $cart->product->category_id;
+          $item['subcategory_id'] = $cart->product->subcategory_id;
+          $item['requirement_id'] = $cart->product->requirement_id;
+          $item['title'] = $cart->product->title??'';
+          $item['subtitle'] = $cart->product->subtitle??'';
+          $item['description'] = $cart->product->description??'';
+          $item['key_features'] = $cart->product->key_features??'';
+          $item['disclaimer'] = $cart->product->disclaimer??'';
+          $item['disclaimer'] = $cart->product->disclaimer??'';
+          $item['disclaimer'] = $cart->product->disclaimer??'';
+          $item['width'] = $cart->product->width;
+          $item['warp'] = $cart->product->warp;
+          $item['weft'] = $cart->product->weft;
+          $item['pick'] = $cart->product->pick;
+          $item['count'] = $cart->product->count;
+          $item['reed'] = $cart->product->reed;
+          EnquiryItems::create($item);
+          Cart::find($cart->id)->delete();
+        }
+        return response()->json([
+          'status' => true,
+          'message' => 'Request submitted successfully.',
+        ]);
+      }
+    }
+
+    public function revokeEnquiry(Request $request)
+    {
+      $data = $request->only('invoke_reason');
+      $data['status'] = 'invoked';
+      Enquiry::where('id', $request->enquiry_id)->update($data);
+      return response()->json([
+        'status' => true,
+        'message' => 'Quote revoked successfully.',
+      ]);
+    }
+
+    public function quotes(Request $request)
+    {
+      $enquiries = Enquiry::where('customer_id', $request->user()->id)->get();
+      $quotes = [];
+      foreach ($enquiries as $key => $enquiry) {
+        $quotes[$key][''] = '';
+      }
+      return response()->json([
+        'status' => true,
+        'quotes' => $quotes,
       ]);
     }
 }
