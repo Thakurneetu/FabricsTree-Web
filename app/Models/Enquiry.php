@@ -11,6 +11,6 @@ class Enquiry extends Model
 
   public function items()
   {
-      return $this->hasMany(EnquiryItems::class);
+      return $this->hasMany(EnquiryItems::class, 'enquery_id');
   }                      
 }

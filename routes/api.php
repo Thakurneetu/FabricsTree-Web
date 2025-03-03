@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
       Route::get('/cart/delete/{id}', 'deleteCart');
       Route::post('/cart/submit', 'submitEnquiry');
       Route::post('/revoke-enquiry', 'revokeEnquiry');
+      Route::get('/quotes', 'quotes');
     });
 });
 

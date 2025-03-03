@@ -133,7 +133,26 @@ class OrderController extends Controller
       $enquiries = Enquiry::where('customer_id', $request->user()->id)->get();
       $quotes = [];
       foreach ($enquiries as $key => $enquiry) {
-        $quotes[$key][''] = '';
+        $quotes[$key]['id'] = $enquiry->id;
+        if($enquiry->enquery_type == 'custom'){
+          $quotes[$key]['title'] = 'Custom';
+          $quotes[$key]['width'] = $enquiry->width;
+          $quotes[$key]['warp'] = $enquiry->warp;
+          $quotes[$key]['weft'] = $enquiry->weft;
+          $quotes[$key]['count'] = $enquiry->count;
+          $quotes[$key]['reed'] = $enquiry->reed;
+          $quotes[$key]['pick'] = $enquiry->pick;
+        }else{
+          $item = $enquiry->items->first();
+          $quotes[$key]['title'] = $item->title;
+          $quotes[$key]['width'] = $item->width;
+          $quotes[$key]['warp'] = $item->warp;
+          $quotes[$key]['weft'] = $item->weft;
+          $quotes[$key]['count'] = $item->count;
+          $quotes[$key]['reed'] = $item->reed;
+          $quotes[$key]['pick'] = $item->pick;
+        }
+        $quotes[$key]['created_on'] =  \Carbon\Carbon::parse($enquiry->created_at)->format('jS M Y');
       }
       return response()->json([
         'status' => true,
