@@ -253,88 +253,53 @@
 
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
+                          <form id="customForm">
                             <div class="mb-3 registerss">
+                            
+                                <label for="FabricCategory" style="font-weight: bold;">Category</label>
+                                <select class="form-control" id="ccategory" name="category_id" >
+                                  <option value="">Select Category</option>
+                                  @foreach($categories as $category)
+                                  <option value="{{$category->id}}">{{$category->name}}</option>
+                                  @endforeach
+                                </select>
+                                <br/>
+                                <label for="FabricCategory" style="font-weight: bold;">Sub Category</label>
+                                <select class="form-control" id="csub_category" name="subcategory_id" >
+                                  <option value="">Select Sub Category</option>
+                                  @foreach($subcategories as $subcategory)
+                                  <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                                  @endforeach
+                                </select>
+                                <br/>      
+                                <label for="FabricCategory" style="font-weight: bold;">Width</label>
+                                <input type="text" id="cwidth" name="width" placeholder="Please enter width" class="form-control"/>
 
-                                <label for="FabricCategory" style="font-weight: bold;">Fabric Category</label>
-                                <input type="text" class="form-control" placeholder="Please enter here">
+                                <label for="FabricCategory" style="font-weight: bold;">Warp</label>
+                                <input type="text" id="cwrap" name="wrap" placeholder="Please enter wrap" class="form-control"/>
 
-                                <label for="Requirement" style="font-weight: bold;">Requirement</label>
-                                <input type="text" class="form-control" placeholder="Please enter here">
+                                <label for="FabricCategory" style="font-weight: bold;">Weft</label>
+                                <input type="text" id="cweft" name="weft" placeholder="Please enter weft" class="form-control"/>
 
+                                <label for="FabricCategory" style="font-weight: bold;">Count</label>
+                                <input type="text" id="ccount" name="count" placeholder="Please enter count" class="form-control"/>
+                                
+                                <label for="FabricCategory" style="font-weight: bold;">Reed</label>
+                                <input type="text" id="creed" name="reed" placeholder="Please enter reed" class="form-control"/>
 
-                                <hr>
-
-                                <div class="dropdown">
-                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
-                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
-                                        Subcategory
-                                        <!-- Arrow Icon (initially pointing down) -->
-                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
-                                    </div>
-
-                                    <!-- Custom Dropdown Menu -->
-                                    <div class="custom-dropdown-menu" id="dropdownMenu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="dropdown">
-                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
-                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
-                                        Width
-                                        <!-- Arrow Icon (initially pointing down) -->
-                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="dropdown">
-                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
-                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
-                                        Count
-                                        <!-- Arrow Icon (initially pointing down) -->
-                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="dropdown">
-                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
-                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
-                                        Reed
-                                        <!-- Arrow Icon (initially pointing down) -->
-                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="dropdown">
-                                    <!-- Custom Dropdown Toggle with Arrow Icon -->
-                                    <div class="custom-dropdown-toggle" onclick="toggleDropdown()">
-                                        Pik
-                                        <!-- Arrow Icon (initially pointing down) -->
-                                        <i id="dropdownArrow" class="fas fa-chevron-down" style="float: right;"></i>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <textarea class="form-control" placeholder="Enter your message"
-                                    id="exampleFormControlTextarea1" rows="3" style="height: 90px;"></textarea>
+                                <label for="FabricCategory" style="font-weight: bold;">Pick</label>
+                                <input type="text" id="cpick" name="pick" placeholder="Please enter pick" class="form-control"/>
+                                <br/>
+                                <textarea class="form-control" placeholder="Please enter your message"
+                                    id="cmessage" name="message" rows="3" style="height: 90px;"></textarea>
                             </div>
+                          </form>
                         </div>
 
                     </div>
 
                     <div class="modal-footer d-flex justify-content-center  ">
-                        <button class="btn-outline-success maincolor" type="submit">Submit</button>
+                        <button class="btn-outline-success maincolor" type="button" id="customize">Submit</button>
                     </div>
 
 
@@ -357,6 +322,42 @@ crossorigin="anonymous"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
+      $('#customize').click(function () {
+      
+      $.easyAjax({
+        url: "{{ route('product.requestaquotes') }}",
+        container: '#customForm',
+        type: "GET",
+        redirect: true,
+        data: {
+          'enquery_type':'custom',
+          'category_id' : $('#ccategory').val(),
+          'subcategory_id' : $('#csub_category').val(),
+          'width' : $('#cwidth').val(),
+          'wrap' : $('#cwrap').val(),
+          'weft' : $('#cweft').val(),
+          'count' : $('#ccount').val(),
+          'reed' : $('#creed').val(),
+          'pick' : $('#cpick').val(),
+          'message' : $('#cmessage').val(),
+        },
+        success: function(response) {
+          if (response.status) {
+            
+            $('#exampleModalCustomizeRequirement').modal('hide');
+
+            $('#exampleModalThankuinterest').modal('show');
+
+            //swal("Sent!", response.message, "success");
+            setInterval(function () {
+                window.location.assign('{{ route("product.index");}} ');
+            }, 5000);
+          }
+        }                    
+      })
+      
+    });
+
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $('#sidebarCollapse').find('#collapseIcon').toggleClass('fa-arrow-left').toggleClass('fa-arrow-right');

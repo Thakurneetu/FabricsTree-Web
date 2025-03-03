@@ -572,14 +572,14 @@
             <div><i class="fa fa-map-marker" aria-hidden="true"></i></div>
             <div>
               <h4>Our Address</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting </p>
+              <p>G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)</p>
             </div>
           </div>
           <div class="icondiv">
             <div><i class="fa fa-envelope" aria-hidden="true"></i></div>
             <div>
               <h4>General Enquiries</h4>
-              <p>websupport@Fabrics treee</p>
+              <p>bloombugsfabric@gmail.com</p>
             </div>
           </div>
         </div>
@@ -588,14 +588,14 @@
             <div><i class="fa fa-phone" aria-hidden="true"></i></div>
             <div>
               <h4>Call us</h4>
-              <p>+91 12345 12456</p>
+              <p>+91 9650608918</p>
             </div>
           </div>
           <div class="icondiv">
             <div><i class="fa fa-clock" aria-hidden="true"></i></div>
             <div>
               <h4>Our Timing</h4>
-              <p>Mon - Sun :10:00AM - 04:00 PM</p>
+              <p>Mon - Sun 10:00 AM to 5:30 PM</p>
             </div>
           </div>
         </div>
