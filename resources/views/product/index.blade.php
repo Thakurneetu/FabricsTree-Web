@@ -253,7 +253,8 @@
 
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                          <form id="customForm">
+                          <form id="customForm" method="POST">
+                          @csrf
                             <div class="mb-3 registerss">
                             
                                 <label for="FabricCategory" style="font-weight: bold;">Category</label>
