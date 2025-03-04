@@ -802,7 +802,7 @@
       var color_code = '';
       $.easyAjax({
         url: "{{ route('product.addtocart') }}",
-        type: "POST",
+        //type: "POST",
         data: {'product_id':product_id,'quantity':quantity,'color_code':color_code},
         success: function(response) {
           if (response.status) {
@@ -821,7 +821,7 @@
       var cart_id = $(this).attr('cartid');
       $.easyAjax({
         url: "{{ route('product.deletecart') }}",
-        type: "POST",
+        //type: "POST",
         data: {'cart_id':cart_id},
         success: function(response) {
           if (response.status) {

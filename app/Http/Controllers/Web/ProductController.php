@@ -225,88 +225,96 @@ class ProductController extends Controller
 
     public function requestaquotes(Request $request){
         
-        $data = $request->only('enquery_type');
+        $id = Auth::guard('customer')->id();
+        if($id){
+            $data = $request->only('enquery_type');
 
-        if($data['enquery_type']=='custom'){
-            try {
-                $this->validator($request->all())->validate();
+            if($data['enquery_type']=='custom'){
+                try {
+                    $this->validator($request->all())->validate();
 
-                //dd($request);die;
-                //$enquiry = $request->only('enquery_type','category_id','subcategory_id','width','warp','weft','count','reed','pick','message');
-               // $enquiry['customer_id'] = Auth::guard('customer')->id();
-                //Enquiry::create($enquiry);
+                    //dd($request);die;
+                    //$enquiry = $request->only('enquery_type','category_id','subcategory_id','width','warp','weft','count','reed','pick','message');
+                    // $enquiry['customer_id'] = Auth::guard('customer')->id();
+                    //Enquiry::create($enquiry);
+
+                    $enquiry = new Enquiry();
+                    $enquiry->customer_id = Auth::guard('customer')->id();
+                    $enquiry->enquery_type = $request->enquery_type;
+                    $enquiry->category_id = $request->category_id;
+                    $enquiry->subcategory_id = $request->subcategory_id;
+                    $enquiry->width = $request->width;
+                    $enquiry->warp = $request->warp;
+                    $enquiry->weft = $request->weft;
+                    $enquiry->count = $request->count;
+                    $enquiry->reed = $request->reed;
+                    $enquiry->pick = $request->pick;
+                    $enquiry->message = $request->message;
+                    $enquiry->save();
+                
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'You have been successfully submitted your customize info.',
+                    ], 200);
+                
+                } catch(\Exception $e) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => $this->transformErrors($e),
+                        'errors' => $e->getMessage(),
+                    ], 400);
+                }
+            }else{
+
+                $id = Auth::guard('customer')->id();
+                $customer = Customer::find($id);
+                //$data['customer'] = $customer;
+                //dd($customer->carts);
 
                 $enquiry = new Enquiry();
-                $enquiry->customer_id = Auth::guard('customer')->id();
-                $enquiry->enquery_type = $request->enquery_type;
-                $enquiry->category_id = $request->category_id;
-                $enquiry->subcategory_id = $request->subcategory_id;
-                $enquiry->width = $request->width;
-                $enquiry->warp = $request->warp;
-                $enquiry->weft = $request->weft;
-                $enquiry->count = $request->count;
-                $enquiry->reed = $request->reed;
-                $enquiry->pick = $request->pick;
-                $enquiry->message = $request->message;
+                $enquiry->enquery_type = $data['enquery_type'];
+                $enquiry->customer_id = $id;
                 $enquiry->save();
-               
+                $enquery_id = $enquiry->id;
+                $carts = [];
+                foreach ($customer->carts as $key => $cart) {
+
+                    $enquiryItems = new EnquiryItems();
+                    $enquiryItems->enquery_id = $enquery_id;
+                    $enquiryItems->product_id = $cart->product->id;
+                    $enquiryItems->quantity = $cart->quantity;
+                    $enquiryItems->title = $cart->product->title??'';
+                    $enquiryItems->subtitle = $cart->product->subtitle??'';
+                    $enquiryItems->color_code = $cart->color_code;
+                    $enquiryItems->description = $cart->product->description??'';
+                    $enquiryItems->key_features = $cart->product->key_features??'';
+                    $enquiryItems->disclaimer = $cart->product->disclaimer??'';
+                    $enquiryItems->category_id = $cart->product->category_id??'';
+                    $enquiryItems->requirement_id = $cart->product->requirement_id??'';
+                    $enquiryItems->subcategory_id = $cart->product->subcategory_id??'';
+                    $enquiryItems->width = $cart->product->width;
+                    $enquiryItems->pick = $cart->product->pick;
+                    $enquiryItems->count = $cart->product->count;
+                    $enquiryItems->reed = $cart->product->reed;
+                    $enquiryItems->warp = $cart->product->wrap;
+                    $enquiryItems->weft = $cart->product->weft;
+                    //$enquiryItems->image_url = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
+            
+                    $enquiryItems->save();
+                }
+            
+                //For delete all cart item
+                Cart::where('customer_id',$id)->delete();
+
                 return response()->json([
-                    'status' => true,
-                    'message' => 'You have been successfully submitted your customize info.',
-                ], 200);
-               
-            } catch(\Exception $e) {
-                return response()->json([
-                    'status' => false,
-                    'message' => $this->transformErrors($e),
-                    'errors' => $e->getMessage(),
-                ], 400);
+                'status' => true,
+                'message' => 'Request a Quote Successfully Created.',
+                ]);
             }
         }else{
-
-            $id = Auth::guard('customer')->id();
-            $customer = Customer::find($id);
-            //$data['customer'] = $customer;
-            //dd($customer->carts);
-
-            $enquiry = new Enquiry();
-            $enquiry->enquery_type = $data['enquery_type'];
-            $enquiry->customer_id = $id;
-            $enquiry->save();
-            $enquery_id = $enquiry->id;
-            $carts = [];
-            foreach ($customer->carts as $key => $cart) {
-
-                $enquiryItems = new EnquiryItems();
-                $enquiryItems->enquery_id = $enquery_id;
-                $enquiryItems->product_id = $cart->product->id;
-                $enquiryItems->quantity = $cart->quantity;
-                $enquiryItems->title = $cart->product->title??'';
-                $enquiryItems->subtitle = $cart->product->subtitle??'';
-                $enquiryItems->color_code = $cart->color_code;
-                $enquiryItems->description = $cart->product->description??'';
-                $enquiryItems->key_features = $cart->product->key_features??'';
-                $enquiryItems->disclaimer = $cart->product->disclaimer??'';
-                $enquiryItems->category_id = $cart->product->category_id??'';
-                $enquiryItems->requirement_id = $cart->product->requirement_id??'';
-                $enquiryItems->subcategory_id = $cart->product->subcategory_id??'';
-                $enquiryItems->width = $cart->product->width;
-                $enquiryItems->pick = $cart->product->pick;
-                $enquiryItems->count = $cart->product->count;
-                $enquiryItems->reed = $cart->product->reed;
-                $enquiryItems->warp = $cart->product->wrap;
-                $enquiryItems->weft = $cart->product->weft;
-                //$enquiryItems->image_url = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
-        
-                $enquiryItems->save();
-            }
-        
-            //For delete all cart item
-            Cart::where('customer_id',$id)->delete();
-
             return response()->json([
-            'status' => true,
-            'message' => 'Request a Quote Successfully Created.',
+            'status' => false,
+            'message' => 'Please login as a customer than we can continue to add to cart product',
             ]);
         }
     }

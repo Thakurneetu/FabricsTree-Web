@@ -353,6 +353,8 @@ crossorigin="anonymous"></script>
             setInterval(function () {
                 window.location.assign('{{ route("product.index");}} ');
             }, 5000);
+          }else{
+            swal("Error!", response.message, "error");
           }
         }                    
       })
