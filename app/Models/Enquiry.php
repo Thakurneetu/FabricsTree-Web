@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Enquiry extends Model
 {
   protected $fillable = ['enquery_type','customer_id','category_id','subcategory_id','width',
-                        'warp','weft','count','reed','pick','status','invoke_reason'];
+                        'warp','weft','count','reed','pick','status','invoke_reason','revoked_at'];
 
   public function items()
   {
