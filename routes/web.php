@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\RequirementController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\EnquiryController;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -88,6 +90,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
       'product' => AdminProductController::class,
       'contact-us' => ContactUsController::class,
       'testimonial' => TestimonialController::class,
+      'enquiry' => EnquiryController::class,
     ]);
     Route::post('/delete-product-image', [AdminProductController::class, 'deleteImage'])->name('delete-product-image');
   });

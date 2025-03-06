@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('enquiries', function (Blueprint $table) {
           $table->timestamp('revoked_at')->nullable();
+          $table->string('qutation')->nullable();
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('enquiries', function (Blueprint $table) {
           $table->dropColumn('revoked_at');
+          $table->dropColumn('qutation');
         });
     }
 };

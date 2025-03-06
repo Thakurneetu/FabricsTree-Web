@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enquiry;
+use App\Models\Manufacturer;
 use Illuminate\Http\Request;
 
-class EnquiryController extends Controller
+class ManufacturerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         //
     }
@@ -26,7 +34,15 @@ class EnquiryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Enquiry $enquiry)
+    public function show(Manufacturer $manufacturer)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Manufacturer $manufacturer)
     {
         //
     }
@@ -34,7 +50,7 @@ class EnquiryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Enquiry $enquiry)
+    public function update(Request $request, Manufacturer $manufacturer)
     {
         //
     }
@@ -42,7 +58,7 @@ class EnquiryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Enquiry $enquiry)
+    public function destroy(Manufacturer $manufacturer)
     {
         //
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Customer;
+use App\Models\Manufacturer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\DataTables\CustomersDataTable;
+use App\DataTables\ManufacturerDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ManufacturerController extends Controller
@@ -14,7 +14,7 @@ class ManufacturerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(CustomersDataTable $dataTable)
+    public function index(ManufacturerDataTable $dataTable)
     {
       return $dataTable->render('admin.manufacturer.index');
     }
@@ -35,7 +35,7 @@ class ManufacturerController extends Controller
       try{
         DB::beginTransaction();
         $data = $request->except('_token');
-        Customer::create($data);
+        Manufacturer::create($data);
         DB::commit();
         Alert::toast('Manufacturer Added Successfully','success');
         return redirect(route('admin.manufacturer.index'));
@@ -57,22 +57,22 @@ class ManufacturerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit(Manufacturer $manufacturer)
     {
-      return view('admin.manufacturer.edit', compact('customer'));
+      return view('admin.manufacturer.edit', compact('manufacturer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Manufacturer $manufacturer)
     {
       try{
         DB::beginTransaction();
         $data = $request->except('_token', '_method', 'password');
         if($request->password)
         $data['password'] = $request->password;
-        $customer->update($data);
+        $manufacturer->update($data);
         DB::commit();
         Alert::toast('Manufacturer Update Successfully','success');
         return redirect(route('admin.manufacturer.index'));
@@ -86,10 +86,10 @@ class ManufacturerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(Manufacturer $manufacturer)
     {
       try{
-        $customer->delete();
+        $manufacturer->delete();
         Alert::toast('Manufacturer Deleted Successfully','success');
         return redirect()->back();
       }catch (\Throwable $th) {
