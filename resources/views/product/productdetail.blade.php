@@ -116,13 +116,13 @@
                         @endif
                         <div class="card-body">
                             <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
-                            <div class="reviews">
+                            <!-- <div class="reviews">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="far fa-star"></i>
-                            </div>
+                            </div> -->
                             <!-- maincolor -->
                             <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit">Add to Cart</button>
                         </div>
