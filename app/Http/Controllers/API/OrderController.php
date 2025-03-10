@@ -121,6 +121,7 @@ class OrderController extends Controller
     {
       $data = $request->only('invoke_reason');
       $data['status'] = 'invoked';
+      $data['revoked_at'] = now();
       Enquiry::where('id', $request->enquiry_id)->update($data);
       return response()->json([
         'status' => true,
@@ -142,6 +143,7 @@ class OrderController extends Controller
           $quotes[$key]['count'] = $enquiry->count;
           $quotes[$key]['reed'] = $enquiry->reed;
           $quotes[$key]['pick'] = $enquiry->pick;
+          $quotes[$key]['image'] = null;
         }else{
           $item = $enquiry->items->first();
           $quotes[$key]['title'] = $item->title;
@@ -151,7 +153,10 @@ class OrderController extends Controller
           $quotes[$key]['count'] = $item->count;
           $quotes[$key]['reed'] = $item->reed;
           $quotes[$key]['pick'] = $item->pick;
+          $quotes[$key]['image'] = $item->product->image_list[0] ?? null;
         }
+        $quotes[$key]['status'] = $enquiry->status;
+        $quotes[$key]['revoked_at'] = $enquiry->revoked_at ? \Carbon\Carbon::parse($enquiry->revoked_at)->format('jS M Y') : null ;
         $quotes[$key]['created_on'] =  \Carbon\Carbon::parse($enquiry->created_at)->format('jS M Y');
       }
       return response()->json([

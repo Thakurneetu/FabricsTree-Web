@@ -43,3 +43,19 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+
+use App\Http\Controllers\API\Manufacturer\ManufacturerAuthController;
+
+Route::group(['prefix' => 'manufacturer'], function () {
+  Route::post('/register', [ManufacturerAuthController::class, 'register']);
+  Route::post('/login', [ManufacturerAuthController::class, 'login']);
+
+  Route::middleware('auth:sanctum')->group(function () {
+      Route::get('/profile', function (Request $request) {
+        return $request->user();
+      });
+      Route::post('/profile', [ManufacturerAuthController::class, 'profile']);
+      Route::post('/logout', [ManufacturerAuthController::class, 'logout']);
+  });
+});
+
