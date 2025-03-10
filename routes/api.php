@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [CustomerAuthController::class, 'profile']);
     Route::controller(HomeController::class)->group(function(){
       Route::get('/categories', 'categories');
+      Route::get('/subcategories/{id}', 'subcategories');
       Route::get('/testimonials', 'testimonials');
       Route::post('/contact-us', 'saveContactUs');
     });
@@ -40,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
       Route::post('/cart/submit', 'submitEnquiry');
       Route::post('/revoke-enquiry', 'revokeEnquiry');
       Route::get('/quotes', 'quotes');
+      Route::get('/accept/{id}', 'accept');
     });
 });
 

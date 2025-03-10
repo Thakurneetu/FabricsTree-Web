@@ -131,12 +131,22 @@ class OrderController extends Controller
 
     public function quotes(Request $request)
     {
-      $enquiries = Enquiry::where('customer_id', $request->user()->id)->get();
+      $query = Enquiry::where('customer_id', $request->user()->id);
+      if($request->status == 2){
+        $query->whereIn('status', ['submitted']);
+      }else if($request->status == 3){
+        $query->whereIn('status', ['accepted']);
+      }else {
+        $query->whereIn('status', ['invoiced','invoked']);
+      }
+      $enquiries = $query->latest()->get();
       $quotes = [];
       foreach ($enquiries as $key => $enquiry) {
         $quotes[$key]['id'] = $enquiry->id;
         if($enquiry->enquery_type == 'custom'){
           $quotes[$key]['title'] = 'Custom';
+          $quotes[$key]['category'] = $enquiry->category->name??'';
+          $quotes[$key]['subcategory'] = $enquiry->subcategory->name??'';
           $quotes[$key]['width'] = $enquiry->width;
           $quotes[$key]['warp'] = $enquiry->warp;
           $quotes[$key]['weft'] = $enquiry->weft;
@@ -147,6 +157,8 @@ class OrderController extends Controller
         }else{
           $item = $enquiry->items->first();
           $quotes[$key]['title'] = $item->title;
+          $quotes[$key]['category'] = $item->category->name??'';
+          $quotes[$key]['subcategory'] = $item->subcategory->name??'';
           $quotes[$key]['width'] = $item->width;
           $quotes[$key]['warp'] = $item->warp;
           $quotes[$key]['weft'] = $item->weft;
@@ -156,12 +168,21 @@ class OrderController extends Controller
           $quotes[$key]['image'] = $item->product->image_list[0] ?? null;
         }
         $quotes[$key]['status'] = $enquiry->status;
-        $quotes[$key]['revoked_at'] = $enquiry->revoked_at ? \Carbon\Carbon::parse($enquiry->revoked_at)->format('jS M Y') : null ;
+        $quotes[$key]['revoked_on'] = $enquiry->revoked_at ? \Carbon\Carbon::parse($enquiry->revoked_at)->format('jS M Y') : null ;
         $quotes[$key]['created_on'] =  \Carbon\Carbon::parse($enquiry->created_at)->format('jS M Y');
       }
       return response()->json([
         'status' => true,
         'quotes' => $quotes,
+      ]);
+    }
+
+    public function accept($id, Request $request)
+    {
+      $enquiry = Enquiry::find($id)->update(['status' => 'accepted']);
+      return response()->json([
+        'status' => true,
+        'message' => 'Quote accepted successfully.',
       ]);
     }
 }

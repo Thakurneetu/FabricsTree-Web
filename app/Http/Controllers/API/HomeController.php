@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Models\Testimonial;
 use App\Models\ContactUs;
 use App\Http\Requests\API\ContactUsRequest;
@@ -17,6 +18,15 @@ class HomeController extends Controller
         return response()->json([
             'status' => true,
             'categories' => $categories,
+        ]);
+    }
+
+    public function subcategories($id)
+    {
+      $subcategories = Subcategory::select('id', 'name')->where('category_id', $id)->get();
+        return response()->json([
+            'status' => true,
+            'subcategories' => $subcategories,
         ]);
     }
 
