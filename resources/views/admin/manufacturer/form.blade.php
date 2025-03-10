@@ -38,7 +38,7 @@
       @enderror
     </div>
     <!-- Address -->
-    <div class="form-group col-md-3 col-12 mb-3">
+    <div class="form-group col-md-6 col-12 mb-3">
       <label>Address</label>
       <input type="text" required name="address" value="{{old('address') ?? (@$manufacturer->address ?? '')}}" 
       class="form-control @error('address') is-invalid @enderror" placeholder="Enter Address">

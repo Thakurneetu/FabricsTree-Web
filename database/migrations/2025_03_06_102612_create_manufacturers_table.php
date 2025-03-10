@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id();
+            $table->string('uid')->nullable();
             $table->string('name');
             $table->string('store_name')->nullable();
             $table->string('email')->unique();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('logo')->nullable();
             $table->string('otp')->nullable();
+            $table->enum('status',['Active','Blocked'])->default('Active');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ class Manufacturer extends Authenticatable
   protected $guard = 'manufacturer';
 
   protected $fillable = ['name' ,'email', 'phone', 'address','password','pincode', 'otp', 'store_name',
-                         'gst' ,'store_contact','logo'];
+                         'gst' ,'store_contact','logo', 'uid', 'status'];
 
   protected $hidden = ['password', 'otp'];
 
