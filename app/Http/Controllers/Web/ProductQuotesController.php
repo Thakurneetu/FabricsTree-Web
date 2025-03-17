@@ -24,6 +24,41 @@ class ProductQuotesController extends Controller
         $enquiry_items_data = [];
         foreach ($customer->enquiry as $key => $val) {
            /// dd($enquiry->id);
+           if($val->enquery_type == 'custom')
+           {
+                $enquiry[$key]['enquiry_id'] = $val->id;
+                $enquiry[$key]['customer_id'] = $val->customer_id;
+                $enquiry[$key]['enquery_type'] = $val->enquery_type;
+                $enquiry[$key]['status'] = $val->status;
+                $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                
+                $enquiry_items_data[0]['enquiry_item_id'] = 0;
+                $enquiry_items_data[0]['product_id'] = 0;
+                $enquiry_items_data[0]['enquery_id'] = 0;
+                $enquiry_items_data[0]['quantity'] = '';
+                $enquiry_items_data[0]['color_code'] = '';
+                $enquiry_items_data[0]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                $enquiry_items_data[0]['title'] = 'Custom Product';
+                $enquiry_items_data[0]['subtitle'] = '';
+                $enquiry_items_data[0]['description'] = '';
+                $enquiry_items_data[0]['key_features'] = '';
+                $enquiry_items_data[0]['disclaimer'] = '';
+                $enquiry_items_data[0]['category_id'] = $val->category_id;
+                $enquiry_items_data[0]['subcategory_id'] = $val->subcategory_id;
+                $enquiry_items_data[0]['requirement_id'] = '';
+                $enquiry_items_data[0]['width'] = $val->width;
+                $enquiry_items_data[0]['warp'] = $val->warp;
+                $enquiry_items_data[0]['weft'] = $val->weft;
+                $enquiry_items_data[0]['count'] = $val->count;
+                $enquiry_items_data[0]['reed'] = $val->reed;
+                $enquiry_items_data[0]['pick'] = $val->pick;
+              
+                $enquiry[$key]['enquiry_items'] = $enquiry_items_data;
+
+           }
+           else
+           {
+
                $enquiry[$key]['enquiry_id'] = $val->id;
                $enquiry[$key]['customer_id'] = $val->customer_id;
                $enquiry[$key]['enquery_type'] = $val->enquery_type;
@@ -53,6 +88,7 @@ class ProductQuotesController extends Controller
                     $enquiry_items_data[$k]['pick'] = $v->pick;
                }
                $enquiry[$key]['enquiry_items'] = $enquiry_items_data;
+            }
         }
         $data['request_quote'] = $enquiry;
        // dd($data);

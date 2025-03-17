@@ -1,7 +1,7 @@
 <div class="topnav gap-2">
-    <p><i class="fa fa-envelope"></i>&nbsp; Fabricstree@gmail.com</p>
+    <p><i class="fa fa-envelope"></i>&nbsp; bloombugsfabric@gmail.com</p>
     <p><i class="fa fa-truck"></i>&nbsp; Free Shipping World wide for all orders</p>
-    <p> <i class="fa fa-phone"></i>&nbsp; +123 456 7890</p>
+    <p> <i class="fa fa-phone"></i>&nbsp; +91 9650608918</p>
 </div>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,13 +41,13 @@
 
     <div class="d-flex justify-content-center gap-2" id="searchmob">
 
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <div class="searchbar">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input class="form-control me-2" type="search" placeholder="Search...." aria-label="Search"
               style="background-color: #EEF1F6; text-indent: 32px;color: #83848A;">
           </div>
-        </form>
+        </form> -->
 
         <div class="searchbar">
             @if(Auth::guard('customer')->check())

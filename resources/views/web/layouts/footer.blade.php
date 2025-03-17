@@ -34,7 +34,7 @@
         <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12 thirdsecfooter"
             style="display: flex;justify-content: center;">
 
-            <ul>
+            <!-- <ul>
                 <h3>Contact Us</h3>
                 <div>
                     <div class="d-flex" style="align-items: center; color: #fff;">
@@ -53,7 +53,7 @@
                     </div>
 
                 </div>
-            </ul>
+            </ul> -->
         </div>
         <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
 

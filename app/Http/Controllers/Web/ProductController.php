@@ -98,15 +98,15 @@ class ProductController extends Controller
             $html .= '<a href="'.route('product.productdetail').'/'.$products_val->id.'"><img class="card-img-top" src="'.asset($products_val->images[0]->path).'" alt="Card image cap"></a>';
             }
             $html .= '<div class="card-body">
-            <h5 class="card-titles"><a href="'.route('product.productdetail').'/'.$products_val->id.'">'.$products_val->title.'</a></h5>
-            <div class="reviews">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="far fa-star"></i>
-            </div>
-            <button class="btn-outline-success add_to_cart KnowMore" productid="'.$products_val->id.'" type="submit">Add to Cart</button>
+            <h5 class="card-titles"><a href="'.route('product.productdetail').'/'.$products_val->id.'">'.$products_val->title.'</a></h5>';
+            // $html .= '<div class="reviews">
+            //     <i class="fa fa-star"></i>
+            //     <i class="fa fa-star"></i>
+            //     <i class="fa fa-star"></i>
+            //     <i class="fa fa-star"></i>
+            //     <i class="far fa-star"></i>
+            // </div>';
+            $html .= '<button class="btn-outline-success add_to_cart KnowMore" productid="'.$products_val->id.'" type="submit">Add to Cart</button>
             </div>';
             $html .= '</div>';
             if($i==4){

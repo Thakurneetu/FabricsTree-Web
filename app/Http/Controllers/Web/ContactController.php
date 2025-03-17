@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Models\ContactUs;
+use App\Mail\ContactusMail;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -62,6 +64,8 @@ class ContactController extends Controller
             $contactus->phone = $request->phone;
             $contactus->message = $request->message;
             $contactus->save();
+            
+            Mail::to('bloombugsfabric@gmail.com')->send(new ContactusMail($contactus));
            
             return response()->json([
                 'status' => true,
