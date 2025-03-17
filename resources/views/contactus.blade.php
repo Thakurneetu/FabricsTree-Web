@@ -52,15 +52,7 @@
                                     <p>G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)</p>
                                 </div>
                             </div>
-                            <div class="icondiv">
-                                <div><i class="fa fa-envelope" aria-hidden="true"></i></div>
-                                <div>
-                                    <h4>General Enquiries</h4>
-                                    <p>bloombugsfabric@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            
                             <div class="icondiv">
                                 <div><i class="fa fa-phone" aria-hidden="true"></i></div>
                                 <div>
@@ -68,6 +60,16 @@
                                     <p>+91 9650608918</p>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="icondiv">
+                                <div><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                <div>
+                                    <h4>General Enquiries</h4>
+                                    <p>bloombugsfabric@gmail.com</p>
+                                </div>
+                            </div>
+                            <br><br>
                             <div class="icondiv">
                                 <div><i class="fa fa-clock" aria-hidden="true"></i></div>
                                 <div>

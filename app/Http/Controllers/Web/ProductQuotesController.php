@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EnquiryItems;
+use App\Models\Enquiry;
 class ProductQuotesController extends Controller
 {
     /**
@@ -102,36 +103,57 @@ class ProductQuotesController extends Controller
         $customer = Customer::find($customer_id);
         $data['customer'] = $customer;
         //dd($customer->enquiry);
+
+        $enquiry = Enquiry::find($id);
+        $data['enquery_type'] = $enquiry->enquery_type;
+        //dd( $enquiry);
         $enquiry_items_data = [];
         
-        $enquiry_items = EnquiryItems::where('enquery_id',$id)->get();
-        foreach ($enquiry_items as $k => $v) {
-            $enquiry_items_data[$k]['enquiry_item_id'] = $v->id;
-            $enquiry_items_data[$k]['product_id'] = $v->product_id;
-            $enquiry_items_data[$k]['enquery_id'] = $v->enquery_id;
-            $enquiry_items_data[$k]['quantity'] = $v->quantity;
-            $enquiry_items_data[$k]['color_code'] = $v->color_code;
-            $enquiry_items_data[$k]['created_at'] = $v->created_at;
-            $enquiry_items_data[$k]['title'] = $v->title;
-            $enquiry_items_data[$k]['subtitle'] = $v->subtitle;
-            $enquiry_items_data[$k]['description'] = $v->description;
-            $enquiry_items_data[$k]['key_features'] = $v->key_features;
-            $enquiry_items_data[$k]['disclaimer'] = $v->disclaimer;
-            $enquiry_items_data[$k]['category_id'] = $v->category_id;
-            $enquiry_items_data[$k]['subcategory_id'] = $v->subcategory_id;
-            $enquiry_items_data[$k]['requirement_id'] = $v->requirement_id;
-            $enquiry_items_data[$k]['width'] = $v->width;
-            $enquiry_items_data[$k]['warp'] = $v->warp;
-            $enquiry_items_data[$k]['weft'] = $v->weft;
-            $enquiry_items_data[$k]['count'] = $v->count;
-            $enquiry_items_data[$k]['reed'] = $v->reed;
-            $enquiry_items_data[$k]['pick'] = $v->pick;
-            $enquiry_items_data[$k]['image_url'] = asset('frontend/images/Frame 176.png' );
-            
+        if($enquiry->enquery_type=='selected'){
+            $enquiry_items = EnquiryItems::where('enquery_id',$id)->get();
+            foreach ($enquiry_items as $k => $v) {
+                $enquiry_items_data[$k]['enquiry_item_id'] = $v->id;
+                $enquiry_items_data[$k]['product_id'] = $v->product_id;
+                $enquiry_items_data[$k]['enquery_id'] = $v->enquery_id;
+                $enquiry_items_data[$k]['quantity'] = $v->quantity;
+                $enquiry_items_data[$k]['color_code'] = $v->color_code;
+                $enquiry_items_data[$k]['created_at'] = $v->created_at;
+                $enquiry_items_data[$k]['title'] = $v->title;
+                $enquiry_items_data[$k]['subtitle'] = $v->subtitle;
+                $enquiry_items_data[$k]['description'] = $v->description;
+                $enquiry_items_data[$k]['key_features'] = $v->key_features;
+                $enquiry_items_data[$k]['disclaimer'] = $v->disclaimer;
+                $enquiry_items_data[$k]['category_id'] = $v->category_id;
+                $enquiry_items_data[$k]['subcategory_id'] = $v->subcategory_id;
+                $enquiry_items_data[$k]['requirement_id'] = $v->requirement_id;
+                $enquiry_items_data[$k]['width'] = $v->width;
+                $enquiry_items_data[$k]['warp'] = $v->warp;
+                $enquiry_items_data[$k]['weft'] = $v->weft;
+                $enquiry_items_data[$k]['count'] = $v->count;
+                $enquiry_items_data[$k]['reed'] = $v->reed;
+                $enquiry_items_data[$k]['pick'] = $v->pick;
+                $enquiry_items_data[$k]['image_url'] = asset('frontend/images/Frame 176.png' );
+                
+            }
         }
+        
+        //dd($enquiry_items_data);
         $data['enquiry_items'] = $enquiry_items_data;
        
         return view('product.quotesitems',$data);
+    }
+
+
+    public function requestQuotesRevoke(Request $request)
+    {
+      $data['invoke_reason'] =  $request->revoke_reason;
+      $data['status'] = 'invoked';
+      $data['revoked_at'] = now();
+      Enquiry::where('id', $request->enquiry_id)->update($data);
+      return response()->json([
+        'status' => true,
+        'message' => 'Quote revoked successfully.',
+      ]);
     }
 
     

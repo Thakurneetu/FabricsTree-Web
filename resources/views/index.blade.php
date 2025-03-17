@@ -307,8 +307,11 @@
 <div class="container-fluid">
 
 <div class="Product">
-
+<div style="color: #78239B; text-decoration: underline; cursor:pointer; float:right" id="resetFilter">
+    <a href="{{route('product.index')}}" style="color: #78239B;">See All</a>
+  </div>
   <p class="Greigefabric">Top Product</p>
+  
   <div class="card-group">
     
     @foreach($products as $key=>$products_val)
@@ -326,7 +329,9 @@
           <i class="fa fa-star"></i>
           <i class="far fa-star"></i>
         </div> -->
-        <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit">Add to Cart</button>
+        <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit" style="margin: 0px 55px;">Add to Cart</button>
+
+        <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 55px;" productid="{{$products_val->id}}" type="submit">Go to Cart</button></a>
         <!-- maincolor -->
       </div>
       @endif
@@ -576,21 +581,21 @@
             </div>
           </div>
           <div class="icondiv">
-            <div><i class="fa fa-envelope" aria-hidden="true"></i></div>
-            <div>
-              <h4>General Enquiries</h4>
-              <p>bloombugsfabric@gmail.com</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12">
-          <div class="icondiv">
             <div><i class="fa fa-phone" aria-hidden="true"></i></div>
             <div>
               <h4>Call us</h4>
               <p>+91 9650608918</p>
             </div>
           </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="icondiv">
+            <div><i class="fa fa-envelope" aria-hidden="true"></i></div>
+            <div>
+              <h4>General Enquiries</h4>
+              <p>bloombugsfabric@gmail.com</p>
+            </div>
+          </div><br/><br/>
           <div class="icondiv">
             <div><i class="fa fa-clock" aria-hidden="true"></i></div>
             <div>
@@ -628,6 +633,8 @@
     $('.add_to_cart').click(function () {
         var id = $(this).attr('productid');
         var qty = 1;//$this.attr('quantity').val();
+        $(this).hide();
+        $('#'+'go_to_cart_'+id).show();
         add_to_cart(id,qty);
     });
   </script>

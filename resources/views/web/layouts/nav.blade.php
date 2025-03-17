@@ -1,3 +1,34 @@
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+<style>
+
+    .badge:after{
+
+        content:attr(value);
+
+        font-size:12px;
+
+        color: #fff;
+
+        background: red;
+
+        border-radius:50%;
+
+        padding: 0 5px;
+
+        position:relative;
+
+        left:-8px;
+
+        top:-10px;
+
+        opacity:0.9;
+
+    }
+
+
+
+</style>
 <div class="topnav gap-2">
     <p><i class="fa fa-envelope"></i>&nbsp; bloombugsfabric@gmail.com</p>
     <p><i class="fa fa-truck"></i>&nbsp; Free Shipping World wide for all orders</p>
@@ -38,8 +69,26 @@
         </div>
     </nav>
     </div>
-
+    <?php
+        use App\Models\Customer;
+        use Illuminate\Support\Facades\Auth;
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        //$data['customer'] = $customer;
+       // dd($customer);
+    ?>
     <div class="d-flex justify-content-center gap-2" id="searchmob">
+    <!-- <i class="fa fa-shopping-bag fa-lg "></i> -->
+    @if($customer)
+        @if(count($customer->carts)>0)
+        <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="{{count($customer->carts)}}">&#xf290;</i></a>
+        @else
+        <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="0">&#xf290;</i></a>
+        @endif
+    @endif
+
+<!-- <i class="fa badge fa-lg" value=8>&#xf07a;</i> -->
+
 
         <!-- <form class="d-flex" role="search">
           <div class="searchbar">
@@ -49,25 +98,26 @@
           </div>
         </form> -->
 
-        <div class="searchbar">
+        
             @if(Auth::guard('customer')->check())
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{@$customer->name}} &nbsp;</button>
+                <button style="color: black;background-color: #fff !important;border: 0;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{@$customer->name}} &nbsp;</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('profile')}}">Profile</a></li>
-                    <li><a class="dropdown-item" href="{{ route('product.productcart')}}">My Carts List</a></li>
-                    <li><a class="dropdown-item" href="{{ route('product.productquotes')}}">My Quotes List</a></li>
-                    <li><a class="dropdown-item" href="{{ route('product.orders')}}">My Orders List</a></li>
-                    <li><a class="dropdown-item" href="{{ route('profile')}}">Change Password</a></li>
-                    <li><a class="dropdown-item" href="{{ route('customer.logout')}}" >Logout</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile')}}"><i class="fas fa-user-alt"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.productcart')}}"><i class="fas fa-search-dollar"></i> My Carts</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.productquotes')}}"><i class="fa fa-tasks"></i> My Quotes</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.orders')}}"><i class="fas fa-user-cog"></i> My Orders</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile')}}"><i class="fas fa-tools"></i> Change Password</a></li>
+                    <li><a class="dropdown-item" href="{{ route('customer.logout')}}" ><i class="fas fa-sign-out"></i> Logout</a></li>
                 </ul>
             </div>
             @else
-            <i class="fa fa-user" aria-hidden="true" style="color: #78239B;"></i>
-            <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
+            <div class="searchbar">
+                <i class="fa fa-user" aria-hidden="true" style="color: #78239B;"></i>
+                <button class="btn btn-outline-success login" type="submit" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Login</button>
+            </div>
             @endif
-        </div>
       </div>
 
     </div>

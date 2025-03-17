@@ -100,8 +100,10 @@
         var oldValue = $(this).closest('.sp-quantity').find("input.quntity-input").val();
 
         if ($button == "plus") {
+            var msg = 'plus';
             var newVal = parseFloat(oldValue) + 1;
         } else {
+            var msg = 'minus';
             // Don't allow decrementing below zero
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
@@ -112,7 +114,7 @@
         $(this).closest('.sp-quantity').find("input.quntity-input").val(newVal);
         var id = $(this).attr('productid');
         var qty = newVal;
-        add_to_cart(id,qty);
+        add_to_cart(id,qty,msg);
     });
 
     $('#request_a_quote').click(function () {

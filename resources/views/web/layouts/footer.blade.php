@@ -78,10 +78,15 @@
             </ul> -->
 
         </div>
-
+        <hr>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;margin-bottom: -50px;padding-top: 15px;color:#fff">
+          <p>© 2024 | All Rights Reserved | Powered by Fabrics Tree
+          <!-- <a href="mailto:hege@example.com">hege@example.com</a></p> -->
+        </div >
     </div>
 </div>
 </footer>
+
 
   <!-- Modal Log in-->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,7 +141,7 @@
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center  ">
-              <button class="btn-outline-success maincolor" id="save_login" type="button">{{ __('Submit') }}</button>
+              <button class="btn-outline-success maincolor" id="save_login" type="button">{{ __('Sign In') }}</button>
           </div>
           <div class="text-center">
               <p class="newregistation mb-3" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModalregistation">
@@ -462,10 +467,10 @@
 
         </div>
         <div class="modal-footer d-flex justify-content-center  ">
-            <button class="btn-outline-success maincolor" id="save_register" type="button" >{{ __('Submit') }}</button>
+            <button class="btn-outline-success maincolor" id="save_register" type="button" >{{ __('Sign Up') }}</button>
         </div>
         <div class="text-center">
-            <p class="newregistation" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"> Already have an account? <span  style="text-decoration: underline; color: #78239B; font-weight: bold;">Sign in</span>
+            <p class="newregistation" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"> Already have an account? <span  style="text-decoration: underline; color: #78239B; font-weight: bold;">Sign In</span>
             </p>
         </div>
         <!-- <div class="modal-footer">
@@ -475,17 +480,6 @@
       </div>
     </div>
   </div>
-
-  <!-- 
-    <button class="btn-outline-success login" type="submit" data-bs-toggle="modal"
-            data-bs-target="#exampleModalThankuinterest">Thanku for interest</button>
-
-    <button class="btn-outline-success login" type="submit" data-bs-toggle="modal"
-        data-bs-target="#exampleModalRevokeQuote">Revoke Quote First</button>
-
-    <button class="btn-outline-success login" type="submit" data-bs-toggle="modal"
-        data-bs-target="#exampleModalRevokeQuotesec">Revoke Quote Second</button>
-   -->
 
   <!-- Modal Thanku for interest-->
   <div class="modal fade login" id="exampleModalThankuinterest" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -551,96 +545,46 @@
                           </h6>
                       </div>
                   </div>
+                  <form method="POST" name="revoke_form" id="revoke_form" >
+                    @csrf
+                    <div class="p-4">
+                        <div class="form-check mt-3">
+                            <input type="hidden" name="enquiry_id" id="enquiry_id" value=""/>
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault11" value="reason one">
+                            <label class="form-check-label" for="flexRadioDefault11">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault22"
+                                checked value="reason two">
+                            <label class="form-check-label" for="flexRadioDefault22">
+                                Default checked radio
+                            </label>
+                        </div>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault33"
+                                checked value="other">
+                            <label class="form-check-label" for="flexRadioDefault33">
+                                Others
+                            </label>
+                        </div>
 
-                  <div class="p-4">
-                      <div class="form-check mt-3">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                          <label class="form-check-label" for="flexRadioDefault1">
-                              Default radio
-                          </label>
-                      </div>
-                      <div class="form-check mt-3">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                              checked>
-                          <label class="form-check-label" for="flexRadioDefault2">
-                              Default checked radio
-                          </label>
-                      </div>
-                      <div class="form-check mt-3">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                              checked>
-                          <label class="form-check-label" for="flexRadioDefault2">
-                              Others
-                          </label>
-                      </div>
-                  </div>
+                        <div class="mt-3 p-2"
+                            style="background-color: #d6d9e0;border-radius: 5px; border-left: 4px solid forestgreen;">
+                            <span>Once closed. This cannot be reopened, are you sure?</span>
+                        </div>
+                        @error('revoke_reason')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-              </div>
-
-
-          </div>
-      </div>
-  </div>
-
-  <!-- Modal Revoke Quote-->
-  <div class="modal fade login" id="exampleModalRevokeQuotesec" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-header">
-
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div style="padding: 20px 6rem;">
-
-                      <div class="d-flex justify-content-center" style="margin-top: -6rem;">
-                          <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
-                              <img class="p-2" src="{{ asset('frontend/images/Group 56622.png') }}" alt="thanks" width="80">
-                          </div>
-                      </div>
-
-                      <div class="text-center w-100 verify">
-                          <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Revoke Quote
-                          </h1>
-
-                          <h6 class="mb-4" style="color: #83848A;">Select a reason for closure
-                          </h6>
-                      </div>
-                  </div>
-
-                  <div class="p-4">
-                      <div class="form-check mt-3">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                          <label class="form-check-label" for="flexRadioDefault1">
-                              Default radio
-                          </label>
-                      </div>
-                      <div class="form-check mt-3">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                              checked>
-                          <label class="form-check-label" for="flexRadioDefault2">
-                              Default checked radio
-                          </label>
-                      </div>
-                      <div class="form-check mt-3">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                              checked>
-                          <label class="form-check-label" for="flexRadioDefault2">
-                              Others
-                          </label>
-                      </div>
-
-                      <div class="mt-3 p-2"
-                          style="background-color: #d6d9e0;border-radius: 5px; border-left: 4px solid forestgreen;">
-                          <span>Once closed. This cannot be reopened, are you sure?</span>
-                      </div>
-
-                  </div>
-
-                  <div class="modal-footer d-flex justify-content-center  ">
-                      <button class="btn-outline-success maincolor" type="submit">Submit</button>
-                  </div>
+                    <div class="modal-footer d-flex justify-content-center  ">
+                        <button class="btn-outline-success maincolor" type="button" id="submit_revoke_order">Submit</button>
+                    </div>
+                  </form>
               </div>
 
 
@@ -797,7 +741,7 @@
       })
     });
 
-    function add_to_cart(product_id,quantity) {   
+    function add_to_cart(product_id,quantity,msg='') {   
   
       var color_code = '';
       $.easyAjax({
@@ -806,7 +750,12 @@
         data: {'product_id':product_id,'quantity':quantity,'color_code':color_code},
         success: function(response) {
           if (response.status) {
-            swal("Sent!", response.message, "success");
+            if(msg=='minus'){
+              swal("Sent!", 'Product removed successfully.', "success");
+            }else{
+              swal("Sent!", response.message, "success");
+            }
+           
           }else{
             swal("Error!", response.message, "error");
             $('#exampleModal').modal('show');
@@ -832,6 +781,29 @@
           }
         }                    
       })
+      }else{
+        return false;
+      }
+    });
+
+    $('#submit_revoke_order').click(function () {
+      if (confirm("Are you sure want to revoke this request quote?") == true) {  
+        $.easyAjax({
+            url: "{{ route('product.requestaquotesrevoke') }}",
+            container: '#revoke_form',
+            type: "POST",
+            redirect: true,
+            data: $('#revoke_form').serialize(),
+            success: function(response) {
+            if (response.status) {
+                
+                swal("Sent!", response.message, "success");
+                setInterval(function () {
+                    window.location.assign('{{ route("product.productquotes");}} ');
+                }, 3000);
+            }
+            }                    
+        })
       }else{
         return false;
       }

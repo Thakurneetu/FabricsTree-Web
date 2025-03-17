@@ -22,23 +22,23 @@
 
                         <div class="p-2">
                             <div class="form-check mt-3">
-                                <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                <input class="form-check-input" type="checkbox" name="quotes_filter"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     All Quotes
                                 </label>
                             </div>
                             <div class="form-check mt-3">
-                                <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                                    id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="checkbox" name="quotes_filter"
+                                    id="flexRadioDefault2" >
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Quotes not Received
                                 </label>
                             </div>
                             <div class="form-check mt-3">
-                                <input class="form-check-input" type="checkbox" name="flexRadioDefault"
-                                    id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
+                                <input class="form-check-input" type="checkbox" name="quotes_filter"
+                                    id="flexRadioDefault3" >
+                                <label class="form-check-label" for="flexRadioDefault3">
                                     Closed
                                 </label>
                             </div>
@@ -64,23 +64,27 @@
                                     </div>
                             
                                     <div class="bottom">
-                                        <button type="button" class="btn btn-light"
-                                            style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button>
+                                        <!-- <button type="button" class="btn btn-light"
+                                            style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button> -->
                                         <a href="{{ route('product.quotesitems')}}/{{$value['enquiry_id']}}" ><button type="button" class="btn btn-light"
                                             style="background: #fff; color:#78239B;margin: 5px;">View Items</button></a>
                                     </div>
                                 </div>
                                 <div class=" col-lg-7 col-md-7 col-sm-12 alignment2">
 
-                                    <div class="top">
+                                    <!-- <div class="top">
                                         <div>
                                             <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 14px;"></i>
                                             Quotes are being prepared
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="bottom">
-                                        <button>Revoke Order</button>
+                                        @if($value['status']=='invoked')
+                                        <button>Revoked</button>
+                                        @else
+                                        <button class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Order</button>
+                                        @endif
                                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span
                                                 style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
                                     </div>
@@ -127,3 +131,10 @@
         </section>
     </div>
 @include('web.layouts.footer')
+
+<script>
+    $('.revoke_order').click(function () {
+        $('#enquiry_id').val($(this).attr('id'));
+        $('#exampleModalRevokeQuote').modal('show');
+    });
+</script>
