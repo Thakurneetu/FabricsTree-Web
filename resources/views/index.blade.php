@@ -329,10 +329,10 @@
           <i class="fa fa-star"></i>
           <i class="far fa-star"></i>
         </div> -->
-        <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit" style="margin: 0px 55px;">Add to Cart</button>
+        <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" type="submit" style="margin: 0px 55px;">Add to Cart</button>
 
-        <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 55px;" productid="{{$products_val->id}}" type="submit">Go to Cart</button></a>
-        <!-- maincolor -->
+        <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 55px;" productid="{{$products_val->id}}" type="submit">Go to Cart</button></a>
+        <!--  -->
       </div>
       @endif
     </div>
@@ -461,7 +461,7 @@
 
 <section id="testimonials">
 
-  <p class="Greigefabric_gal">Testimonial</p>
+  <p class="Greigefabric_gal">Testimonials</p>
    <div class="testimonial-box-container">
 
     <div class="container-fluid bg-body-tertiary py-3">
@@ -633,8 +633,6 @@
     $('.add_to_cart').click(function () {
         var id = $(this).attr('productid');
         var qty = 1;//$this.attr('quantity').val();
-        $(this).hide();
-        $('#'+'go_to_cart_'+id).show();
         add_to_cart(id,qty);
     });
   </script>

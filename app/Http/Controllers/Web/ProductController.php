@@ -106,9 +106,9 @@ class ProductController extends Controller
             //     <i class="fa fa-star"></i>
             //     <i class="far fa-star"></i>
             // </div>';
-            $html .= '<button class="btn-outline-success add_to_cart KnowMore" productid="'.$products_val->id.'" type="submit">Add to Cart</button>
+            $html .= '<button class="btn-outline-success add_to_cart maincolor KnowMore" productid="'.$products_val->id.'" id="add_to_cart_'.$products_val->id.'" type="submit">Add to Cart</button>
             ';
-            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success KnowMore" id="go_to_cart_'.$products_val->id.'" style="display: none;margin: 0px 35px;" productid="'.$products_val->id.'" type="submit">Go to Cart</button></a></div>';
+            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display: none;margin: 0px 35px;" productid="'.$products_val->id.'" type="submit">Go to Cart</button></a></div>';
             $html .= '</div>';
             if($i==4){
                 $html .= '</div><div class="card-group" >';

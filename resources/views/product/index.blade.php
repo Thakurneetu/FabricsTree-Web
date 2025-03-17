@@ -518,8 +518,6 @@ crossorigin="anonymous"></script>
               $('.add_to_cart').click(function () {
                 var id = $(this).attr('productid');
                 var qty = 1;//$this.attr('quantity').val();
-                $(this).hide();
-                $('#'+'go_to_cart_'+id).show();
                 add_to_cart(id,qty);
               });
             }

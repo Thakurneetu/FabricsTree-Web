@@ -124,7 +124,9 @@
                                 <i class="far fa-star"></i>
                             </div> -->
                             <!-- maincolor -->
-                            <button class="btn-outline-success add_to_cart KnowMore" productid="{{$products_val->id}}" type="submit">Add to Cart</button>
+                            <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" style="margin: 0px 30px;" type="submit">Add to Cart</button>
+
+                            <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 30px;" productid="{{$products_val->id}}" type="submit">Go to Cart</button></a>
                         </div>
                     </div>
                     @endif

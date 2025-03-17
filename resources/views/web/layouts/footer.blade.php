@@ -755,6 +755,9 @@
             }else{
               swal("Sent!", response.message, "success");
             }
+
+            $('#'+'add_to_cart_'+product_id).hide();
+            $('#'+'go_to_cart_'+product_id).show();
            
           }else{
             swal("Error!", response.message, "error");
