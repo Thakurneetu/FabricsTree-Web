@@ -4,6 +4,42 @@
   Enquiry Details | 
 @endsection
 
+@section('style')
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  @if(Auth::user()->theme != 'light')
+    <style>
+      .select2-container--classic .select2-selection--multiple {
+          background-color: #212631;
+          border: 1px solid #323A49;
+          border-radius: 4px;
+          cursor: text;
+          outline: 0;
+          padding-bottom: 5px;
+          padding-right: 5px;
+      }
+      .select2-container--classic .select2-selection--multiple .select2-selection__choice {
+          background-color: #212631;
+          border: 1px solid #aaa;
+          border-radius: 4px;
+          display: inline-block;
+          margin-left: 5px;
+          margin-top: 5px;
+          padding: 0;
+      }
+      .select2-results__option--selectable {
+          cursor: pointer;
+          background-color: #212631;
+      }
+      .select2-container--classic .select2-search--inline .select2-search__field {
+        background-color: #212631;
+        color: #000;
+        caret-color: white;
+        min-height: 27px;
+      }
+    </style>
+  @endif
+@endsection
+
 @section('content')
   <div class="body flex-grow-1">
     <div class="container-lg px-4">
@@ -42,6 +78,18 @@
                 @endif
               </div>
             </div>
+            <div class="row">
+              <!-- Qutation -->
+              <div class="form-group col-md-6 col-12 mb-3">
+                <label for="name"> Select Manufacturers To Get Qutation</label>
+                <select name="manufacturures[]" class="form-control select2" multiple="multiple">
+                  @foreach($manufacturers as $manufacturer)
+                  <option value="{{$manufacturer->id}}" {{ in_array($manufacturer->id, old('manufacturures', $enquiry->manufacturers->pluck('customer_id')->toArray() ?? [])) ? 'selected' : '' }}>{{$manufacturer->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            @include('admin.enquiry.qutations')
           </div>
           <div class="card-footer d-flex justify-content-center">
             @if($enquiry->status != 'invoked')
@@ -56,5 +104,15 @@
 @endsection
 
 @section('script')
-
+ <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+   jQuery(document).ready(function() {
+      jQuery('.select2').select2({
+        placeholder: 'Select Manufacturers',
+        tags: true,
+        allowClear: true,
+        theme: 'classic'
+      });
+    });
+  </script>
 @endsection

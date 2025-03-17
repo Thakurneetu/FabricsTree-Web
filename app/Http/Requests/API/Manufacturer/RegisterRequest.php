@@ -17,13 +17,13 @@ class RegisterRequest extends FormRequest
     {
         return [
           'name' => 'required|string|max:255',
-          'email' => 'required|string|email|max:255|unique:manufacturers',
-          'phone' => 'required|string||unique:manufacturers',
+          'email' => 'required|string|email|max:255|unique:customers',
+          'phone' => 'required|string||unique:customers',
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
           'password' => 'required|string|confirmed',
-          'store_name' => 'required|string|max:255',
-          'gst' => 'required|string|max:255',
+          'firm_name' => 'required|string|max:255',
+          'gst_number' => 'required|string|max:255',
           'store_contact' => 'required|string|max:255',
         ];
     }

@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Enquiry;
 use App\Models\EnquiryItems;
+use App\Models\Order;
+use App\Models\OrderItems;
 use App\Http\Requests\API\AddCartRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -179,10 +182,53 @@ class OrderController extends Controller
 
     public function accept($id, Request $request)
     {
-      $enquiry = Enquiry::find($id)->update(['status' => 'accepted']);
+      $enquiry = Enquiry::find($id);
+      $order_data['customer_id'] = $request->user()->id;
+      $order_data['invoice_no'] = Str::upper(Str::random(10));
+      $order_data['status'] = 'Pending';
+      $order_data['enquiry_id'] = $enquiry->id;
+      $order_data['qutation'] = $enquiry->qutation;
+      $order = Order::create($order_data);
+      $item['order_id'] = $order->id;
+      $item['customer_id'] = $request->user()->id;
+      if($enquiry->enquery_type == 'custom') {
+        $item['category_id'] = $enquiry->category_id;
+        $item['subcategory_id'] = $enquiry->category_id;
+        $item['category'] = $enquiry->category->name;
+        $item['subcategory'] = $enquiry->subcategory->name;
+        $item['width'] = $enquiry->category_id;
+        $item['warp'] = $enquiry->category_id;
+        $item['weft'] = $enquiry->category_id;
+        $item['count'] = $enquiry->category_id;
+        $item['reed'] = $enquiry->category_id;
+        $item['pick'] = $enquiry->category_id;
+        OrderItems::create($item);
+      }else {
+        foreach ($enquiry->items as $key => $item_data) {
+          $item['product_id'] = $item_data->product_id;
+          $item['quantity'] = $item_data->quantity;
+          $item['category'] = $item_data->category->name;
+          $item['subcategory'] = $item_data->subcategory->name;
+          $item['category_id'] = $item_data->category_id;
+          $item['subcategory_id'] = $item_data->category_id;
+          $item['title'] = $item_data->title;
+          $item['subtitle'] = $item_data->subtitle;
+          $item['description'] = $item_data->description;
+          $item['key_features'] = $item_data->key_features;
+          $item['disclaimer'] = $item_data->disclaimer;
+          $item['width'] = $item_data->category_id;
+          $item['warp'] = $item_data->category_id;
+          $item['weft'] = $item_data->category_id;
+          $item['count'] = $item_data->category_id;
+          $item['pick'] = $item_data->category_id;
+          $item['reed'] = $item_data->category_id;
+          OrderItems::create($item);
+        }
+      }
+      $enquiry->update(['status' => 'accepted']);
       return response()->json([
         'status' => true,
-        'message' => 'Quote accepted successfully.',
+        'message' => 'Order placed successfully.'
       ]);
     }
 }

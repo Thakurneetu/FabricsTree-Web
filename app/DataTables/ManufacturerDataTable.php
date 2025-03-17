@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Manufacturer;
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -30,9 +30,9 @@ class ManufacturerDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Manufacturer $model): QueryBuilder
+    public function query(Customer $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('user_type', 'Manufacturer');
     }
 
     /**

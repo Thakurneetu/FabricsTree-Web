@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Enquiry;
+use App\Models\Customer;
+use App\Models\ManufacturerEnquiry;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataTables\EnquiryDataTable;
@@ -41,7 +43,8 @@ class EnquiryController extends Controller
      */
     public function edit(Enquiry $enquiry)
     {
-      return view('admin.enquiry.edit', compact('enquiry'));
+      $manufacturers = Customer::where('user_type', 'Manufacturer')->where('status','1')->get();
+      return view('admin.enquiry.edit', compact('enquiry','manufacturers'));
     }
 
     /**
@@ -50,20 +53,26 @@ class EnquiryController extends Controller
     public function update(Request $request, Enquiry $enquiry)
     {
       try{
+        DB::beginTransaction();
         if($request->hasFile('qutation')){
-          DB::beginTransaction();
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $data['status'] = 'invoiced';
           $enquiry->update($data);
-          DB::commit();
           Alert::toast('Qutation Sent Successfully','success');
-        }else{
-          Alert::toast('Please select qutation to upload','warning');
-          return redirect()->back();
         }
+        ManufacturerEnquiry::where('enquery_id', $enquiry->id)->whereNotIn('customer_id', $request->manufacturures)->delete();
+        foreach ($request->manufacturures as $key => $customer_id) {
+          $data = [
+            'enquery_id' => $enquiry->id,
+            'customer_id' => $customer_id,
+          ];
+          ManufacturerEnquiry::updateOrCreate($data);
+        }
+        DB::commit();
         return redirect(route('admin.enquiry.index'));
       }catch (\Throwable $th) {
         DB::rollback();
+        dd($th);
         Alert::error($th->getMessage());
         return redirect()->back();
       } 
