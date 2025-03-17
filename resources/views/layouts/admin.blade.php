@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Fabrics Tree') }}</title>
+    <title>@yield('title') {{ config('app.name', 'Fabrics Tree') }}</title>
     <meta name="theme-color" content="#000000">
     <!-- Vendors styles-->
     <link rel="stylesheet" href="{{asset('vendors/simplebar/css/simplebar.css')}}">

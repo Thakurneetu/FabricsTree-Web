@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\Manufacturer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Manufacturer;
+use App\Models\Customer;
 use App\Http\Requests\API\Manufacturer\LoginRequest;
 use App\Http\Requests\API\Manufacturer\RegisterRequest;
 use App\Http\Requests\API\Manufacturer\ProfileRequest;
@@ -19,7 +19,7 @@ class ManufacturerAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $manufacturer = Manufacturer::where('email', $request->email)->first();
+        $manufacturer = Customer::where('email', $request->email)->first();
 
         if (!$manufacturer || !Hash::check($request->password, $manufacturer->password)) {
           return response()->json([
@@ -41,16 +41,18 @@ class ManufacturerAuthController extends Controller
     {
       try {
         // Create the customer
-        $user = Manufacturer::create([
+        $user = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'pincode' => $request->pincode,
             'address' => $request->address,
-            'store_name' => $request->store_name,
-            'gst' => $request->gst,
+            'firm_name' => $request->firm_name,
+            'gst_number' => $request->gst_number,
+            'status' => 1,
             'store_contact' => $request->store_contact,
             'password' => Hash::make($request->password),
+            'user_type' => 'Manufacturer'
         ]);
 
         if($request->hasFile('logo')){
@@ -83,7 +85,7 @@ class ManufacturerAuthController extends Controller
 
     public function profile(ProfileRequest $request){
       try {
-        $data = $request->only('name', 'email', 'phone', 'pincode', 'address','store_name', 'gst','store_contact');
+        $data = $request->only('name', 'email', 'phone', 'pincode', 'address','firm_name', 'gst_number','store_contact');
         if($request->password != ''){
           $data['password'] = Hash::make($request->password);
         }

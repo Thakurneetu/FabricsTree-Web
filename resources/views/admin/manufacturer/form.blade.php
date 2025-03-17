@@ -3,9 +3,9 @@
     <!-- Store Name -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>Store Name</label>
-      <input type="text" required name="store_name" value="{{old('store_name') ?? (@$manufacturer->store_name ?? '')}}" 
-      class="form-control @error('store_name') is-invalid @enderror" placeholder="Enter Store Name">
-      @error('store_name')
+      <input type="text" required name="firm_name" value="{{old('firm_name') ?? (@$manufacturer->firm_name ?? '')}}" 
+      class="form-control @error('firm_name') is-invalid @enderror" placeholder="Enter Store Name">
+      @error('firm_name')
       <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>
@@ -59,9 +59,9 @@
     <!-- GST -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>GST</label>
-      <input type="text" required name="gst" value="{{old('gst') ?? (@$manufacturer->gst ?? '')}}" 
-      class="form-control @error('gst') is-invalid @enderror" placeholder="Enter GST">
-      @error('gst')
+      <input type="text" required name="gst_number" value="{{old('gst_number') ?? (@$manufacturer->gst_number ?? '')}}" 
+      class="form-control @error('gst_number') is-invalid @enderror" placeholder="Enter GST">
+      @error('gst_number')
       <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>

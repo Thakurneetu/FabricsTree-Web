@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Manufacturer;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -35,7 +35,8 @@ class ManufacturerController extends Controller
       try{
         DB::beginTransaction();
         $data = $request->except('_token');
-        Manufacturer::create($data);
+        $data['user_type'] = 'Manufacturer';
+        Customer::create($data);
         DB::commit();
         Alert::toast('Manufacturer Added Successfully','success');
         return redirect(route('admin.manufacturer.index'));
@@ -57,7 +58,7 @@ class ManufacturerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Manufacturer $manufacturer)
+    public function edit(Customer $manufacturer)
     {
       return view('admin.manufacturer.edit', compact('manufacturer'));
     }
@@ -65,7 +66,7 @@ class ManufacturerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Manufacturer $manufacturer)
+    public function update(Request $request, Customer $manufacturer)
     {
       try{
         DB::beginTransaction();
@@ -86,7 +87,7 @@ class ManufacturerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Manufacturer $manufacturer)
+    public function destroy(Customer $manufacturer)
     {
       try{
         $manufacturer->delete();

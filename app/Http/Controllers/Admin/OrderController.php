@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\DataTables\OrderDataTable;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(OrderDataTable $dataTable)
     {
-        //
+      return $dataTable->render('admin.order.index');
     }
 
     /**
@@ -44,7 +48,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+      return view('admin.order.edit', compact('order'));
     }
 
     /**
@@ -52,7 +56,9 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+      $data = $request->only('status', 'track_link');
+      $order->update($data);
+      return redirect()->back();
     }
 
     /**
