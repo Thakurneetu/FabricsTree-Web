@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function addToCart(AddCartRequest $request)
     {
       $data = $request->only('product_id','quantity','color_code');
-      $data['customer_id'] = $user = $request->user()->id;
+      $data['customer_id'] = $request->user()->id;
       if($data['quantity'] > 0){
         Cart::updateOrCreate(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id'],
               'color_code'=>$data['color_code']],$data);

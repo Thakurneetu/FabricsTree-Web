@@ -96,6 +96,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
       'enquiry' => EnquiryController::class,
       'order' => OrderController::class,
     ]);
+    Route::get('manufacturer-product/{id}', [ManufacturerController::class, 'product'])->name('manufacturer-product.show');
     Route::post('/delete-product-image', [AdminProductController::class, 'deleteImage'])->name('delete-product-image');
   });
 });

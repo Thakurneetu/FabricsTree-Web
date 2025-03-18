@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ManufacturerProduct extends Model
+{
+  protected $fillable = ['title','subtitle','description','key_features','disclaimer','wrap','weft',
+                         'category_id','requirement_id','subcategory_id','width','count','reed',
+                         'pick','customer_id'];
+
+  public function category()
+  {
+      return $this->belongsTo(Category::class);
+  }
+  public function subcategory()
+  {
+      return $this->belongsTo(Subcategory::class);
+  }
+}

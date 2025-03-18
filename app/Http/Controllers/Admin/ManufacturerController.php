@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Customer;
+use App\Models\ManufacturerProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\ManufacturerDataTable;
+use App\DataTables\ManufacturerProductDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ManufacturerController extends Controller
@@ -50,9 +52,18 @@ class ManufacturerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Customer $manufacturer, ManufacturerProductDataTable $dataTable)
     {
-        //
+      return $dataTable->with('id', $manufacturer->id)->render('admin.manufacturer.show', compact('manufacturer'));
+      // return view('admin.manufacturer.show', compact('manufacturer'));
+    }
+    /**
+     * Display the specified resource.
+     */
+    public function product($id)
+    {
+      $product = ManufacturerProduct::find($id);
+      return view('admin.manufacturer.product', compact('product'));
     }
 
     /**
