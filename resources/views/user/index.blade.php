@@ -65,7 +65,6 @@
             </div>
         </form>
     </div>
-
     <div class="Maindivtwo mt-5 mb-5">
         <form method="POST" id="changepwdform" name="changepwdform" >
             @csrf 
