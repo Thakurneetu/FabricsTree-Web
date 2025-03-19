@@ -329,9 +329,9 @@
           <i class="fa fa-star"></i>
           <i class="far fa-star"></i>
         </div> -->
-        <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" type="submit" style="margin: 0px 55px;">Add to Cart</button>
+        <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" type="submit" style="margin: 0px 25px;"> @if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
 
-        <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 55px;" productid="{{$products_val->id}}" type="submit">Go to Cart</button></a>
+        <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 25px;" productid="{{$products_val->id}}" type="submit">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif </button></a>
         <!--  -->
       </div>
       @endif

@@ -14,9 +14,22 @@
             @csrf 
             <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Personal Detail</h1>
             <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <input type="text" class="form-control" placeholder="Enter your name" value="{{ $customer->name }}" name="name" id="name">
+                <div class="col-md-6 col-sm-12" style="display:none ;">
+                    <input type="hidden" class="form-control" placeholder="Enter user type" value="{{ $customer->user_type }}" readonly name="user_type" id="user_type">
                 </div>
+                @if($customer->user_type=='Customer')
+                    <div class="col-md-6 col-sm-12">
+                        <input type="text" class="form-control" placeholder="Enter your name" value="{{ $customer->name }}" name="name" id="name">
+                    </div>
+                @else
+                    <div class="col-md-6 col-sm-12">
+                        <input type="text" class="form-control" placeholder="Enter store name" value="{{ $customer->firm_name }}" name="store_name" id="store_name" >
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <input type="text" class="form-control" placeholder="Enter manufacturer name" value="{{ $customer->name }}" name="manufacturer_name" id="manufacturer_name">
+                    </div>
+                @endif
                 <div class="col-md-6 col-sm-12">
                     <input type="text" class="form-control" placeholder="Enter your mobile number" value="{{ $customer->phone }}" name="phone" id="phone" readonly>
                 </div>
@@ -24,16 +37,28 @@
                     <input type="text" class="form-control" placeholder="Enter your email address" value="{{ $customer->email }}" name="email" id="email" readonly>
                 </div>
 
+                @if($customer->user_type=='Manufacturer')
                 <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control" placeholder="Enter your firm name (optional)" value="{{ $customer->firm_name }}" name="firm_name" id="firm_name" >
+                    <input type="text" class="form-control" placeholder="Enter GST number" value="{{ $customer->gst_number }}" name="gst_no" id="gst_no" >
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control" placeholder="Enter your gst number (optional)" value="{{ $customer->gst_number }}" name="gst_number" id="gst_number" >
+                    <input type="text" class="form-control" placeholder="Enter store contact number" value="{{ $customer->store_contact }}" name="store_contact" id="store_contact" >
                 </div>
+                @endif
 
                 <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control" placeholder="Enter your residential or billing address" value="{{ $customer->address }}" name="address" id="address">
+                    <input type="text" class="form-control" placeholder="Enter your pincode" value="{{ $customer->pincode }}" name="pincode" id="pincode">
                 </div>
+
+                @if($customer->user_type=='Manufacturer')
+                <div class="col-md-6 col-sm-12">
+                <input type="text" class="form-control" placeholder="Enter store address" value="{{ $customer->address }}" name="store_address" id="store_address">
+                </div>
+                @else
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Enter your address" value="{{ $customer->address }}" name="address" id="address">
+                </div>
+                @endif
             </div>
             <div class="modal-footer d-flex justify-content-center mt-3 ">
                 <button class="btn-outline-success maincolor" type="button" id="save_profile">Save</button>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
-
+use File;
 class CustomerRegisterController extends Controller
 {
     /*
@@ -34,7 +34,7 @@ class CustomerRegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator_customer(array $data)
     {
         return Validator::make($data, [
           'name' => 'required|min:2|max:50|string|max:255',
@@ -42,6 +42,42 @@ class CustomerRegisterController extends Controller
           'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
           'phone' => 'required|min:10|max:10|unique:customers',
           'address' => 'required',
+          'pincode' => 'required|integer',
+          'password' => 'required|min:8',
+          'password_confirmation'=>'required|min:8|same:password',
+        ],
+        [
+            'email.required' =>'The email field is required.',
+            'email.unique' => 'The email has already exist.',
+            'phone.required' => 'The mobile no. field is required.',
+            'phone.unique' => 'The mobile no. has already exist.',
+            'phone.min' => 'The mobile no. must be at least 8 digits.',
+            'pincode.integer' => 'The pincode field must be an numeric.',
+            'password.required' => 'The password field is required.',
+            'password.min' => 'The password must be at least 8 characters.',
+            'password_confirmation.required' => 'The confirm password field is required.',
+            'password_confirmation.same' => 'The confirm password does not match.',
+            'password_confirmation.min' => 'The confirm password must be at least 8 characters.',
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator_manufacture(array $data)
+    {
+        return Validator::make($data, [
+          'manufacturer_name' => 'required|min:2|max:50|string|max:255',
+          'store_name' => 'required|min:2|max:50|string|max:255',
+          //'email' => 'required|email|string|max:255|regex:/^([a-z0-9+-]+)(.[a-z0-9+-]+)*@([a-z0-9-]+.)+[a-z]{2,6}$/ix|unique:customers',
+          'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
+          'phone' => 'required|min:10|max:10|unique:customers',
+          'store_contact' => 'required|min:10|max:10|unique:customers',
+          'store_address' => 'required',
+          'gst_no' => 'required',
           'pincode' => 'required|integer',
           'password' => 'required|min:8',
           'password_confirmation'=>'required|min:8|same:password',
@@ -81,8 +117,13 @@ class CustomerRegisterController extends Controller
      */
     public function register(Request $request)
     {
+        //dd( $request->all());
         try {
-        $this->validator($request->all())->validate();
+            if($request->user_type=='Customer'){
+                $this->validator_customer($request->all())->validate();
+            }else{
+                $this->validator_manufacture($request->all())->validate();
+            }
         
         event(new Registered($user = $request->all()));
 
@@ -92,14 +133,34 @@ class CustomerRegisterController extends Controller
 
             try{
                 $customer = new Customer();
-                $customer->user_type = $request->user_type;
-                $customer->name = $request->name;
-                $customer->email = $request->email;
-                $customer->phone = $request->phone;
-                $customer->address = $request->address;
-                $customer->pincode = $request->pincode;
-                $customer->password = $request->password;
-                $customer->status = 0;
+                if($request->user_type=='Customer')
+                {
+                    $customer->user_type = $request->user_type;
+                    $customer->name = $request->name;
+                    $customer->email = $request->email;
+                    $customer->phone = $request->phone;
+                    $customer->address = $request->address;
+                    $customer->pincode = $request->pincode;
+                    $customer->password = $request->password;
+                    $customer->status = 0;
+                }else{
+                    // if($request->hasFile('store_logo')){
+                    //     $customer->store_logo = $this->save_image($request->store_logo, '/uploads/store_logo');
+                    //   }
+                    // dd($request->all());
+                    //dd($customer->store_logo);
+                    $customer->user_type = $request->user_type;
+                    $customer->name = $request->manufacturer_name;
+                    $customer->firm_name = $request->store_name;
+                    $customer->email = $request->email;
+                    $customer->phone = $request->phone;
+                    $customer->address = $request->store_address;
+                    $customer->store_contact = $request->store_contact;
+                    $customer->pincode = $request->pincode;
+                    $customer->gst_number = $request->gst_no;
+                    $customer->password = $request->password;
+                    $customer->status = 0;
+                }
                 
                 Mail::to($customer->email)->send(new WelcomeMail($customer));
 
@@ -124,11 +185,29 @@ class CustomerRegisterController extends Controller
         } catch(\Exception $e) {
             return response()->json([
                 'status' => false,
-                'message' => $this->transformErrors($e),
+                'message' => $this->transformErrors($e),//$e->getMessage()
                 'errors' => $e->getMessage(),
             ], 400);
         }
     }
+
+    // public function uploadstorelogo(Request $request)
+    // {
+    //     //dd($_REQUEST);
+    //  dd($request->all());
+    //     // if($request->hasFile('store_logo')){
+    //     //     $store_logo = $this->save_image($request->store_logo, '/uploads/store_logo');
+    //     // }
+             
+    // }
+    
+
+    // private function save_image($file, $store_path){
+    //     $extension = File::extension($file->getClientOriginalName());
+    //     $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
+    //     $file->move(public_path($store_path), $filename);
+    //     return $store_path.'/'.$filename;
+    //   }
 
     // transform the error messages,
     private function transformErrors(ValidationException $exception)

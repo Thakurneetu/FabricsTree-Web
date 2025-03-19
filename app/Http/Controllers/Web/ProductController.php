@@ -106,9 +106,42 @@ class ProductController extends Controller
             //     <i class="fa fa-star"></i>
             //     <i class="far fa-star"></i>
             // </div>';
-            $html .= '<button class="btn-outline-success add_to_cart maincolor KnowMore" productid="'.$products_val->id.'" id="add_to_cart_'.$products_val->id.'" type="submit">Add to Cart</button>
+            $html .= '<button class="btn-outline-success add_to_cart maincolor KnowMore" productid="'.$products_val->id.'" id="add_to_cart_'.$products_val->id.'" type="submit">';
+            if($customer) 
+            {
+                if($customer->user_type=='Customer') 
+                {
+                    $html .= 'Add to Cart';
+                }  
+                else 
+                {
+                    $html .= 'Add to My Product';
+                }
+            }
+            else
+            {
+                $html .= 'Add to Cart';
+            }
+            $html .= '</button>
             ';
-            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display: none;margin: 0px 35px;" productid="'.$products_val->id.'" type="submit">Go to Cart</button></a></div>';
+            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display: none;margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
+            if($customer) 
+            {
+                if($customer->user_type=='Customer') 
+                {
+                    $html .= 'Go to Cart';
+                }  
+                else 
+                {
+                    $html .= 'Go to My Product';
+                }
+            }
+            else
+            {
+                $html .= 'Go to Cart';
+            } 
+            
+            $html .= '</button></a></div>';
             $html .= '</div>';
             if($i==4){
                 $html .= '</div><div class="card-group" >';

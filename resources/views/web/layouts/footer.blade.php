@@ -348,7 +348,7 @@
         </div>
         
         <!-- action="{{ route('customer.register') }}" -->
-        <form method="POST" id="registerform" name="registerform" >
+        <form method="POST" id="registerform" name="registerform" enctype='multipart/form-data'>
         @csrf  
         @session('success')
             <div class="alert alert-success" role="alert"> 
@@ -359,16 +359,16 @@
             <div class="col-md-12 col-sm-12">
             <div class="mb-3">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="user_type" id="user_type1" value="Customer" checked>
+                <input class="form-check-input user_type" type="radio" name="user_type" id="user_type1" value="Customer" checked>
                 <label class="form-check-label" for="user_type1" >As a Customer</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="user_type" id="user_type2" value="Manufacturer">
+                <input class="form-check-input user_type" type="radio" name="user_type" id="user_type2" value="Manufacturer">
                 <label class="form-check-label" for="user_type2">As a Manufacturer</label>
               </div>
             </div>
             </div>
-              <div class="mb-3">
+              <div class="mb-3 cust">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Full Name') }}*</label> -->
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="fullname" autofocus placeholder="Enter your name">
                 @error('name')
@@ -378,6 +378,30 @@
                 @enderror
                 @if ($errors->has('name'))
                     <span class="invalid-feedback">{{ $errors->first('name') }}</span>
+                @endif
+              </div>
+              <div class="mb-3 manuf">
+                <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Name') }}*</label> -->
+                <input id="store_name" type="text" class="form-control @error('store_name') is-invalid @enderror" name="store_name" value="{{ old('store_name') }}" required autofocus placeholder="Enter store name">
+                @error('store_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                @if ($errors->has('store_name'))
+                    <span class="invalid-feedback">{{ $errors->first('store_name') }}</span>
+                @endif
+              </div>
+              <div class="mb-3 manuf">
+                <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Manufacturer Name') }}*</label> -->
+                <input id="manufacturer_name" type="text" class="form-control @error('manufacturer_name') is-invalid @enderror" name="manufacturer_name" value="{{ old('manufacturer_name') }}" required autofocus placeholder="Enter manufacturer name">
+                @error('manufacturer_name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                @if ($errors->has('manufacturer_name'))
+                    <span class="invalid-feedback">{{ $errors->first('manufacturer_name') }}</span>
                 @endif
               </div>
             </div>
@@ -408,11 +432,64 @@
               </div>
             </div>
 
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-sm-12 manuf" >
+              <div class="mb-3">
+                <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Contact Number') }}*</label> -->
+                <input id="store_contact" type="number" class="form-control @error('store_contact') is-invalid @enderror" name="store_contact" value="{{ old('store_contact') }}" required placeholder="Enter store contact number">
+
+                @error('store_contact')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Logo') }}*</label> -->
+            <!-- <div class="col-md-12 col-sm-12 manuf" >
+              <div class="mb-3">
+                
+                <input id="store_image" type="hidden" class="form-control"  name="store_image" value="" placeholder="upload store image">
+
+                <input id="store_logo" type="file" class="form-control @error('store_logo') is-invalid @enderror" name="store_logo" value="{{ old('store_logo') }}" required placeholder="upload store logo">
+
+                @error('store_logo')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div> -->
+
+            <div class="col-md-12 col-sm-12 cust">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlTextarea1" class="form-label">{{ __('Address') }}*</label> -->
-                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address" placeholder="Enter your address" rows="3">{{ old('address') }}</textarea>
+                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address" placeholder="Enter address" rows="3">{{ old('address') }}</textarea>
                 @error('address')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 manuf">
+              <div class="mb-3">
+                <!-- <label for="exampleFormControlTextarea1" class="form-label">{{ __('Address') }}*</label> -->
+                <textarea id="store_address" class="form-control @error('store_address') is-invalid @enderror" name="store_address" required placeholder="Enter store address" rows="3">{{ old('store_address') }}</textarea>
+                @error('store_address')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 manuf">
+              <div class="mb-3">
+                <!-- <label for="exampleFormControlTextarea1" class="form-label">{{ __('Pincode') }}*</label> -->
+                <input type="text" id="gst_no" class="form-control @error('gst_no') is-invalid @enderror" name="gst_no" required placeholder="Enter GST number" value="{{ old('gst_no') }}">
+                @error('gst_no')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -426,7 +503,7 @@
                 <input type="text" id="pincode" class="form-control @error('pincode') is-invalid @enderror" name="pincode" required placeholder="Enter pincode" value="{{ old('pincode') }}">
                 @error('pincode')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $pincode }}</strong>
+                        <strong>{{ $message }}</strong>
                     </span>
                 @enderror
               </div>
@@ -435,7 +512,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('New Password') }}</label> -->
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password" placeholder="New Password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password" placeholder="New password">
                 <span class="password-toggle-icon1"><i class="fas fa-eye"></i></span>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -448,7 +525,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Confirm Password') }}</label> -->
-                <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation" placeholder="Confirm Password">
+                <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation" placeholder="Confirm password">
                 <span class="password-toggle-icon2"><i class="fas fa-eye"></i></span>
                 @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">
@@ -614,10 +691,60 @@
         return false;
       }
     }
+
+    $( document ).ready(function() {
+      $('.manuf').hide();
+    });
+
+    $('.user_type').click(function () { 
+      var val = $(this).val();
+      if(val=='Customer'){
+        $('.cust').show();
+        $('.manuf').hide();
+      }else{
+        $('.cust').hide();
+        $('.manuf').show();
+      }
+    });
+
+    $("#store_logo1").on('change',function(){
+      //$('#registerform').submit();
+      var fd = new FormData();
+      var files = $('#store_logo')[0].files[0];
+      fd.append('store_logo',files);
+      // var token = "{{ csrf_token() }}";alert(token +"  ====  "+ $("input[name='_token']").val())
+        console.log('fd',fd);
+        $.easyAjax({
+            dataType: 'json',
+            processData: false,
+            container: '#registerform',
+            redirect: true,
+            
+           // contentType: 'application/json',
+            url: "{{ route('customer.uploadstorelogo') }}",
+            type: 'POST',
+            data: { 'token': $("input[name='_token']").val(),'logo':fd },
+            success: function(response){
+              //console.log(response);
+                // if(response != 0){
+                //     $("#img").attr("src",response); 
+                //     $(".preview img").show(); // Display image element
+                // }else{
+                //     alert('file not uploaded');
+                // }
+            },
+        });
+    });
     
-    $('#save_register').click(function () {               
+    $('#save_register').click(function () {  
+      
+        // let uploadedFile = document.getElementById('store_logo').files[0];
+        // console.log('formData:',uploadedFile);
+        // $('#store_image').val(uploadedFile.name);
+
       $.easyAjax({
         url: "{{ route('customer.register') }}",
+        enctype: 'multipart/form-data',
         container: '#registerform',
         type: "POST",
         redirect: true,
@@ -741,7 +868,7 @@
       })
     });
 
-    function add_to_cart(product_id,quantity,msg='') {   
+    function add_to_cart(product_id,quantity=1,msg='') {   
   
       var color_code = '';
       $.easyAjax({

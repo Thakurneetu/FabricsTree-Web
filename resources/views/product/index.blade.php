@@ -179,7 +179,13 @@
             </li>
           </ul>
           <br/>
+          @if($customer) 
+            @if($customer->user_type=='Customer')
+            <button class="btn-outline-success KnowMore maincolor" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCustomizeRequirement">Customize</button>
+            @endif
+          @else
           <button class="btn-outline-success KnowMore maincolor" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCustomizeRequirement">Customize</button>
+          @endif
         </li>
       </ul>
       </form>

@@ -2,7 +2,7 @@
     <div class="banneerlogo">
         <div style="flex-direction: column;">
             <h1>Products</h1>
-            <p><span>Home</span>/ My Cart</p>
+            <p><span>Home</span>/ Product Detail</p>
         </div>
     </div>
 
@@ -42,7 +42,18 @@
                 @endforeach
                 @endif
             </div> -->
+            @if($customer) 
+                @if($customer->user_type=='Customer')
+                <div style="display: flex;" class="sp-quantity">
+                    <div>Quantity: &nbsp;</div>
+                    <button type="button" id="minus" class="badge badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
+                    
+                    <span style="font-weight: bold; margin: 4px;"><input type="number" class="quntity-input" id="pro-quantity" value="1" min="1" style="width:50px;background: #fff; border: none;text-align:center" readonly/></span>
 
+                    <button type="button" id="plus" class="badge badge-light ddd" style="background: #EEF1F6;"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
+                </div>
+                @endif
+            @else
             <div style="display: flex;" class="sp-quantity">
                 <div>Quantity: &nbsp;</div>
                 <button type="button" id="minus" class="badge badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
@@ -51,10 +62,11 @@
 
                 <button type="button" id="plus" class="badge badge-light ddd" style="background: #EEF1F6;"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
             </div>
+            @endif
 
             <div class="buttonsection2">
                 <input type="hidden" id="productid" value="{{$products_data->id}}"/>
-                <button class="add_to_cart" productid="{{$products_data->id}}">Add to cart</button>
+                <button class="add_to_cart" productid="{{$products_data->id}}" style="width:155px">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
             </div>
 
             <hr>
@@ -124,9 +136,9 @@
                                 <i class="far fa-star"></i>
                             </div> -->
                             <!-- maincolor -->
-                            <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" style="margin: 0px 30px;" type="submit">Add to Cart</button>
+                            <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" style="margin: 0px 10px;" type="submit">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
 
-                            <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 30px;" productid="{{$products_val->id}}" type="submit">Go to Cart</button></a>
+                            <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 10px;" productid="{{$products_val->id}}" type="submit">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
                         </div>
                     </div>
                     @endif
@@ -160,6 +172,9 @@
     $('.add_to_cart').click(function () {
         var id = $(this).attr('productid');
         var qty = $('#pro-quantity').val();
+        if(qty=='undefined'){
+           var qty = 1;
+        }
         add_to_cart(id,qty);
     });
 </script>

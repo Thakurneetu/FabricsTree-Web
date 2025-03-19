@@ -36,6 +36,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('admin-login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::post('customer/register', [CustomerRegisterController::class, 'register'])->name('customer.register');
+Route::post('customer/uploadstorelogo', [CustomerRegisterController::class, 'uploadstorelogo'])->name('customer.uploadstorelogo');
 Route::post('customer/login', [CustomerLoginController::class, 'login'])->name('customer.login');
 Route::post('customer/forgot-password', [CustomerForgotPasswordController::class, 'forgetpassword'])->name('customer.forgetpassword');
 Route::post('customer/forgot-otp-verify', [CustomerForgotPasswordController::class, 'forgototpverify'])->name('customer.forgototpverify');

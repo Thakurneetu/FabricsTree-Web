@@ -31,7 +31,7 @@ class ProfileController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator_customer(array $data)
     {
         return Validator::make($data, [
           'name' => 'required|min:2|max:50|string|max:255',
@@ -42,23 +42,68 @@ class ProfileController extends Controller
            'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix',
           'phone' => 'required|min:10|max:10',
           'address' => 'required',
+          'pincode' => 'required|integer',
         ],
         [
             'email.required' =>'The email field is required.',
             //'email.unique' => 'The email has already exist.',
             'phone.required' => 'The mobile no. field is required.',
             //'phone.unique' => 'The mobile no. has already exist.',
-            'phone.min' => 'The mobile no. must be at least 8 digits.'
+            //'phone.min' => 'The mobile no. must be at least 8 digits.'
+            'pincode.integer' => 'The pincode field must be an numeric.',
+        ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator_manufacture(array $data)
+    {
+        return Validator::make($data, [
+          'manufacturer_name' => 'required|min:2|max:50|string|max:255',
+          'store_name' => 'required|min:2|max:50|string|max:255',
+          //'email' => 'required|email|string|max:255|regex:/^([a-z0-9+-]+)(.[a-z0-9+-]+)*@([a-z0-9-]+.)+[a-z]{2,6}$/ix|unique:customers',
+          //'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
+          //'phone' => 'required|min:10|max:10|unique:customers',
+          'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix',
+          'phone' => 'required|min:10|max:10',
+          'store_contact' => 'required|min:10|max:10',
+          'store_address' => 'required',
+          'gst_no' => 'required',
+          'pincode' => 'required|integer',
+        ],
+        [
+            'email.required' =>'The email field is required.',
+            //'email.unique' => 'The email has already exist.',
+            'phone.required' => 'The mobile no. field is required.',
+            //'phone.unique' => 'The mobile no. has already exist.',
+            //'phone.min' => 'The mobile no. must be at least 8 digits.',
+            'pincode.integer' => 'The pincode field must be an numeric.',
         ]);
     }
 
     public function update_profile(Request $request){
         try {
-            $this->validator($request->all())->validate();
+            if($request->user_type=='Customer'){
+                $this->validator_customer($request->all())->validate();
+            }else{
+                $this->validator_manufacture($request->all())->validate();
+            }
 
             $customer = Customer::where('email', $request->email)->first();
             if($customer){
-                $user = Customer::where('email', $request->email)->update(['name' => $request->name,'address' => $request->address,'firm_name' => $request->firm_name,'gst_number' => $request->gst_number]);
+
+                if($request->user_type=='Customer')
+                {
+                    $user = Customer::where('email', $request->email)->update(['name' => $request->name,'address' => $request->address,'pincode' => $request->pincode]);
+
+                }else{
+
+                    $user = Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact]);
+                }
 
                 return response()->json([
                     'status' => true,
