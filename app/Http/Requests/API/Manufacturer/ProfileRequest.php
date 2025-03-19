@@ -22,8 +22,8 @@ class ProfileRequest extends FormRequest
           'address' => 'required|string|max:500',
           'pincode' => 'required|max:10',
           'password' => 'nullable|string|confirmed',
-          'store_name' => 'required|string|max:255',
-          'gst' => 'required|string|max:255',
+          'firm_name' => 'required|string|max:255',
+          'gst_number' => 'required|string|max:255',
           'store_contact' => 'required|string|max:255',
         ];
     }

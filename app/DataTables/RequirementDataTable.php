@@ -63,7 +63,7 @@ class RequirementDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-          Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false),
+          Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
           Column::make('name'),
           Column::make('category.name')->title('Category')->orderable(false)->defaultContent(''),
           Column::computed('action')

@@ -48,8 +48,7 @@
           Enquiry Details
           <a href="{{ route('admin.enquiry.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
-          @csrf @method('patch')
+       
           <div class="card-body">
             <div class="row">
               @include('admin.enquiry.details')
@@ -59,45 +58,59 @@
                 @include('admin.enquiry.selected')
               @endif
             </div>
-            <div class="row">
-              <!-- Qutation -->
-              <div class="form-group col-md-6 col-12 mb-3">
-                @if($enquiry->status != 'invoked')
-                <label for="name"> Upload Qutation</label>
-                <input type="file" name="qutation" class="form-control">
-                <br>
-                @endif
-                @if(@$enquiry->qutation)
-                <div class="form-group col-12">
-                  <h5>
-                    <a href="{{asset($enquiry->qutation)}}" target="_blank" rel="noopener noreferrer">
-                      <u><i>Download/View Uploaded Qutation</i></u>
-                    </a>
-                  </h5>
+            @if($enquiry->status != 'invoked')
+            <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
+              @csrf @method('patch')
+              <div class="row">
+                <!-- Qutation -->
+                <div class="form-group col-md-6 col-12 mb-3">
+                  @if($enquiry->status != 'invoked')
+                  <label for="name"> Upload Qutation</label>
+                  <input type="file" name="qutation" class="form-control" required>
+                  <br>
+                  @endif
+                  @if(@$enquiry->qutation)
+                  <div class="form-group col-12">
+                    <h5>
+                      <a href="{{asset($enquiry->qutation)}}" target="_blank" rel="noopener noreferrer">
+                        <u><i>Download/View Uploaded Qutation</i></u>
+                      </a>
+                    </h5>
+                  </div>
+                  @endif
                 </div>
-                @endif
+                <div class="form-group col-md-6 col-12 mb-3">
+                  <button type="submit" class="btn btn-info mt-4">
+                  @if(@$enquiry->qutation) Resend @else Send @endif to Customer
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <!-- Qutation -->
-              <div class="form-group col-md-6 col-12 mb-3">
-                <label for="name"> Select Manufacturers To Get Qutation</label>
-                <select name="manufacturures[]" class="form-control select2" multiple="multiple">
-                  @foreach($manufacturers as $manufacturer)
-                  <option value="{{$manufacturer->id}}" {{ in_array($manufacturer->id, old('manufacturures', $enquiry->manufacturers->pluck('customer_id')->toArray() ?? [])) ? 'selected' : '' }}>{{$manufacturer->name}}</option>
-                  @endforeach
-                </select>
+            </form>
+            <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
+              @csrf @method('patch')
+              <div class="row">
+                <!-- Qutation -->
+                <div class="form-group col-md-6 col-12 mb-3">
+                  <label for="name"> Select Manufacturers To Get Qutation</label>
+                  <select name="manufacturures[]" class="form-control select2" multiple="multiple" required>
+                    @foreach($manufacturers as $manufacturer)
+                    <option value="{{$manufacturer->id}}" {{ in_array($manufacturer->id, old('manufacturures', $enquiry->manufacturers->pluck('customer_id')->toArray() ?? [])) ? 'selected' : '' }}>{{$manufacturer->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group col-md-6 col-12 mb-3">
+                  <button type="submit" class="btn btn-info mt-4">
+                    Send to Manufacturers
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
             @include('admin.enquiry.qutations')
           </div>
+          @endif
           <div class="card-footer d-flex justify-content-center">
-            @if($enquiry->status != 'invoked')
-              <button type="submit" class="btn btn-info">Save</button>
-            @endif
-            <a href="{{ route('admin.enquiry.index') }}" class="btn btn-secondary ms-3">Cancel</a>
+            <a href="{{ route('admin.enquiry.index') }}" class="btn btn-secondary ms-3">Back</a>
           </div>
-        </form>
       </div>
     </div>
   </div>

@@ -95,7 +95,7 @@ class ManufacturerAuthController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Your account has been updated successfully.',
-            'customer' => $request->user(),
+            'customer' => Customer::find($request->user()->id)
         ], 200);
       } catch (\Throwable $th) {
         return response()->json([

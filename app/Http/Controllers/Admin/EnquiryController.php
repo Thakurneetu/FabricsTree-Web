@@ -60,13 +60,16 @@ class EnquiryController extends Controller
           $enquiry->update($data);
           Alert::toast('Qutation Sent Successfully','success');
         }
-        ManufacturerEnquiry::where('enquery_id', $enquiry->id)->whereNotIn('customer_id', $request->manufacturures)->delete();
-        foreach ($request->manufacturures as $key => $customer_id) {
-          $data = [
-            'enquery_id' => $enquiry->id,
-            'customer_id' => $customer_id,
-          ];
-          ManufacturerEnquiry::updateOrCreate($data);
+        if($request->has('manufacturures')){
+          ManufacturerEnquiry::where('enquery_id', $enquiry->id)->whereNotIn('customer_id', $request->manufacturures)->delete();
+          foreach ($request->manufacturures as $key => $customer_id) {
+            $data = [
+              'enquery_id' => $enquiry->id,
+              'customer_id' => $customer_id,
+            ];
+            ManufacturerEnquiry::updateOrCreate($data);
+          }
+          Alert::toast('Requirement Sent Successfully','success');
         }
         DB::commit();
         return redirect(route('admin.enquiry.index'));
