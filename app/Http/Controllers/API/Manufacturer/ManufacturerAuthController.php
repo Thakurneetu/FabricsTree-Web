@@ -55,9 +55,9 @@ class ManufacturerAuthController extends Controller
             'user_type' => 'Manufacturer'
         ]);
 
-        if($request->hasFile('logo')){
-          $logo = $this->save_image($request->image, '/uploads/logo');
-          $user->logo = $logo;
+        if($request->hasFile('store_logo')){
+          $logo = $this->save_image($request->image, '/uploads/store_logo');
+          $user->store_logo = $logo;
           $user->save();
         }
 
