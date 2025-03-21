@@ -989,6 +989,29 @@
         return false;
       }
     });
+
+    $('.submit_accept_quotes').click(function () {
+      if (confirm("Are you sure want to accept this invoice quote?") == true) {  
+        $.easyAjax({
+            url: "{{ route('product.acceptquotes') }}",
+           // type: "POST",
+            //container: '#accept_form',
+            //redirect: true,
+            data: {'enquiryid':$(this).attr('enquiryid')},
+            success: function(response) {
+            if (response.status) {
+                
+                swal("Sent!", response.message, "success");
+                setInterval(function () {
+                    window.location.assign('{{ route("product.productquotes");}} ');
+                }, 3000);
+            }
+            }                    
+        })
+      }else{
+        return false;
+      }
+    });
           
   productScroll();
   function productScroll() {

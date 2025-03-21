@@ -137,8 +137,8 @@
                             <div class="bottom">
                             @if($customer)
                                 @if($customer->user_type=='Manufacturer')
-                                    @if(@$enquiry_data[0]['qutation']!='')
-                                        <a href="{{@$enquiry_data[0]['qutation']}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
+                                    @if(@$enquiry_data[0]['manufacturer_qutation']!='')
+                                        <a href="{{@$enquiry_data[0]['manufacturer_qutation']}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
                                     @else
                                         <button class="upload_quote" id="{{@$enquiry_items[0]['enquery_id']}}" style="width:150px;">Upload Quote</button>
                                     @endif    

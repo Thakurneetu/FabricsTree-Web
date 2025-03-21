@@ -7,6 +7,7 @@
     </div>
 
     <div class="container">
+        
         <section class="sectionlast p-2">
 
 
@@ -78,22 +79,35 @@
                                 </div>
                                 <div class=" col-lg-7 col-md-7 col-sm-12 alignment2">
 
-                                    <!-- <div class="top">
-                                        <div>
+                                    <div class="top">
+                                    @if($customer->user_type=='Customer')
+                                        <!-- <div>
                                             <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 14px;"></i>
                                             Quotes are being prepared
-                                        </div>
-                                    </div> -->
+                                        </div> -->
+                                        @if($value['status']=='invoiced')
+                                            <a href="{{$value['qutation']}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
+                                            <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" enquiryid="{{$value['enquiry_id']}}" class="submit_accept_quotes">Accept</button>
+                                        @elseif($value['status']=='accepted')
+                                        <a href="{{$value['qutation']}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
+                                        <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;"> Accepted</button>
+                                        @elseif($value['status']=='invoked')
+                                        <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;">Revoked</button>
+                                        @else
+                                        <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
+                                        @endif
+                                    @endif
+                                    </div>
 
                                     <div class="bottom">
                                     @if($customer->user_type=='Customer')
-                                        @if($value['status']=='invoked')
+                                        <!-- @if($value['status']=='invoked')
                                         <button>Revoked</button>
                                         @else
-                                        <button class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Order</button>
-                                        @endif
+                                        <button class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
+                                        @endif -->
                                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
-                                    @else
+                                    @else 
                                         @if($value['qutation']!='')
                                             <a href="{{$value['qutation']}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
                                         @else
@@ -143,6 +157,7 @@
                 </div>
 
         </section>
+        
     </div>
 @include('web.layouts.footer')
 

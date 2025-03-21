@@ -10,6 +10,9 @@ use App\Models\EnquiryItems;
 use App\Models\Enquiry;
 use App\Models\ManufacturerEnquiry;
 use File;
+use App\Models\Order;
+use App\Models\OrderItems;
+use Illuminate\Support\Str;
 class ProductQuotesController extends Controller
 {
     /**
@@ -36,6 +39,7 @@ class ProductQuotesController extends Controller
                     $enquiry[$key]['customer_id'] = $val->customer_id;
                     $enquiry[$key]['enquery_type'] = $val->enquery_type;
                     $enquiry[$key]['status'] = $val->status;
+                    $enquiry[$key]['qutation'] = $val->qutation;
                     $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
                     
                     $enquiry_items_data[0]['enquiry_item_id'] = 0;
@@ -64,11 +68,11 @@ class ProductQuotesController extends Controller
             }
             else
             {
-
                 $enquiry[$key]['enquiry_id'] = $val->id;
                 $enquiry[$key]['customer_id'] = $val->customer_id;
                 $enquiry[$key]['enquery_type'] = $val->enquery_type;
                 $enquiry[$key]['status'] = $val->status;
+                $enquiry[$key]['qutation'] = $val->qutation;
                 $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
                 $enquiry_items = EnquiryItems::where('enquery_id',$val->id)->get();
                 foreach ($enquiry_items as $k => $v) {
@@ -196,9 +200,11 @@ class ProductQuotesController extends Controller
         if($enquiry->enquery_type=='selected'){
 
             if($customer->user_type=='Manufacturer'){
-                $enquiry_data = ManufacturerEnquiry::select('enquiries.*','manufacturer_enquiries.created_at as created_at','manufacturer_enquiries.qutation as qutation')
+                $enquiry_data = ManufacturerEnquiry::select('enquiries.*','manufacturer_enquiries.created_at as created_at','manufacturer_enquiries.qutation as manufacturer_qutation')
                 ->join('enquiries', 'enquiries.id','manufacturer_enquiries.enquery_id')
-                ->where('manufacturer_enquiries.enquery_id',$id)->get();
+                ->where('manufacturer_enquiries.enquery_id',$id)
+                ->where('manufacturer_enquiries.customer_id',$customer_id)
+                ->get();
             }else{
                 $enquiry_data = $enquiry;
             }
@@ -272,7 +278,60 @@ class ProductQuotesController extends Controller
         $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
         $file->move(public_path($store_path), $filename);
         return $store_path.'/'.$filename;
+    }
+
+    public function acceptquotes(Request $request)
+    {
+      $id  = $request->enquiryid;
+      $enquiry = Enquiry::find($id);
+      $order_data['customer_id'] = $request->user()->id;
+      $order_data['invoice_no'] = Str::upper(Str::random(10));
+      $order_data['status'] = 'Pending';
+      $order_data['enquiry_id'] = $enquiry->id;
+      $order_data['qutation'] = $enquiry->qutation;
+      $order = Order::create($order_data);
+      $item['order_id'] = $order->id;
+      $item['customer_id'] = $request->user()->id;
+      if($enquiry->enquery_type == 'custom') {
+        $item['category_id'] = $enquiry->category_id;
+        $item['subcategory_id'] = $enquiry->category_id;
+        $item['category'] = $enquiry->category->name;
+        $item['subcategory'] = $enquiry->subcategory->name;
+        $item['width'] = $enquiry->category_id;
+        $item['warp'] = $enquiry->category_id;
+        $item['weft'] = $enquiry->category_id;
+        $item['count'] = $enquiry->category_id;
+        $item['reed'] = $enquiry->category_id;
+        $item['pick'] = $enquiry->category_id;
+        OrderItems::create($item);
+      }else {
+        foreach ($enquiry->items as $key => $item_data) {
+          $item['product_id'] = $item_data->product_id;
+          $item['quantity'] = $item_data->quantity;
+          $item['category'] = $item_data->category->name;
+          $item['subcategory'] = $item_data->subcategory->name;
+          $item['category_id'] = $item_data->category_id;
+          $item['subcategory_id'] = $item_data->category_id;
+          $item['title'] = $item_data->title;
+          $item['subtitle'] = $item_data->subtitle;
+          $item['description'] = $item_data->description;
+          $item['key_features'] = $item_data->key_features;
+          $item['disclaimer'] = $item_data->disclaimer;
+          $item['width'] = $item_data->category_id;
+          $item['warp'] = $item_data->category_id;
+          $item['weft'] = $item_data->category_id;
+          $item['count'] = $item_data->category_id;
+          $item['pick'] = $item_data->category_id;
+          $item['reed'] = $item_data->category_id;
+          OrderItems::create($item);
+        }
       }
+      $enquiry->update(['status' => 'accepted']);
+      return response()->json([
+        'status' => true,
+        'message' => 'Order placed successfully.'
+      ]);
+    }
 
     
 }
