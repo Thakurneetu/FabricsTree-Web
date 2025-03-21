@@ -1,7 +1,7 @@
 @include('web.layouts.header')
     <div class="banneerlogo">
         <div style="flex-direction: column;">
-            <h1>Products</h1>
+            <h1>My Quotes</h1>
             <p><span>Home</span>/ View Request Quote Item Details</p>
         </div>
     </div>
@@ -10,6 +10,8 @@
         <section class="sectionlast">
             <div class="headparagraphbg">
             <div class="row headparagraph">
+            @if($customer)
+                @if($customer->user_type=='Customer')
                 <h5>Customer Details</h5>
                     <table class="table table-borderless table-responsive-md">
                         <colgroup>
@@ -34,6 +36,10 @@
                         </tr>
                     </table>
                 </div>
+                @endif
+            @else
+            <h5>Customer Details</h5>
+            @endif
                 @if($enquery_type=='custom')
                     <div class="row headparagraph">
 
@@ -79,12 +85,71 @@
                                 </tr>
                             </tbody>
                             </table>
+                            <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$customer->enquiry[0]->created_at))}}</span></button> 
+                                        </div>
                     </div>
                 @else
                     @if(count($enquiry_items)>0)
-                        @foreach($enquiry_items as $key=>$val)
                     <div class="row headparagraph">
-                        <div class="col-lg-8 col-md-2 col-sm-12">
+                    <h5>Request Quote Item Details</h5>
+                    <table class="table table-borderless table-responsive-md">
+                            <colgroup>
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                                <col style="width: 10%;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Sub Category</th>
+                                    <th>Width</th>
+                                    <th>Warp</th>
+                                    <th>Weft</th>
+                                    <th>Count</th>
+                                    <th>Reed</th>
+                                    <th>Pik</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($enquiry_items as $key=>$val)
+                                <tr>
+                                    <td>{{$val['title']}}</td>
+                                    <td>{{$val['category_id'] }}</td>
+                                    <td>{{$val['subcategory_id']}}</td>
+                                    <td>{{$val['width']}}</td>
+                                    <td>{{$val['warp']}}</td>
+                                    <td>{{$val['weft']}}</td>
+                                    <td>{{$val['count']}}</td>
+                                    <td>{{$val['reed']}}</td>
+                                    <td>{{$val['pick']}}</td>
+                                </tr>
+                                @endforeach
+                                
+                            </tbody>
+                            </table>
+                            <div class="bottom">
+                            @if($customer)
+                                @if($customer->user_type=='Manufacturer')
+                                    @if(@$enquiry_data[0]['qutation']!='')
+                                        <a href="{{@$enquiry_data[0]['qutation']}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
+                                    @else
+                                        <button class="upload_quote" id="{{@$enquiry_items[0]['enquery_id']}}" style="width:150px;">Upload Quote</button>
+                                    @endif    
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
+                                @else
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
+                                       
+                                @endif
+                            @endif
+                            </div>
+                        <!-- <div class="col-lg-8 col-md-2 col-sm-12">
                             <div class="alignment">
                                 @if($val['image_url'])
                                 <img src="{{ $val['image_url'] }}" alt="">
@@ -103,9 +168,8 @@
                                     <span style="font-weight: bold; margin: 4px;"><input type="number" value="{{ $val['quantity'] }}" min="1" style="width:50px;background: #EEF1F6; border: none;text-align:center" readonly/></span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                        @endforeach
                     @else
                     <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Request Quote item list Found</div></div>
                     @endif
@@ -121,3 +185,11 @@
         </section>
     </div>
 @include('web.layouts.footer')
+
+<script>
+
+    $('.upload_quote').click(function () {
+        $('#upload_enquiry_id').val($(this).attr('id'));
+        $('#exampleModalUploadQuote').modal('show');
+    });
+</script>

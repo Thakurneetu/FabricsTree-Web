@@ -61,6 +61,8 @@ Route::get('orders', [ProductOrderController::class, 'index'])->name('product.or
 Route::get('quotesitems/{id?}', [ProductQuotesController::class, 'quotesitems'])->name('product.quotesitems');
 
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
+Route::post('uploadquotes', [ProductQuotesController::class, 'uploadquotes'])->name('product.uploadquotes');
+
 
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('update-profile', [ProfileController::class, 'update_profile'])->name('customer.updateprofile');

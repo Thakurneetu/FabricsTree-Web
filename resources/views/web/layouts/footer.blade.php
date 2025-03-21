@@ -669,6 +669,57 @@
       </div>
   </div>
 
+    <!-- Modal upload quote -->
+    <div class="modal fade login" id="exampleModalUploadQuote" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div style="padding: 20px 6rem;">
+
+                      <div class="d-flex justify-content-center" style="margin-top: -6rem;">
+                          <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
+                              <img class="p-2" src="{{ asset('frontend/images/Group 56622.png') }}" alt="thanks" width="80">
+                          </div>
+                      </div>
+
+                      <div class="text-center w-100 verify">
+                          <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Upload Quote
+                          </h1>
+
+                      </div>
+                  </div>
+                  <form method="POST" name="upload_form" id="upload_form" action="{{ route('product.uploadquotes') }}" enctype="multipart/form-data" >
+                    @csrf
+                    <div class="p-4">
+                        <div class="">
+                            <label class="form-label" for="flexRadioDefault11">
+                                Upload Quatation File:
+                            </label>
+                            <input type="hidden" name="upload_enquiry_id" id="upload_enquiry_id" value=""/>
+                            <input required class="form-control" type="file" name="upload_quatation" id="upload_quatation" value="">
+                        </div>
+                        @error('upload_quatation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center  ">
+                        <button class="btn-outline-success maincolor" type="submit" id="submit_upload_quatation">Submit</button>
+                    </div>
+                  </form>
+              </div>
+
+
+          </div>
+      </div>
+  </div>
+
   <!--<div class="loader"></div>-->
   <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
         <i class="stack-interface stack-up-open-big"></i>
@@ -1005,6 +1056,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
 }
 
 </script>
+@if(!$customer)
 @session('success')
 <script type="text/javascript">
   $( document ).ready(function() {
@@ -1013,6 +1065,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
   });
 </script>      
 @endsession
+@endif
 
 @session('error')
 <script type="text/javascript">

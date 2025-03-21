@@ -47,7 +47,13 @@
                 </div>
 
                 <div class="col-lg-8 col-md-8 col-sm-12">
-
+                    @if (\Session::has('success'))
+                        <div class="alert alert-success">
+                            <ul>
+                                <li>{!! \Session::get('success') !!}</li>
+                            </ul>
+                        </div>
+                    @endif
                     @if(count($request_quote)>0)
                         @foreach($request_quote as $value)
                             <div class="row mt-2 headparagraphbg">
@@ -80,13 +86,21 @@
                                     </div> -->
 
                                     <div class="bottom">
+                                    @if($customer->user_type=='Customer')
                                         @if($value['status']=='invoked')
                                         <button>Revoked</button>
                                         @else
                                         <button class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Order</button>
                                         @endif
-                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span
-                                                style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
+                                    @else
+                                        @if($value['qutation']!='')
+                                            <a href="{{$value['qutation']}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
+                                        @else
+                                            <button class="upload_quote" id="{{$value['enquiry_id']}}" style="width:150px;">Upload Quote</button>
+                                        @endif
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>            
+                                    @endif
                                     </div>
 
 
@@ -136,5 +150,10 @@
     $('.revoke_order').click(function () {
         $('#enquiry_id').val($(this).attr('id'));
         $('#exampleModalRevokeQuote').modal('show');
+    });
+
+    $('.upload_quote').click(function () {
+        $('#upload_enquiry_id').val($(this).attr('id'));
+        $('#exampleModalUploadQuote').modal('show');
     });
 </script>
