@@ -56,7 +56,7 @@ Route::get('addtocart', [ProductController::class, 'addtocart'])->name('product.
 Route::get('deletecart', [ProductController::class, 'deletecart'])->name('product.deletecart');
 Route::get('requestaquotes', [ProductController::class, 'requestaquotes'])->name('product.requestaquotes');
 Route::post('requestaquotesrevoke', [ProductQuotesController::class, 'requestQuotesRevoke'])->name('product.requestaquotesrevoke');
-
+ 
 Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
 Route::get('quotesitems/{id?}', [ProductQuotesController::class, 'quotesitems'])->name('product.quotesitems');
 
