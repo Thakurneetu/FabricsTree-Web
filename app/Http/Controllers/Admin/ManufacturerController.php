@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\DataTables\ManufacturerDataTable;
 use App\DataTables\ManufacturerProductDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\Admin\ManufacturerStoreRequest;
+use App\Http\Requests\Admin\ManufacturerUpdateRequest;
 
 class ManufacturerController extends Controller
 {
@@ -32,7 +34,7 @@ class ManufacturerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ManufacturerStoreRequest $request)
     {
       try{
         DB::beginTransaction();
@@ -77,9 +79,16 @@ class ManufacturerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $manufacturer)
+    public function update(ManufacturerUpdateRequest $request, Customer $manufacturer)
     {
       try{
+        if($request->ajax()){
+          $status = $request->status == '1' ? 1 : 0;
+          $manufacturer->update(['status'=>$status]);
+          return response()->json([
+            'success' => true, 'message' => 'Status Updated Successfully!'
+          ]);
+        }
         DB::beginTransaction();
         $data = $request->except('_token', '_method', 'password');
         if($request->password)

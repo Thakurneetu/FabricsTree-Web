@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CustomerRegisterRequest extends FormRequest
+class CustomerStoreRequest extends FormRequest
 {
     public function authorize()
     {
@@ -18,19 +18,10 @@ class CustomerRegisterRequest extends FormRequest
         return [
           'name' => 'required|string|max:255',
           'email' => 'required|string|email|max:255|unique:customers',
-          'phone' => 'required|string||unique:customers',
+          'phone' => 'required|max:10|unique:customers',
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
-          'password' => 'required|string|confirmed|min:8',
+          'password' => 'required|string|min:8',
         ];
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'status' => false,
-            'message' => 'Validation failed',
-            'errors' => $validator->errors(),
-        ], 500));
     }
 }

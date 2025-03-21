@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\CustomersDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\Admin\CustomerStoreRequest;
+use App\Http\Requests\Admin\CustomerUpdateRequest;
 
 class CustomerController extends Controller
 {
@@ -30,11 +32,12 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CustomerStoreRequest $request)
     {
       try{
         DB::beginTransaction();
         $data = $request->except('_token');
+        $data['user_type'] = 'Customer';
         Customer::create($data);
         DB::commit();
         Alert::toast('Customer Added Successfully','success');
@@ -65,9 +68,16 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerUpdateRequest $request, Customer $customer)
     {
       try{
+        if($request->ajax()){
+          $status = $request->status == '1' ? 1 : 0;
+          $customer->update(['status'=>$status]);
+          return response()->json([
+            'success' => true, 'message' => 'Status Updated Successfully!'
+          ]);
+        }
         DB::beginTransaction();
         $data = $request->except('_token', '_method', 'password');
         if($request->password)

@@ -11,7 +11,10 @@
     <!-- Image -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name"> Image</label>
-      <input type="file" name="image" class="form-control">
+      <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+      @error('image')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror
       <br>
       @if(@$category->image)
       <div class="row col-12 gallery">

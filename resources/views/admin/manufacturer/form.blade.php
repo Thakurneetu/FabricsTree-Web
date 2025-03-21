@@ -3,7 +3,7 @@
     <!-- Store Name -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>Store Name</label>
-      <input type="text" required name="firm_name" value="{{old('firm_name') ?? (@$manufacturer->firm_name ?? '')}}" 
+      <input type="text" name="firm_name" value="{{old('firm_name') ?? (@$manufacturer->firm_name ?? '')}}" 
       class="form-control @error('firm_name') is-invalid @enderror" placeholder="Enter Store Name">
       @error('firm_name')
       <div class="text-danger">{{ $message }}</div>
@@ -12,7 +12,7 @@
     <!-- Name -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>Full Name</label>
-      <input type="text" required name="name" value="{{old('name') ?? (@$manufacturer->name ?? '')}}" 
+      <input type="text" name="name" value="{{old('name') ?? (@$manufacturer->name ?? '')}}" 
       class="form-control @error('name') is-invalid @enderror" placeholder="Enter Full Name">
       @error('name')
       <div class="text-danger">{{ $message }}</div>
@@ -21,7 +21,7 @@
     <!-- Email -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>Email</label>
-      <input type="email" required name="email" value="{{old('email') ?? (@$manufacturer->email ?? '')}}" 
+      <input type="email" name="email" value="{{old('email') ?? (@$manufacturer->email ?? '')}}" 
       class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
       @error('email')
       <div class="text-danger">{{ $message }}</div>
@@ -30,7 +30,7 @@
     <!-- Phone -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>Phone</label>
-      <input type="text" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="10" minlength="10" 
+      <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="10" minlength="10" 
       name="phone" value="{{old('phone') ?? (@$manufacturer->phone ?? '')}}" class="form-control @error('phone') is-invalid @enderror" 
       placeholder="Enter Phone Number">
       @error('phone')
@@ -40,7 +40,7 @@
     <!-- Address -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label>Address</label>
-      <input type="text" required name="address" value="{{old('address') ?? (@$manufacturer->address ?? '')}}" 
+      <input type="text" name="address" value="{{old('address') ?? (@$manufacturer->address ?? '')}}" 
       class="form-control @error('address') is-invalid @enderror" placeholder="Enter Address">
       @error('address')
       <div class="text-danger">{{ $message }}</div>
@@ -59,7 +59,7 @@
     <!-- GST -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>GST</label>
-      <input type="text" required name="gst_number" value="{{old('gst_number') ?? (@$manufacturer->gst_number ?? '')}}" 
+      <input type="text" name="gst_number" value="{{old('gst_number') ?? (@$manufacturer->gst_number ?? '')}}" 
       class="form-control @error('gst_number') is-invalid @enderror" placeholder="Enter GST">
       @error('gst_number')
       <div class="text-danger">{{ $message }}</div>
@@ -68,7 +68,7 @@
     <!-- Store Contact -->
     <div class="form-group col-md-3 col-12 mb-3">
       <label>Store Contact</label>
-      <input type="text" required name="store_contact" value="{{old('store_contact') ?? (@$manufacturer->store_contact ?? '')}}" 
+      <input type="text" name="store_contact" value="{{old('store_contact') ?? (@$manufacturer->store_contact ?? '')}}" 
       class="form-control @error('store_contact') is-invalid @enderror" placeholder="Enter Store Contact">
       @error('store_contact')
       <div class="text-danger">{{ $message }}</div>

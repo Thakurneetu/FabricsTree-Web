@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\SubcategoryDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\Admin\SubcategoryStoreRequest;
+use App\Http\Requests\Admin\SubcategoryUpdateRequest;
 
 class SubcategoryController extends Controller
 {
@@ -32,7 +34,7 @@ class SubcategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SubcategoryStoreRequest $request)
     {
       try{
         DB::beginTransaction();
@@ -68,7 +70,7 @@ class SubcategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subcategory $subcategory)
+    public function update(SubcategoryUpdateRequest $request, Subcategory $subcategory)
     {
       try{
         DB::beginTransaction();
