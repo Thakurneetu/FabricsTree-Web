@@ -19,33 +19,43 @@
     <!-- Ctaegory -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Select Category</label>
-      <select name="category_id" class="form-control">
+      <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
         <option value="" selected disabled>Select Category</option>
         @foreach($categories as $category)
         <option value="{{$category->id}}" {{old('category_id', @$product->category_id) == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
         @endforeach
-      </select>      
+      </select>     
+      @error('category_id')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror 
     </div>
     <!-- Requirement -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Select Requirement</label>
-      <select name="requirement_id" class="form-control">
+      <select name="requirement_id" class="form-control @error('requirement_id') is-invalid @enderror">
         <option value="" selected disabled>Select Requirement</option>
         @foreach($requirements as $requirement)
         <option value="{{$requirement->id}}" {{old('requirement_id', @$product->requirement_id) == $requirement->id ? 'selected' : '' }}>{{$requirement->name}}</option>
         @endforeach
       </select>      
+      @error('requirement_id')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror
     </div>
     <!-- SubCtaegory -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Select SubCategory</label>
-      <select name="subcategory_id" class="form-control">
+      <select name="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror">
         <option value="" selected disabled>Select SubCategory</option>
         @foreach($subcategories as $subcategory)
         <option value="{{$subcategory->id}}" {{old('subcategory_id', @$product->subcategory_id) == $subcategory->id ? 'selected' : '' }}>{{$subcategory->name}}</option>
         @endforeach
-      </select>      
+      </select>    
+      @error('subcategory_id')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror  
     </div>
+    {{--
     <!-- Tags -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Select Tags</label>
@@ -55,6 +65,7 @@
         @endforeach
       </select>      
     </div>
+    --}}
     <!-- Width -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Width</label>
@@ -148,7 +159,10 @@
     <!-- Images -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Images</label>
-      <input type="file" name="images[]" multiple="multiple" class="form-control">
+      <input type="file" name="images[]" multiple="multiple" class="form-control @error('images') is-invalid @enderror">
+      @error('images')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror
       <br>
       @if(isset($product) && count($product->images) > 0)
       <div class="row col-12 gallery">

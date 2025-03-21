@@ -3,12 +3,15 @@
     <!-- Ctaegory -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Select Category</label>
-      <select name="category_id" class="form-control">
+      <select name="category_id" class="form-control  @error('category_id') is-invalid @enderror">
         <option value="" selected disabled>Select Category</option>
         @foreach($categories as $category)
         <option value="{{$category->id}}" {{old('category_id', @$requirement->category_id) == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
         @endforeach
-      </select>      
+      </select>       
+      @error('category_id')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror  
     </div>
     <!-- Name -->
     <div class="form-group col-md-6 col-12 mb-3">

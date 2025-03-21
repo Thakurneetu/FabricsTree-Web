@@ -28,6 +28,13 @@ class ManufacturerAuthController extends Controller
           ], 500);
         }
 
+        if ($manufacturer->status != 1) {
+          return response()->json([
+            'status' => false,
+            'message' => 'Your account has been blocked.'
+          ], 500);
+        }
+
         $token = $manufacturer->createToken('manufacturer-token')->plainTextToken;
 
         return response()->json([

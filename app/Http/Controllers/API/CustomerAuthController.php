@@ -34,6 +34,13 @@ class CustomerAuthController extends Controller
             ], 500);
         }
 
+        if ($customer->status != 1) {
+          return response()->json([
+            'status' => false,
+            'message' => 'Your account has been blocked.'
+          ], 500);
+        }
+
         $token = $customer->createToken('customer-token')->plainTextToken;
 
         return response()->json([
@@ -53,6 +60,7 @@ class CustomerAuthController extends Controller
             'phone' => $request->phone,
             'pincode' => $request->pincode,
             'address' => $request->address,
+            'status' => 1,
             'password' => Hash::make($request->password),
         ]);
 

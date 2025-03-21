@@ -29,7 +29,7 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('admin.category.index') }}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Category</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('admin.requirement.index') }}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Requirement</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('admin.subcategory.index') }}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Subcategory</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('admin.tag.index') }}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Tag</a></li>
+        {{--<li class="nav-item"><a class="nav-link" href="{{ route('admin.tag.index') }}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Tag</a></li>--}}
         <li class="nav-item"><a class="nav-link" href="{{ route('admin.product.index') }}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Product</a></li>
       </ul>
     </li>

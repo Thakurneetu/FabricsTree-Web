@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\RequirementDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\Admin\RequirementStoreRequest;
+use App\Http\Requests\Admin\RequirementUpdateRequest;
 
 class RequirementController extends Controller
 {
@@ -32,7 +34,7 @@ class RequirementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RequirementStoreRequest $request)
     {
       try{
         DB::beginTransaction();
@@ -68,7 +70,7 @@ class RequirementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Requirement $requirement)
+    public function update(RequirementUpdateRequest $request, Requirement $requirement)
     {
       try{
         DB::beginTransaction();
