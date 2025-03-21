@@ -56,14 +56,16 @@ Route::get('addtocart', [ProductController::class, 'addtocart'])->name('product.
 Route::get('deletecart', [ProductController::class, 'deletecart'])->name('product.deletecart');
 Route::get('requestaquotes', [ProductController::class, 'requestaquotes'])->name('product.requestaquotes');
 Route::post('requestaquotesrevoke', [ProductQuotesController::class, 'requestQuotesRevoke'])->name('product.requestaquotesrevoke');
-
 Route::get('acceptquotes', [ProductQuotesController::class, 'acceptquotes'])->name('product.acceptquotes');
- 
-Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
 Route::get('quotesitems/{id?}', [ProductQuotesController::class, 'quotesitems'])->name('product.quotesitems');
 
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
 Route::post('uploadquotes', [ProductQuotesController::class, 'uploadquotes'])->name('product.uploadquotes');
+
+Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
+Route::get('orderitems/{id?}', [ProductOrderController::class, 'orderitems'])->name('product.orderitems');
+Route::post('revokeorder', [ProductOrderController::class, 'revokeorder'])->name('product.revokeorder');
+
 
 
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');

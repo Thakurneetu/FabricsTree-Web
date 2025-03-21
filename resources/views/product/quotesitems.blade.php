@@ -72,17 +72,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Custom</td>
-                                    <td>{{$customer->enquiry[0]->category_id}}</td>
-                                    <td>{{$customer->enquiry[0]->subcategory_id}}</td>
-                                    <td>{{$customer->enquiry[0]->width}}</td>
-                                    <td>{{$customer->enquiry[0]->warp}}</td>
-                                    <td>{{$customer->enquiry[0]->weft}}</td>
-                                    <td>{{$customer->enquiry[0]->count}}</td>
-                                    <td>{{$customer->enquiry[0]->reed}}</td>
-                                    <td>{{$customer->enquiry[0]->pick}}</td>
-                                </tr>
+                            <tr>
+                                <td>Custom</td>
+                                <td>{{$enquiry->category_id}}</td>
+                                <td>{{$enquiry->subcategory_id}}</td>
+                                <td>{{$enquiry->width}}</td>
+                                <td>{{$enquiry->warp}}</td>
+                                <td>{{$enquiry->weft}}</td>
+                                <td>{{$enquiry->count}}</td>
+                                <td>{{$enquiry->reed}}</td>
+                                <td>{{$enquiry->pick}}</td>
+                            </tr>
                             </tbody>
                             </table>
                             <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$customer->enquiry[0]->created_at))}}</span></button> 

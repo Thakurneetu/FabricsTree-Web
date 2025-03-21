@@ -94,7 +94,7 @@
                                         @elseif($value['status']=='invoked')
                                         <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;">Revoked</button>
                                         @else
-                                        <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
+                                        <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
                                         @endif
                                     @endif
                                     </div>
@@ -104,7 +104,7 @@
                                         <!-- @if($value['status']=='invoked')
                                         <button>Revoked</button>
                                         @else
-                                        <button class="revoke_order" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
+                                        <button class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
                                         @endif -->
                                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
                                     @else 
@@ -162,7 +162,7 @@
 @include('web.layouts.footer')
 
 <script>
-    $('.revoke_order').click(function () {
+    $('.revoke_quote').click(function () {
         $('#enquiry_id').val($(this).attr('id'));
         $('#exampleModalRevokeQuote').modal('show');
     });

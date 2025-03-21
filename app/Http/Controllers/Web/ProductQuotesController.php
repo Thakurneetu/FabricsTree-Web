@@ -193,6 +193,7 @@ class ProductQuotesController extends Controller
         //dd($customer->enquiry);
 
         $enquiry = Enquiry::find($id);
+        $data['enquiry'] = $enquiry;
         $data['enquery_type'] = $enquiry->enquery_type;
         //dd( $enquiry);
         $enquiry_items_data = [];
