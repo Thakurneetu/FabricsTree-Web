@@ -29,4 +29,9 @@ class Customer extends Authenticatable
   {
       return $this->hasMany(Enquiry::class);
   }
+
+  public function manufacturerProduct()
+  {
+      return $this->hasMany(ManufacturerProduct::class);
+  }
 }

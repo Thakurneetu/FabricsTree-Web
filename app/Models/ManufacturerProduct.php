@@ -8,7 +8,7 @@ class ManufacturerProduct extends Model
 {
   protected $fillable = ['title','subtitle','description','key_features','disclaimer','wrap','weft',
                          'category_id','requirement_id','subcategory_id','width','count','reed',
-                         'pick','customer_id'];
+                         'pick','customer_id','product_id','quantity','color_code'];
 
   public function category()
   {
@@ -17,5 +17,9 @@ class ManufacturerProduct extends Model
   public function subcategory()
   {
       return $this->belongsTo(Subcategory::class);
+  }
+  public function product()
+  {
+      return $this->belongsTo(Product::class);
   }
 }

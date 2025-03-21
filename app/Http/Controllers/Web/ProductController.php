@@ -14,6 +14,7 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EnquiryItems;
 use App\Models\Enquiry;
+use App\Models\ManufacturerProduct;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -176,18 +177,34 @@ class ProductController extends Controller
         $data['customer'] = $customer;
         //dd($customer->carts);
         $carts = [];
-        foreach ($customer->carts as $key => $cart) {
-            $carts[$key]['id'] = $cart->id;
-            $carts[$key]['product_id'] = $cart->product->id;
-            $carts[$key]['quantity'] = $cart->quantity;
-            $carts[$key]['title'] = $cart->product->title??'';
-            $carts[$key]['subtitle'] = $cart->product->subtitle??'';
-            $carts[$key]['color_code'] = $cart->color_code;
-            $carts[$key]['width'] = $cart->product->width;
-            $carts[$key]['pick'] = $cart->product->pick;
-            $carts[$key]['count'] = $cart->product->count;
-            $carts[$key]['reed'] = $cart->product->reed;
-            $carts[$key]['image_url'] = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
+        if($customer->user_type=='Customer'){
+            foreach ($customer->carts as $key => $cart) {
+                $carts[$key]['id'] = $cart->id;
+                $carts[$key]['product_id'] = $cart->product->id;
+                $carts[$key]['quantity'] = $cart->quantity;
+                $carts[$key]['title'] = $cart->product->title??'';
+                $carts[$key]['subtitle'] = $cart->product->subtitle??'';
+                $carts[$key]['color_code'] = $cart->color_code;
+                $carts[$key]['width'] = $cart->product->width;
+                $carts[$key]['pick'] = $cart->product->pick;
+                $carts[$key]['count'] = $cart->product->count;
+                $carts[$key]['reed'] = $cart->product->reed;
+                $carts[$key]['image_url'] = count($cart->product->image_list) > 0 ? $cart->product->image_list[0] : null;
+            }
+        }else{
+            foreach ($customer->manufacturerProduct as $key => $manufacturer_product) {
+                $carts[$key]['id'] = $manufacturer_product->id;
+                $carts[$key]['product_id'] = $manufacturer_product->product->id;
+                $carts[$key]['quantity'] = $manufacturer_product->quantity;
+                $carts[$key]['title'] = $manufacturer_product->product->title??'';
+                $carts[$key]['subtitle'] = $manufacturer_product->product->subtitle??'';
+                $carts[$key]['color_code'] = $manufacturer_product->color_code;
+                $carts[$key]['width'] = $manufacturer_product->product->width;
+                $carts[$key]['pick'] = $manufacturer_product->product->pick;
+                $carts[$key]['count'] = $manufacturer_product->product->count;
+                $carts[$key]['reed'] = $manufacturer_product->product->reed;
+                $carts[$key]['image_url'] = count($manufacturer_product->product->image_list) > 0 ? $manufacturer_product->product->image_list[0] : null;
+            }
         }
         $data['carts'] = $carts;
         return view('product.productcart',$data);
@@ -198,19 +215,61 @@ class ProductController extends Controller
         $data = $request->only('product_id','quantity','color_code');
         $id = Auth::guard('customer')->id();
         if($id){
-            $data['customer_id'] = $id;
-            if($data['quantity'] > 0){
-                Cart::updateOrCreate(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id'],'color_code'=>$data['color_code']],$data);
-                return response()->json([
-                'status' => true,
-                'message' => 'Product added to cart successfully.',
-                ]);
-            }else{
-                Cart::where(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id']])->delete();
-                return response()->json([
-                'status' => true,
-                'message' => 'Product removed successfully.',
-                ]);
+            $customer = Customer::find($id);
+            if( $customer->user_type=='Customer')
+            {
+                $data['customer_id'] = $id;
+                if($data['quantity'] > 0){
+                    Cart::updateOrCreate(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id'],'color_code'=>$data['color_code']],$data);
+                    return response()->json([
+                    'status' => true,
+                    'message' => 'Product added to cart successfully.',
+                    ]);
+                }else{
+                    Cart::where(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id']])->delete();
+                    return response()->json([
+                    'status' => true,
+                    'message' => 'Product removed successfully.',
+                    ]);
+                }
+            }
+            else
+            {
+                $data['customer_id'] = $id;
+                $product = Product::find($data['product_id']);
+                if($data['quantity'] > 0){
+                    ManufacturerProduct::updateOrCreate([
+                        'product_id'=>$data['product_id'],
+                        'customer_id'=>$data['customer_id'],
+                        'title'=> $product->title,
+                        'subtitle'=> $product->subtitle,
+                        'color_code'=> $product->color_code,
+                        'width'=> $product->width,
+                        'pick'=> $product->pick,
+                        'count'=> $product->count,
+                        'reed'=> $product->reed,
+                        'description'=> $product->description,
+                        'key_features'=> $product->key_features,
+                        'disclaimer'=> $product->disclaimer,
+                        'category_id'=> $product->category_id,
+                        'requirement_id'=> $product->requirement_id,
+                        'subcategory_id'=> $product->subcategory_id,
+                        'wrap'=>$product->wrap,
+                        'weft'=> $product->weft,
+                        'quantity'=>$data['quantity']
+                    ],
+                        $data);
+                    return response()->json([
+                    'status' => true,
+                    'message' => 'Successfully added to My Product List.',
+                    ]);
+                }else{
+                    ManufacturerProduct::where(['product_id'=>$data['product_id'], 'customer_id'=>$data['customer_id']])->delete();
+                    return response()->json([
+                    'status' => true,
+                    'message' => 'Successfully removed to My Product List.',
+                    ]);
+                }
             }
         }else{
             return response()->json([
@@ -223,8 +282,14 @@ class ProductController extends Controller
     public function deletecart(Request $request)
     {
         $data = $request->only('cart_id');
-        $id = $data['cart_id'];
-        Cart::find($id)->delete();
+        $cart_id = $data['cart_id'];
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        if($customer->user_type=='Customer'){
+            Cart::find($cart_id)->delete();
+        }else{
+            ManufacturerProduct::find($cart_id)->delete();
+        }
         return response()->json([
         'status' => true,
         'message' => 'Product removed successfully.',
