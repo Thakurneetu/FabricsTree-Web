@@ -26,7 +26,7 @@ class Enquiry extends Model
     return $this->belongsTo(Subcategory::class);
   }
   public function manufacturers()
-    {
-        return $this->hasMany(ManufacturerEnquiry::class, 'enquery_id');
-    }
+  {
+      return $this->hasMany(ManufacturerEnquiry::class, 'enquery_id');
+  }
 }

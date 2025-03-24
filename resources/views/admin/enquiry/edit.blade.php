@@ -88,11 +88,12 @@
             </form>
             <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
               @csrf @method('patch')
+              <input type="hidden" name="manufacturur_assign" value="1">
               <div class="row">
                 <!-- Qutation -->
                 <div class="form-group col-md-6 col-12 mb-3">
                   <label for="name"> Select Manufacturers To Get Qutation</label>
-                  <select name="manufacturures[]" class="form-control select2" multiple="multiple" required>
+                  <select name="manufacturures[]" class="form-control select2" multiple="multiple">
                     @foreach($manufacturers as $manufacturer)
                     <option value="{{$manufacturer->id}}" {{ in_array($manufacturer->id, old('manufacturures', $enquiry->manufacturers->pluck('customer_id')->toArray() ?? [])) ? 'selected' : '' }}>{{$manufacturer->name}}</option>
                     @endforeach
@@ -100,7 +101,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12 mb-3">
                   <button type="submit" class="btn btn-info mt-4">
-                    Send to Manufacturers
+                    Assign Manufacturers
                   </button>
                 </div>
               </div>

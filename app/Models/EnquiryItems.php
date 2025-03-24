@@ -22,4 +22,8 @@ class EnquiryItems extends Model
   {
     return $this->belongsTo(Subcategory::class);
   }
+  public function requirement()
+  {
+    return $this->belongsTo(Requirement::class);
+  }
 }

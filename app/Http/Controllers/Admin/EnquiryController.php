@@ -70,12 +70,13 @@ class EnquiryController extends Controller
             ManufacturerEnquiry::updateOrCreate($data);
           }
           Alert::toast('Requirement Sent Successfully','success');
+        }else if($request->has('manufacturur_assign') AND $request->manufacturur_assign == 1){
+          ManufacturerEnquiry::where('enquery_id', $enquiry->id)->delete();
         }
         DB::commit();
         return redirect(route('admin.enquiry.index'));
       }catch (\Throwable $th) {
         DB::rollback();
-        dd($th);
         Alert::error($th->getMessage());
         return redirect()->back();
       } 

@@ -48,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 use App\Http\Controllers\API\Manufacturer\ManufacturerAuthController;
 use App\Http\Controllers\API\Manufacturer\ManufacturerProductController;
+use App\Http\Controllers\API\Manufacturer\ManufacturerEnquiryController;
 
 Route::group(['prefix' => 'manufacturer'], function () {
   Route::post('/register', [ManufacturerAuthController::class, 'register']);
@@ -60,7 +61,10 @@ Route::group(['prefix' => 'manufacturer'], function () {
       Route::post('/profile', [ManufacturerAuthController::class, 'profile']);
       Route::post('/logout', [ManufacturerAuthController::class, 'logout']);
       Route::apiResource('product', ManufacturerProductController::class);
+      Route::apiResource('enquiry', ManufacturerEnquiryController::class);
+    });
+    
   });
 
-});
+  // curl -X PUT -F "name=John Doe" -F "email=john.doe@example.com" http://127.0.0.1:8000/api/enquiry/6
 
