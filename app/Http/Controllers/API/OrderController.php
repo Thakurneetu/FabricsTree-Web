@@ -231,4 +231,54 @@ class OrderController extends Controller
         'message' => 'Order placed successfully.'
       ]);
     }
+
+    public function orders(Request $request)
+    {
+      $orders_data = Order::where('customer_id', $request->user()->id)->latest()->get();
+      $orders = [];
+      foreach ($orders_data as $key => $order) {
+        $orders[$key]['id'] = $order->id;
+        $orders[$key]['invoice_no'] = $order->invoice_no;
+        $orders[$key]['qutation'] = $order->qutation ? asset($order->qutation) : null;
+        $orders[$key]['track_link'] = $order->track_link;
+        $orders[$key]['status'] = $order->status;
+        $orders[$key]['created_at'] = $order->created_at;
+        $items = array();
+        foreach($order->items as $_key => $item){
+          $items[$_key]['quantity'] = $item->quantity ;
+          $items[$_key]['color_code'] = $item->color_code ;
+          $items[$_key]['title'] = $item->title ;
+          $items[$_key]['subtitle'] = $item->subtitle ;
+          $items[$_key]['width'] = $item->width ;
+          $items[$_key]['warp'] = $item->warp ;
+          $items[$_key]['weft'] = $item->weft ;
+          $items[$_key]['count'] = $item->count ;
+          $items[$_key]['reed'] = $item->reed ;
+          $items[$_key]['pick'] = $item->pick ;
+          $items[$_key]['reed'] = $item->reed ;
+          $items[$_key]['category'] = $item->category ;
+          $items[$_key]['subcategory'] = $item->subcategory ;
+          $items[$_key]['image'] = $item->product ? (count($item->product->image_list) > 0 ? $item->product->image_list[0] : null) : null;
+        }
+        $orders[$key]['items'] = $items;
+      }
+      return response()->json([
+        'status' => true,
+        'orders' =>  $orders
+      ]);
+    }
+
+    public function revokeOrder(Request $request)
+    {
+      $data = $request->only('revoke_reason');
+      $data['status'] = 'Revoked';
+      $data['revoked_at'] = now();
+      Order::where('id', $request->order_id)->update($data);
+      return response()->json([
+        'status' => true,
+        'message' => 'Order revoked successfully.',
+      ]);
+    }
+
+
 }

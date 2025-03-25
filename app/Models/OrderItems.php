@@ -10,4 +10,9 @@ class OrderItems extends Model
                            'category_id','requirement_id' ,'subcategory_id','title', 'subtitle',
                            'description','key_features' ,'disclaimer','width', 'warp','weft',
                            'count','reed' ,'pick','category','subcategory'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
