@@ -83,8 +83,23 @@
                                     </div>
 
                                     <div class="bottom">
-                                        <button class="revoke_order">Revoke Order</button>
+                                     
+                                    @if($value['status']=='Pending' || $value['status']=='Dispatched')
+                                        <button class="revoke_order" id="{{$value['id']}}">Revoke Order</button>
                                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y',strtotime($value->created_at))}}</span> </button>
+                                    @elseif($value['status']=='Delivered')
+                                        <button class="return_order" id="{{$value['id']}}">Return Order</button> 
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y',strtotime($value->created_at))}}</span> </button>  
+                                    @elseif($value['status']=='Cancelled') 
+                                        <button>Cancelled</button>
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y',strtotime($value->created_at))}}</span> </button>
+                                    @elseif($value['status']=='Returned') 
+                                        <button>Returned</button>
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Returned on :</span><span style="color:#78239B;">{{date('M d, Y',strtotime($value->created_at))}}</span> </button>
+                                    @elseif($value['status']=='Revoked') 
+                                        <button>Revoked</button>
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Revoked on:</span><span style="color:#78239B;">{{date('M d, Y',strtotime($value->created_at))}}</span> </button>
+                                    @endif
                                     </div>
 
 
@@ -171,6 +186,31 @@
     $('.revoke_order').click(function () {
         $('#order_id').val($(this).attr('id'));
         $('#exampleModalRevokeOrder').modal('show');
+    });
+
+
+    $('.return_order').click(function () {
+        var order_id = $(this).attr('id');
+        if (confirm("Are you sure want to return this order?") == true) {  
+        $.easyAjax({
+            url: "{{ route('product.returnorder') }}",
+            //container: '#revoke_order_form',
+            //type: "POST",
+            //redirect: true,
+            data: {'order_id':order_id},//$('#revoke_order_form').serialize(),
+            success: function(response) {
+            if (response.status) {
+                
+                swal("Sent!", response.message, "success");
+                setInterval(function () {
+                    window.location.assign('{{ route("product.orders");}} ');
+                }, 3000);
+            }
+            }                    
+        })
+      }else{
+        return false;
+      }
     });
 
 </script>

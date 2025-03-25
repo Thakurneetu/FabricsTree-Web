@@ -51,11 +51,33 @@ class ProductOrderController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function revokeorder()
+    public function revokeorder(Request $request)
     {
+        $data['revoke_reason'] =  $request->revoke_reason;
+        $data['status'] = 'Revoked';
+        $data['revoked_at'] = now();
+        Order::where('id', $request->order_id)->update($data);
         return response()->json([
         'status' => true,
         'message' => 'Order revoked successfully.',
+        ]);
+    }
+
+
+    /**
+     * Show the application product.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function returnorder(Request $request)
+    {
+        //$data['return_reason'] =  $request->return_reason;
+        $data['status'] = 'Returned';
+        //$data['returned_at'] = now();
+        Order::where('id', $request->order_id)->update($data);
+        return response()->json([
+        'status' => true,
+        'message' => 'Order returned successfully.',
         ]);
     }
     
