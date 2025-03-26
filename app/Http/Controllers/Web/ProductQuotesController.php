@@ -13,6 +13,8 @@ use File;
 use App\Models\Order;
 use App\Models\OrderItems;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+
 class ProductQuotesController extends Controller
 {
     /**
@@ -22,6 +24,12 @@ class ProductQuotesController extends Controller
      */
     public function index()
     {
+        // echo "<li>". $appTimezone = date_default_timezone_get();
+        // echo "<li>".  $now = Carbon::now();
+        // echo "<li>".  $appTimezone = $now->timezone;
+        // die;
+
+
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
@@ -40,14 +48,14 @@ class ProductQuotesController extends Controller
                     $enquiry[$key]['enquery_type'] = $val->enquery_type;
                     $enquiry[$key]['status'] = $val->status;
                     $enquiry[$key]['qutation'] = $val->qutation;
-                    $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                    $enquiry[$key]['created_at'] = date('d M, Y h:i A',strtotime($val->created_at));
                     
                     $enquiry_items_data[0]['enquiry_item_id'] = 0;
                     $enquiry_items_data[0]['product_id'] = 0;
                     $enquiry_items_data[0]['enquery_id'] = 0;
                     $enquiry_items_data[0]['quantity'] = '';
                     $enquiry_items_data[0]['color_code'] = '';
-                    $enquiry_items_data[0]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                    $enquiry_items_data[0]['created_at'] = date('d M, Y h:i A',strtotime($val->created_at));
                     $enquiry_items_data[0]['title'] = 'Custom Product';
                     $enquiry_items_data[0]['subtitle'] = '';
                     $enquiry_items_data[0]['description'] = '';
@@ -73,7 +81,7 @@ class ProductQuotesController extends Controller
                 $enquiry[$key]['enquery_type'] = $val->enquery_type;
                 $enquiry[$key]['status'] = $val->status;
                 $enquiry[$key]['qutation'] = $val->qutation;
-                $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                $enquiry[$key]['created_at'] = date('d M, Y h:i A',strtotime($val->created_at));
                 $enquiry_items = EnquiryItems::where('enquery_id',$val->id)->get();
                 foreach ($enquiry_items as $k => $v) {
                         $enquiry_items_data[$k]['enquiry_item_id'] = $v->id;
@@ -89,6 +97,8 @@ class ProductQuotesController extends Controller
                         $enquiry_items_data[$k]['disclaimer'] = $v->disclaimer;
                         $enquiry_items_data[$k]['category_id'] = $v->category_id;
                         $enquiry_items_data[$k]['subcategory_id'] = $v->subcategory_id;
+                        $enquiry_items_data[$k]['category_name'] = $v->category->name;
+                        $enquiry_items_data[$k]['subcategory_name'] = $v->subcategory->name;
                         $enquiry_items_data[$k]['requirement_id'] = $v->requirement_id;
                         $enquiry_items_data[$k]['width'] = $v->width;
                         $enquiry_items_data[$k]['warp'] = $v->warp;
@@ -118,14 +128,14 @@ class ProductQuotesController extends Controller
                         $enquiry[$key]['enquery_type'] = $val->enquery_type;
                         $enquiry[$key]['status'] = $val->status;
                         $enquiry[$key]['qutation'] = $val->qutation;
-                        $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                        $enquiry[$key]['created_at'] = date('d M, Y h:i A',strtotime($val->created_at));
                         
                         $enquiry_items_data[0]['enquiry_item_id'] = 0;
                         $enquiry_items_data[0]['product_id'] = 0;
                         $enquiry_items_data[0]['enquery_id'] = 0;
                         $enquiry_items_data[0]['quantity'] = '';
                         $enquiry_items_data[0]['color_code'] = '';
-                        $enquiry_items_data[0]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                        $enquiry_items_data[0]['created_at'] = date('d M, Y h:i A',strtotime($val->created_at));
                         $enquiry_items_data[0]['title'] = 'Custom Product';
                         $enquiry_items_data[0]['subtitle'] = '';
                         $enquiry_items_data[0]['description'] = '';
@@ -151,7 +161,7 @@ class ProductQuotesController extends Controller
                     $enquiry[$key]['enquery_type'] = $val->enquery_type;
                     $enquiry[$key]['status'] = $val->status;
                     $enquiry[$key]['qutation'] = $val->qutation;
-                    $enquiry[$key]['created_at'] = date('d M, Y H:i A',strtotime($val->created_at));
+                    $enquiry[$key]['created_at'] = date('d M, Y h:i A',strtotime($val->created_at));
                     $enquiry_items = EnquiryItems::where('enquery_id',$val->id)->get();
                     foreach ($enquiry_items as $k => $v) {
                             $enquiry_items_data[$k]['enquiry_item_id'] = $v->id;
@@ -167,6 +177,8 @@ class ProductQuotesController extends Controller
                             $enquiry_items_data[$k]['disclaimer'] = $v->disclaimer;
                             $enquiry_items_data[$k]['category_id'] = $v->category_id;
                             $enquiry_items_data[$k]['subcategory_id'] = $v->subcategory_id;
+                            $enquiry_items_data[$k]['category_name'] = $v->category->name;
+                            $enquiry_items_data[$k]['subcategory_name'] = $v->subcategory->name;
                             $enquiry_items_data[$k]['requirement_id'] = $v->requirement_id;
                             $enquiry_items_data[$k]['width'] = $v->width;
                             $enquiry_items_data[$k]['warp'] = $v->warp;
@@ -224,6 +236,8 @@ class ProductQuotesController extends Controller
                 $enquiry_items_data[$k]['disclaimer'] = $v->disclaimer;
                 $enquiry_items_data[$k]['category_id'] = $v->category_id;
                 $enquiry_items_data[$k]['subcategory_id'] = $v->subcategory_id;
+                $enquiry_items_data[$k]['category_name'] = $v->category->name;
+                $enquiry_items_data[$k]['subcategory_name'] = $v->subcategory->name;
                 $enquiry_items_data[$k]['requirement_id'] = $v->requirement_id;
                 $enquiry_items_data[$k]['width'] = $v->width;
                 $enquiry_items_data[$k]['warp'] = $v->warp;

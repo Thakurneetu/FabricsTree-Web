@@ -75,15 +75,23 @@
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         //$data['customer'] = $customer;
-       // dd($customer);
+       //dd($customer);
     ?>
     <div class="d-flex justify-content-center gap-2" id="searchmob">
     <!-- <i class="fa fa-shopping-bag fa-lg "></i> -->
     @if($customer)
-        @if(count($customer->carts)>0)
-        <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="{{count($customer->carts)}}">&#xf290;</i></a>
+        @if($customer->user_type=='Customer')
+            @if(count($customer->carts)>0)
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="{{count($customer->carts)}}">&#xf290;</i></a>
+            @else
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="0">&#xf290;</i></a>
+            @endif
         @else
-        <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="0">&#xf290;</i></a>
+            @if(count($customer->manufacturerProduct)>0)
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="{{count($customer->manufacturerProduct)}}">&#xf290;</i></a>
+            @else
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="0">&#xf290;</i></a>
+            @endif
         @endif
     @endif
 

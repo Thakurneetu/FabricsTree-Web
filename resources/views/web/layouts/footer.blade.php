@@ -283,9 +283,7 @@
             <div class="text-center verify">
                 <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Reset Password</h1>
 
-                <h6 class="mb-4" style="color: #83848A; width: 18rem;">Passwords are case sensitive and must
-                    be at least 6
-                    characters long
+                <h6 class="mb-4" style="color: #83848A; width: 18rem;">Passwords are must be at least 8 characters long
                 </h6>
             </div>
         </div>
@@ -350,11 +348,7 @@
         <!-- action="{{ route('customer.register') }}" -->
         <form method="POST" id="registerform" name="registerform" enctype='multipart/form-data'>
         @csrf  
-        @session('success')
-            <div class="alert alert-success" role="alert"> 
-              {{ $value }}
-            </div>
-        @endsession
+        
         <div class="row">
             <div class="col-md-12 col-sm-12">
             <div class="mb-3">
@@ -1176,16 +1170,16 @@ if (window.matchMedia("(min-width:576px)").matches) {
 }
 
 </script>
-@if(!$customer)
+<!-- @if(!$customer)
 @session('success')
 <script type="text/javascript">
   $( document ).ready(function() {
       console.log( "ready-3" );
-    $('#exampleModalregistation').modal('show');
+    //$('#exampleModalregistation').modal('show');
   });
 </script>      
 @endsession
-@endif
+@endif -->
 
 @session('error')
 <script type="text/javascript">

@@ -74,8 +74,8 @@
                             <tbody>
                             <tr>
                                 <td>Custom</td>
-                                <td>{{$enquiry->category_id}}</td>
-                                <td>{{$enquiry->subcategory_id}}</td>
+                                <td>{{$enquiry->category->name}}</td>
+                                <td>{{$enquiry->subcategory->name}}</td>
                                 <td>{{$enquiry->width}}</td>
                                 <td>{{$enquiry->warp}}</td>
                                 <td>{{$enquiry->weft}}</td>
@@ -85,7 +85,7 @@
                             </tr>
                             </tbody>
                             </table>
-                            <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$customer->enquiry[0]->created_at))}}</span></button> 
+                            <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$customer->enquiry[0]->created_at))}}</span></button> 
                                         </div>
                     </div>
                 @else
@@ -121,8 +121,8 @@
                                 @foreach($enquiry_items as $key=>$val)
                                 <tr>
                                     <td>{{$val['title']}}</td>
-                                    <td>{{$val['category_id'] }}</td>
-                                    <td>{{$val['subcategory_id']}}</td>
+                                    <td>{{$val['category_name'] }}</td>
+                                    <td>{{$val['subcategory_name']}}</td>
                                     <td>{{$val['width']}}</td>
                                     <td>{{$val['warp']}}</td>
                                     <td>{{$val['weft']}}</td>
@@ -142,9 +142,9 @@
                                     @else
                                         <button class="upload_quote" id="{{@$enquiry_items[0]['enquery_id']}}" style="width:150px;">Upload Quote</button>
                                     @endif    
-                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
                                 @else
-                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y H:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
                                        
                                 @endif
                             @endif

@@ -48,6 +48,16 @@
 } 
  
   </style>
+  @session('success')
+      <div class="alert alert-success msg" style="text-align: center;" role="alert"> 
+        {{ $value }}
+      </div>
+  @endsession
+  <script>
+    setInterval(function () {
+        $('.msg').hide();
+    }, 4000);
+  </script>
   <div class="row slidermain">
   <div class="col-md-12 col-sm-12 mb-3 mb-sm-0">
       <div id="carouselExampleDark" class="carousel carousel-dark slide">
