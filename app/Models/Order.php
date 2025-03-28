@@ -17,4 +17,8 @@ class Order extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+    public function manufacturer()
+    {
+        return $this->belongsTo(Customer::class, 'manufacturer_id');
+    }
 }

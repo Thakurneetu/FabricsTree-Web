@@ -22,6 +22,44 @@
   </tr>
 </table>
 
+@if($order->manufacturer()->exists())
+<h5>Manufacturer Details</h5>
+<table class="table table-borderless table-responsive-md">
+  <colgroup>
+    <col style="width: 30%;">
+    <col style="width: 70%;">
+  </colgroup>
+  <tr>
+    <th>Name:</th>
+    <td>{{$order->manufacturer->name}}</td>
+  </tr>
+  <tr>
+    <th>Phone:</th>
+    <td>{{$order->manufacturer->phone}}</td>
+  </tr>
+  <tr>
+    <th>Email:</th>
+    <td>{{$order->manufacturer->email}}</td>
+  </tr>
+  <tr>
+    <th>Address:</th>
+    <td>{{$order->manufacturer->address.', '.$order->manufacturer->pincode}}</td>
+  </tr>
+  <tr>
+    <th>Store Name:</th>
+    <td>{{$order->manufacturer->firm_name??'N/A'}}</td>
+  </tr>
+  <tr>
+    <th>GST Number:</th>
+    <td>{{$order->manufacturer->gst_number??'N/A'}}</td>
+  </tr>
+  <tr>
+    <th>Store Contact:</th>
+    <td>{{$order->manufacturer->store_contact??'N/A'}}</td>
+  </tr>
+</table>
+@endif
+
 <h5>Order Details</h5>
 <table class="table table-borderless table-responsive-md">
   <colgroup>
@@ -58,8 +96,7 @@
         <option value="Pending" {{$order->status == 'Pending' ? 'selected' : ''}}>Pending</option>
         <option value="Dispatched" {{$order->status == 'Dispatched' ? 'selected' : ''}}>Dispatched</option>
         <option value="Delivered" {{$order->status == 'Delivered' ? 'selected' : ''}}>Delivered</option>
-        <option value="Cancelled" {{$order->status == 'Cancelled' ? 'selected' : ''}}>Cancelled</option>
-        <option value="Sent For Return" {{$order->status == 'Sent For Return' ? 'selected' : ''}}>Sent For Return</option>
+        <option value="Cancelled" {{$order->status == 'Revoked' ? 'selected' : ''}}>Revoked</option>
         <option value="Returned" {{$order->status == 'Returned' ? 'selected' : ''}}>Returned</option>
       </select>
       </div>
