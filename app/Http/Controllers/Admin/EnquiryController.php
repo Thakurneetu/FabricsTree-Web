@@ -19,7 +19,7 @@ class EnquiryController extends Controller
      */
     public function index(EnquiryDataTable $dataTable)
     {
-      return $dataTable->render('admin.enquiry.index');
+      return $dataTable->with('type', 'selected')->render('admin.enquiry.index');
     }
 
     /**

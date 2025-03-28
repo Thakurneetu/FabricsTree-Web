@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CustomEnquiryController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -102,6 +103,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
       'contact-us' => ContactUsController::class,
       'testimonial' => TestimonialController::class,
       'enquiry' => EnquiryController::class,
+      'custom-enquiry' => CustomEnquiryController::class,
       'order' => OrderController::class,
     ]);
     Route::get('manufacturer-product/{id}', [ManufacturerController::class, 'product'])->name('manufacturer-product.show');

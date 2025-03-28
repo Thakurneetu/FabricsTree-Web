@@ -134,7 +134,7 @@ class OrderController extends Controller
 
     public function quotes(Request $request)
     {
-      $query = Enquiry::where('customer_id', $request->user()->id);
+      $query = Enquiry::where('enquery_type', 'selected')->where('customer_id', $request->user()->id);
       if($request->status == 2){
         $query->whereIn('status', ['submitted']);
       }else if($request->status == 3){

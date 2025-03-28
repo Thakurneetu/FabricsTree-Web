@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class EnquiryDataTable extends DataTable
+class CustomEnquiryDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,7 +22,7 @@ class EnquiryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', 'admin.enquiry.action')
+        ->addColumn('action', 'admin.custom_enquiry.action')
         ->editColumn('enquery_type', function ($data) {
           if($data->enquery_type == 'custom')
           {
@@ -34,17 +34,11 @@ class EnquiryDataTable extends DataTable
           }
         })
         ->editColumn('status', function ($data) {
-          if($data->status == 'invoked') {
-            return '<span class="badge text-bg-danger text-white">Invoked</span>';
-          }
-          else if($data->status == 'invoiced') {
-            return '<span class="badge text-bg-primary text-white">Qutation Sent</span>';
-          }
-          else if($data->status == 'accepted') {
-            return '<span class="badge text-bg-primary text-white">'.ucfirst($data->status).'</span>';
+          if($data->status == 'submitted') {
+            return '<span class="badge text-bg-danger text-white">Pending</span>';
           }
           else{
-            return '<span class="badge text-bg-warning text-white">'.ucfirst($data->status).'</span>';
+            return '<span class="badge text-bg-success text-white">Reviewed</span>';
           }
         })
         ->rawColumns(['action','enquery_type','status'])
