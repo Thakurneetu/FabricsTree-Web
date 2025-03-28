@@ -188,6 +188,8 @@ class OrderController extends Controller
       $order_data['status'] = 'Pending';
       $order_data['enquiry_id'] = $enquiry->id;
       $order_data['qutation'] = $enquiry->qutation;
+      $order_data['qutation'] = $enquiry->qutation;
+      $order_data['manufacturer_id'] = $enquiry->manufacturer_id;
       $order = Order::create($order_data);
       $item['order_id'] = $order->id;
       $item['customer_id'] = $request->user()->id;

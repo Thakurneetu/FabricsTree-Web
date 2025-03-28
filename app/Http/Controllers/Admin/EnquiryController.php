@@ -73,6 +73,11 @@ class EnquiryController extends Controller
         }else if($request->has('manufacturur_assign') AND $request->manufacturur_assign == 1){
           ManufacturerEnquiry::where('enquery_id', $enquiry->id)->delete();
         }
+        if($request->has('manufacturer_id')){
+          $data['manufacturer_id'] = $request->manufacturer_id;
+          $enquiry->update($data);
+          Alert::toast('Qutation Selected For This Enquiry Successfully','success');
+        }
         DB::commit();
         return redirect(route('admin.enquiry.index'));
       }catch (\Throwable $th) {

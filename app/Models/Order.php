@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = ['customer_id' ,'invoice_no', 'status','qutation','enquiry_id','track_link',
-                            'revoke_reason', 'revoked_at'];
+                            'revoke_reason', 'revoked_at','manufacturer_id'];
 
     public function items()
     {
