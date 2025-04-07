@@ -23,7 +23,12 @@ class ProductOrderController extends Controller
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
-        $data['orders'] = Order::where('customer_id',$id)->get();
+        if($customer->user_type=='Customer'){
+            $data['orders'] = Order::where('customer_id',$id)->get();
+        }else if($customer->user_type=='Manufacturer'){
+            $data['orders'] = Order::where('manufacturer_id',$id)->get();
+        }
+        
         //dd($data['orders']);
         return view('product.orders',$data);
     }
@@ -40,7 +45,11 @@ class ProductOrderController extends Controller
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
-        $data['order_items'] = OrderItems::where(['customer_id'=>$id,'order_id'=>$order_id])->get();
+        if($customer->user_type=='Customer'){
+            $data['order_items'] = OrderItems::where(['customer_id'=>$id,'order_id'=>$order_id])->get();
+        }else if($customer->user_type=='Manufacturer'){
+            $data['order_items'] = OrderItems::where(['order_id'=>$order_id])->get();
+        }
         //dd($data['order_items']);
         return view('product.orderitems',$data);
     }

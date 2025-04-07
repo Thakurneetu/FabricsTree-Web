@@ -11,7 +11,7 @@
             <div class="headparagraphbg">
 
                 <div class="row headparagraph">
-                <h5>Customer Details</h5>
+                <h5>{{$customer->user_type}} Details</h5>
                     <table class="table table-borderless table-responsive-md">
                         <colgroup>
                             <col style="width: 30%;">

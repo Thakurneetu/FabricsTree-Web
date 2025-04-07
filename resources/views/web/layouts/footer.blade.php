@@ -621,21 +621,21 @@
                     <div class="p-4">
                         <div class="form-check mt-3">
                             <input type="hidden" name="enquiry_id" id="enquiry_id" value=""/>
-                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault11" value="reason one">
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault11" value="Incorrect Quality Requested">
                             <label class="form-check-label" for="flexRadioDefault11">
-                                Default radio
+                                Incorrect Quality Requested
                             </label>
                         </div>
                         <div class="form-check mt-3">
                             <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault22"
-                                checked value="reason two">
+                                checked value="Fabric is no Longer Required">
                             <label class="form-check-label" for="flexRadioDefault22">
-                                Default checked radio
+                                Fabric is no Longer Required
                             </label>
                         </div>
                         <div class="form-check mt-3">
                             <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault33"
-                                checked value="other">
+                                checked value="Others">
                             <label class="form-check-label" for="flexRadioDefault33">
                                 Others
                             </label>
@@ -694,21 +694,21 @@
                     <div class="p-4">
                         <div class="form-check mt-3">
                             <input type="hidden" name="order_id" id="order_id" value=""/>
-                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault11" value="reason one">
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault11" value="Incorrect Quality Requested">
                             <label class="form-check-label" for="flexRadioDefault11">
-                                Default radio
+                            Incorrect Quality Requested
                             </label>
                         </div>
                         <div class="form-check mt-3">
                             <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault22"
-                                checked value="reason two">
+                                checked value="Fabric is no Longer Required">
                             <label class="form-check-label" for="flexRadioDefault22">
-                                Default checked radio
+                            Fabric is no Longer Required
                             </label>
                         </div>
                         <div class="form-check mt-3">
                             <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault33"
-                                checked value="other">
+                                checked value="Others">
                             <label class="form-check-label" for="flexRadioDefault33">
                                 Others
                             </label>

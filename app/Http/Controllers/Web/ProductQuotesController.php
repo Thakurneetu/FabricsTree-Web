@@ -43,6 +43,7 @@ class ProductQuotesController extends Controller
             /// dd($enquiry->id);
             if($val->enquery_type == 'custom')
             {
+                continue;
                     $enquiry[$key]['enquiry_id'] = $val->id;
                     $enquiry[$key]['customer_id'] = $val->customer_id;
                     $enquiry[$key]['enquery_type'] = $val->enquery_type;
@@ -304,6 +305,7 @@ class ProductQuotesController extends Controller
       $order_data['status'] = 'Pending';
       $order_data['enquiry_id'] = $enquiry->id;
       $order_data['qutation'] = $enquiry->qutation;
+      $order_data['manufacturer_id'] = $enquiry->manufacturer_id;
       $order = Order::create($order_data);
       $item['order_id'] = $order->id;
       $item['customer_id'] = $request->user()->id;

@@ -85,7 +85,9 @@
                                     <div class="bottom">
                                      
                                     @if($value['status']=='Pending' || $value['status']=='Dispatched')
+                                        @if($customer->user_type=='Customer')
                                         <button class="revoke_order" id="{{$value['id']}}">Revoke Order</button>
+                                        @endif
                                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>
                                     @elseif($value['status']=='Delivered')
                                         <button class="return_order" id="{{$value['id']}}">Return Order</button> 
