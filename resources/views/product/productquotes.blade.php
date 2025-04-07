@@ -110,7 +110,6 @@
                                         @else
                                         <button class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
                                         @endif -->
-
                                         @if($value['status']=='submitted')
                                         <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
                                         @endif
