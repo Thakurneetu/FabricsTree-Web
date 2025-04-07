@@ -12,6 +12,9 @@ use App\Models\OrderItems;
 use App\Http\Requests\API\AddCartRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Mail\NewOrder;
+use App\Mail\NewCustomerEnquiry;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -113,9 +116,14 @@ class OrderController extends Controller
           EnquiryItems::create($item);
           Cart::find($cart->id)->delete();
         }
+        $data['enquiry'] = $enquiry;
+        $data['user'] = $request->user();
+        $data['items'] = $enquiry->items;
+        // $mail = Mail::to(env('ADMIN_MAIL'))->send(new NewCustomerEnquiry($data));
         return response()->json([
           'status' => true,
           'message' => 'Request submitted successfully.',
+          'mail'=>$mail
         ]);
       }
     }
@@ -226,6 +234,10 @@ class OrderController extends Controller
           $item['reed'] = $item_data->category_id;
           OrderItems::create($item);
         }
+        $data['enquiry'] = $order;
+        $data['user'] = $request->user();
+        $data['items'] = $order->items;
+        // $mail = Mail::to(env('ADMIN_MAIL'))->send(new NewOrder($data));
       }
       $enquiry->update(['status' => 'accepted']);
       return response()->json([
