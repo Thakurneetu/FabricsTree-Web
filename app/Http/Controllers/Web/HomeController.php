@@ -28,6 +28,18 @@ class HomeController extends Controller
         $customer = Customer::find($id);
         $data['customer'] = $customer;
 
+        $carts = [];
+        if($customer->user_type=='Customer'){
+            foreach ($customer->carts as $key => $cart) {
+                $carts[$key] = $cart->product->id;
+            }
+        }else{
+            foreach ($customer->manufacturerProduct as $key => $manufacturer_product) {
+                $carts[$key] = $manufacturer_product->product->id;
+            }
+        }
+        $data['carts'] = $carts;
+        
         return view('index',$data);
     }
 

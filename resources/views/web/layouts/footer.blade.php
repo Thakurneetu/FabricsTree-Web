@@ -995,14 +995,24 @@
         data: {'product_id':product_id,'quantity':quantity,'color_code':color_code},
         success: function(response) {
           if (response.status) {
+            var items_count =  $('#items_count').attr('value');
+            //alert(items_count);
             if(msg=='minus'){
+              var itemQty = parseInt(items_count)  - parseInt(quantity);
               swal("Sent!", 'Product removed successfully.', "success");
             }else{
+              var itemQty = parseInt(items_count) + parseInt(quantity);
               swal("Sent!", response.message, "success");
             }
 
             $('#'+'add_to_cart_'+product_id).hide();
             $('#'+'go_to_cart_'+product_id).show();
+
+            $('.add_to_cart_'+product_id).hide();
+            $('.go_to_cart_'+product_id).show();
+
+            
+            $('#items_count').attr('value',itemQty);
            
           }else{
             swal("Error!", response.message, "error");
@@ -1025,7 +1035,7 @@
             swal("Sent!", response.message, "success");
             setInterval(function () {
               window.location.reload();
-            }, 4000);
+            }, 1000);
           }
         }                    
       })

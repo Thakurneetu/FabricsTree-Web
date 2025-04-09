@@ -94,6 +94,12 @@ class ProductController extends Controller
         $html = '<div class="card-group">';
         $i=1;
         foreach($products as $products_val){
+            if($customer->user_type=='Customer') 
+            {
+                $items = Cart::where('customer_id',$id)->where('product_id',$products_val->id)->get();
+            }else{
+                $items = ManufacturerProduct::where('customer_id',$id)->where('product_id',$products_val->id)->get();
+            }
         $html .= '<div class="card m-3">';
             if(isset($products_val) && count($products_val->images) > 0){
             $html .= '<a href="'.route('product.productdetail').'/'.$products_val->id.'"><img class="card-img-top" src="'.asset($products_val->images[0]->path).'" alt="Card image cap"></a>';
@@ -107,6 +113,7 @@ class ProductController extends Controller
             //     <i class="fa fa-star"></i>
             //     <i class="far fa-star"></i>
             // </div>';
+        if(count($items)==0){
             $html .= '<button class="btn-outline-success add_to_cart maincolor KnowMore" productid="'.$products_val->id.'" id="add_to_cart_'.$products_val->id.'" type="submit">';
             if($customer) 
             {
@@ -123,9 +130,9 @@ class ProductController extends Controller
             {
                 $html .= 'Add to Cart';
             }
-            $html .= '</button>
-            ';
-            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display: none;margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
+            $html .= '</button>';
+
+            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display:none;margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
             if($customer) 
             {
                 if($customer->user_type=='Customer') 
@@ -142,7 +149,30 @@ class ProductController extends Controller
                 $html .= 'Go to Cart';
             } 
             
-            $html .= '</button></a></div>';
+            $html .= '</button></a>';
+
+        }else{
+
+            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
+            if($customer) 
+            {
+                if($customer->user_type=='Customer') 
+                {
+                    $html .= 'Go to Cart';
+                }  
+                else 
+                {
+                    $html .= 'Go to My Product';
+                }
+            }
+            else
+            {
+                $html .= 'Go to Cart';
+            } 
+            
+            $html .= '</button></a>';
+        }
+            $html .= '</div>';
             $html .= '</div>';
             if($i==4){
                 $html .= '</div><div class="card-group" >';
@@ -164,9 +194,24 @@ class ProductController extends Controller
     {
         $data['products_data'] = Product::find($id);
         $data['products'] = Product::select("*")->inRandomOrder()->get();
-        $id = Auth::guard('customer')->id();
-        $customer = Customer::find($id);
+        $customer_id = Auth::guard('customer')->id();
+        $data['cart_item'] = Cart::where('customer_id',$customer_id)->where('product_id',$id)->get();
+        $customer = Customer::find($customer_id);
         $data['customer'] = $customer;
+
+       // print_r(count($data['customer']->carts));
+        $carts = [];
+        if($customer->user_type=='Customer'){
+            foreach ($customer->carts as $key => $cart) {
+                $carts[$key] = $cart->product->id;
+            }
+        }else{
+            foreach ($customer->manufacturerProduct as $key => $manufacturer_product) {
+                $carts[$key] = $manufacturer_product->product->id;
+            }
+        }
+        $data['carts'] = $carts;
+        //echo "<pre>";print_r($carts);
         return view('product.productdetail',$data);
     }
 

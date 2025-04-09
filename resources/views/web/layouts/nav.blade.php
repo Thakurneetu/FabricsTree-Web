@@ -82,15 +82,15 @@
     @if($customer)
         @if($customer->user_type=='Customer')
             @if(count($customer->carts)>0)
-            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="{{count($customer->carts)}}">&#xf290;</i></a>
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" id="items_count" value="{{count($customer->carts)}}">&#xf290;</i></a>
             @else
-            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="0">&#xf290;</i></a>
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" id="items_count" value="0">&#xf290;</i></a>
             @endif
         @else
             @if(count($customer->manufacturerProduct)>0)
-            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="{{count($customer->manufacturerProduct)}}">&#xf290;</i></a>
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" id="items_count" value="{{count($customer->manufacturerProduct)}}">&#xf290;</i></a>
             @else
-            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" value="0">&#xf290;</i></a>
+            <a href="{{ route('product.productcart') }}" ><i class="fa badge fa-lg" style="color:black" id="items_count" value="0">&#xf290;</i></a>
             @endif
         @endif
     @endif

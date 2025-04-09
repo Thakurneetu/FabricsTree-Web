@@ -63,11 +63,20 @@
                 <button type="button" id="plus" class="badge badge-light ddd" style="background: #EEF1F6;"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
             </div>
             @endif
-
+            @if(!in_array($products_data->id, $carts))
             <div class="buttonsection2">
                 <input type="hidden" id="productid" value="{{$products_data->id}}"/>
-                <button class="add_to_cart" productid="{{$products_data->id}}" style="width:155px">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
+                <button class="add_to_cart add_to_cart_{{$products_data->id}}" productid="{{$products_data->id}}" style="width:155px">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
+
+                <a href="{{ route('product.productcart') }}" >
+                <button class="go_to_cart_{{$products_data->id}}" style="display:none;width:155px">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
             </div>
+            @else
+            <div class="buttonsection2">
+                <a href="{{ route('product.productcart') }}" >
+                <button style="width:155px">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
+            </div>    
+            @endif
 
             <hr>
             <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
@@ -121,6 +130,11 @@
                 <p class="Greigefabric_gal">Related Product</p>
                 <div class="card-group">
                 @foreach($products as $products_val)
+                    <?php
+                    
+                   // $cart_item = Cart::where('customer_id',$customer->id)->where('product_id',$products_val->id)->get();
+                    ?>
+                    
                     @if( $loop->first or $loop->iteration  <= 4 )
                     <div class="card m-2">
                         @if(isset($products_val) && count($products_val->images) > 0)
@@ -136,9 +150,13 @@
                                 <i class="far fa-star"></i>
                             </div> -->
                             <!-- maincolor -->
-                            <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" style="margin: 0px 10px;" type="submit">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
+                            @if(!in_array($products_val->id, $carts))
+                            <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" style="margin: 0px 20px;" type="submit">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
 
-                            <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 10px;" productid="{{$products_val->id}}" type="submit">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
+                            <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="display: none;margin: 0px 20px;" productid="{{$products_val->id}}" type="submit">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
+                            @else
+                            <a href="{{ route('product.productcart') }}" ><button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="width:150px;margin: 0px 20px;" productid="{{$products_val->id}}" type="submit">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
+                            @endif
                         </div>
                     </div>
                     @endif
