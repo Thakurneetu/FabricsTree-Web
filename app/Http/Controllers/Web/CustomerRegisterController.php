@@ -15,6 +15,7 @@ use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use File;
+use Illuminate\Validation\Rule;
 class CustomerRegisterController extends Controller
 {
     /*
@@ -39,8 +40,24 @@ class CustomerRegisterController extends Controller
         return Validator::make($data, [
           'name' => 'required|min:2|max:50|string|max:255',
           //'email' => 'required|email|string|max:255|regex:/^([a-z0-9+-]+)(.[a-z0-9+-]+)*@([a-z0-9-]+.)+[a-z]{2,6}$/ix|unique:customers',
-          'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
-          'phone' => 'required|min:10|max:10|unique:customers',
+          
+          //'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
+          //'phone' => 'required|min:10|max:10|unique:customers',
+          'email' => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix',
+            Rule::unique('customers')->whereNull('deleted_at'),
+          ],
+          'phone' => [
+            'required',
+            'string',
+            'min:10',
+            'max:10',
+            Rule::unique('customers')->whereNull('deleted_at'),
+          ],
           'address' => 'required',
           'pincode' => 'required|integer',
           'password' => 'required|min:8',
@@ -73,8 +90,24 @@ class CustomerRegisterController extends Controller
           'manufacturer_name' => 'required|min:2|max:50|string|max:255',
           'store_name' => 'required|min:2|max:50|string|max:255',
           //'email' => 'required|email|string|max:255|regex:/^([a-z0-9+-]+)(.[a-z0-9+-]+)*@([a-z0-9-]+.)+[a-z]{2,6}$/ix|unique:customers',
-          'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
-          'phone' => 'required|min:10|max:10|unique:customers',
+          
+          //'email' => 'required|email|string|max:255|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix|unique:customers',
+          //'phone' => 'required|min:10|max:10|unique:customers',
+          'email' => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix',
+            Rule::unique('customers')->whereNull('deleted_at'),
+          ],
+          'phone' => [
+            'required',
+            'string',
+            'min:10',
+            'max:10',
+            Rule::unique('customers')->whereNull('deleted_at'),
+          ],
           'store_contact' => 'required|min:10|max:10|unique:customers',
           'store_address' => 'required',
           'gst_no' => 'required',

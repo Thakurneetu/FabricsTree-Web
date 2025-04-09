@@ -5,7 +5,7 @@ namespace App\Http\Requests\API\Manufacturer;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-
+use Illuminate\Validation\Rule;
 class RegisterRequest extends FormRequest
 {
     public function authorize()
@@ -17,8 +17,23 @@ class RegisterRequest extends FormRequest
     {
         return [
           'name' => 'required|string|max:255',
-          'email' => 'required|string|email|max:255|unique:customers',
-          'phone' => 'required|string||unique:customers',
+          //'email' => 'required|string|email|max:255|unique:customers',
+          //'phone' => 'required|string||unique:customers',
+          'email' => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ix',
+            Rule::unique('customers')->whereNull('deleted_at'),
+          ],
+          'phone' => [
+            'required',
+            'string',
+            'min:10',
+            'max:10',
+            Rule::unique('customers')->whereNull('deleted_at'),
+          ],
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
           'password' => 'required|string|confirmed',
