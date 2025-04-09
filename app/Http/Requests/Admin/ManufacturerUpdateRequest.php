@@ -19,7 +19,7 @@ class ManufacturerUpdateRequest extends FormRequest
         return [
           'name' => 'required|string|max:255',
           'email' => 'required|string|email|max:255|unique:customers,email,'.$this->manufacturer->id,
-          'phone' => 'required|string||unique:customers,phone,'.$this->manufacturer->id,
+          'phone' => 'required|string|min:10|max:10|unique:customers,phone,'.$this->manufacturer->id,
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
           'password' => 'nullable|string|min:8',
