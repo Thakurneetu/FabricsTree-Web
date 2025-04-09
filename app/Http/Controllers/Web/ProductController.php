@@ -94,11 +94,15 @@ class ProductController extends Controller
         $html = '<div class="card-group">';
         $i=1;
         foreach($products as $products_val){
-            if($customer->user_type=='Customer') 
-            {
-                $items = Cart::where('customer_id',$id)->where('product_id',$products_val->id)->get();
+            if(@$customer){
+                if($customer->user_type=='Customer') 
+                {
+                    $items = Cart::where('customer_id',$id)->where('product_id',$products_val->id)->get();
+                }else{
+                    $items = ManufacturerProduct::where('customer_id',$id)->where('product_id',$products_val->id)->get();
+                }
             }else{
-                $items = ManufacturerProduct::where('customer_id',$id)->where('product_id',$products_val->id)->get();
+                $items = [];
             }
         $html .= '<div class="card m-3">';
             if(isset($products_val) && count($products_val->images) > 0){
@@ -201,13 +205,15 @@ class ProductController extends Controller
 
        // print_r(count($data['customer']->carts));
         $carts = [];
-        if($customer->user_type=='Customer'){
-            foreach ($customer->carts as $key => $cart) {
-                $carts[$key] = $cart->product->id;
-            }
-        }else{
-            foreach ($customer->manufacturerProduct as $key => $manufacturer_product) {
-                $carts[$key] = $manufacturer_product->product->id;
+        if(@$customer){
+            if($customer->user_type=='Customer'){
+                foreach ($customer->carts as $key => $cart) {
+                    $carts[$key] = $cart->product->id;
+                }
+            }else{
+                foreach ($customer->manufacturerProduct as $key => $manufacturer_product) {
+                    $carts[$key] = $manufacturer_product->product->id;
+                }
             }
         }
         $data['carts'] = $carts;
