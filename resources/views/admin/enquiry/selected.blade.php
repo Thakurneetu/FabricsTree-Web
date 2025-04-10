@@ -33,7 +33,7 @@
       <td>{{$item->category->name??''}}</td>
       <td>{{$item->subcategory->name??''}}</td>
       <td>{{$item->width}}</td>
-      <td>{{$item->wrap}}</td>
+      <td>{{$item->warp}}</td>
       <td>{{$item->weft}}</td>
       <td>{{$item->count}}</td>
       <td>{{$item->reed}}</td>

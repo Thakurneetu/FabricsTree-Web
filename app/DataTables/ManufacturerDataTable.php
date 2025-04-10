@@ -46,7 +46,7 @@ class ManufacturerDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->responsive(true)
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -64,6 +64,7 @@ class ManufacturerDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')->title('')->visible(false),
             Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
             Column::make('name'),
             Column::make('email'),

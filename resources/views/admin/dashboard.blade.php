@@ -9,7 +9,7 @@
           <div class="card text-white bg-primary">
             <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">26</div>
+                <div class="fs-4 fw-semibold">{{$customers_count}}</div>
                 <div>Customers</div>
               </div>
             </div>
@@ -20,7 +20,7 @@
           <div class="card text-white bg-warning">
             <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">26</div>
+                <div class="fs-4 fw-semibold">{{$manufacturers_count}}</div>
                 <div>Manufacturers</div>
               </div>
             </div>
@@ -31,7 +31,7 @@
           <div class="card text-white bg-secondary">
             <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">26</div>
+                <div class="fs-4 fw-semibold">{{$products_count}}</div>
                 <div>Products</div>
               </div>
             </div>
@@ -42,7 +42,7 @@
           <div class="card text-white bg-success">
             <div class="card-body d-flex justify-content-between align-items-start">
               <div>
-                <div class="fs-4 fw-semibold">26</div>
+                <div class="fs-4 fw-semibold">{{$orders_count}}</div>
                 <div>Orders</div>
               </div>
             </div>
@@ -61,24 +61,22 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Contact</th>
+                    <th scope="col">Orders</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @forelse($topCustomers as $key => $user)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Customer One</td>
-                    <td>7645674568</td>
+                    <th scope="row">{{$key+1}}</th>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->phone}}</td>
+                    <td>{{$user->orders_count}}</td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Customer Two</td>
-                    <td>7645674568</td>
+                  @empty
+                  <tr colspan="3">
+                  <th colspan="3" class="text-center">No Data Found!</th>
                   </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Customer Three</td>
-                    <td>7645674568</td>
-                  </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
@@ -97,24 +95,22 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Contact</th>
+                    <th scope="col">Orders</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @forelse($topManufacturers as $key => $user)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Manufacturer One</td>
-                    <td>7645674568</td>
+                    <th scope="row">{{$key+1}}</th>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->phone}}</td>
+                    <td>{{$user->manufacturer_orders_count}}</td>
                   </tr>
+                  @empty
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Manufacturer Two</td>
-                    <td>7645674568</td>
+                    <th colspan="3" class="text-center">No Data Found!</th>
                   </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Manufacturer Three</td>
-                    <td>7645674568</td>
-                  </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
@@ -132,21 +128,21 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Product Name</th>
+                    <th scope="col">Sold</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @forelse($topProducts as $key => $product)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Product One</td>
+                    <th scope="row">{{$key+1}}</th>
+                    <td>{{$product->title}}</td>
+                    <td>{{$product->order_products_count}}</td>
                   </tr>
+                  @empty
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Product Two</td>
+                    <th colspan="2" class="text-center">No Data Found!</th>
                   </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Product Three</td>
-                  </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
@@ -164,21 +160,21 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Product Name</th>
+                    <th scope="col">Sold</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @forelse($topLeastProducts as $key => $product)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Product One</td>
+                    <th scope="row">{{$key+1}}</th>
+                    <td>{{$product->title}}</td>
+                    <td>{{$product->order_products_count}}</td>
                   </tr>
+                  @empty
                   <tr>
-                    <th scope="row">2</th>
-                    <td>Product Two</td>
+                    <th colspan="2" class="text-center">No Data Found!</th>
                   </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Product Three</td>
-                  </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>

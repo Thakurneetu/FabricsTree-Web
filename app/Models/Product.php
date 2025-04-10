@@ -36,4 +36,8 @@ class Product extends Model
   {
       return $this->images->pluck('path')->toArray();
   }
+  public function order_products()
+  {
+    return $this->hasMany(OrderItems::class);
+  }
 }

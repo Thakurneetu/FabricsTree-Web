@@ -117,7 +117,7 @@
     <!-- Description -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Description</label>
-      <textarea class="form-control summernote" name="description" rows="3" placeholder="Product Description" >{{@$product->description}}</textarea>
+      <textarea class="form-control summernote" name="description" rows="3" placeholder="Product Description" >{{old('description') ?? @$product->description}}</textarea>
       @error('description')
       <div class="text-danger">{{ $message }}</div>
       @enderror
@@ -125,7 +125,7 @@
     <!-- Key Features -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Key Features</label>
-      <textarea class="form-control summernote" name="key_features" rows="3" placeholder="Product Key Features" >{{@$product->key_features}}</textarea>
+      <textarea class="form-control summernote" name="key_features" rows="3" placeholder="Product Key Features" >{{old('key_features') ?? @$product->key_features}}</textarea>
       @error('key_features')
       <div class="text-danger">{{ $message }}</div>
       @enderror
@@ -133,7 +133,7 @@
     <!-- Disclaimer -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Product Disclaimer</label>
-      <textarea class="form-control summernote" name="disclaimer" rows="3" placeholder="Product Disclaimer" >{{@$product->disclaimer}}</textarea>
+      <textarea class="form-control summernote" name="disclaimer" rows="3" placeholder="Product Disclaimer" >{{old('disclaimer') ?? @$product->disclaimer}}</textarea>
       @error('disclaimer')
       <div class="text-danger">{{ $message }}</div>
       @enderror
