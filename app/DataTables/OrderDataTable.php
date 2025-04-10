@@ -55,7 +55,7 @@ class OrderDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->responsive(true)
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -73,7 +73,7 @@ class OrderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-          Column::make('id')->visible(false),
+          Column::make('id')->title('')->visible(false),
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
           Column::make('invoice_no')->title('Order ID'),
           Column::make('customer.name')->title('Customer Name')->sortable(false)->defaultContent(''),

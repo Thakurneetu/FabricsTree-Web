@@ -61,9 +61,11 @@ class ProductController extends Controller
           }
         }
         $color['product_id'] = $product->id;
-        foreach ($request->colors as $value) {
-          $color['code'] = $value;
-          ProductColors::updateOrCreate($color, $color);
+        if($request->has('colors')) {
+          foreach ($request->colors as $value) {
+            $color['code'] = $value;
+            ProductColors::updateOrCreate($color, $color);
+          }
         }
         DB::commit();
         Alert::toast('Product Added Successfully','success');
@@ -71,7 +73,7 @@ class ProductController extends Controller
       }catch (\Throwable $th) {
         DB::rollback();
         Alert::error($th->getMessage());
-        return redirect()->back();
+        return redirect()->back()->withInput();
       }
     }
 

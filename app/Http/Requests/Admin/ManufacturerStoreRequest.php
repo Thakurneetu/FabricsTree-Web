@@ -49,6 +49,9 @@ class ManufacturerStoreRequest extends FormRequest
     public function messages()
     {
         return [
+            'firm_name.required' => 'The store name field is required.',
+            'firm_name.string' => 'Only alphanumeric is allowed.',
+            'firm_name.max' => 'The store name length should be less than 200.',
             'store_logo.required' => 'The image is required.',
             'image.image' => 'The file must be an image.',
             'image.max' => 'The image size must be less than 2MB.',
