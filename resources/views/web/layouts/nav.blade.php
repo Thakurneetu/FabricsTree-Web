@@ -56,7 +56,7 @@
                 <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About Us</a>
+                <a class="nav-link active" aria-current="page" href="{{route('aboutus')}}">About Us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('product.index')}}">Products</a>
@@ -112,7 +112,7 @@
                 <button style="color: black;background-color: #fff !important;border: 0;" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{@$customer->name}} &nbsp;</button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{ route('profile')}}"><i class="fas fa-user-alt"></i> My Profile</a></li>
-                    <li><a class="dropdown-item" href="{{ route('product.productcart')}}"><i class="fas fa-search-dollar"></i>@if($customer) @if($customer->user_type=='Customer') My Carts @else My Products @endif @else My Carts @endif</a></li>
+                    <li><a class="dropdown-item" href="{{ route('product.productcart')}}"><i class="fas fa-search-dollar"></i>@if($customer) @if($customer->user_type=='Customer') My Carts @else Products @endif @else My Carts @endif</a></li>
                     <li><a class="dropdown-item" href="{{ route('product.productquotes')}}"><i class="fa fa-tasks"></i> My Quotes</a></li>
                     <li><a class="dropdown-item" href="{{ route('product.orders')}}"><i class="fas fa-user-cog"></i> My Orders</a></li>
                     <li><a class="dropdown-item" href="{{ route('profile')}}"><i class="fas fa-tools"></i> Change Password</a></li>

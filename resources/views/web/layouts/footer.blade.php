@@ -4,8 +4,8 @@
     <div class="row">
         <div class="footer-col col-lg-3 col-md-6 col-sm-12 col-xs-12">
             <div class="footerlogo">
-                <img src="{{ asset('frontend/images/Footerlogo.png') }}">
-
+                <!-- <img src="{{ asset('frontend/images/Footerlogo.png') }}"> -->
+                <a style="background-color: #fff;padding: 18px 35px 18px 40px;" class="navbar-brand" href="{{url('/')}}"><img src="{{ asset('frontend/images/FT LOGO Ver.3 1.png') }}" alt="ss" style="width: 11rem;"></a>
                 <ul>
                     <li>Lorem ipsum is typically a corrupted version of De minibus Bono rum et malform, a
                         1st-century.</a></li>

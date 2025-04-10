@@ -89,7 +89,7 @@
                                             <a href="{{$value['qutation']}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
                                             <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" enquiryid="{{$value['enquiry_id']}}" class="submit_accept_quotes">Accept</button>
                                         @elseif($value['status']=='accepted')
-                                        <a href="{{$value['qutation']}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
+                                        <a href="{{$value['qutation']}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Quote</button></a>
                                         <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;"> Accepted</button>
                                         @elseif($value['status']=='invoked')
                                         <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;">Revoked</button>

@@ -74,6 +74,9 @@ Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('update-profile', [ProfileController::class, 'update_profile'])->name('customer.updateprofile');
 Route::post('change-password', [ProfileController::class, 'change_password'])->name('customer.changepassword');
 
+Route::get('aboutus', [ContactController::class, 'aboutus'])->name('aboutus');
+
+
 Route::get('contactus', [ContactController::class, 'index'])->name('contactus');
 Route::post('save-contactus', [ContactController::class, 'save_contactus'])->name('save.contactus');
 
