@@ -37,4 +37,12 @@ class Customer extends Authenticatable
   {
       return $this->hasMany(ManufacturerProduct::class);
   }
+  public function orders()
+  {
+    return $this->hasMany(Order::class);
+  }
+  public function manufacturer_orders()
+  {
+    return $this->hasMany(Order::class, 'manufacturer_id');
+  }
 }
