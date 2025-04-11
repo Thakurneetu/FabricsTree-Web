@@ -78,7 +78,7 @@
                                 </div>
                                 <div class=" col-lg-7 col-md-7 col-sm-12 alignment2">
                                     <div class="top">
-                                        <a href="{{$value->qutation}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
+                                        <a href="{{asset($value->qutation)}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
                                         <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;">Track Order</button>
                                     </div>
 

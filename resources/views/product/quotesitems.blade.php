@@ -12,7 +12,7 @@
             <div class="row headparagraph">
             @if($customer)
                 @if($customer->user_type=='Customer')
-                <h5>Customer Details</h5>
+                <h5 style="margin-left: -12px;">Customer Details</h5>
                     <table class="table table-borderless table-responsive-md">
                         <colgroup>
                             <col style="width: 30%;">
@@ -44,7 +44,7 @@
                     <div class="row headparagraph">
 
                         <div class="col-lg-8 col-md-2 col-sm-12">
-                            <h5>Request Quote Item Details</h5>
+                            <h5 style="margin-left: -12px;">Request Quote Item Details</h5>
                         </div>
                             <table class="table table-borderless table-responsive-md">
                             <colgroup>
@@ -91,7 +91,7 @@
                 @else
                     @if(count($enquiry_items)>0)
                     <div class="row headparagraph">
-                    <h5>Request Quote Item Details</h5>
+                    <h5 style="margin-left: -12px;">Request Quote Item Details</h5>
                     <table class="table table-borderless table-responsive-md">
                             <colgroup>
                                 <col style="width: 10%;">
@@ -138,13 +138,13 @@
                             @if($customer)
                                 @if($customer->user_type=='Manufacturer')
                                     @if(@$enquiry_data[0]['manufacturer_qutation']!='')
-                                        <a href="{{@$enquiry_data[0]['manufacturer_qutation']}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
+                                        <a href="{{@asset($enquiry_data[0]['manufacturer_qutation'])}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
                                     @else
                                         <button class="upload_quote" id="{{@$enquiry_items[0]['enquery_id']}}" style="width:150px;">Upload Quote</button>
                                     @endif    
-                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
+                                    <button style="margin-left: -13px;background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
                                 @else
-                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
+                                    <button style="margin-left: -13px;background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
                                        
                                 @endif
                             @endif
@@ -174,14 +174,15 @@
                     <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Request Quote item list Found</div></div>
                     @endif
                 @endif
-            </div>
-            <div class="row">
-                <div class="bottom col-md-2" >
-                    <a class="dropdown-item" href="{{ route('product.index')}}"><button style="background: #83848A;">Add more product </button></a>
+                <div class="row" style="margin-left: 12px;">
+                    <div class="bottom col-md-2" >
+                        <a class="dropdown-item" href="{{ route('product.index')}}"><button style="background: #83848A;">Add more product </button></a>
 
-                    <a class="dropdown-item" href="{{ route('product.productquotes')}}"><button style="background: #83848A;">Back </button></a>
+                        <a class="dropdown-item" href="{{ route('product.productquotes')}}"><button style="background: #83848A;">Back </button></a>
+                    </div>
                 </div>
             </div>
+            
         </section>
     </div>
 @include('web.layouts.footer')

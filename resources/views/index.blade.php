@@ -422,7 +422,7 @@
         </p>
       </div>
 
-      <button class="btn-outline-success maincolor KnowMore" type="submit">Know More</button>
+      <a href="{{route('aboutus')}}"><button class="btn-outline-success maincolor KnowMore" type="submit">Know More</button></a>
 
     </div>
 

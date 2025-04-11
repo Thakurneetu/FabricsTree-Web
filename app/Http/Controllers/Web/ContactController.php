@@ -96,4 +96,17 @@ class ContactController extends Controller
 
         return $errors;
     }
+
+    /**
+     * Show the application product.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function aboutus()
+    {   
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        $data['customer'] = $customer;
+        return view('aboutus',$data);
+    }
 }
