@@ -11,6 +11,8 @@ use App\DataTables\EnquiryDataTable;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use File;
+use App\Mail\NewManufacturerEnquiry;
+use Illuminate\Support\Facades\Mail;
 
 class EnquiryController extends Controller
 {
@@ -61,6 +63,9 @@ class EnquiryController extends Controller
           Alert::toast('Qutation Sent Successfully','success');
         }
         if($request->has('manufacturures')){
+          $mail_data['enquiry'] = $enquiry;
+          $mail_data['items'] = $enquiry->items;
+          $manufacturers_ids = ManufacturerEnquiry::where('enquery_id', $enquiry->id)->pluck('customer_id')->toArray();
           ManufacturerEnquiry::where('enquery_id', $enquiry->id)->whereNotIn('customer_id', $request->manufacturures)->delete();
           foreach ($request->manufacturures as $key => $customer_id) {
             $data = [
@@ -68,9 +73,13 @@ class EnquiryController extends Controller
               'customer_id' => $customer_id,
             ];
             ManufacturerEnquiry::updateOrCreate($data);
+            if(!in_array($customer_id, $manufacturers_ids)) {
+              $mail_data['user'] = Customer::find($customer_id);
+              $mail = Mail::to()->send(new NewManufacturerEnquiry($data));
+            }
           }
           Alert::toast('Requirement Sent Successfully','success');
-        }else if($request->has('manufacturur_assign') AND $request->manufacturur_assign == 1){
+        }else if($request->has('manufacturur_assign') && $request->manufacturur_assign == 1){
           ManufacturerEnquiry::where('enquery_id', $enquiry->id)->delete();
         }
         if($request->has('manufacturer_id')){

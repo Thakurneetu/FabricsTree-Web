@@ -127,7 +127,6 @@
                     <!-- Header -->
                     <tr>
                         <td class="header">
-                            <!-- Optional: You can add your logo here -->
                             <!-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> -->
                             <h1>New Order</h1>
                         </td>
