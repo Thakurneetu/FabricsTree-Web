@@ -237,7 +237,7 @@ class OrderController extends Controller
         $data['enquiry'] = $order;
         $data['user'] = $request->user();
         $data['items'] = $order->items;
-        // $mail = Mail::to(env('ADMIN_MAIL'))->send(new NewOrder($data));
+        $mail = Mail::to(env('ADMIN_MAIL'))->send(new NewOrder($data));
       }
       $enquiry->update(['status' => 'accepted']);
       return response()->json([

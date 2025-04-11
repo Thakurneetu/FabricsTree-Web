@@ -164,7 +164,7 @@
                             </table>
 
                             <!-- Enquiry Details Section -->
-                            <div class="section-title">Order Details</div>
+                            <div class="section-title">Order Item Details</div>
                             <table border="0" cellpadding="0" cellspacing="0" class="product-table">
                                 <thead>
                                     <tr>
