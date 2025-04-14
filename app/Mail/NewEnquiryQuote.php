@@ -53,7 +53,7 @@ class NewEnquiryQuote extends Mailable
     public function attachments(): array
     {
         return [
-          Attachment::fromPath($this->data['qutation']),
+          Attachment::fromPath($this->data['quotation']),
         ];
     }
 }

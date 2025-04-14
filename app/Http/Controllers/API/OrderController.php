@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Enquiry;
 use App\Models\EnquiryItems;
 use App\Models\Order;
@@ -119,7 +120,8 @@ class OrderController extends Controller
         $data['enquiry'] = $enquiry;
         $data['user'] = $request->user();
         $data['items'] = $enquiry->items;
-        $mail = Mail::to(env('ADMIN_MAIL'))->send(new NewCustomerEnquiry($data));
+        $admin = User::first();
+        $mail = Mail::to($admin->email)->send(new NewCustomerEnquiry($data));
         return response()->json([
           'status' => true,
           'message' => 'Request submitted successfully.',
@@ -237,7 +239,8 @@ class OrderController extends Controller
         $data['enquiry'] = $order;
         $data['user'] = $request->user();
         $data['items'] = $order->items;
-        $mail = Mail::to(env('ADMIN_MAIL'))->send(new NewOrder($data));
+        $admin = User::first();
+        $mail = Mail::to($admin->email)->send(new NewOrder($data));
       }
       $enquiry->update(['status' => 'accepted']);
       return response()->json([

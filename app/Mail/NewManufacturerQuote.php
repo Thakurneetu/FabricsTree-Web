@@ -51,6 +51,8 @@ class NewManufacturerQuote extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+          Attachment::fromPath($this->data['quotation']),
+        ];
     }
 }

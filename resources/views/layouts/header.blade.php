@@ -39,7 +39,7 @@
             <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold my-2">
               <div class="fw-semibold">Settings</div>
             </div>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ route('admin.profile') }}">
               <svg class="icon me-2">
                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
               </svg> Profile

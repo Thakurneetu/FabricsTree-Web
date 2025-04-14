@@ -135,7 +135,7 @@
                     <!-- Main Content Area -->
                     <tr>
                         <td class="content">
-                            <p>Hello ,</p>
+                            <p>Hello {{$data['user']->name}},</p>
                             <p>You have received a quotation for your enquiry. Please find it in attachment.</p>
                         </td>
                     </tr>

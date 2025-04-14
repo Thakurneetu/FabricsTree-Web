@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Manufacturer;
 
 use App\Models\Enquiry;
+use App\Models\User;
 use App\Models\Customer;
 use App\Models\ManufacturerEnquiry;
 use Illuminate\Http\Request;
@@ -141,8 +142,9 @@ class ManufacturerEnquiryController extends Controller
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $enquiry->update($data);
           $mail_data['user'] = $enquiry->customer;
-          $mail_data['qutation'] = asset($enquiry->qutation);
-          Mail::to()->send(new NewManufacturerQuote($data));
+          $mail_data['quotation'] = public_path($enquiry->qutation);
+          $admin = User::first();
+          Mail::to($admin->email)->send(new NewManufacturerQuote($mail_data));
         }
         DB::commit();
         return response()->json([

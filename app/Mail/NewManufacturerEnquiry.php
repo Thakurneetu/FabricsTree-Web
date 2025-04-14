@@ -52,8 +52,6 @@ class NewManufacturerEnquiry extends Mailable
      */
     public function attachments(): array
     {
-        return [
-          Attachment::fromPath($this->data['qutation']),
-        ];
+        return [];
     }
 }

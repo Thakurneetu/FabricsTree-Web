@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Enquiry;
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Mail\NewEnquiryQuote;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -59,6 +64,21 @@ class DashboardController extends Controller
       $user = auth()->user();
       $user->theme = $mode;
       $user->save();
+      return redirect()->back();
+    }
+
+    public function profile(){
+      $user = auth()->user();
+      return view('admin.profile', compact('user'));
+    }
+    public function profileUpdate(Request $request){
+      $user = auth()->user();
+      $data = $request->only('name','email');
+      if($request->password) {
+        $data['password'] = $request->password;
+      }
+      $user->update($data);
+      Alert::toast('Profile updated Successfully','success');
       return redirect()->back();
     }
 }

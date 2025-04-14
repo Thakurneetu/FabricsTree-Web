@@ -61,8 +61,9 @@ class EnquiryController extends Controller
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $data['status'] = 'invoiced';
           $enquiry->update($data);
-          $mail_data['quotation'] = $data['qutation'];
-          $mail = Mail::to()->send(new NewEnquiryQuote($data));
+          $mail_data['user'] = $enquiry->customer;
+          $mail_data['quotation'] = public_path($data['qutation']);
+          $mail = Mail::to($enquiry->customer->email)->send(new NewEnquiryQuote($mail_data));
           Alert::toast('Qutation Sent Successfully','success');
         }
         if($request->has('manufacturures')){
@@ -78,7 +79,7 @@ class EnquiryController extends Controller
             ManufacturerEnquiry::updateOrCreate($data);
             if(!in_array($customer_id, $manufacturers_ids)) {
               $mail_data['user'] = Customer::find($customer_id);
-              $mail = Mail::to()->send(new NewManufacturerEnquiry($data));
+              $mail = Mail::to($mail_data['user']->email)->send(new NewManufacturerEnquiry($mail_data));
             }
           }
           Alert::toast('Requirement Sent Successfully','success');
