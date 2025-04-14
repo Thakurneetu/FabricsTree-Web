@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\DataTables\EnquiryDataTable;
 use Illuminate\Support\Facades\DB;
 use File;
+use App\Mail\NewManufacturerQuote;
+use Illuminate\Support\Facades\Mail;
 
 class ManufacturerEnquiryController extends Controller
 {
@@ -138,6 +140,9 @@ class ManufacturerEnquiryController extends Controller
         if($request->hasFile('qutation')){
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $enquiry->update($data);
+          $mail_data['user'] = $enquiry->customer;
+          $mail_data['qutation'] = asset($enquiry->qutation);
+          Mail::to()->send(new NewManufacturerQuote($data));
         }
         DB::commit();
         return response()->json([
