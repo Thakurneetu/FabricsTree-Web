@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Manufacturer;
 
 use App\Models\Enquiry;
+use App\Models\User;
 use App\Models\Customer;
 use App\Models\ManufacturerEnquiry;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Controller;
 use App\DataTables\EnquiryDataTable;
 use Illuminate\Support\Facades\DB;
 use File;
+use App\Mail\NewManufacturerQuote;
+use Illuminate\Support\Facades\Mail;
 
 class ManufacturerEnquiryController extends Controller
 {
@@ -138,6 +141,10 @@ class ManufacturerEnquiryController extends Controller
         if($request->hasFile('qutation')){
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $enquiry->update($data);
+          $mail_data['user'] = $enquiry->customer;
+          $mail_data['quotation'] = public_path($enquiry->qutation);
+          $admin = User::first();
+          Mail::to($admin->email)->send(new NewManufacturerQuote($mail_data));
         }
         DB::commit();
         return response()->json([

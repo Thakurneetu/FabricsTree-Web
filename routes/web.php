@@ -94,6 +94,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
   Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('/profile', [DashboardController::class, 'profileUpdate']);
     Route::get('/dashboard-theme/{mode}', [DashboardController::class, 'theme'])->name('dashboard-theme');
     Route::resources([
       'customer' => CustomerController::class,

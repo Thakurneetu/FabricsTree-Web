@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Customer Enquiry</title>
+    <title>New Quote</title>
     <style>
         /* Basic Reset */
         body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
@@ -128,7 +128,7 @@
                     <tr>
                         <td class="header">
                             <!-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> -->
-                            <h1>New Customer Enquiry</h1>
+                            <h1>New Quote</h1>
                         </td>
                     </tr>
 
@@ -136,10 +136,10 @@
                     <tr>
                         <td class="content">
                             <p>Hello Admin Team,</p>
-                            <p>You have received a new user enquiry. Please find the details below and follow up accordingly.</p>
+                            <p>You have received a quotation for an enquiry from manufacturer. Please find the details below and follow up accordingly.</p>
 
                             <!-- Customer Details Section -->
-                            <div class="section-title">Customer Details</div>
+                            <div class="section-title">Manufacturer Details</div>
                             <table border="0" cellpadding="0" cellspacing="0" class="details-table">
                                 <tr>
                                     <td class="label">Name:</td>
@@ -157,36 +157,10 @@
                                     <td class="label">Address:</td>
                                     <td>{{$data['user']->address}}, {{$data['user']->pincode}}</td>
                                 </tr>
-                            </table>
-
-                            <!-- Enquiry Details Section -->
-                            <div class="section-title">Enquiry Details</div>
-                            <table border="0" cellpadding="0" cellspacing="0" class="product-table">
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Description</th>
-                                        <th style="text-align: center;">Quantity</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- === PRODUCT ROW START === -->
-                                    @foreach($data['items'] as $item)
-                                    <tr>
-                                        <td>{{$item->title}}</td>
-                                        <td>
-                                           Width: {{$item->width ?? 'N/A'}} | 
-                                           Pik: {{$item->pick ?? 'N/A'}} | 
-                                           Warp: {{$item->warp ?? 'N/A'}} | 
-                                           Weft: {{$item->weft ?? 'N/A'}} | 
-                                           Count: {{$item->count ?? 'N/A'}} | 
-                                           Reed: {{$item->reed ?? 'N/A'}}
-                                        </td>
-                                        <td class="quantity">{{$item->quantity}}</td>
-                                    </tr>
-                                    @endforeach
-                                    <!-- === PRODUCT ROW END === -->
-                                </tbody>
+                                <tr>
+                                    <td class="label">Qutation:</td>
+                                    <td><a href="{{$data['qutation']}}">Click to download</a></td>
+                                </tr>
                             </table>
                         </td>
                     </tr>

@@ -80,8 +80,9 @@ class CustomerController extends Controller
         }
         DB::beginTransaction();
         $data = $request->except('_token', '_method', 'password');
-        if($request->password)
-        $data['password'] = $request->password;
+        if($request->password) {
+          $data['password'] = $request->password;
+        }
         $customer->update($data);
         DB::commit();
         Alert::toast('Customer Update Successfully','success');
