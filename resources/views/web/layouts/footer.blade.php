@@ -551,6 +551,43 @@
       </div>
     </div>
   </div>
+ 
+  <!-- welcome Modal for manufaturer login -->
+  <div class="modal fade login" id="exampleModalWelcome" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" style="padding: 20px 6rem;">
+
+                  <div class="d-flex justify-content-center" style="margin-top: -6rem;">
+                      <div class="modelimage" style="background-color: #EFE3F4;border: 10px solid #fff">
+                          <img class="p-2" src="{{ asset('frontend/images/thanks.png') }}" alt="thanks" width="80">
+                      </div>
+                  </div>
+
+                  <div class="text-center w-100 verify">
+                      <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Hey Welcome!
+                      </h1>
+
+                      <h6 class="mb-4" style="color: #83848A;">We might have received our unique manufaturer ID on your email ID.
+                      </h6>
+                  </div>
+
+                  <div class="p-2 text-center" style="background-color: #EEF1F6;border-radius: 5px;">
+                      <!-- <span>For urgent requests, please call us on</span> -->
+                      <a href="{{ route('profile')}}" style="text-decoration: none;cursor:pointer;"><h6 class="mt-1" style="color: #78239B;font-weight: bold;">Go to Profile</h6></a>
+                  </div>
+
+              </div>
+
+
+          </div>
+      </div>
+  </div>
 
   <!-- Modal Thanku for interest-->
   <div class="modal fade login" id="exampleModalThankuinterest" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -869,11 +906,12 @@
         data: $('#registerform').serialize(),
         success: function(response) {
           if (response.status) {
+            console.log('user_type::'+response.data.user_type);
             $('#exampleModalregistation').modal('hide');
             swal("Sent!", response.message, "success");
             setInterval(function () {
               window.location.reload();
-            }, 4000);
+            }, 2000);
           }
         }                    
       })
@@ -888,11 +926,19 @@
         data: $('#loginfrom').serialize(),
         success: function(response) {
           if (response.status) {
+            if(response.data.user_type=='Manufacturer')
+            {
+              $('#exampleModalWelcome').modal('show');
+            }
+            else
+            {
+              swal("Sent!", response.message, "success");
+              setInterval(function () {
+                window.location.assign('{{ route("index");}} ');
+              }, 1000);
+            }
             $('#exampleModal').modal('hide');
-            swal("Sent!", response.message, "success");
-            setInterval(function () {
-              window.location.assign('{{ route("profile");}} ');
-            }, 2000);
+            
           }
         }                    
       })
@@ -1190,6 +1236,17 @@ if (window.matchMedia("(min-width:576px)").matches) {
 </script>      
 @endsession
 @endif -->
+<!-- @session('success') -->
+<!-- @if($customer)
+  @if($customer->user_type==='Manufacturer')
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        $('#exampleModalWelcome').modal('show');
+      });
+    </script>  
+  @endif
+@endif -->
+<!-- @endsession -->
 
 @session('error')
 <script type="text/javascript">

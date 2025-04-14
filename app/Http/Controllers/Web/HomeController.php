@@ -20,7 +20,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['products'] = Product::select("*")->inRandomOrder()->get();
+        //$data['products'] = Product::select("*")->inRandomOrder()->get();
+        $data['products'] = Product::withCount('order_products')
+        ->orderBy('order_products_count', 'asc')
+        ->take(10)
+        ->get();
         $data['testimonials'] = Testimonial::all();
         $data['categories'] = Category::get();
         $data['subcategories'] = Subcategory::get();
