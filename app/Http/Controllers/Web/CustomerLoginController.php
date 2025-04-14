@@ -67,7 +67,7 @@ class CustomerLoginController extends Controller
                     return response()->json([
                         'status' => true,
                         'message' => 'You have Successfully loggedin.',
-                        'data' => $data,
+                        'data' => $customer,
                     ], 200);
                 }else{
                     return response()->json([

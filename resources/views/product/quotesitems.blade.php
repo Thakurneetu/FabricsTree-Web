@@ -134,7 +134,7 @@
                                 
                             </tbody>
                             </table>
-                            <div class="bottom">
+                            <div class="bottom" style="margin-left: -13px;">
                             @if($customer)
                                 @if($customer->user_type=='Manufacturer')
                                     @if(@$enquiry_data[0]['manufacturer_qutation']!='')
@@ -142,9 +142,9 @@
                                     @else
                                         <button class="upload_quote" id="{{@$enquiry_items[0]['enquery_id']}}" style="width:150px;">Upload Quote</button>
                                     @endif    
-                                    <button style="margin-left: -13px;background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
                                 @else
-                                    <button style="margin-left: -13px;background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
                                        
                                 @endif
                             @endif
@@ -174,10 +174,10 @@
                     <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Request Quote item list Found</div></div>
                     @endif
                 @endif
-                <div class="row" style="margin-left: 12px;">
+                <div class="row" style="margin-left: 5px;">
                     <div class="bottom col-md-2" >
                         <a class="dropdown-item" href="{{ route('product.index')}}"><button style="background: #83848A;">Add more product </button></a>
-
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="dropdown-item" href="{{ route('product.productquotes')}}"><button style="background: #83848A;">Back </button></a>
                     </div>
                 </div>
