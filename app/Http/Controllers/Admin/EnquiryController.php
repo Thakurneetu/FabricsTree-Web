@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use File;
 use App\Mail\NewManufacturerEnquiry;
+use App\Mail\NewEnquiryQuote;
 use Illuminate\Support\Facades\Mail;
 
 class EnquiryController extends Controller
@@ -60,6 +61,8 @@ class EnquiryController extends Controller
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $data['status'] = 'invoiced';
           $enquiry->update($data);
+          $mail_data['quotation'] = $data['qutation'];
+          $mail = Mail::to()->send(new NewEnquiryQuote($data));
           Alert::toast('Qutation Sent Successfully','success');
         }
         if($request->has('manufacturures')){

@@ -8,8 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
-class NewManufacturerQuote extends Mailable
+class NewEnquiryQuote extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +31,7 @@ class NewManufacturerQuote extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Quote',
+            subject: 'Quote for your enquiry',
         );
     }
 
@@ -40,7 +41,7 @@ class NewManufacturerQuote extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.admin.manufacturer_quot',
+            view: 'email.admin.customer_quote',
         );
     }
 
@@ -51,6 +52,8 @@ class NewManufacturerQuote extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+          Attachment::fromPath($this->data['qutation']),
+        ];
     }
 }
