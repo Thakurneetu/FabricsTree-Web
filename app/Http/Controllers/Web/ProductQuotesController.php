@@ -411,7 +411,6 @@ class ProductQuotesController extends Controller
         'message' => 'Get successfully.',
         'data'=>$dataHtml
         ]);
-
     }
 
     public function quotesitems($id)
