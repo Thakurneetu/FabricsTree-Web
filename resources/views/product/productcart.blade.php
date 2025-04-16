@@ -1,8 +1,8 @@
 @include('web.layouts.header')
     <div class="banneerlogo">
         <div style="flex-direction: column;">
-            <h1>Products</h1>
-            <p><span>Home</span>/ My Cart</p>
+            <h1>My Carts</h1>
+            <p><span>Home</span>/ My Carts</p>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
                 <div class="row headparagraph">
 
                     <div class="col-lg-8 col-md-2 col-sm-12">
-                        <div>Product Details</div>
+                        <div>Product Cart Detail</div>
                     </div>
                     <div class=" col-lg-4 col-md-5 col-sm-12 alignment">
                         <div class="fouesec">
@@ -65,11 +65,11 @@
                                 @if($customer->user_type=='Customer')
                                 <div style="display: flex;" class="sp-quantity">
                                     
-                                    <button type="button" id="minus" class="badge badge-light ddd" productid="{{$cart['product_id']}}"><span class="badge badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
+                                    <button type="button" id="minus" class="badge1 badge-light ddd" productid="{{$cart['product_id']}}" style="border: none;"><span class="badge1 badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
                                     
                                     <span style="font-weight: bold; margin: 4px;"><input type="number" class="quntity-input" value="{{ $cart['quantity'] }}" min="1" style="width:50px;background: #EEF1F6; border: none;text-align:center" readonly/></span>
 
-                                    <button type="button" id="plus" class="badge badge-light ddd" productid="{{$cart['product_id']}}"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
+                                    <button type="button" id="plus" class="badge1 badge-light ddd" productid="{{$cart['product_id']}}" style="border: none;"><span class="badge1 badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
                                 </div>
                                 @endif
                             @endif
