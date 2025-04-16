@@ -198,6 +198,21 @@ class OrderController extends Controller
       ]);
     }
 
+    public function quoteDetails($id)
+    {
+      $quote = Enquiry::select('id','enquery_type','status','invoke_reason','qutation')
+                        ->with('items:id,enquery_id,product_id,color_code,quantity,title,category_id,subcategory_id,requirement_id,width,warp,weft,count,reed,pick',
+                        'items.category:id,name',
+                        'items.subcategory:id,name',
+                        'items.product:id')
+                        ->find($id);
+      $quote->qutation = asset($quote->qutation);
+      return response()->json([
+        'status' => true,
+        'quote' => $quote
+      ]);
+    }
+
     public function accept($id, Request $request)
     {
       $enquiry = Enquiry::find($id);
