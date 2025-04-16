@@ -14,6 +14,8 @@ use App\Http\Requests\API\AddCartRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Mail\NewOrder;
+use App\Mail\OrderInvoked;
+use App\Mail\EnquiryInvoked;
 use App\Mail\NewCustomerEnquiry;
 use Illuminate\Support\Facades\Mail;
 
@@ -136,6 +138,12 @@ class OrderController extends Controller
       $data['status'] = 'invoked';
       $data['revoked_at'] = now();
       Enquiry::where('id', $request->enquiry_id)->update($data);
+      $enquiry = Enquiry::find($request->enquiry_id);
+      $data['enquiry'] = $enquiry;
+      $data['user'] = $request->user();
+      $data['items'] = $enquiry->items;
+      $admin = User::first();
+      $mail = Mail::to($admin->email)->send(new EnquiryInvoked($data));
       return response()->json([
         'status' => true,
         'message' => 'Quote revoked successfully.',
@@ -187,6 +195,21 @@ class OrderController extends Controller
       return response()->json([
         'status' => true,
         'quotes' => $quotes,
+      ]);
+    }
+
+    public function quoteDetails($id)
+    {
+      $quote = Enquiry::select('id','enquery_type','status','invoke_reason','qutation')
+                        ->with('items:id,enquery_id,product_id,color_code,quantity,title,category_id,subcategory_id,requirement_id,width,warp,weft,count,reed,pick',
+                        'items.category:id,name',
+                        'items.subcategory:id,name',
+                        'items.product:id')
+                        ->find($id);
+      $quote->qutation = asset($quote->qutation);
+      return response()->json([
+        'status' => true,
+        'quote' => $quote
       ]);
     }
 
@@ -291,6 +314,10 @@ class OrderController extends Controller
       $data['status'] = 'Revoked';
       $data['revoked_at'] = now();
       Order::where('id', $request->order_id)->update($data);
+      $data['order'] = Enquiry::find($request->order_id);
+      $data['user'] = $request->user();
+      $admin = User::first();
+      $mail = Mail::to($admin->email)->send(new OrderInvoked($data));
       return response()->json([
         'status' => true,
         'message' => 'Order revoked successfully.',

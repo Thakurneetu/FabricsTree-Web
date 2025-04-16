@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
       Route::post('/cart/submit', 'submitEnquiry');
       Route::post('/revoke-enquiry', 'revokeEnquiry');
       Route::get('/quotes', 'quotes');
+      Route::get('/quote/{id}', 'quoteDetails');
       Route::get('/accept/{id}', 'accept');
       Route::get('/orders', 'orders');
       Route::post('/revoke-order', 'revokeOrder');
