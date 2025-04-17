@@ -61,6 +61,15 @@ class EnquiryController extends Controller
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $data['status'] = 'invoiced';
           $enquiry->update($data);
+          Notification::create([
+            'data' => [
+                'enquiry_id' => $enquiry->id,
+            ],
+            'type' => 'quote',
+            'customer_id' => $enquiry->customer->id,
+            'message' => 'Quotation received for your enquiry.',
+            'is_read' => false,
+          ]);
           $mail_data['user'] = $enquiry->customer;
           $mail_data['quotation'] = public_path($data['qutation']);
           $mail = Mail::to($enquiry->customer->email)->send(new NewEnquiryQuote($mail_data));
@@ -80,6 +89,15 @@ class EnquiryController extends Controller
             if(!in_array($customer_id, $manufacturers_ids)) {
               $mail_data['user'] = Customer::find($customer_id);
               $mail = Mail::to($mail_data['user']->email)->send(new NewManufacturerEnquiry($mail_data));
+              Notification::create([
+                'data' => [
+                    'enquiry_id' => $enquiry->id,
+                ],
+                'type' => 'quote',
+                'customer_id' => $customer_id,
+                'message' => 'New enquiry has recieved.',
+                'is_read' => false,
+              ]);
             }
           }
           Alert::toast('Requirement Sent Successfully','success');

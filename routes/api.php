@@ -6,6 +6,8 @@ use App\Http\Controllers\API\CustomerAuthController;
 use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\NotificationController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('/profile', [CustomerAuthController::class, 'profile']);
+    Route::apiResource('notification', NotificationController::class);
     Route::controller(HomeController::class)->group(function(){
       Route::get('/dashboard', 'dashboard');
       Route::get('/categories', 'categories');
@@ -62,6 +65,7 @@ Route::group(['prefix' => 'manufacturer'], function () {
       Route::get('/profile', function (Request $request) {
         return $request->user();
       });
+      Route::apiResource('notification', NotificationController::class);
       Route::post('/profile', [ManufacturerAuthController::class, 'profile']);
       Route::post('/logout', [ManufacturerAuthController::class, 'logout']);
       Route::apiResource('product', ManufacturerProductController::class);
