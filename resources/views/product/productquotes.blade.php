@@ -54,8 +54,6 @@
                 </div>
                 
         </section>
-        
-        
     </div>
 @include('web.layouts.footer')
 
