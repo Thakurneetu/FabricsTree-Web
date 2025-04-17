@@ -56,14 +56,18 @@ Route::get('productcart', [ProductController::class, 'productcart'])->name('prod
 Route::get('addtocart', [ProductController::class, 'addtocart'])->name('product.addtocart');
 Route::get('deletecart', [ProductController::class, 'deletecart'])->name('product.deletecart');
 Route::get('requestaquotes', [ProductController::class, 'requestaquotes'])->name('product.requestaquotes');
-Route::post('requestaquotes-filter', [ProductQuotesController::class, 'requestaquotesfilter'])->name('product.requestaquotesfilter');
-Route::get('requestaquotes-filter', [ProductQuotesController::class, 'requestaquotesfilter'])->name('product.requestaquotesfilter');
+
 
 Route::post('requestaquotesrevoke', [ProductQuotesController::class, 'requestQuotesRevoke'])->name('product.requestaquotesrevoke');
 Route::get('acceptquotes', [ProductQuotesController::class, 'acceptquotes'])->name('product.acceptquotes');
 Route::get('quotesitems/{id?}', [ProductQuotesController::class, 'quotesitems'])->name('product.quotesitems');
 
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
+Route::post('productquotes', [ProductQuotesController::class, 'index'])->name('product.requestaquotesfilter');
+
+//Route::post('requestaquotes-filter', [ProductQuotesController::class, 'requestaquotesfilter'])->name('product.requestaquotesfilter');
+//Route::get('requestaquotes-filter', [ProductQuotesController::class, 'requestaquotesfilter'])->name('product.requestaquotesfilter');
+
 Route::post('uploadquotes', [ProductQuotesController::class, 'uploadquotes'])->name('product.uploadquotes');
 
 Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
