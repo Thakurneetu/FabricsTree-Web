@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/profile', [CustomerAuthController::class, 'profile']);
     Route::controller(HomeController::class)->group(function(){
+      Route::get('/dashboard', 'dashboard');
       Route::get('/categories', 'categories');
       Route::get('/subcategories/{id}', 'subcategories');
       Route::get('/testimonials', 'testimonials');

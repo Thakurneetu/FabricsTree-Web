@@ -189,6 +189,7 @@ class OrderController extends Controller
           $quotes[$key]['image'] = $item->product->image_list[0] ?? null;
         }
         $quotes[$key]['status'] = $enquiry->status;
+        $quotes[$key]['invoke_reason'] = $enquiry->invoke_reason;
         $quotes[$key]['revoked_on'] = $enquiry->revoked_at ? \Carbon\Carbon::parse($enquiry->revoked_at)->format('jS M Y') : null ;
         $quotes[$key]['created_on'] =  \Carbon\Carbon::parse($enquiry->created_at)->format('jS M Y');
       }
@@ -200,7 +201,7 @@ class OrderController extends Controller
 
     public function quoteDetails($id)
     {
-      $quote = Enquiry::select('id','enquery_type','status','invoke_reason','qutation')
+      $quote = Enquiry::select('id','enquery_type','status','invoke_reason','qutation','revoked_at')
                         ->with('items:id,enquery_id,product_id,color_code,quantity,title,category_id,subcategory_id,requirement_id,width,warp,weft,count,reed,pick',
                         'items.category:id,name',
                         'items.subcategory:id,name',
@@ -283,6 +284,8 @@ class OrderController extends Controller
         $orders[$key]['track_link'] = $order->track_link;
         $orders[$key]['status'] = $order->status;
         $orders[$key]['created_at'] = $order->created_at;
+        $orders[$key]['revoked_at'] = $order->revoked_at;
+        $orders[$key]['revoke_reason'] = $order->revoke_reason;
         $items = array();
         foreach($order->items as $_key => $item){
           $items[$_key]['quantity'] = $item->quantity ;
