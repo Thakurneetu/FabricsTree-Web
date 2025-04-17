@@ -16,7 +16,7 @@
                     <div class="headparagraphbg">
                         <div class="MyQuotes p-2">
                             <div>My Orders</div>
-                            <div>Clear All</div>
+                            <div><a style="cursor:pointer;color: #78239B; text-decoration: underline; cursor:pointer;">Clear All</a></div>
                         </div>
                         <hr>
 

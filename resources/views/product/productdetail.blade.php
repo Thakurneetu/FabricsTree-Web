@@ -46,21 +46,21 @@
                 @if($customer->user_type=='Customer')
                 <div style="display: flex;" class="sp-quantity">
                     <div>Quantity: &nbsp;</div>
-                    <button type="button" id="minus" class="badge badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
+                    <button type="button" id="minus" class="badge1 badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge1 badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
                     
                     <span style="font-weight: bold; margin: 4px;"><input type="number" class="quntity-input" id="pro-quantity" value="1" min="1" style="width:50px;background: #fff; border: none;text-align:center" readonly/></span>
 
-                    <button type="button" id="plus" class="badge badge-light ddd" style="background: #EEF1F6;"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
+                    <button type="button" id="plus" class="badge1 badge-light ddd" style="background: #EEF1F6;border: none;"><span class="badge1 badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
                 </div>
                 @endif
             @else
             <div style="display: flex;" class="sp-quantity">
                 <div>Quantity: &nbsp;</div>
-                <button type="button" id="minus" class="badge badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
+                <button type="button" id="minus" class="badge1 badgce-light ddd" style="background: #EEF1F6; border: none;"><span class="badge1 badge-light"><i class="fa fa-minus" aria-hidden="true"></i></span></button>
                 
                 <span style="font-weight: bold; margin: 4px;"><input type="number" class="quntity-input" id="pro-quantity" value="1" min="1" style="width:50px;background: #fff; border: none;text-align:center" readonly/></span>
 
-                <button type="button" id="plus" class="badge badge-light ddd" style="background: #EEF1F6;"><span class="badge badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
+                <button type="button" id="plus" class="badge1 badge-light ddd" style="background: #EEF1F6;border: none;"><span class="badge1 badge-light"><i class="fa fa-plus" aria-hidden="true"></i></span></button>
             </div>
             @endif
             @if(!in_array($products_data->id, $carts))

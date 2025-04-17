@@ -2,7 +2,7 @@
     <div class="banneerlogo">
         <div style="flex-direction: column;">
             <h1>My Quotes</h1>
-            <p><span>Home</span>/ View Request Quote Item Details</p>
+            <p><span>Home</span>/ View Request Quote Item Detail</p>
         </div>
     </div>
 
@@ -12,7 +12,7 @@
             <div class="row headparagraph">
             @if($customer)
                 @if($customer->user_type=='Customer')
-                <h5 style="margin-left: -12px;">Customer Details</h5>
+                <h5 style="margin-left: -12px;">Customer Detail</h5>
                     <table class="table table-borderless table-responsive-md">
                         <colgroup>
                             <col style="width: 30%;">
@@ -44,7 +44,7 @@
                     <div class="row headparagraph">
 
                         <div class="col-lg-8 col-md-2 col-sm-12">
-                            <h5 style="margin-left: -12px;">Request Quote Item Details</h5>
+                            <h5 style="margin-left: -12px;">View Request Quote Item Detail</h5>
                         </div>
                             <table class="table table-borderless table-responsive-md">
                             <colgroup>
@@ -91,7 +91,7 @@
                 @else
                     @if(count($enquiry_items)>0)
                     <div class="row headparagraph">
-                    <h5 style="margin-left: -12px;">Request Quote Item Details</h5>
+                    <h5 style="margin-left: -12px;">Request Quote Item Detail</h5>
                     <table class="table table-borderless table-responsive-md">
                             <colgroup>
                                 <col style="width: 10%;">
