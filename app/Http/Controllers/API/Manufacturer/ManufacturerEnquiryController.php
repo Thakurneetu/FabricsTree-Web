@@ -33,7 +33,7 @@ class ManufacturerEnquiryController extends Controller
             $items_list[$key]['subtitle'] = $item->subtitle;
             $items_list[$key]['category'] = $item->category->name;
             $items_list[$key]['subcategory'] = $item->subcategory->name;
-            $items_list[$key]['requirement'] = $item->requirement->name;
+            $items_list[$key]['requirement'] = $item->requirement->name??null;
             $items_list[$key]['width'] = $item->width;
             $items_list[$key]['warp'] = $item->warp;
             $items_list[$key]['weft'] = $item->weft;
