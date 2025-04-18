@@ -60,6 +60,16 @@
 <script>
     $( document ).ready(function() {
       quoteList();
+
+        $('.revoke_quote').click(function () {
+            $('#enquiry_id').val($(this).attr('id'));
+            $('#exampleModalRevokeQuote').modal('show');
+        });
+
+        $('.upload_quote').click(function () {
+            $('#upload_enquiry_id').val($(this).attr('id'));
+            $('#exampleModalUploadQuote').modal('show');
+        });
     });
 
     $('.filterQuote').change(function () {

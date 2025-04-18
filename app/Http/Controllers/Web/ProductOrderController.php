@@ -10,6 +10,8 @@ use App\Models\Enquiry;
 use App\Models\EnquiryItems;
 use App\Models\Order;
 use App\Models\OrderItems;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class ProductOrderController extends Controller
 {
@@ -26,12 +28,28 @@ class ProductOrderController extends Controller
         $data['customer'] = $customer;
         $data['orders'] = array();
         if(@$customer->user_type=='Customer'){
-            $data['orders'] = Order::where('customer_id',$id)->get();
+            $orders = Order::where('customer_id',$id)->get();
         }else if(@$customer->user_type=='Manufacturer'){
-            $data['orders'] = Order::where('manufacturer_id',$id)->get();
+            $orders = Order::where('manufacturer_id',$id)->get();
         }else{
             return redirect('/')->withError('Session Expired');
         }
+
+        // After you've built your $enquiry array
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 2;
+        $enquiryCollection = collect($orders); // convert array to Collection
+        $currentItems = $enquiryCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+        $paginatedOrders = new LengthAwarePaginator(
+            $currentItems,
+            $enquiryCollection->count(),
+            $perPage,
+            $currentPage,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
+        $data['orders'] = $paginatedOrders;
         
         //dd($data['orders']);
         return view('product.orders',$data);
@@ -49,10 +67,13 @@ class ProductOrderController extends Controller
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
-        if($customer->user_type=='Customer'){
+        $data['order_items'] = array();
+        if(@$customer->user_type=='Customer'){
             $data['order_items'] = OrderItems::where(['customer_id'=>$id,'order_id'=>$order_id])->get();
-        }else if($customer->user_type=='Manufacturer'){
+        }else if(@$customer->user_type=='Manufacturer'){
             $data['order_items'] = OrderItems::where(['order_id'=>$order_id])->get();
+        }else{
+            return redirect('/')->withError('Session Expired');
         }
         //dd($data['order_items']);
         return view('product.orderitems',$data);

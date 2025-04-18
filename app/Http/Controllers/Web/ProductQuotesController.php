@@ -250,6 +250,9 @@ class ProductQuotesController extends Controller
         $customer_id = Auth::guard('customer')->id();
         $customer = Customer::find($customer_id);
         $data['customer'] = $customer;
+        if(@$customer->user_type==''){
+            return redirect('/')->withError('Session Expired');
+        }
         //dd($customer->enquiry);
 
         $enquiry = Enquiry::find($id);
