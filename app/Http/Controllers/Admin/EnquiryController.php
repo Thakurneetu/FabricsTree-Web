@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Enquiry;
 use App\Models\Customer;
+use App\Models\Notification;
 use App\Models\ManufacturerEnquiry;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
