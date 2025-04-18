@@ -226,6 +226,9 @@ class ProductController extends Controller
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
+        if(@$customer->user_type==''){
+            return redirect('/')->withError('Session Expired');
+        }
         //dd($customer->carts);
         $carts = [];
         if($customer->user_type=='Customer'){

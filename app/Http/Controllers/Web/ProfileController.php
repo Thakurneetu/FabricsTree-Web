@@ -22,6 +22,9 @@ class ProfileController extends Controller
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         $data['customer'] = $customer;
+        if(@$customer->user_type==''){
+            return redirect('/')->withError('Session Expired');
+        }
         return view('user.index',$data);
     }
 

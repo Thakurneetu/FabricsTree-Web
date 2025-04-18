@@ -50,7 +50,7 @@ class ContactController extends Controller
             //'email.unique' => 'The email has already exist.',
             'phone.required' => 'The mobile no. field is required.',
             //'phone.unique' => 'The mobile no. has already exist.',
-            'phone.min' => 'The mobile no. must be at least 8 digits.'
+            'phone.min' => 'The mobile no. must be at least 10 digits.'
         ]);
     }
 

@@ -22,11 +22,15 @@ class ProductOrderController extends Controller
     {
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
+        
         $data['customer'] = $customer;
-        if($customer->user_type=='Customer'){
+        $data['orders'] = array();
+        if(@$customer->user_type=='Customer'){
             $data['orders'] = Order::where('customer_id',$id)->get();
-        }else if($customer->user_type=='Manufacturer'){
+        }else if(@$customer->user_type=='Manufacturer'){
             $data['orders'] = Order::where('manufacturer_id',$id)->get();
+        }else{
+            return redirect('/')->withError('Session Expired');
         }
         
         //dd($data['orders']);
