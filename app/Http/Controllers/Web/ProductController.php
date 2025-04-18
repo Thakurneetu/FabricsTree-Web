@@ -217,7 +217,6 @@ class ProductController extends Controller
             }
         }
         $data['carts'] = $carts;
-        //echo "<pre>";print_r($carts);
         return view('product.productdetail',$data);
     }
 
