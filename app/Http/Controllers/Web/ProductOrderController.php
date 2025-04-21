@@ -20,20 +20,33 @@ class ProductOrderController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
         
         $data['customer'] = $customer;
         $data['orders'] = array();
+
         if(@$customer->user_type=='Customer'){
-            $orders = Order::where('customer_id',$id)->get();
+            //$orders = Order::where('customer_id',$id)->get();
+            $query = Order::where('customer_id', $id);
         }else if(@$customer->user_type=='Manufacturer'){
-            $orders = Order::where('manufacturer_id',$id)->get();
+            //$orders = Order::where('manufacturer_id',$id)->get();
+            $query = Order::where('manufacturer_id', $id);
         }else{
             return redirect('/')->withError('Session Expired');
         }
+
+        if($request->status!='All' && $request->status!=""){
+            $filters = explode(',',$request->input('status'));
+            $query->whereIn('status',$filters);
+        }else{
+            $filters = explode(',',$request->input('status'));
+            $query->whereNotIn('status',$filters);
+        }
+        $orders = $query->latest()->get();
+        //dd($enquiries);
 
         // After you've built your $enquiry array
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -52,7 +65,21 @@ class ProductOrderController extends Controller
         $data['orders'] = $paginatedOrders;
         
         //dd($data['orders']);
-        return view('product.orders',$data);
+        //return view('product.orders',$data);
+        if($request->status)
+        {
+            $dataHtml  = view('product.ordersData',$data)->render();
+
+            return response()->json([
+            'status' => true,
+            'message' => 'Get successfully.',
+            'data'=>$dataHtml
+            ]);
+
+        }else{
+
+            return view('product.orders',$data);
+        }
     }
 
     

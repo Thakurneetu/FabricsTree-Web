@@ -71,6 +71,7 @@ Route::post('productquotes', [ProductQuotesController::class, 'index'])->name('p
 Route::post('uploadquotes', [ProductQuotesController::class, 'uploadquotes'])->name('product.uploadquotes');
 
 Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
+Route::post('orders', [ProductOrderController::class, 'index'])->name('product.ordersfilter');
 Route::get('orderitems/{id?}', [ProductOrderController::class, 'orderitems'])->name('product.orderitems');
 Route::post('revokeorder', [ProductOrderController::class, 'revokeorder'])->name('product.revokeorder');
 Route::get('returnorder', [ProductOrderController::class, 'returnorder'])->name('product.returnorder');

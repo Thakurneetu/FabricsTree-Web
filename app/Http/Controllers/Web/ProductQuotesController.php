@@ -44,18 +44,19 @@ class ProductQuotesController extends Controller
         if(@$customer->user_type==''){
             return redirect('/')->withError('Session Expired');
         }
-        $query = Enquiry::where('enquery_type', 'selected')->where('customer_id', $id);
-        if($request->status!='all' && $request->status!=""){
-            $filters = explode(',',$request->input('status'));
-            $query->whereIn('status',$filters);
-        }else{
-            $filters = explode(',',$request->input('status'));
-            $query->whereNotIn('status',$filters);
-        }
-        $enquiries = $query->latest()->get();
+        
         //dd($enquiries);
         if($customer->user_type=='Customer')
         {
+            $query = Enquiry::where('enquery_type', 'selected')->where('customer_id', $id);
+            if($request->status!='all' && $request->status!=""){
+                $filters = explode(',',$request->input('status'));
+                $query->whereIn('status',$filters);
+            }else{
+                $filters = explode(',',$request->input('status'));
+                $query->whereNotIn('status',$filters);
+            }
+            $enquiries = $query->latest()->get();
             $enquiry = [];
             $enquiry_items_data = [];
             foreach ($enquiries as $key => $val) 
