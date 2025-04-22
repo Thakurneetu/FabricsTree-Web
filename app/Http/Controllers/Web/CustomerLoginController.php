@@ -59,21 +59,21 @@ class CustomerLoginController extends Controller
             if ($customer->status != 1) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Your account has been inactive. please contact administrator!',
-                    'errors' =>  'Your account has been inactive. please contact administrator!',
+                    'message' => 'Your account is inactive. please contact administrator!',
+                    'errors' =>  'Your account is inactive. please contact administrator!',
                 ], 400);
             }else{
                 if(Auth::guard('customer')->attempt($data)){
                     return response()->json([
                         'status' => true,
-                        'message' => 'You have Successfully loggedin.',
+                        'message' => 'Welcome back! You’ve successfully logged in.',
                         'data' => $customer,
                     ], 200);
                 }else{
                     return response()->json([
                         'status' => false,
-                        'message' => 'Oppes! You have entered invalid credentials',
-                        'errors' => 'Oppes! You have entered invalid credentials',
+                        'message' => 'Oops! You have entered invalid credentials.',
+                        'errors' => 'Oops! You have entered invalid credentials.',
                     ], 400);
                 }
             }
