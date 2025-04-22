@@ -65,9 +65,6 @@ Route::get('quotesitems/{id?}', [ProductQuotesController::class, 'quotesitems'])
 Route::get('productquotes', [ProductQuotesController::class, 'index'])->name('product.productquotes');
 Route::post('productquotes', [ProductQuotesController::class, 'index'])->name('product.requestaquotesfilter');
 
-//Route::post('requestaquotes-filter', [ProductQuotesController::class, 'requestaquotesfilter'])->name('product.requestaquotesfilter');
-//Route::get('requestaquotes-filter', [ProductQuotesController::class, 'requestaquotesfilter'])->name('product.requestaquotesfilter');
-
 Route::post('uploadquotes', [ProductQuotesController::class, 'uploadquotes'])->name('product.uploadquotes');
 
 Route::get('orders', [ProductOrderController::class, 'index'])->name('product.orders');
