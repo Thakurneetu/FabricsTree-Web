@@ -46,7 +46,7 @@ class ProductOrderController extends Controller
             $query->whereNotIn('status',$filters);
         }
         $orders = $query->latest()->get();
-        //dd($enquiries);
+        //dd($orders);
 
         // After you've built your $enquiry array
         $currentPage = LengthAwarePaginator::resolveCurrentPage();

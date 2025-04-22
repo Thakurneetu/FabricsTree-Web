@@ -1,9 +1,9 @@
 <h5>Enquries</h5>
 <table class="table table-borderless table-responsive-md">
   <colgroup>
+    <col style="width: 30%;">
     <col style="width: 10%;">
-    <col style="width: 10%;">
-    <col style="width: 10%;">
+    <col style="width: 20%;">
     <col style="width: 10%;">
     <col style="width: 10%;">
     <col style="width: 10%;">
@@ -23,7 +23,7 @@
       <th>Count</th>
       <th>Reed</th>
       <th>Pik</th>
-      <th>Quantity</th>
+      <th>Qty</th>
     </tr>
   </thead>
   @foreach($enquiry->items as $item)

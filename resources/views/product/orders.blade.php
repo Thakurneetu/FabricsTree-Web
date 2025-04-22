@@ -38,29 +38,29 @@
                                 </div>
                                 <div class="form-check mt-3">
                                     <input class="form-check-input filterOrders" type="checkbox" name="orders_filter[]"
-                                        id="flexRadioDefault2" value="Revoked" >
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        id="flexRadioDefault3" value="Revoked" >
+                                    <label class="form-check-label" for="flexRadioDefault3">
                                         Revoked
                                     </label>
                                 </div>
                                 <div class="form-check mt-3">
                                     <input class="form-check-input filterOrders" type="checkbox" name="orders_filter[]"
-                                        id="flexRadioDefault2" value="Dispatched">
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        id="flexRadioDefault4" value="Dispatched">
+                                    <label class="form-check-label" for="flexRadioDefault4">
                                         On The Way
                                     </label>
                                 </div>
                                 <div class="form-check mt-3">
                                     <input class="form-check-input filterOrders" type="checkbox" name="orders_filter[]"
-                                        id="flexRadioDefault2" value="Delivered" >
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        id="flexRadioDefault5" value="Delivered" >
+                                    <label class="form-check-label" for="flexRadioDefault5">
                                         Delivered
                                     </label>
                                 </div>
                                 <div class="form-check mt-3">
                                     <input class="form-check-input filterOrders" type="checkbox" name="orders_filter[]"
-                                        id="flexRadioDefault2" value="Returned" >
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        id="flexRadioDefault6" value="Returned" >
+                                    <label class="form-check-label" for="flexRadioDefault6">
                                         Returned
                                     </label>
                                 </div>

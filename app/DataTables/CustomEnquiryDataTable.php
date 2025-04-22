@@ -11,7 +11,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-
+use Carbon\Carbon;
 class CustomEnquiryDataTable extends DataTable
 {
     /**
@@ -23,6 +23,9 @@ class CustomEnquiryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', 'admin.custom_enquiry.action')
+        ->editColumn('created_at', function ($data) {
+          return Carbon::parse($data->created_at)->format('d F, Y h:i a');
+        })
         ->editColumn('enquery_type', function ($data) {
           if($data->enquery_type == 'custom')
           {
@@ -83,6 +86,7 @@ class CustomEnquiryDataTable extends DataTable
         return [
             Column::make('id')->title('')->visible(false),
             Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
+            Column::make('created_at')->addClass('text-center'),
             Column::make('customer.name')->sortable(false),
             Column::make('customer.phone')->sortable(false),
             Column::make('customer.email')->sortable(false),

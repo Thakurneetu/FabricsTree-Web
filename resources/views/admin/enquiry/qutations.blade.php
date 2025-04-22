@@ -1,21 +1,23 @@
-<h5>Qutations Received</h5>
+<label for="name"> Qutations Received</label>
 
 <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
   @csrf @method('patch')
 
-<table class="table table-responsive-md">
+<table class="table table-striped dataTable no-footer dtr-inline" >
   <colgroup>
     <col style="width: 30%;">
     <col style="width: 30%;">
     <col style="width: 40%;">
   </colgroup>
   <tr>
+    <th>Qutation Received Date</th>
     <th>Manufacturer</th>
     <th>Qutation</th>
     <th>Selected Qutation</th>
   </tr>
   @forelse($enquiry->manufacturers->whereNotNull('qutation') as $man)
     <tr>
+      <td>{{$man->created_at}}</td>
       <td>{{$man->customer->name}}</td>
       <td>
         <h5>
@@ -40,7 +42,7 @@
   @if(count($enquiry->manufacturers->whereNotNull('qutation')) > 0)
   <tr>
     <td class="text-center" colspan="3">
-        <button type="submit" class="btn btn-info">
+        <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure want to Save Selected Qutation?');">
           Save Selected Qutation
         </button>
     </td>

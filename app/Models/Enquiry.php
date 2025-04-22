@@ -27,6 +27,6 @@ class Enquiry extends Model
   }
   public function manufacturers()
   {
-      return $this->hasMany(ManufacturerEnquiry::class, 'enquery_id');
+      return $this->hasMany(ManufacturerEnquiry::class, 'enquery_id')->orderBy('created_at', 'desc');
   }
 }

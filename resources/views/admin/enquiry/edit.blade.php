@@ -59,33 +59,7 @@
               @endif
             </div>
             @if($enquiry->status != 'invoked')
-            <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
-              @csrf @method('patch')
-              <div class="row">
-                <!-- Qutation -->
-                <div class="form-group col-md-6 col-12 mb-3">
-                  @if($enquiry->status != 'invoked')
-                  <label for="name"> Upload Qutation</label>
-                  <input type="file" name="qutation" class="form-control" required>
-                  <br>
-                  @endif
-                  @if(@$enquiry->qutation)
-                  <div class="form-group col-12">
-                    <h5>
-                      <a href="{{asset($enquiry->qutation)}}" target="_blank" rel="noopener noreferrer">
-                        <u><i>Download/View Uploaded Qutation</i></u>
-                      </a>
-                    </h5>
-                  </div>
-                  @endif
-                </div>
-                <div class="form-group col-md-6 col-12 mb-3">
-                  <button type="submit" class="btn btn-info mt-4">
-                  @if(@$enquiry->qutation) Resend @else Send @endif to Customer
-                  </button>
-                </div>
-              </div>
-            </form>
+            <h5>Step-1: Assign at least One Manufacturer </h5>
             <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
               @csrf @method('patch')
               <input type="hidden" name="manufacturur_assign" value="1">
@@ -93,20 +67,62 @@
                 <!-- Qutation -->
                 <div class="form-group col-md-6 col-12 mb-3">
                   <label for="name"> Select Manufacturers To Get Qutation</label>
-                  <select name="manufacturures[]" class="form-control select2" multiple="multiple">
+                  <select name="manufacturures[]" class="form-control select2" multiple="multiple" required>
                     @foreach($manufacturers as $manufacturer)
                     <option value="{{$manufacturer->id}}" {{ in_array($manufacturer->id, old('manufacturures', $enquiry->manufacturers->pluck('customer_id')->toArray() ?? [])) ? 'selected' : '' }}>{{$manufacturer->name}}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group col-md-6 col-12 mb-3">
-                  <button type="submit" class="btn btn-info mt-4">
+                  <button type="submit" class="btn btn-info mt-4" onclick="return confirm('Are you sure want to update?');">
                     Assign Manufacturers
                   </button>
                 </div>
               </div>
             </form>
-            @include('admin.enquiry.qutations')
+            
+            @if($enquiry->manufacturers->pluck('customer_id')->toArray())
+
+                <br><hr><br>
+                <h5>Step-2: Select at least One Qutation Received of Manufacturer  </h5>
+                @include('admin.enquiry.qutations')
+                
+
+                @if(count($enquiry->manufacturers->whereNotNull('qutation')) > 0)
+                  @if($enquiry->manufacturer_id!="")
+                  <br><hr><br>
+                  <h5>Step-3: Upload Qutation to Customer </h5>
+                  <form action="{{ route('admin.enquiry.update', $enquiry->id) }}" method="post" enctype='multipart/form-data'>
+                    @csrf @method('patch')
+                    <div class="row">
+                      <!-- Qutation -->
+                      <div class="form-group col-md-6 col-12 mb-3">
+                        @if($enquiry->status != 'invoked')
+                        <label for="name"> Upload Qutation</label>
+                        <input type="file" name="qutation" class="form-control" required>
+                        <br>
+                        @endif
+                        @if(@$enquiry->qutation)
+                        <div class="form-group col-12">
+                          <h5>
+                            <a href="{{asset($enquiry->qutation)}}" target="_blank" rel="noopener noreferrer">
+                              <u><i>Download/View Uploaded Qutation</i></u>
+                            </a>
+                          </h5>
+                        </div>
+                        @endif
+                      </div>
+                      <div class="form-group col-md-6 col-12 mb-3">
+                        <button type="submit" class="btn btn-info mt-4" onclick="return confirm('Are you sure want to @if(@$enquiry->qutation) Resend @else Send @endif to Customer?');">
+                        @if(@$enquiry->qutation) Resend @else Send @endif to Customer
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  @endif
+                @endif
+
+            @endif
           </div>
           @endif
           <div class="card-footer d-flex justify-content-center">

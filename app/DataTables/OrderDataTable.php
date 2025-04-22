@@ -11,7 +11,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-
+use Carbon\Carbon;
 class OrderDataTable extends DataTable
 {
     /**
@@ -23,6 +23,9 @@ class OrderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', 'admin.order.action')
+        ->editColumn('created_at', function ($data) {
+          return Carbon::parse($data->created_at)->format('d F, Y h:i a');
+        })
         ->rawColumns(['action','status'])
         ->editColumn('status', function ($data) {
           if($data->status == 'Pending') {
@@ -75,6 +78,7 @@ class OrderDataTable extends DataTable
         return [
           Column::make('id')->title('')->visible(false),
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
+          Column::make('created_at')->addClass('text-center'),
           Column::make('invoice_no')->title('Order ID'),
           Column::make('customer.name')->title('Customer Name')->sortable(false)->defaultContent(''),
           Column::make('customer.email')->title('Email')->sortable(false)->defaultContent(''),
