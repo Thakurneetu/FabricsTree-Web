@@ -40,7 +40,9 @@ class HomeController extends Controller
                 }
             }else{
                 foreach ($customer->manufacturerProduct as $key => $manufacturer_product) {
+                  if($manufacturer_product->product){
                     $carts[$key] = $manufacturer_product->product->id;
+                  }
                 }
             }
         }

@@ -79,8 +79,8 @@ class CustomerForgotPasswordController extends Controller
             }else{
                 return response()->json([
                     'status' => false,
-                    'message' => 'Please entered registered email!!',
-                    'errors' => 'Please entered registered email!!',
+                    'message' => 'Please enter registered email!!',
+                    'errors' => 'Please enter registered email!!',
                 ], 400);
             }
            
