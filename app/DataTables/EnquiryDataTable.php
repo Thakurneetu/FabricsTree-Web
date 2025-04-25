@@ -93,7 +93,7 @@ class EnquiryDataTable extends DataTable
         return [
             Column::make('id')->title('')->visible(false)->searchable(false),
             Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
-            Column::make('created_at')->addClass('text-center'),
+            Column::make('created_at')->addClass('text-center')->searchable(false),
             Column::make('customer.name')->sortable(false),
             Column::make('customer.phone')->sortable(false),
             Column::make('customer.email')->sortable(false),

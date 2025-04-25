@@ -78,7 +78,7 @@ class OrderDataTable extends DataTable
         return [
           Column::make('id')->title('')->visible(false)->searchable(false),
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
-          Column::make('created_at')->addClass('text-center'),
+          Column::make('created_at')->addClass('text-center')->searchable(false),
           Column::make('invoice_no')->title('Order ID'),
           Column::make('customer.name')->title('Customer Name')->sortable(false)->defaultContent(''),
           Column::make('customer.email')->title('Email')->sortable(false)->defaultContent(''),
