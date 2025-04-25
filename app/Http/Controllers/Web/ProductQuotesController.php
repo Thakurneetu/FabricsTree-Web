@@ -214,7 +214,7 @@ class ProductQuotesController extends Controller
 
         // After you've built your $enquiry array
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 2;
+        $perPage = 25;
         $enquiryCollection = collect($enquiry); // convert array to Collection
         $currentItems = $enquiryCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
 

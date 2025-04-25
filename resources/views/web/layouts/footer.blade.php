@@ -731,22 +731,22 @@
                     <div class="p-4">
                         <div class="form-check mt-3">
                             <input type="hidden" name="order_id" id="order_id" value=""/>
-                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault11" value="Incorrect Quality Requested">
-                            <label class="form-check-label" for="flexRadioDefault11">
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault44" value="Incorrect Quality Requested">
+                            <label class="form-check-label" for="flexRadioDefault44">
                             Incorrect Quality Requested
                             </label>
                         </div>
                         <div class="form-check mt-3">
-                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault22"
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault55"
                                 checked value="Fabric is no Longer Required">
-                            <label class="form-check-label" for="flexRadioDefault22">
+                            <label class="form-check-label" for="flexRadioDefault55">
                             Fabric is no Longer Required
                             </label>
                         </div>
                         <div class="form-check mt-3">
-                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault33"
+                            <input class="form-check-input" type="radio" name="revoke_reason" id="flexRadioDefault66"
                                 checked value="Others">
-                            <label class="form-check-label" for="flexRadioDefault33">
+                            <label class="form-check-label" for="flexRadioDefault66">
                                 Others
                             </label>
                         </div>

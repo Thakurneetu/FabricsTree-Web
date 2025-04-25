@@ -210,28 +210,7 @@
               <hr>
             </div>
             <div class="row Productscat mt-4" id="proHtml">
-              <!-- <div class="card-group">
-              @foreach($products as $products_val)
-              
-                <div class="card m-3">
-                  @if(isset($products_val) && count($products_val->images) > 0)
-                  <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
-                  @endif
-                  <div class="card-body">
-                    <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
-                    <div class="reviews">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="far fa-star"></i>
-                    </div>
-                    
-                    <button class="btn-outline-success  KnowMore" type="submit">Add to Cart</button>
-                  </div>
-                </div>
-              @endforeach
-              </div> -->
+                 @include('product.productData') 
             </div>
           </div>
         </div>
@@ -377,7 +356,7 @@ crossorigin="anonymous"></script>
         $('#sidebar').toggleClass('active');
         $('#sidebarCollapse').find('#collapseIcon').toggleClass('fa-arrow-left').toggleClass('fa-arrow-right');
       });
-      search_filter();
+      //search_filter();
       $("#filterVal").html('');
       $('.search_filter').change(function () {  
         search_filter();
@@ -396,7 +375,7 @@ crossorigin="anonymous"></script>
           categoryId.push($(this).val());
           categoryhtml.push($(this).attr('title'));
         });
-        categoryId = categoryId.join(",");
+        //categoryId = categoryId.join(",");
         categoryhtml = categoryhtml.join(",");
         //console.log('categoryId:'+categoryId);
         if(categoryhtml!=""){
@@ -410,7 +389,7 @@ crossorigin="anonymous"></script>
           requirementId.push($(this).val());
           requirementhtml.push($(this).attr('title'));
         });
-        requirementId = requirementId.join(",");
+        //requirementId = requirementId.join(",");
         requirementhtml = requirementhtml.join(",");
         //console.log('requirementId:'+requirementId);
         if(requirementhtml!=""){
@@ -424,7 +403,7 @@ crossorigin="anonymous"></script>
           subcategoryId.push($(this).val());
           subcategoryhtml.push($(this).attr('title'));
         });
-        subcategoryId = subcategoryId.join(",");
+       // subcategoryId = subcategoryId.join(",");
         subcategoryhtml = subcategoryhtml.join(",");
         //console.log('subcategoryId:'+subcategoryId);
         if(subcategoryhtml!=""){
