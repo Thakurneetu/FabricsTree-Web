@@ -109,6 +109,58 @@ class ProductController extends Controller
             }
     }
 
+    public function subcategories(Request $request)
+    {
+        $categoryId = $request->input('categoryId');
+        $subcategories = Subcategory::whereIn('category_id',$categoryId)->get();
+
+        $html = '';
+        if(count($subcategories)>0){
+            foreach($subcategories as $subcategory){
+                $html .= '<div class="form-check mt-3">
+                    <input title="'.$subcategory->name.'" class="form-check-input search_filter" type="checkbox" name="subcategory_id[]" id="subcategory_id_'.$subcategory->id.'" value="'.$subcategory->id.'">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    '.$subcategory->name.'
+                    </label>
+                </div>';
+            }
+        }else{
+            $html .= '<div class="form-check mt-3">No Record Found</div>';
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Data Get successfully.',
+            'data' => $html,
+        ], 200);
+    }
+
+    public function requirements(Request $request)
+    {
+        $categoryId = $request->input('categoryId');
+        $requirements = Requirement::whereIn('category_id',$categoryId)->get();
+
+        $html = '';
+        if(count($requirements)>0){
+            foreach($requirements as $requirement){
+                $html .= '<div class="form-check mt-3">
+                    <input title="'.$requirement->name.'" class="form-check-input search_filter" type="checkbox" name="requirement_id[]" id="requirement_id_'.$requirement->id.'" value="'.$requirement->id.'">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    '.$requirement->name.'
+                    </label>
+                </div>';
+            }
+        }else{
+            $html .= '<div class="form-check mt-3">No Record Found</div>';
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Data Get successfully.',
+            'data' => $html,
+        ], 200);
+    }
+
     public function productdetail($id)
     {
         $data['products_data'] = Product::find($id);

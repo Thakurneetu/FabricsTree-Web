@@ -73,7 +73,7 @@ class ContactUsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-          Column::make('id')->title('')->visible(false),
+          Column::make('id')->title('')->visible(false)->searchable(false),
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
           Column::make('name'),
           Column::make('email'),

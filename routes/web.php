@@ -50,6 +50,8 @@ Route::get('customer/logout', [CustomerLoginController::class, 'logout'])->name(
 Route::get('product', [ProductController::class,'index'])->name('product.index');
 Route::post('product-filter', [ProductController::class,'filter'])->name('product.filter');
 Route::get('product-filter', [ProductController::class,'filter'])->name('product.filter');
+Route::post('subcategories', [ProductController::class,'subcategories'])->name('subcategories');
+Route::post('requirements', [ProductController::class,'requirements'])->name('requirements');
 
 Route::get('productdetail/{id?}', [ProductController::class, 'productdetail'])->name('product.productdetail');
 

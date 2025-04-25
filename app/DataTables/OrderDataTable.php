@@ -76,7 +76,7 @@ class OrderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-          Column::make('id')->title('')->visible(false),
+          Column::make('id')->title('')->visible(false)->searchable(false),
           Column::make('DT_RowIndex')->title('Sl No.')->width(50)->addClass('text-center')->orderable(false)->searchable(false),
           Column::make('created_at')->addClass('text-center'),
           Column::make('invoice_no')->title('Order ID'),

@@ -49,7 +49,7 @@
           </a>
           <ul class="collapse list-unstyled" id="Requirement">
             <li>
-              <div class="p-1">
+              <div class="p-1" id="requirementsHtml">
                 @foreach($requirements as $requirement)
                 <div class="form-check mt-3">
                   <input title="{{$requirement->name}}" class="form-check-input search_filter" type="checkbox" name="requirement_id[]" id="requirement_id_{{$requirement->id}}" value="{{$requirement->id}}">
@@ -67,7 +67,7 @@
           </a>
           <ul class="collapse list-unstyled" id="Subcategory">
             <li>
-              <div class="p-1">
+              <div class="p-1" id="subcategoriesHtml">
               @foreach($subcategories as $subcategory)
               <div class="form-check mt-3">
                 <input title="{{$subcategory->name}}" class="form-check-input search_filter" type="checkbox" name="subcategory_id[]" id="subcategory_id_{{$subcategory->id}}" value="{{$subcategory->id}}">
@@ -375,6 +375,35 @@ crossorigin="anonymous"></script>
           categoryId.push($(this).val());
           categoryhtml.push($(this).attr('title'));
         });
+
+        $.easyAjax({
+          url: "{{ route('subcategories') }}",
+          type: "POST",
+          data: {
+            _token:$("input[name='_token']").val(),
+            categoryId:categoryId
+          },
+          success: function(response) {
+            if (response.status) {
+              $('#subcategoriesHtml').html(response.data);
+            }
+          }                    
+        })
+
+        $.easyAjax({
+          url: "{{ route('requirements') }}",
+          type: "POST",
+          data: {
+            _token:$("input[name='_token']").val(),
+            categoryId:categoryId
+          },
+          success: function(response) {
+            if (response.status) {
+              $('#requirementsHtml').html(response.data);
+            }
+          }                    
+        })
+
         //categoryId = categoryId.join(",");
         categoryhtml = categoryhtml.join(",");
         //console.log('categoryId:'+categoryId);
@@ -415,7 +444,7 @@ crossorigin="anonymous"></script>
         $.each($("input[name='width[]']:checked"), function() {
           width.push($(this).val());
         });
-        width = width.join(",");
+       // width = width.join(",");
         //console.log('width:'+width);
 
         if(width!=""){
@@ -426,7 +455,7 @@ crossorigin="anonymous"></script>
         $.each($("input[name='wrap[]']:checked"), function() {
           wrap.push($(this).val());
         });
-        wrap = wrap.join(",");
+        //wrap = wrap.join(",");
         //console.log('wrap:'+wrap);
         if(wrap!=""){
           $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Wrap:'+wrap+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
@@ -437,7 +466,7 @@ crossorigin="anonymous"></script>
         $.each($("input[name='weft[]']:checked"), function() {
           weft.push($(this).val());
         });
-        weft = weft.join(",");
+        //weft = weft.join(",");
         //console.log('weft:'+weft);
         if(weft!=""){
           $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Weft:'+weft+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
@@ -448,7 +477,7 @@ crossorigin="anonymous"></script>
         $.each($("input[name='count[]']:checked"), function() {
           count.push($(this).val());
         });
-        count = count.join(",");
+        //count = count.join(",");
         //console.log('count:'+count);
         if(count!=""){
           $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Count:'+count+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
@@ -459,7 +488,7 @@ crossorigin="anonymous"></script>
         $.each($("input[name='reed[]']:checked"), function() {
           reed.push($(this).val());
         });
-        reed = reed.join(",");
+        //reed = reed.join(",");
         //console.log('reed:'+reed);
         if(reed!=""){
           $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Reed:'+reed+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
@@ -470,7 +499,7 @@ crossorigin="anonymous"></script>
         $.each($("input[name='pick[]']:checked"), function() {
           pick.push($(this).val());
         });
-        pick = pick.join(",");
+        //pick = pick.join(",");
         //console.log('pick:'+pick);
         if(pick!=""){
           $("#filterVal").append('<button type="button" class="btn btn-outline-dark">Pick:'+pick+' &nbsp;<i class="fa fa-times" aria-hidden="true"></i></button>');
