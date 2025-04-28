@@ -135,7 +135,9 @@ class ProductQuotesController extends Controller
         {
             $manufacturer_enquiry = ManufacturerEnquiry::select('enquiries.*','manufacturer_enquiries.created_at as created_at','manufacturer_enquiries.qutation as qutation')
             ->join('enquiries', 'enquiries.id','manufacturer_enquiries.enquery_id')
-            ->where('manufacturer_enquiries.customer_id',$id)->get();
+            ->where('manufacturer_enquiries.customer_id',$id)
+            ->orderBy('manufacturer_enquiries.id','DESC')
+            ->get();
             //dd($manufacturer_enquiry);
             $enquiry = [];
             $enquiry_items_data = [];

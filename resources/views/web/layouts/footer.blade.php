@@ -805,7 +805,7 @@
                                 Upload Quatation File:
                             </label>
                             <input type="hidden" name="upload_enquiry_id" id="upload_enquiry_id" value=""/>
-                            <input required class="form-control" type="file" name="upload_quatation" id="upload_quatation" value="">
+                            <input required class="form-control" type="file" name="upload_quatation" id="upload_quatation" value="" accept="image/*,application/pdf" onchange="validateFileType()">
                         </div>
                         @error('upload_quatation')
                             <span class="invalid-feedback" role="alert">
@@ -838,6 +838,15 @@
 <script src="{{asset('frontend/js/jquery.toast.js')}}"></script>
 <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
 <script>
+    function validateFileType() {
+     var selectedFile = document.getElementById('upload_quatation').files[0];
+     var allowedTypes = ['image/jpeg', 'image/png','image/jpg','image/gif','application/pdf'];
+     if (!allowedTypes.includes(selectedFile.type)) {
+        swal("Error!", 'Invalid file type. Please upload a JPEG,JPG PNG,GIF or PDF file.', "error");
+        document.getElementById('upload_quatation').value = '';
+     }
+  }
+
     function onlyNumbers(e)
     {
       var c=e.which?e.which:e.keyCode; 

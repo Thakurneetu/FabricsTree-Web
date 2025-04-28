@@ -356,7 +356,7 @@ crossorigin="anonymous"></script>
         $('#sidebar').toggleClass('active');
         $('#sidebarCollapse').find('#collapseIcon').toggleClass('fa-arrow-left').toggleClass('fa-arrow-right');
       });
-      //search_filter();
+      search_filter();
       $("#filterVal").html('');
       $('.search_filter').change(function () {  
         search_filter();
@@ -376,33 +376,35 @@ crossorigin="anonymous"></script>
           categoryhtml.push($(this).attr('title'));
         });
 
-        $.easyAjax({
-          url: "{{ route('subcategories') }}",
-          type: "POST",
-          data: {
-            _token:$("input[name='_token']").val(),
-            categoryId:categoryId
-          },
-          success: function(response) {
-            if (response.status) {
-              $('#subcategoriesHtml').html(response.data);
-            }
-          }                    
-        })
+        if(categoryId!=""){
+          $.easyAjax({
+            url: "{{ route('subcategories') }}",
+            type: "POST",
+            data: {
+              _token:$("input[name='_token']").val(),
+              categoryId:categoryId
+            },
+            success: function(response) {
+              if (response.status) {
+                $('#subcategoriesHtml').html(response.data);
+              }
+            }                    
+          })
 
-        $.easyAjax({
-          url: "{{ route('requirements') }}",
-          type: "POST",
-          data: {
-            _token:$("input[name='_token']").val(),
-            categoryId:categoryId
-          },
-          success: function(response) {
-            if (response.status) {
-              $('#requirementsHtml').html(response.data);
-            }
-          }                    
-        })
+          $.easyAjax({
+            url: "{{ route('requirements') }}",
+            type: "POST",
+            data: {
+              _token:$("input[name='_token']").val(),
+              categoryId:categoryId
+            },
+            success: function(response) {
+              if (response.status) {
+                $('#requirementsHtml').html(response.data);
+              }
+            }                    
+          })
+        }
 
         //categoryId = categoryId.join(",");
         categoryhtml = categoryhtml.join(",");
