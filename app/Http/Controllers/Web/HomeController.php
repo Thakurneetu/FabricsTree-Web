@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         //$data['products'] = Product::select("*")->inRandomOrder()->get();
         $data['products'] = Product::withCount('order_products')
-        ->orderBy('order_products_count', 'asc')
+        ->orderBy('order_products_count', 'desc')
         ->take(10)
         ->get();
         $data['testimonials'] = Testimonial::all();

@@ -56,26 +56,34 @@ class CustomerLoginController extends Controller
             $data['email'] = $credentials['email_id'];
             $data['password'] = $credentials['pwd'];
             $customer = Customer::where('email', $data['email'])->first();
-            if ($customer->status != 1) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Your account is inactive. please contact administrator!',
-                    'errors' =>  'Your account is inactive. please contact administrator!',
-                ], 400);
-            }else{
-                if(Auth::guard('customer')->attempt($data)){
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Welcome back! You’ve successfully logged in.',
-                        'data' => $customer,
-                    ], 200);
-                }else{
+            if($customer){
+                if ($customer->status != 1) {
                     return response()->json([
                         'status' => false,
-                        'message' => 'Oops! You have entered invalid credentials.',
-                        'errors' => 'Oops! You have entered invalid credentials.',
+                        'message' => 'Your account is inactive. please contact administrator!',
+                        'errors' =>  'Your account is inactive. please contact administrator!',
                     ], 400);
+                }else{
+                    if(Auth::guard('customer')->attempt($data)){
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Welcome back! You’ve successfully logged in.',
+                            'data' => $customer,
+                        ], 200);
+                    }else{
+                        return response()->json([
+                            'status' => false,
+                            'message' => 'Oops! You have entered invalid credentials.',
+                            'errors' => 'Oops! You have entered invalid credentials.',
+                        ], 400);
+                    }
                 }
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Oops! You have entered invalid credentials.',
+                    'errors' => 'Oops! You have entered invalid credentials.',
+                ], 400);
             }
             // return redirect()->intended(route("customer.dashboard"))->withSuccess('You have Successfully loggedin');
             

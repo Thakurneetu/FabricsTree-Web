@@ -99,7 +99,7 @@
                       <div class="form-group col-md-6 col-12 mb-3">
                         @if($enquiry->status != 'invoked')
                         <label for="name"> Upload Qutation</label>
-                        <input type="file" name="qutation" class="form-control" required>
+                        <input type="file" name="qutation" id="qutation" class="form-control" required accept="image/*,application/pdf" onchange="validateFileType()">
                         <br>
                         @endif
                         @if(@$enquiry->qutation)
@@ -136,6 +136,16 @@
 @section('script')
  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
+
+function validateFileType() {
+     var selectedFile = document.getElementById('qutation').files[0];
+     var allowedTypes = ['image/jpeg', 'image/png','image/jpg','image/gif','application/pdf'];
+     if (!allowedTypes.includes(selectedFile.type)) {
+        swal("Error!", 'Invalid file type. Please upload a JPEG,JPG PNG,GIF or PDF file.', "error");
+        document.getElementById('qutation').value = '';
+     }
+  }
+
    jQuery(document).ready(function() {
       jQuery('.select2').select2({
         placeholder: 'Select Manufacturers',
