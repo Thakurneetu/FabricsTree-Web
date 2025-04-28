@@ -24,4 +24,8 @@
     <th>Status:</th>
     <td>{{$enquiry->status == 'submitted' ? 'Pending' : 'Reviewed'}}</td>
   </tr>
+  <tr>
+    <th>Message:</th>
+    <td>{{$enquiry->message}}</td>
+  </tr>
 </table>

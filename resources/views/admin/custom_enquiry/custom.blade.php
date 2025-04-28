@@ -1,4 +1,4 @@
-<h5>Enqury</h5>
+<h5>Enquiry Item</h5>
 <table class="table table-borderless table-responsive-md">
   <colgroup>
     <col style="width: 10%;">
@@ -27,7 +27,7 @@
       <td>{{$enquiry->category->name??''}}</td>
       <td>{{$enquiry->subcategory->name??''}}</td>
       <td>{{$enquiry->width}}</td>
-      <td>{{$enquiry->wrap}}</td>
+      <td>{{$enquiry->warp}}</td>
       <td>{{$enquiry->weft}}</td>
       <td>{{$enquiry->count}}</td>
       <td>{{$enquiry->reed}}</td>

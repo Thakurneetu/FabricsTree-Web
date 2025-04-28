@@ -318,10 +318,11 @@ crossorigin="anonymous"></script>
       
       $.easyAjax({
         url: "{{ route('product.requestaquotes') }}",
-        container: '#customForm',
-        type: "GET",
-        redirect: true,
+        //container: '#customForm',
+        type: "POST",
+       // redirect: true,
         data: {
+          '_token':$("input[name='_token']").val(),
           'enquery_type':'custom',
           'category_id' : $('#ccategory').val(),
           'subcategory_id' : $('#csub_category').val(),
