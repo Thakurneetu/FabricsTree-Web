@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
 use App\Http\Controllers\API\Manufacturer\ManufacturerAuthController;
 use App\Http\Controllers\API\Manufacturer\ManufacturerProductController;
 use App\Http\Controllers\API\Manufacturer\ManufacturerEnquiryController;
+use App\Http\Controllers\API\Manufacturer\DashboardController;
 
 Route::group(['prefix' => 'manufacturer'], function () {
   Route::post('/register', [ManufacturerAuthController::class, 'register']);
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'manufacturer'], function () {
       });
       Route::apiResource('notification', NotificationController::class);
       Route::post('/profile', [ManufacturerAuthController::class, 'profile']);
+      Route::get('/dashboard', [DashboardController::class, 'dashboard']);
       Route::post('/logout', [ManufacturerAuthController::class, 'logout']);
       Route::apiResource('product', ManufacturerProductController::class);
       Route::apiResource('enquiry', ManufacturerEnquiryController::class);
