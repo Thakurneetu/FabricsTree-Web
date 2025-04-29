@@ -131,8 +131,11 @@
       if (confirm("Are you sure want to request a quote for this cart item?") == true) {  
       $.easyAjax({
         url: "{{ route('product.requestaquotes') }}",
-        mtype: "POST",
-        data: {'enquery_type':'selected'},
+        type: "POST",
+        data: {
+            '_token':$("input[name='_token']").val(),
+            'enquery_type':'selected'
+            },
         success: function(response) {
           if (response.status) {
             $('#exampleModalThankuinterest').modal('show');

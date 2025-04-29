@@ -25,8 +25,8 @@
 
             <ul>
                 <h3>Pages</h3>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Products</a></li>
+                <li><a href="{{route('aboutus')}}">About us</a></li>
+                <li><a href="{{route('product.index')}}">Products</a></li>
                 <li><a href="#">Terms & Condition</a></li>
                 <li><a href="#">Privacy Policy</a></li>
             </ul>
