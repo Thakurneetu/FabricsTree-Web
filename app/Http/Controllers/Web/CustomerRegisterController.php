@@ -110,6 +110,7 @@ class CustomerRegisterController extends Controller
           ],
           'store_contact' => 'required|min:10|max:10|unique:customers',
           'store_address' => 'required',
+          'store_logo'=> 'required',
           'gst_no' => 'required',
           'pincode' => 'required|integer',
           'password' => 'required|min:8',
@@ -150,7 +151,7 @@ class CustomerRegisterController extends Controller
      */
     public function register(Request $request)
     {
-        //dd( $request->all());
+       // dd( $request->all());
         try {
             if($request->user_type=='Customer'){
                 $this->validator_customer($request->all())->validate();
@@ -177,11 +178,15 @@ class CustomerRegisterController extends Controller
                     $customer->password = $request->password;
                     $customer->status = 0;
                 }else{
-                    // if($request->hasFile('store_logo')){
-                    //     $customer->store_logo = $this->save_image($request->store_logo, '/uploads/store_logo');
-                    //   }
-                    // dd($request->all());
-                    //dd($customer->store_logo);
+                    
+                    if ($request->hasFile('store_logo')) {
+                        $image = $request->file('store_logo');
+                        $imageName = time().'_'.$image->getClientOriginalName();
+                        $image->move(public_path('uploads/logo'), $imageName);
+                        $store_logo = 'uploads/logo/' . $imageName;
+                        $customer->store_logo = $store_logo;
+                    }
+
                     $customer->user_type = $request->user_type;
                     $customer->name = $request->manufacturer_name;
                     $customer->firm_name = $request->store_name;
@@ -223,24 +228,6 @@ class CustomerRegisterController extends Controller
             ], 400);
         }
     }
-
-    // public function uploadstorelogo(Request $request)
-    // {
-    //     //dd($_REQUEST);
-    //  dd($request->all());
-    //     // if($request->hasFile('store_logo')){
-    //     //     $store_logo = $this->save_image($request->store_logo, '/uploads/store_logo');
-    //     // }
-             
-    // }
-    
-
-    // private function save_image($file, $store_path){
-    //     $extension = File::extension($file->getClientOriginalName());
-    //     $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
-    //     $file->move(public_path($store_path), $filename);
-    //     return $store_path.'/'.$filename;
-    //   }
 
     // transform the error messages,
     private function transformErrors(ValidationException $exception)

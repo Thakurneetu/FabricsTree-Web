@@ -82,6 +82,20 @@
       <div class="text-danger">{{ $message }}</div>
       @enderror
     </div>
+    <div class="form-group col-md-6 col-12 mb-6">
+      <label>Store Logo</label>
+      <input style="height: 1.8rem;" type="file" name="store_logo" id="store_logo" accept="image/*" class="form-control @error('store_logo') is-invalid @enderror" placeholder="upload store logo" title="{{ __('Store Logo') }}" value="{{ old('store_logo') }}">
+      @error('store_logo')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+      @if(@$manufacturer->store_logo)
+      <img class="p-3" src="{{asset($manufacturer->store_logo)}}" alt="store logo" width="150">
+      @else
+      <img class="p-3" src="{{asset('frontend/images/Layer 2.png')}}" alt="store logo" width="150">
+      @endif
+    </div>
   </div>
 </div>
 

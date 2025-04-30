@@ -40,6 +40,15 @@ class ManufacturerController extends Controller
         DB::beginTransaction();
         $data = $request->except('_token');
         $data['user_type'] = 'Manufacturer';
+
+        if ($request->hasFile('store_logo')) {
+          $image = $request->file('store_logo');
+          $imageName = time().'_'.$image->getClientOriginalName();
+          $image->move(public_path('uploads/logo'), $imageName);
+          $store_logo = 'uploads/logo/' . $imageName;
+          $data['store_logo'] = $store_logo;
+        }
+        
         Customer::create($data);
         DB::commit();
         Alert::toast('Manufacturer Added Successfully','success');
@@ -93,6 +102,15 @@ class ManufacturerController extends Controller
         $data = $request->except('_token', '_method', 'password');
         if($request->password)
         $data['password'] = $request->password;
+        
+        if ($request->hasFile('store_logo')) {
+          $image = $request->file('store_logo');
+          $imageName = time().'_'.$image->getClientOriginalName();
+          $image->move(public_path('uploads/logo'), $imageName);
+          $store_logo = 'uploads/logo/' . $imageName;
+          $data['store_logo'] = $store_logo;
+        }
+
         $manufacturer->update($data);
         DB::commit();
         Alert::toast('Manufacturer Update Successfully','success');

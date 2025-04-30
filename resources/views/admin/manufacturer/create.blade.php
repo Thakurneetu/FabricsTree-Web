@@ -12,7 +12,7 @@
           Add Manufacturer
           <a href="{{ route('admin.manufacturer.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.manufacturer.store') }}" method="post">
+        <form action="{{ route('admin.manufacturer.store') }}" method="post" enctype='multipart/form-data'>
           @csrf
           @include('admin.manufacturer.form')
         </form>
