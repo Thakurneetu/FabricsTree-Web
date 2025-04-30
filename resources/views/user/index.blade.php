@@ -10,7 +10,7 @@
     </div>
 
     <div class="Maindiv mt-3">
-        <form method="POST" id="profileform" name="profileform" >
+        <form method="POST" id="profileform" name="profileform" enctype='multipart/form-data'>
             @csrf 
             <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Personal Detail</h1>
             <div class="row">
@@ -44,6 +44,22 @@
                 <div class="col-md-6 col-sm-12">
                     <input type="text" class="form-control" placeholder="Enter store contact number" value="{{ $customer->store_contact }}" name="store_contact" id="store_contact" >
                 </div>
+                <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Logo') }}*</label>  -->
+                <div class="col-md-6 col-sm-12" >
+                <div class="mb-3">
+                    <input style="height: 1.8rem;" type="file" name="store_logo" id="store_logo" accept="image/*" class="form-control @error('store_logo') is-invalid @enderror" placeholder="upload store logo" title="{{ __('Store Logo') }}" value="{{ old('store_logo') }}">
+                    @error('store_logo')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                    @if($customer->store_logo)
+                    <img class="p-3" src="{{asset($customer->store_logo)}}" alt="store logo" width="150">
+                    @else
+                    <img class="p-3" src="{{asset('frontend/images/Layer 2.png')}}" alt="store logo" width="150">
+                    @endif
+                </div> 
                 @endif
 
                 <div class="col-md-6 col-sm-12">
@@ -90,19 +106,27 @@
 
 <script>
     
-    $('#save_profile').click(function () {               
+    $('#save_profile').click(function () { 
+      
+        let form = $('#profileform')[0];
+        let formData = new FormData(form);
+
       $.easyAjax({
         url: "{{ route('customer.updateprofile') }}",
         container: '#profileform',
         type: "POST",
-        redirect: true,
-        data: $('#profileform').serialize(),
+        file: true,  
+        processData: false,
+        contentType: false,
+        data: formData,
+        enctype: 'multipart/form-data',
+        //data: $('#profileform').serialize(),
         success: function(response) {
           if (response.status) {
             swal("Sent!", response.message, "success");
             setInterval(function () {
               window.location.reload();
-            }, 4000);
+            }, 2000);
           }
         }                    
       })
@@ -120,7 +144,7 @@
             swal("Sent!", response.message, "success");
             setInterval(function () {
               window.location.reload();
-            }, 4000);
+            }, 2000);
           }
         }                    
       })

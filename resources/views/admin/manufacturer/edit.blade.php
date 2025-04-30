@@ -12,7 +12,7 @@
           Edit Manufacturer
           <a href="{{ route('admin.manufacturer.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
-        <form action="{{ route('admin.manufacturer.update', $manufacturer->id) }}" method="post">
+        <form action="{{ route('admin.manufacturer.update', $manufacturer->id) }}" method="post" enctype='multipart/form-data'>
           @csrf @method('patch')
           @include('admin.manufacturer.form')
         </form>

@@ -20,7 +20,7 @@ class ProfileController extends Controller
     public function index()
     {
         $id = Auth::guard('customer')->id();
-        $customer = Customer::find($id);
+        $customer = Customer::find($id);//dd($customer);
         $data['customer'] = $customer;
         if(@$customer->user_type==''){
             return redirect('/')->withError('Session Expired');
@@ -105,7 +105,18 @@ class ProfileController extends Controller
 
                 }else{
 
-                    $user = Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact]);
+                    if ($request->hasFile('store_logo')) {
+                        $image = $request->file('store_logo');
+                        $imageName = time().'_'.$image->getClientOriginalName();
+                        $image->move(public_path('uploads/logo'), $imageName);
+                        $store_logo = 'uploads/logo/' . $imageName;
+                       
+                        $user = Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact,'store_logo' => $store_logo]);
+
+                    }else{
+                        
+                        $user = Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact]);
+                    }
                 }
 
                 return response()->json([

@@ -25,8 +25,8 @@
 
             <ul>
                 <h3>Pages</h3>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Products</a></li>
+                <li><a href="{{route('aboutus')}}">About us</a></li>
+                <li><a href="{{route('product.index')}}">Products</a></li>
                 <li><a href="#">Terms & Condition</a></li>
                 <li><a href="#">Privacy Policy</a></li>
             </ul>
@@ -439,13 +439,13 @@
               </div>
             </div>
 
-            <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Logo') }}*</label> -->
-            <!-- <div class="col-md-12 col-sm-12 manuf" >
+             <label for="exampleFormControlInput1" class="form-label manuf">{{ __('Store Logo') }}*</label> 
+             <div class="col-md-12 col-sm-12 manuf" >
               <div class="mb-3">
                 
-                <input id="store_image" type="hidden" class="form-control"  name="store_image" value="" placeholder="upload store image">
-
-                <input id="store_logo" type="file" class="form-control @error('store_logo') is-invalid @enderror" name="store_logo" value="{{ old('store_logo') }}" required placeholder="upload store logo">
+                <!-- <input id="store_image" type="hidden" class="form-control"  name="store_image" value="" placeholder="upload store image"> -->
+                <input style="height: 1.8rem;" type="file" name="store_logo" id="store_logo" accept="image/*" class="form-control @error('store_logo') is-invalid @enderror" placeholder="upload store logo" required value="{{ old('store_logo') }}">
+                <!-- <input id="store_logo" type="file" class="form-control @error('store_logo') is-invalid @enderror" name="store_logo" value="{{ old('store_logo') }}" required placeholder="upload store logo"> -->
 
                 @error('store_logo')
                     <span class="invalid-feedback" role="alert">
@@ -453,7 +453,7 @@
                     </span>
                 @enderror
               </div>
-            </div> -->
+            </div> 
 
             <div class="col-md-12 col-sm-12 cust">
               <div class="mb-3">
@@ -870,52 +870,26 @@
         $('.manuf').show();
       }
     });
-
-    $("#store_logo1").on('change',function(){
-      //$('#registerform').submit();
-      var fd = new FormData();
-      var files = $('#store_logo')[0].files[0];
-      fd.append('store_logo',files);
-      // var token = "{{ csrf_token() }}";alert(token +"  ====  "+ $("input[name='_token']").val())
-        console.log('fd',fd);
-        $.easyAjax({
-            dataType: 'json',
-            processData: false,
-            container: '#registerform',
-            redirect: true,
-            
-           // contentType: 'application/json',
-            url: "{{ route('customer.uploadstorelogo') }}",
-            type: 'POST',
-            data: { 'token': $("input[name='_token']").val(),'logo':fd },
-            success: function(response){
-              //console.log(response);
-                // if(response != 0){
-                //     $("#img").attr("src",response); 
-                //     $(".preview img").show(); // Display image element
-                // }else{
-                //     alert('file not uploaded');
-                // }
-            },
-        });
-    });
     
     $('#save_register').click(function () {  
-      
-        // let uploadedFile = document.getElementById('store_logo').files[0];
-        // console.log('formData:',uploadedFile);
-        // $('#store_image').val(uploadedFile.name);
+
+        let form = $('#registerform')[0];
+        let formData = new FormData(form);
 
       $.easyAjax({
         url: "{{ route('customer.register') }}",
-        enctype: 'multipart/form-data',
         container: '#registerform',
         type: "POST",
         redirect: true,
-        data: $('#registerform').serialize(),
+        file: true,  
+        processData: false,
+        contentType: false,
+        data: formData,
+        enctype: 'multipart/form-data',
+        //data: $('#registerform').serialize(),
         success: function(response) {
           if (response.status) {
-            console.log('user_type::'+response.data.user_type);
+            //console.log('user_type::'+response.data.user_type);
             $('#exampleModalregistation').modal('hide');
             swal("Sent!", response.message, "success");
             setInterval(function () {

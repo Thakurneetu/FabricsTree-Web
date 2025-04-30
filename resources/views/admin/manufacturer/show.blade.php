@@ -60,6 +60,16 @@
                   <th>GST Number:</th>
                   <td>{{$manufacturer->gst_number}}</td>
                 </tr>
+                <tr>
+                <th>Store Logo:</th>
+                  <td>
+                    @if($manufacturer->store_logo)
+                    <img class="p-3" src="{{asset($manufacturer->store_logo)}}" alt="store logo" width="150">
+                    @else
+                    <img class="p-3" src="{{asset('frontend/images/Layer 2.png')}}" alt="store logo" width="150">
+                    @endif
+                  </td>
+                </tr>
               </table>
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
