@@ -41,7 +41,7 @@ class NewManufacturerQuote extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.admin.manufacturer_quot',
+            view: 'email.admin.manufacturer_quote',
         );
     }
 
