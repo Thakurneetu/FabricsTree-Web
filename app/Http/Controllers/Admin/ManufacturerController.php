@@ -44,8 +44,8 @@ class ManufacturerController extends Controller
         if ($request->hasFile('store_logo')) {
           $image = $request->file('store_logo');
           $imageName = time().'_'.$image->getClientOriginalName();
-          $image->move(public_path('uploads/logo'), $imageName);
-          $store_logo = 'uploads/logo/' . $imageName;
+          $image->move(public_path('uploads/store_logo'), $imageName);
+          $store_logo = 'uploads/store_logo/' . $imageName;
           $data['store_logo'] = $store_logo;
         }
         
@@ -106,8 +106,8 @@ class ManufacturerController extends Controller
         if ($request->hasFile('store_logo')) {
           $image = $request->file('store_logo');
           $imageName = time().'_'.$image->getClientOriginalName();
-          $image->move(public_path('uploads/logo'), $imageName);
-          $store_logo = 'uploads/logo/' . $imageName;
+          $image->move(public_path('uploads/store_logo'), $imageName);
+          $store_logo = 'uploads/store_logo/' . $imageName;
           $data['store_logo'] = $store_logo;
         }
 

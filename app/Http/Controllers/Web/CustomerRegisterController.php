@@ -176,14 +176,14 @@ class CustomerRegisterController extends Controller
                     $customer->address = $request->address;
                     $customer->pincode = $request->pincode;
                     $customer->password = $request->password;
-                    $customer->status = 0;
+                    $customer->status = 1;
                 }else{
                     
                     if ($request->hasFile('store_logo')) {
                         $image = $request->file('store_logo');
                         $imageName = time().'_'.$image->getClientOriginalName();
-                        $image->move(public_path('uploads/logo'), $imageName);
-                        $store_logo = 'uploads/logo/' . $imageName;
+                        $image->move(public_path('uploads/store_logo'), $imageName);
+                        $store_logo = 'uploads/store_logo/' . $imageName;
                         $customer->store_logo = $store_logo;
                     }
 

@@ -56,7 +56,7 @@ class ManufacturerAuthController extends Controller
             'address' => $request->address,
             'firm_name' => $request->firm_name,
             'gst_number' => $request->gst_number,
-            'status' => 1,
+            'status' => 0,
             'store_contact' => $request->store_contact,
             'password' => Hash::make($request->password),
             'user_type' => 'Manufacturer'

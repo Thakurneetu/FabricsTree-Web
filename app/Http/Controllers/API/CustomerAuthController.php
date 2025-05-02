@@ -62,6 +62,7 @@ class CustomerAuthController extends Controller
             'address' => $request->address,
             'status' => 1,
             'password' => Hash::make($request->password),
+            'user_type' => 'Customer'
         ]);
 
         // Generate a Sanctum token
