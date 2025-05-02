@@ -56,6 +56,9 @@ Route::get('productdetail/{id?}', [ProductController::class, 'productdetail'])->
 
 Route::get('productcart', [ProductController::class, 'productcart'])->name('product.productcart');
 
+Route::get('myproduct', [ProductController::class,'index'])->name('product.myproduct');
+
+
 Route::get('addtocart', [ProductController::class, 'addtocart'])->name('product.addtocart');
 Route::get('deletecart', [ProductController::class, 'deletecart'])->name('product.deletecart');
 Route::post('requestaquotes', [ProductController::class, 'requestaquotes'])->name('product.requestaquotes');

@@ -1,8 +1,8 @@
 @include('web.layouts.header')
 <div class="banneerlogo">
         <div style="flex-direction: column;">
-            <h1>Products</h1>
-            <p><span>Home</span>/ Products</p>
+            <h1>@if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct') My @endif Products</h1>
+            <p><span>Home</span>/ @if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct') My @endif Products</p>
         </div>
     </div>
 <div class="wrapper">
@@ -247,7 +247,7 @@
                           <form id="customForm" method="POST">
                           @csrf
                             <div class="mb-3 registerss">
-                            
+                              <input type="hidden" id="page_url" name="page_url"  class="form-control" value="{{$page_url}}"/>
                                 <label for="FabricCategory" style="font-weight: bold;">Category</label>
                                 <select class="form-control" id="ccategory" name="category_id" >
                                   <option value="">Select Category</option>
@@ -518,6 +518,7 @@ crossorigin="anonymous"></script>
           redirect: true,
           data: {
             _token:$("input[name='_token']").val(),
+            page_url:$('#page_url').val(),
             categoryId:categoryId,
             requirementId:requirementId,
             subcategoryId:subcategoryId,
@@ -537,6 +538,27 @@ crossorigin="anonymous"></script>
                 var qty = 1;//$this.attr('quantity').val();
                 add_to_cart(id,qty);
               });
+
+                  $('.delete_pro').click(function () {
+                    if (confirm("Are you sure want to delete this product item?") == true) {  
+                    var cart_id = $(this).attr('cartid');
+                    $.easyAjax({
+                      url: "{{ route('product.deletecart') }}",
+                      //type: "POST",
+                      data: {'cart_id':cart_id},
+                      success: function(response) {
+                        if (response.status) {
+                          swal("Sent!", response.message, "success");
+                          setInterval(function () {
+                            window.location.reload();
+                          }, 1000);
+                        }
+                      }                    
+                    })
+                    }else{
+                      return false;
+                    }
+                  });
             }
           }                    
         })

@@ -2,7 +2,7 @@
 use App\Models\Cart;
 use App\Models\ManufacturerProduct;
 
-
+    $attr ='';
     $html = '<div class="card-group">';
         $i=1;
         foreach($products as $products_val){
@@ -47,8 +47,18 @@ use App\Models\ManufacturerProduct;
                 $html .= 'Add to Cart';
             }
             $html .= '</button>';
-
-            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display:none;margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
+            if($customer && $customer->user_type=='Manufacturer'){
+                if($page_url=='myproduct'){
+                    $url = '#';
+                    $attr = 'class="delete_pro" cartid="'.@$items[0]->id.'"';
+                }else{
+                    $url = route('product.myproduct');
+                    $attr ='';
+                }
+            }else{
+                $url = route('product.productcart');
+            }
+            $html .='<a href="'.$url.'" '.$attr.'><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display:none;margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
             if($customer) 
             {
                 if($customer->user_type=='Customer') 
@@ -57,7 +67,12 @@ use App\Models\ManufacturerProduct;
                 }  
                 else 
                 {
-                    $html .= 'Go to My Product';
+                    if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct'){
+                        $html .= 'Delete';
+                    }else{
+                        $html .= 'Go to My Product';
+                    }
+                    
                 }
             }
             else
@@ -68,8 +83,18 @@ use App\Models\ManufacturerProduct;
             $html .= '</button></a>';
 
         }else{
-
-            $html .='<a href="'.route('product.productcart').'" ><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
+            if($customer && $customer->user_type=='Manufacturer'){
+                if($page_url=='myproduct'){
+                    $url = '#';
+                    $attr = 'class="delete_pro" cartid="'.@$items[0]->id.'"';
+                }else{
+                    $url = route('product.myproduct');
+                    $attr ='';
+                }
+            }else{
+                $url = route('product.productcart');
+            }
+            $html .='<a href="'.$url.'" '.$attr.'><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
             if($customer) 
             {
                 if($customer->user_type=='Customer') 
@@ -78,7 +103,11 @@ use App\Models\ManufacturerProduct;
                 }  
                 else 
                 {
-                    $html .= 'Go to My Product';
+                    if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct'){
+                        $html .= 'Delete';
+                    }else{
+                        $html .= 'Go to My Product';
+                    }
                 }
             }
             else
@@ -95,6 +124,9 @@ use App\Models\ManufacturerProduct;
                 $i = 0;
             }
           $i++;
+        }
+        if(count($products)==0){
+            $html .= 'No Record Found';
         }
         $html .= '</div>';
 

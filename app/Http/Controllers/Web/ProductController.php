@@ -26,9 +26,41 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $data['products'] = Product::select("*")->paginate(50);
+    public function index(Request $request)
+    {   
+        DB::enableQueryLog();
+        $id = Auth::guard('customer')->id();
+        $customer = Customer::find($id);
+        $data['customer'] = $customer;
+        $data['id'] = $id;
+        $data['page_url'] = $request->segment(1);
+
+        //$data['products'] = Product::select("*")->paginate(50);
+        $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id','requirement_id','subcategory_id','width','count','reed','pick');
+
+        if($customer && $customer->user_type=='Manufacturer' && $request->segment(1)=='myproduct'){
+            $manufacturer_prod_data = DB::table('manufacturer_products')
+            ->select('product_id','id as cartid')
+            ->where('customer_id', $id)
+            ->get();
+           
+            $prodIdArray = [];
+            if(count($manufacturer_prod_data) >0)
+            {
+                foreach($manufacturer_prod_data as $key=>$val){
+                $prodIdArray[] = $val->product_id;
+                }
+            }
+            if ($prodIdArray)
+                $query->whereIn('id', $prodIdArray);
+            else
+                $query->whereIn('id', array('10000000000000000'));
+        }
+
+        $products = $query->paginate(50, ['*'], 'page',$request->input('page', 1));
+        //dd(DB::getQueryLog());
+            
+        $data['products'] = $products;
         
         $data['categories'] = Category::get();
         $data['subcategories'] = Subcategory::get();
@@ -40,10 +72,7 @@ class ProductController extends Controller
         $data['reeds'] = Product::pluck('reed')->unique()->toArray();
         $data['picks'] = Product::pluck('pick')->unique()->toArray();
         $data['tags'] = Tag::get();
-        $id = Auth::guard('customer')->id();
-        $customer = Customer::find($id);
-        $data['customer'] = $customer;
-        $data['id'] = $id;
+        
         return view('product.index',$data);
     }
 
@@ -64,7 +93,7 @@ class ProductController extends Controller
         $data['customer'] = $customer;
         $data['id'] = $id;
         
-           
+                $page_url = $request->input('page_url');
                 $categoryId = $request->input('categoryId');
                 $requirementId = $request->input('requirementId');
                 $subcategoryId = $request->input('subcategoryId');
@@ -74,6 +103,25 @@ class ProductController extends Controller
                 $pick = $request->input('pick');
                 DB::enableQueryLog();
                 $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id','requirement_id','subcategory_id','width','count','reed','pick');
+                
+                if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct'){
+                    $manufacturer_prod_data = DB::table('manufacturer_products')
+                    ->select('product_id','id as cartid')
+                    ->where('customer_id', $id)
+                    ->get();
+                    $prodIdArray = [];
+                    if(count($manufacturer_prod_data) >0)
+                    {
+                        foreach($manufacturer_prod_data as $key=>$val){
+                        $prodIdArray[] = $val->product_id;
+                        }
+                    }
+                    if ($prodIdArray)
+                        $query->whereIn('id', $prodIdArray);
+                    else
+                    $query->whereIn('id', array('10000000000000000'));
+                }
+
                 if ($categoryId)
                     $query->whereIn('category_id', $categoryId);
                 if ($requirementId)
@@ -93,7 +141,7 @@ class ProductController extends Controller
             //dd(DB::getQueryLog());
             
             $data['products'] = $products;
-            
+            $data['page_url'] = $page_url;
             if($request->ajax())
             {
                 $proData = view('product.productData',$data)->render();

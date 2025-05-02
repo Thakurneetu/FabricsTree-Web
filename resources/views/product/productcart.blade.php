@@ -1,8 +1,8 @@
 @include('web.layouts.header')
     <div class="banneerlogo">
         <div style="flex-direction: column;">
-            <h1>My Carts</h1>
-            <p><span>Home</span>/ My Carts</p>
+            <h1>My @if(@$customer && $customer->user_type=='Customer') Carts @else Products @endif</h1>
+            <p><span>Home</span>/ My @if(@$customer && $customer->user_type=='Customer') Carts @else Products @endif</p>
         </div>
     </div>
 
@@ -13,7 +13,7 @@
                 <div class="row headparagraph">
 
                     <div class="col-lg-8 col-md-2 col-sm-12">
-                        <div>Product Cart Detail</div>
+                        <div>Product Detail</div>
                     </div>
                     <div class=" col-lg-4 col-md-5 col-sm-12 alignment">
                         <div class="fouesec">
@@ -83,7 +83,7 @@
                 </div>
                     @endforeach
                 @else
-                <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Carts list Found</div></div>
+                <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Record Found</div></div>
                 @endif
             </div>
             <div class="row">
