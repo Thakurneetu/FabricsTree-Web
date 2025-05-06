@@ -50,10 +50,10 @@ class ProductsController extends Controller
       $categories = Category::select('id','name')->get();
       $requirements = Requirement::select('id','name')->get();
       $subcategories = Subcategory::select('id','name')->get();
-      $widths = Product::pluck('width')->unique()->toArray();
-      $count = Product::pluck('count')->unique()->toArray();
-      $reed = Product::pluck('reed')->unique()->toArray();
-      $pick = Product::pluck('pick')->unique()->toArray();
+      $widths = Product::pluck('width')->unique()->values()->toArray();
+      $count = Product::pluck('count')->unique()->values()->toArray();
+      $reed = Product::pluck('reed')->unique()->values()->toArray();
+      $pick = Product::pluck('pick')->unique()->values()->toArray();
       return response()->json([
           'status' => true,
           'categories' => $categories,

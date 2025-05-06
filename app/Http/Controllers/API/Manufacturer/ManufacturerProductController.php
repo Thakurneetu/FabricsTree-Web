@@ -14,8 +14,8 @@ class ManufacturerProductController extends Controller
      */
     public function index(Request $request)
     {
-      $products = ManufacturerProduct::select('id','category_id','requirement_id','subcategory_id','width','count','reed','pick','wrap','weft')
-                                       ->with('category:id,name','subcategory:id,name')
+      $products = ManufacturerProduct::select('id','category_id','requirement_id','subcategory_id','title','width','count','reed','pick','wrap','weft','product_id')
+                                       ->with('category:id,name','subcategory:id,name', 'images')
                                        ->where('customer_id', $request->user()->id)
                                        ->latest()
                                        ->get();
