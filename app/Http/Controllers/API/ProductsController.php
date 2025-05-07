@@ -13,30 +13,31 @@ class ProductsController extends Controller
 {
     public function products(Request $request)
     {
-      $categoryId = $request->input('category_id');
-      $requirementId = $request->input('requirement_id');
-      $subcategoryId = $request->input('subcategory_id');
-      $width = $request->input('width');
-      $count = $request->input('count');
-      $reed = $request->input('reed');
-      $pick = $request->input('pick');
+      $categoryId = explode(',',$request->input('category_id'));
+      $requirementId = explode(',',$request->input('requirement_id'));
+      $subcategoryId = explode(',',$request->input('subcategory_id'));
+      $width = explode(',',$request->input('width'));
+      $count = explode(',',$request->input('count'));
+      $reed = explode(',',$request->input('reed'));
+      $pick = explode(',',$request->input('pick'));
 
-      $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id','requirement_id','subcategory_id','width','count','reed','pick');
+      $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id',
+                               'requirement_id','subcategory_id','width','count','reed','pick');
       
-      if ($categoryId)
-        $query->where('category_id', $categoryId);
-      if ($requirementId)
-        $query->where('requirement_id', $requirementId);
-      if ($subcategoryId)
-        $query->where('subcategory_id', $subcategoryId);
-      if ($width)
-        $query->where('width', $width);
-      if ($count)
-        $query->where('count', $count);
-      if ($reed)
-        $query->where('reed', $reed);
-      if ($pick)
-        $query->where('pick', $pick);
+      if (count($categoryId) > 0)
+        $query->whereIn('category_id', $categoryId);
+      if (count($requirementId) > 0)
+        $query->whereIn('requirement_id', $requirementId);
+      if (count($subcategoryId) > 0)
+        $query->whereIn('subcategory_id', $subcategoryId);
+      if (count($width) > 0)
+        $query->whereIn('width', $width);
+      if (count($count) > 0)
+        $query->whereIn('count', $count);
+      if (count($reed) > 0)
+        $query->whereIn('reed', $reed);
+      if (count($pick) > 0)
+        $query->whereIn('pick', $pick);
 
       $products = $query->paginate(); 
       
