@@ -13,13 +13,13 @@ class ProductsController extends Controller
 {
     public function products(Request $request)
     {
-      $categoryId = explode(',',$request->input('category_id'));
-      $requirementId = explode(',',$request->input('requirement_id'));
-      $subcategoryId = explode(',',$request->input('subcategory_id'));
-      $width = explode(',',$request->input('width'));
-      $count = explode(',',$request->input('count'));
-      $reed = explode(',',$request->input('reed'));
-      $pick = explode(',',$request->input('pick'));
+      $categoryId = $request->input('category_id') ? explode(',',$request->input('category_id')) : [];
+      $requirementId = $request->input('requirement_id') ? explode(',',$request->input('requirement_id')) : [];
+      $subcategoryId = $request->input('subcategory_id') ? explode(',',$request->input('subcategory_id')) : [];
+      $width = $request->input('width') ? explode(',',$request->input('width')) : [];
+      $count = $request->input('count') ? explode(',',$request->input('count')) : [];
+      $reed = $request->input('reed') ? explode(',',$request->input('reed')) : [];
+      $pick = $request->input('pick') ? explode(',',$request->input('pick')) : [];
 
       $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id',
                                'requirement_id','subcategory_id','width','count','reed','pick');
