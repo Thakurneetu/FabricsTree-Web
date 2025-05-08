@@ -13,9 +13,21 @@ class ProductsController extends Controller
 {
     public function products(Request $request)
     {
-      $categoryId = $request->input('category_id') ? explode(',',$request->input('category_id')) : [];
-      $requirementId = $request->input('requirement_id') ? explode(',',$request->input('requirement_id')) : [];
-      $subcategoryId = $request->input('subcategory_id') ? explode(',',$request->input('subcategory_id')) : [];
+      $categoryId =  [];
+      if($request->category_id != '' ){
+        $categories = explode(',',$request->input('category_id'));
+        $categoryId = Category::whereIn('name', $categories)->pluck('id')->toArray();
+      }
+      $requirementId =  [];
+      if($request->requirement_id != '' ){
+        $requirements = explode(',',$request->input('requirement_id'));
+        $requirementId = Requirement::whereIn('name', $requirements)->pluck('id')->toArray();
+      }
+      $subcategoryId =  [];
+      if($request->subcategory_id != '' ){
+        $subcategories = explode(',',$request->input('subcategory_id'));
+        $categoryId = Subcategory::whereIn('name', $subcategories)->pluck('id')->toArray();
+      }
       $width = $request->input('width') ? explode(',',$request->input('width')) : [];
       $count = $request->input('count') ? explode(',',$request->input('count')) : [];
       $reed = $request->input('reed') ? explode(',',$request->input('reed')) : [];
