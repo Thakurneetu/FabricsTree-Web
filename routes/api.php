@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
     Route::post('/profile', [CustomerAuthController::class, 'profile']);
+    Route::post('/change-password', [CustomerAuthController::class, 'changePassword']);
     Route::apiResource('notification', NotificationController::class);
     Route::controller(HomeController::class)->group(function(){
       Route::get('/dashboard', 'dashboard');
@@ -66,6 +67,7 @@ Route::group(['prefix' => 'manufacturer'], function () {
       Route::get('/profile', function (Request $request) {
         return $request->user();
       });
+      Route::post('/change-password', [ManufacturerAuthController::class, 'changePassword']);
       Route::apiResource('notification', NotificationController::class);
       Route::post('/profile', [ManufacturerAuthController::class, 'profile']);
       Route::get('/dashboard', [DashboardController::class, 'dashboard']);

@@ -83,41 +83,49 @@ class ManufacturerEnquiryController extends Controller
       $entry = $enquiry;
       $items_list = array();
       $entry->type = $entry->enquery->enquery_type;
-      if($entry->enquery->enquery_type == 'selected') {
-        foreach ($entry->enquery->items as $key => $item) {
-          $items_list[$key]['quantity'] = $item->quantity;
-          $items_list[$key]['color_code'] = $item->color_code;
-          $items_list[$key]['title'] = $item->title;
-          $items_list[$key]['subtitle'] = $item->subtitle;
-          $items_list[$key]['category'] = $item->category->name;
-          $items_list[$key]['subcategory'] = $item->subcategory->name;
-          $items_list[$key]['requirement'] = $item->requirement->name;
-          $items_list[$key]['width'] = $item->width;
-          $items_list[$key]['warp'] = $item->warp;
-          $items_list[$key]['weft'] = $item->weft;
-          $items_list[$key]['count'] = $item->count;
-          $items_list[$key]['reed'] = $item->reed;
-          $items_list[$key]['pick'] = $item->pick;
-          $items_list[$key]['image'] = $item->product->image_list;
-        }
-        $entry->items = $items_list;
-      } else{
-        $items_list[0]['quantity'] = null;
-        $items_list[0]['color_code'] = $entry->enquery->color_code;
-        $items_list[0]['title'] = $entry->enquery->title;
-        $items_list[0]['subtitle'] = $entry->enquery->subtitle;
-        $items_list[0]['category'] = $entry->enquery->category->name;
-        $items_list[0]['subcategory'] = $entry->enquery->subcategory->name;
-        $items_list[0]['requirement'] = $entry->enquery->requirement->name??null;
-        $items_list[0]['width'] = $entry->enquery->width;
-        $items_list[0]['warp'] = $entry->enquery->warp;
-        $items_list[0]['weft'] = $entry->enquery->weft;
-        $items_list[0]['count'] = $entry->enquery->count;
-        $items_list[0]['reed'] = $entry->enquery->reed;
-        $items_list[0]['pick'] = $entry->enquery->pick;
-        $items_list[0]['image'] = [];
-        $entry->items = $items_list;
-      }
+      // if($entry->enquery->enquery_type == 'selected') {
+      //   foreach ($entry->enquery->items as $key => $item) {
+          // $items_list[$key]['quantity'] = $item->quantity;
+          // $items_list[$key]['color_code'] = $item->color_code;
+          // $items_list[$key]['title'] = $item->title;
+          // $items_list[$key]['subtitle'] = $item->subtitle;
+          // $items_list[$key]['category'] = $item->category->name;
+          // $items_list[$key]['subcategory'] = $item->subcategory->name;
+          // $items_list[$key]['requirement'] = $item->requirement->name;
+          // $items_list[$key]['width'] = $item->width;
+          // $items_list[$key]['warp'] = $item->warp;
+          // $items_list[$key]['weft'] = $item->weft;
+          // $items_list[$key]['count'] = $item->count;
+          // $items_list[$key]['reed'] = $item->reed;
+          // $items_list[$key]['pick'] = $item->pick;
+          // $items_list[$key]['image'] = $item->product->image_list;
+        // }
+        // $entry->items = $items_list;
+      // } else{
+        // $items_list[0]['quantity'] = null;
+        // $items_list[0]['color_code'] = $entry->enquery->color_code;
+        // $items_list[0]['title'] = $entry->enquery->title;
+        // $items_list[0]['subtitle'] = $entry->enquery->subtitle;
+        // $items_list[0]['category'] = $entry->enquery->category->name;
+        // $items_list[0]['subcategory'] = $entry->enquery->subcategory->name;
+        // $items_list[0]['requirement'] = $entry->enquery->requirement->name??null;
+        // $items_list[0]['width'] = $entry->enquery->width;
+        // $items_list[0]['warp'] = $entry->enquery->warp;
+        // $items_list[0]['weft'] = $entry->enquery->weft;
+        // $items_list[0]['count'] = $entry->enquery->count;
+        // $items_list[0]['reed'] = $entry->enquery->reed;
+        // $items_list[0]['pick'] = $entry->enquery->pick;
+        // $items_list[0]['image'] = [];
+        // $entry->items = $items_list;
+      // }
+      $quote = Enquiry::select('id','enquery_type','status','invoke_reason','qutation','revoked_at')
+                        ->with('items:id,enquery_id,product_id,color_code,quantity,title,category_id,subcategory_id,requirement_id,width,warp,weft,count,reed,pick',
+                        'items.category:id,name',
+                        'items.subcategory:id,name',
+                        'items.product:id')
+                        ->find($entry->enquery_id);
+      $quote->qutation = $quote->qutation != '' ? asset($quote->qutation) : null;
+      $entry->quote = $quote;
       return response()->json([
         'status' => true,
         'enquiry' => $entry,

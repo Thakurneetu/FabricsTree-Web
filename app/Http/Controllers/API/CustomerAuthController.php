@@ -12,6 +12,7 @@ use App\Http\Requests\API\ForgotPasswordRequest;
 use App\Http\Requests\API\ResetPasswordRequest;
 use App\Http\Requests\API\verifyOtpRequest;
 use App\Http\Requests\API\ProfileRequest;
+use App\Http\Requests\API\ChangePasswordRequest;
 use App\Mail\OtpMail;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
@@ -180,5 +181,23 @@ class CustomerAuthController extends Controller
             'errors' => $th->getMessage(),
         ], 500);
       }
+    }
+
+    public function changePassword(ChangePasswordRequest $request){
+     
+      $user = $request->user();
+
+      if (!Hash::check($request->old_password, $user->password)) {
+        return response()->json([
+          'status' => false,
+          'message' => 'The old password is incorrect.'
+        ]);
+      }
+      $data['password'] = Hash::make($request->password);
+      $user->update($data);
+      return response()->json([
+        'status' => true,
+        'message' => 'Password Changed Successfully.'
+      ]);
     }
 }

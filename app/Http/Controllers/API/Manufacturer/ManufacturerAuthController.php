@@ -128,4 +128,25 @@ class ManufacturerAuthController extends Controller
       $file->move(public_path($store_path), $filename);
       return $store_path.'/'.$filename;
     }
+
+    public function changePassword(Request $request){
+      $request->validate([
+        'old_password' => 'required',
+        'new_password' => 'required|confirmed',
+      ]);
+      $user = $request->user();
+
+      if (!Hash::check($request->old_password, $user->password)) {
+        return response()->json([
+          'status' => false,
+          'message' => 'The old password is incorrect.'
+        ]);
+      }
+      $data['password'] = Hash::make($request->password);
+      $user->update($data);
+      return response()->json([
+        'status' => true,
+        'message' => 'Password Changed Successfully.'
+      ]);
+    }
 }
