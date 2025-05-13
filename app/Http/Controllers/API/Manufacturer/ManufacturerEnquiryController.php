@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Manufacturer;
 use App\Models\Enquiry;
 use App\Models\User;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\ManufacturerEnquiry;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -83,6 +84,28 @@ class ManufacturerEnquiryController extends Controller
       $entry = $enquiry;
       $items_list = array();
       $entry->type = $entry->enquery->enquery_type;
+      $order = Order::where(['manufacturer_id' => $enquiry->customer_id, 'enquiry_id'=>$enquiry->enquery_id])->first();
+      if($entry->qutation == ''){
+        $entry->status = 'Pending';
+      }elseif($entry->qutation != '' && !$order){
+        $entry->status = 'Quotation Sent';
+      }elseif($order){
+        if($order->status == 'Pending'){
+        $entry->status = 'Accepted';
+        }elseif($order->status == 'Dispatched'){
+          $entry->status = 'On the way';
+        }elseif($order->status == 'Delivered'){
+          $entry->status = 'Delivered';
+        }elseif($order->status == 'Returned'){
+          $entry->status = 'Returned';
+        }elseif($order->status == 'Revoked'){
+          $entry->status = 'Cancelled';
+        }else{
+          $entry->status = $order->status;
+        }
+      }elseif($entry->enquery->status == 'invoked'){
+        $entry->status = 'Cancelled';
+      }
       // if($entry->enquery->enquery_type == 'selected') {
       //   foreach ($entry->enquery->items as $key => $item) {
           // $items_list[$key]['quantity'] = $item->quantity;
@@ -128,7 +151,7 @@ class ManufacturerEnquiryController extends Controller
       $entry->quote = $quote;
       return response()->json([
         'status' => true,
-        'enquiry' => $entry,
+        'enquiry' => $entry,$order
       ]);
     }
 
@@ -150,7 +173,7 @@ class ManufacturerEnquiryController extends Controller
           $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
           $enquiry->update($data);
           $mail_data['user'] = $enquiry->customer;
-          $mail_data['quotation'] = public_path($enquiry->qutation);
+          $mail_data['quotation'] = asset($enquiry->qutation);
           $admin = User::first();
           Mail::to($admin->email)->send(new NewManufacturerQuote($mail_data));
         }

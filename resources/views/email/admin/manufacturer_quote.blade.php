@@ -159,7 +159,7 @@
                                 </tr>
                                 <tr>
                                     <td class="label">Qutation:</td>
-                                    <td><a href="{{$data['qutation']}}">Click to download</a></td>
+                                    <td><a href="{{$data['quotation']}}">Click to download</a></td>
                                 </tr>
                             </table>
                         </td>
