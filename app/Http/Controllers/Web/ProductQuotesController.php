@@ -133,11 +133,27 @@ class ProductQuotesController extends Controller
         }
         else
         {
-            $manufacturer_enquiry = ManufacturerEnquiry::select('enquiries.*','manufacturer_enquiries.created_at as created_at','manufacturer_enquiries.qutation as qutation')
-            ->join('enquiries', 'enquiries.id','manufacturer_enquiries.enquery_id')
-            ->where('manufacturer_enquiries.customer_id',$id)
-            ->orderBy('manufacturer_enquiries.id','DESC')
-            ->get();
+            if($request->status!='all' && $request->status!=""){
+                 $filters = explode(',',$request->input('status'));
+
+                $manufacturer_enquiry = ManufacturerEnquiry::select('enquiries.*','manufacturer_enquiries.created_at as created_at','manufacturer_enquiries.qutation as qutation')
+                ->join('enquiries', 'enquiries.id','manufacturer_enquiries.enquery_id')
+                ->where('manufacturer_enquiries.customer_id',$id)
+                ->whereIn('enquiries.status',$filters)
+                ->orderBy('manufacturer_enquiries.id','DESC')
+                ->get();
+
+            }else{
+
+                $filters = explode(',',$request->input('status'));
+                $manufacturer_enquiry = ManufacturerEnquiry::select('enquiries.*','manufacturer_enquiries.created_at as created_at','manufacturer_enquiries.qutation as qutation')
+                ->join('enquiries', 'enquiries.id','manufacturer_enquiries.enquery_id')
+                ->where('manufacturer_enquiries.customer_id',$id)
+                ->whereNotIn('enquiries.status',$filters)
+                ->orderBy('manufacturer_enquiries.id','DESC')
+                ->get();
+            }
+
             //dd($manufacturer_enquiry);
             $enquiry = [];
             $enquiry_items_data = [];
@@ -216,7 +232,7 @@ class ProductQuotesController extends Controller
 
         // After you've built your $enquiry array
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 25;
+        $perPage = 50;
         $enquiryCollection = collect($enquiry); // convert array to Collection
         $currentItems = $enquiryCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
 

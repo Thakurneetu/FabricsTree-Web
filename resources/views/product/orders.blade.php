@@ -125,7 +125,9 @@
         });
         status = status.join(",");
         console.log('status:'+status);
-
+        if(status==""){
+            status = 'All';
+        }
         $.easyAjax({
           url: "{{ route('product.ordersfilter') }}",
           type:'POST',

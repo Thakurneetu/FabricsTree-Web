@@ -50,7 +50,7 @@ class ProductOrderController extends Controller
 
         // After you've built your $enquiry array
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 25;
+        $perPage = 50;
         $enquiryCollection = collect($orders); // convert array to Collection
         $currentItems = $enquiryCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
 

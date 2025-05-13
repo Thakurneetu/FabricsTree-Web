@@ -84,7 +84,9 @@
         });
         status = status.join(",");
         console.log('status:'+status);
-
+        if(status==""){
+            status = 'all';
+        }
         $.easyAjax({
           url: "{{ route('product.requestaquotesfilter') }}",
           type:'POST',
