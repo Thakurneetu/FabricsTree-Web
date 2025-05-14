@@ -22,7 +22,19 @@ class ManufacturerEnquiryController extends Controller
      */
     public function index(Request $request)
     {
-      $entries = ManufacturerEnquiry::where('customer_id', $request->user()->id)->latest()->paginate(10);
+      if($request->has('status') && $request->status == 3){
+        $ids = Order::where(['manufacturer_id'=>$request->user()->id, 'status'=>'Returned'])->pluck('enquiry_id')->toArray();
+        $entries = ManufacturerEnquiry::whereIn('enquery_id', $ids)->where('customer_id', $request->user()->id)->latest()->paginate(10)->appends($request->all());
+      }elseif($request->has('status') && $request->status == 2){
+        $ids = Order::where('manufacturer_id',$request->user()->id)->whereIn('status',['Delivered','Revoked'])->pluck('enquiry_id')->toArray();
+        $entries = ManufacturerEnquiry::whereIn('enquery_id', $ids)->where('customer_id', $request->user()->id)->latest()->paginate(10)->appends($request->all());
+      }elseif($request->has('status') && $request->status == 1){
+        $ids = Order::where(['manufacturer_id'=>$request->user()->id, 'status'=>'Dispatched'])->pluck('enquiry_id')->toArray();
+        $entries = ManufacturerEnquiry::whereIn('enquery_id', $ids)->where('customer_id', $request->user()->id)->latest()->paginate(10)->appends($request->all());
+      }else{
+        $entries = ManufacturerEnquiry::where('customer_id', $request->user()->id)->latest()->paginate(10);
+      }
+
       foreach ($entries as $_key => $entry) {
         $items_list = array();
         $entry->type = $entry->enquery->enquery_type;
