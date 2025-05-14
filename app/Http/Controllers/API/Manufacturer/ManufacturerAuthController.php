@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Manufacturer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 use App\Models\Customer;
 use App\Http\Requests\API\Manufacturer\LoginRequest;
 use App\Http\Requests\API\Manufacturer\RegisterRequest;
