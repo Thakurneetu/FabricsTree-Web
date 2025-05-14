@@ -25,7 +25,7 @@ class verifyOtpRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => false,
-            'message' => 'Validation failed',
+            'message' => $validator->errors()->first(),
             'errors' => $validator->errors(),
         ], 500));
     }
