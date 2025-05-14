@@ -23,6 +23,8 @@ class Customer extends Authenticatable
 
   protected $dates = ['deleted_at'];
 
+  protected $appends = ['logo_url'];
+
   public function carts()
   {
       return $this->hasMany(Cart::class);
@@ -44,5 +46,13 @@ class Customer extends Authenticatable
   public function manufacturer_orders()
   {
     return $this->hasMany(Order::class, 'manufacturer_id');
+  }
+  public function getLogoUrlAttribute()
+  {
+    if($this->store_logo != ''){
+      return asset($this->store_logo);
+    }else{
+      return null;
+    }
   }
 }
