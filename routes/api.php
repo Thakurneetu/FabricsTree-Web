@@ -79,4 +79,3 @@ Route::group(['prefix' => 'manufacturer'], function () {
   });
 
   // curl -X PUT -F "name=John Doe" -F "email=john.doe@example.com" http://127.0.0.1:8000/api/enquiry/6
-
