@@ -19,7 +19,7 @@
       @if(@$category->image)
       <div class="row col-12 gallery">
         <div class="col-md-4 col-sm-6 position-relative">
-          <img src="{{asset($category->image)}}" alt="Category Image" class="img-fluid">
+          <img src="{{asset($category->image)}}" alt="Category" class="img-fluid">
         </div>
       </div>
       @endif

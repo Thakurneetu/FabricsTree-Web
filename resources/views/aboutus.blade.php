@@ -21,10 +21,10 @@
                 <div class="col-md-6 col-sm-12 mb-3 mb-sm-0 secbothimg">
                     <div class="column columnimage">
                     <div class="col-12 aboutss">
-                        <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Image 2" class="img-fluid">
+                        <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Fabric" class="img-fluid">
                     </div>
                     <div class="col-12 aboutss">
-                        <img src="{{ asset('frontend/images/imagef3.png') }}" alt="Image 3" class="img-fluid">
+                        <img src="{{ asset('frontend/images/imagef3.png') }}" alt="Fabric" class="img-fluid">
                     </div>
                     </div>
                 </div>
