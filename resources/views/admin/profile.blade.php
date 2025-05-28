@@ -14,7 +14,7 @@
             <div class="row">
               <!-- Name -->
               <div class="form-group col-md-3 col-12 mb-3">
-                <label>Name</label>
+                <label for="name">Name</label>
                 <input type="text"  name="name" value="{{old('name') ?? (@$user->name ?? '')}}" 
                 class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
                 @error('name')
@@ -23,7 +23,7 @@
               </div>
               <!-- Email -->
               <div class="form-group col-md-3 col-12 mb-3">
-                <label>Email</label>
+                <label for="email">Email</label>
                 <input type="email"  name="email" value="{{old('email') ?? (@$user->email ?? '')}}" 
                 class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
                 @error('email')
@@ -32,7 +32,7 @@
               </div>
               <!-- Password -->
               <div class="form-group col-md-3 col-12 mb-3">
-                <label>Password (Enter To Reset)</label>
+                <label for="password">Password (Enter To Reset)</label>
                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter Password">
                 @error('password')
                 <div class="text-danger">{{ $message }}</div>

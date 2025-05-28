@@ -74,7 +74,7 @@
                   </tr>
                   @empty
                   <tr colspan="3">
-                  <th colspan="3" class="text-center">No Data Found!</th>
+                  <th colspan="3" scope="row" class="text-center">No Data Found!</th>
                   </tr>
                   @endforelse
                 </tbody>
@@ -108,7 +108,7 @@
                   </tr>
                   @empty
                   <tr>
-                    <th colspan="3" class="text-center">No Data Found!</th>
+                    <th colspan="3" scope="row" class="text-center">No Data Found!</th>
                   </tr>
                   @endforelse
                 </tbody>
@@ -140,7 +140,7 @@
                   </tr>
                   @empty
                   <tr>
-                    <th colspan="2" class="text-center">No Data Found!</th>
+                    <th colspan="2" scope="row" class="text-center">No Data Found!</th>
                   </tr>
                   @endforelse
                 </tbody>
@@ -172,7 +172,7 @@
                   </tr>
                   @empty
                   <tr>
-                    <th colspan="2" class="text-center">No Data Found!</th>
+                    <th colspan="2" scope="row" class="text-center">No Data Found!</th>
                   </tr>
                   @endforelse
                 </tbody>

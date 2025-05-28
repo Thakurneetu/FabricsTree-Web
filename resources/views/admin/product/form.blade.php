@@ -171,7 +171,7 @@
           <div class="position-absolute text-danger" style="right:20px;top:4px;" onclick="delete_image({{$image->id}})">
             <i class="text-white icon icon-sm cil-trash"></i>
           </div>
-          <img src="{{asset($image->path)}}" alt="Gallery Image 1" class="img-fluid">
+          <img src="{{asset($image->path)}}" alt="Gallery 1" class="img-fluid">
         </div>
         @endforeach
       </div>

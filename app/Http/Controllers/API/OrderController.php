@@ -108,8 +108,6 @@ class OrderController extends Controller
           $item['description'] = $cart->product->description??'';
           $item['key_features'] = $cart->product->key_features??'';
           $item['disclaimer'] = $cart->product->disclaimer??'';
-          $item['disclaimer'] = $cart->product->disclaimer??'';
-          $item['disclaimer'] = $cart->product->disclaimer??'';
           $item['width'] = $cart->product->width;
           $item['warp'] = $cart->product->warp;
           $item['weft'] = $cart->product->weft;
@@ -221,7 +219,6 @@ class OrderController extends Controller
       $order_data['invoice_no'] = Str::upper(Str::random(10));
       $order_data['status'] = 'Pending';
       $order_data['enquiry_id'] = $enquiry->id;
-      $order_data['qutation'] = $enquiry->qutation;
       $order_data['qutation'] = $enquiry->qutation;
       $order_data['manufacturer_id'] = $enquiry->manufacturer_id;
       $order = Order::create($order_data);

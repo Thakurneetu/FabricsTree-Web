@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Name -->
     <div class="form-group col-md-3 col-12 mb-3">
-      <label>Full Name</label>
+      <label for="name">Full Name</label>
       <input type="text"  name="name" value="{{old('name') ?? (@$customer->name ?? '')}}" 
       class="form-control @error('name') is-invalid @enderror" placeholder="Enter Full Name">
       @error('name')
@@ -11,7 +11,7 @@
     </div>
     <!-- Email -->
     <div class="form-group col-md-3 col-12 mb-3">
-      <label>Email</label>
+      <label for="email">Email</label>
       <input type="email"  name="email" value="{{old('email') ?? (@$customer->email ?? '')}}" 
       class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
       @error('email')
@@ -20,7 +20,7 @@
     </div>
     <!-- Phone -->
     <div class="form-group col-md-3 col-12 mb-3">
-      <label>Phone</label>
+      <label for="phone">Phone</label>
       <input type="text"  oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="10" minlength="10" 
       name="phone" value="{{old('phone') ?? (@$customer->phone ?? '')}}" class="form-control @error('phone') is-invalid @enderror" 
       placeholder="Enter Phone Number">
@@ -30,7 +30,7 @@
     </div>
     <!-- Address -->
     <div class="form-group col-md-3 col-12 mb-3">
-      <label>Address</label>
+      <label for="address">Address</label>
       <input type="text"  name="address" value="{{old('address') ?? (@$customer->address ?? '')}}" 
       class="form-control @error('address') is-invalid @enderror" placeholder="Enter Address">
       @error('address')
@@ -39,7 +39,7 @@
     </div>
     <!-- Pincode -->
     <div class="form-group col-md-3 col-12 mb-3">
-      <label>Pincode</label>
+      <label for="pincode">Pincode</label>
       <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="6" minlength="6" 
       name="pincode" value="{{old('pincode') ?? (@$customer->pincode ?? '')}}" class="form-control @error('pincode') is-invalid @enderror" 
       placeholder="Enter Pincode">
@@ -49,7 +49,7 @@
     </div>
     <!-- Password -->
     <div class="form-group col-md-3 col-12 mb-3">
-      <label>Password {{@$customer->name ? '(Enter To Reset)' : ''}}</label>
+      <label for="password">Password {{@$customer->name ? '(Enter To Reset)' : ''}}</label>
       <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter Password">
       @error('password')
       <div class="text-danger">{{ $message }}</div>
