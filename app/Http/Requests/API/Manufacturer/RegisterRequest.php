@@ -15,8 +15,9 @@ class RegisterRequest extends FormRequest
 
     public function rules()
     {
+      $common = 'required|string|max:255';
         return [
-          'name' => 'required|string|max:255',
+          'name' => $common,
           //'email' => 'required|string|email|max:255|unique:customers',
           //'phone' => 'required|string||unique:customers',
           'email' => [
@@ -37,9 +38,9 @@ class RegisterRequest extends FormRequest
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
           'password' => 'required|string|confirmed',
-          'firm_name' => 'required|string|max:255',
-          'gst_number' => 'required|string|max:255',
-          'store_contact' => 'required|string|max:255',
+          'firm_name' => $common,
+          'gst_number' => $common,
+          'store_contact' => $common,
         ];
     }
 

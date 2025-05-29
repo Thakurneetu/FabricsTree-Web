@@ -15,16 +15,17 @@ class ProfileRequest extends FormRequest
 
     public function rules()
     {
+      $common = 'required|string|max:255';
         return [
-          'name' => 'required|string|max:255',
+          'name' => $common,
           'email' => 'required|string|email|max:255|unique:manufacturers,email,'.$this->user()->id,
           'phone' => 'required|string|unique:manufacturers,phone,'.$this->user()->id,
           'address' => 'required|string|max:500',
           'pincode' => 'required|max:10',
           'password' => 'nullable|string|confirmed',
-          'firm_name' => 'required|string|max:255',
-          'gst_number' => 'required|string|max:255',
-          'store_contact' => 'required|string|max:255',
+          'firm_name' => $common,
+          'gst_number' => $common,
+          'store_contact' => $common,
         ];
     }
 

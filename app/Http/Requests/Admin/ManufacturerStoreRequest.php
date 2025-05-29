@@ -17,8 +17,9 @@ class ManufacturerStoreRequest extends FormRequest
 
     public function rules()
     {
+       $common = 'required|string|max:200';
         return [
-          'name' => 'required|string|max:255',
+          'name' => $common,
           //'email' => 'required|string|email|max:255|unique:customers',
           //'phone' => 'required|min:10|max:10|unique:customers',
           'email' => [
@@ -39,9 +40,9 @@ class ManufacturerStoreRequest extends FormRequest
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
           'password' => 'required|string|min:8',
-          'firm_name' => 'required|string|max:200',
-          'gst_number' => 'required|string|max:200',
-          'store_contact' => 'required|string|max:200',
+          'firm_name' => $common,
+          'gst_number' => $common,
+          'store_contact' => $common,
           'store_logo' => 'nullable|image|max:2048|mimes:jpeg,png,jpg,svg',
         ];
     }

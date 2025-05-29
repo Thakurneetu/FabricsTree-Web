@@ -15,18 +15,19 @@ class ProductUpdateRequest extends FormRequest
 
     public function rules()
     {
+      $common = 'nullable|string|max:255';
         return [
           'title' => 'required|string|max:255',
-          'subtitle' => 'nullable|string|max:255',
+          'subtitle' => $common,
           'description' => 'nullable',
           'key_features' => 'nullable',
           'disclaimer' => 'nullable',
-          'wrap' => 'nullable|string|max:255',
-          'weft' => 'nullable|string|max:255',
-          'width' => 'nullable|string|max:255',
-          'count' => 'nullable|string|max:255',
-          'reed' => 'nullable|string|max:255',
-          'pick' => 'nullable|string|max:255',
+          'wrap' => $common,
+          'weft' => $common,
+          'width' => $common,
+          'count' => $common,
+          'reed' => $common,
+          'pick' => $common,
           'category_id' => 'required',
           'requirement_id' => 'required',
           'subcategory_id' => 'required',

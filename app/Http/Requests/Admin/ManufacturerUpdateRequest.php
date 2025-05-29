@@ -16,16 +16,17 @@ class ManufacturerUpdateRequest extends FormRequest
     public function rules()
     {
       if (!$this->ajax()) {
+        $common = 'required|string|max:200';
         return [
-          'name' => 'required|string|max:255',
+          'name' => $common,
           'email' => 'required|string|email|max:255|unique:customers,email,'.$this->manufacturer->id,
           'phone' => 'required|string|min:10|max:10|unique:customers,phone,'.$this->manufacturer->id,
           'address' => 'required|string|max:500',
           'pincode' => 'required|string|max:10',
           'password' => 'nullable|string|min:8',
-          'firm_name' => 'required|string|max:200',
-          'gst_number' => 'required|string|max:200',
-          'store_contact' => 'required|string|max:200',
+          'firm_name' => $common,
+          'gst_number' => $common,
+          'store_contact' => $common,
           'store_logo' => 'nullable|image|max:2048|mimes:jpeg,png,jpg,svg',
         ];
       }else{
