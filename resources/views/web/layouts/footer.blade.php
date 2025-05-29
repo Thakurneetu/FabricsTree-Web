@@ -120,7 +120,7 @@
           <div class="row">
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Email') }}*</label> -->
-              <input id="email_id" type="email" class="form-control @error('email_id') is-invalid @enderror" name="email_id" value="{{ old('email_id') }}" required autocomplete="email_id" placeholder="Enter your email">
+              <input id="email_id" type="email" class="form-control @error('email_id') is-invalid @enderror" name="email_id" value="{{ old('email_id') }}" required placeholder="Enter your email">
 
                 @error('email_id')
                     <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
             </div>
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Password') }}*</label> -->
-              <input id="pwd" type="password" class="form-control @error('pwd') is-invalid @enderror" name="pwd" required autocomplete="password" placeholder="Please enter password">
+              <input id="pwd" type="password" class="form-control @error('pwd') is-invalid @enderror" name="pwd" required placeholder="Please enter password">
               <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
                 @error('pwd')
                     <span class="invalid-feedback" role="alert">
@@ -192,7 +192,7 @@
           <div class="row">
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">Email</label> -->
-              <input id="email_address" type="email" class="form-control @error('email_address') is-invalid @enderror" name="email_address" value="{{ old('email_address') }}" required autocomplete="email_address" placeholder="Enter your email address">
+              <input id="email_address" type="email" class="form-control @error('email_address') is-invalid @enderror" name="email_address" value="{{ old('email_address') }}" required placeholder="Enter your email address">
 
               @error('email_address')
                   <span class="invalid-feedback" role="alert">
@@ -293,9 +293,9 @@
           <div class="row">
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">New Password</label> -->
-              <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password"  autocomplete="new_password" placeholder="Enter your new password">
+              <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" placeholder="Enter your new password">
               <span class="password-toggle-icon3"><i class="fas fa-eye"></i></span>
-              <input id="reset_email" readonly type="hidden" class="form-control" name="reset_email" required autocomplete="reset_email" placeholder="Email" value="">
+              <input id="reset_email" readonly type="hidden" class="form-control" name="reset_email" required placeholder="Email" value="">
                 @error('new_password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -304,7 +304,7 @@
             </div>
             <div class="mb-3">
               <!-- <label for="exampleFormControlInput1" class="form-label">Confirm Password</label> -->
-              <input id="confirm_password" type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password"  autocomplete="confirm_password" placeholder="Enter your confirm password">
+              <input id="confirm_password" type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" placeholder="Enter your confirm password">
               <span class="password-toggle-icon4"><i class="fas fa-eye"></i></span>
                 @error('confirm_password')
                     <span class="invalid-feedback" role="alert">
@@ -364,7 +364,7 @@
             </div>
               <div class="mb-3 cust">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Full Name') }}*</label> -->
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="fullname" autofocus placeholder="Enter your name">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus placeholder="Enter your name">
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -376,7 +376,7 @@
               </div>
               <div class="mb-3 manuf">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Name') }}*</label> -->
-                <input id="store_name" type="text" class="form-control @error('store_name') is-invalid @enderror" name="store_name" value="{{ old('store_name') }}" required autofocus placeholder="Enter store name">
+                <input id="store_name" type="text" class="form-control @error('store_name') is-invalid @enderror" value="{{ old('store_name') }}" required autofocus placeholder="Enter store name">
                 @error('store_name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -416,7 +416,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Mobile Number') }}*</label> -->
-                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Enter your mobile number">
+                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required placeholder="Enter your mobile number">
 
                 @error('phone')
                     <span class="invalid-feedback" role="alert">
@@ -458,7 +458,7 @@
             <div class="col-md-12 col-sm-12 cust">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlTextarea1" class="form-label">{{ __('Address') }}*</label> -->
-                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address" placeholder="Enter address" rows="3">{{ old('address') }}</textarea>
+                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" required placeholder="Enter address" rows="3">{{ old('address') }}</textarea>
                 @error('address')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -506,7 +506,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('New Password') }}</label> -->
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password" placeholder="New password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="New password">
                 <span class="password-toggle-icon1"><i class="fas fa-eye"></i></span>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -519,7 +519,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="mb-3">
                 <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Confirm Password') }}</label> -->
-                <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation" placeholder="Confirm password">
+                <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required placeholder="Confirm password">
                 <span class="password-toggle-icon2"><i class="fas fa-eye"></i></span>
                 @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">

@@ -120,16 +120,16 @@
     <!-- Outer Background Table -->
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
         <tr>
-            <td align="center">
+            <td align="center" style="font-weight: normal;">
                 <!-- Main Content Wrapper Table -->
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
 
                     <!-- Header -->
                     <tr>
-                        <td class="header">
+                        <th class="header">
                             <!-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> -->
                             <h1>Order Revoked</h1>
-                        </td>
+                        </th>
                     </tr>
 
                     <!-- Main Content Area -->
@@ -141,6 +141,9 @@
                             <!-- Customer Details Section -->
                             <div class="section-title">Details</div>
                             <table border="0" cellpadding="0" cellspacing="0" class="details-table">
+                                <tr>
+                                  <th colspan="2"> </th>
+                                </tr>
                                 <tr>
                                     <td class="label">Order ID:</td>
                                     <td>{{$data['order']->invoice_no}}</td>

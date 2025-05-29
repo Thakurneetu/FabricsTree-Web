@@ -12,14 +12,14 @@
         <div class="col-lg-6 col-md-6 col-sm-12 ">
             <div class="largeimage">
                 @if(isset($products_data) && count($products_data->images) > 0)
-                  <a href="{{route('product.productdetail')}}/{{$products_data->id}}"><img class="card-img-top" src="{{asset($products_data->images[0]->path)}}" alt="Card image cap"></a>
+                  <a href="{{route('product.productdetail')}}/{{$products_data->id}}"><img class="card-img-top" src="{{asset($products_data->images[0]->path)}}" alt="Card cap"></a>
                 @endif
             </div>
 
             <div class="secondpage">
             @if(isset($products_data) && count($products_data->images) > 0)
                 @foreach($products_data->images as $image)
-                <img src="{{asset($image->path)}}" alt="" style="margin-top: 10px;">
+                <img src="{{asset($image->path)}}" alt="{{$products_data->title}}" style="margin-top: 10px;">
                 @endforeach
             @endif
 
@@ -141,7 +141,7 @@
                     @if( $loop->first or $loop->iteration  <= 4 )
                     <div class="card m-2">
                         @if(isset($products_val) && count($products_val->images) > 0)
-                        <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
+                        <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card cap"></a>
                         @endif
                         <div class="card-body">
                             <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
