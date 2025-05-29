@@ -161,9 +161,9 @@ class CustomerRegisterController extends Controller
         
         event(new Registered($user = $request->all()));
 
-        if ($response = $this->registered($request, $user)) {
-            return $response;
-        }
+        // if ($response = $this->registered($request, $user)) {
+        //     return $response;
+        // }
 
             try{
                 $customer = new Customer();

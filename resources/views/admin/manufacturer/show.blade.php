@@ -17,7 +17,7 @@
           <a href="{{ route('admin.manufacturer.index') }}" class="btn btn-dark btn-sm float-right">Back</a>
         </div>
         <div class="card-body">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <ul class="nav nav-pills mb-3" id="pills-tab">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="pills-home-tab" data-coreui-toggle="pill" data-coreui-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Details</button>
             </li>
@@ -26,7 +26,7 @@
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
               <table class="table table-borderless table-responsive-md">
                 <colgroup>
                   <col style="width: 20%;">
@@ -72,7 +72,7 @@
                 </tr>
               </table>
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             {!! $dataTable->table(['class' => 'table table-striped'], false) !!}
             </div>
           </div>

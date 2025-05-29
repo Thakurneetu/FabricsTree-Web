@@ -6,11 +6,11 @@
     </div>
   </a>
   @if($status == 'pending')
-  <a href="javascript:void(0);" onclick="reviewed({{$id}})" class='btn btn-sm btn-success tooltip-box'>
+  <button onclick="reviewed({{$id}})" class='btn btn-sm btn-success tooltip-box'>
     <i class="text-white icon icon-sm cil-check"></i>
     <div class="tooltip text-white text-xs -top-full">
       <span>Reviewed</span>
     </div>
-  </a>
+  </button>
   @endif
 </div>

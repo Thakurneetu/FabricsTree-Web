@@ -196,7 +196,7 @@
       <div class="slide" id="slide">
       @foreach($categories as $key => $categories_val)
         <div class="text-center">
-          <img class="item" src="{{asset($categories_val->image)}}">
+          <img class="item" src="{{asset($categories_val->image)}}" alt="{{$categories_val->name}}">
           <p class="mt-2 slidername">{{$categories_val->name}}</p>
         </div>
       @endforeach
@@ -246,17 +246,17 @@
         </div> -->
 
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
+          <img class="item" src="{{ asset('frontend/images/nylon.png') }}" alt="Nylon">
           <p class="mt-2 slidername">Nylon</p>
         </div>
 
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
+          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}" alt="Polyester">
           <p class="mt-2 slidername">Polyester</p>
         </div>
 
         <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
+          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}" alt="Polyester">
           <p class="mt-2 slidername">Polyester</p>
         </div>
 
@@ -271,7 +271,7 @@
 
 <div class="row Greigepaddingsec">
 <div class="col-md-4 col-sm-12 mb-3 mb-sm-0 imagetextrelative">
-  <img src="{{ asset('frontend/images/imagef1.png') }}" alt="Image 1">
+  <img src="{{ asset('frontend/images/imagef1.png') }}" alt="demo 1">
 
   <div class="imagetext">
     <h2 class="Gfabric">Greige fabric</h2>
@@ -286,7 +286,7 @@
 <div class="col-md-4 col-sm-12 mb-3 mb-sm-0 secbothimg">
   <div class="column columnimage">
     <div class="col-12 imagetextrelative">
-      <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Image 2" class="img-fluid">
+      <img src="{{ asset('frontend/images/imagef2.png') }}" alt="demo 2" class="img-fluid">
 
       <div class="imagetext">
         <h2 class="Gfabric">Greige fabric</h2>
@@ -299,7 +299,7 @@
 
     </div>
     <div class="col-12 imagetextrelative">
-      <img src="{{ asset('frontend/images/imagef3.png') }}" alt="Image 3" class="img-fluid">
+      <img src="{{ asset('frontend/images/imagef3.png') }}" alt="demo 3" class="img-fluid">
 
       <div class="imagetext">
         <h2 class="Gfabric">Greige fabric</h2>
@@ -313,7 +313,7 @@
   </div>
 </div>
 <div class="col-md-4 col-sm-12 mb-3 mb-sm-0 imagetextrelative">
-  <img src="{{ asset('frontend/images/imagef4.png') }}" alt="Image 4">
+  <img src="{{ asset('frontend/images/imagef4.png') }}" alt="demo 4">
   <div class="imagetext">
     <h2 class="Gfabric">Greige fabric</h2>
     <div class="playouts">
@@ -341,7 +341,7 @@
     @if( $loop->first or $loop->iteration  <= 4 )
     <div class="card m-3">
       @if(isset($products_val) && count($products_val->images) > 0)
-      <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card image cap"></a>
+      <a href="{{route('product.productdetail')}}/{{$products_val->id}}"><img class="card-img-top" src="{{asset($products_val->images[0]->path)}}" alt="Card cap"></a>
       @endif
       <div class="card-body">
         <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
@@ -390,10 +390,10 @@
       <div class="col-md-6 col-sm-12 mb-3 mb-sm-0 secbothimg">
         <div class="column columnimage">
           <div class="col-12 aboutss">
-            <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Image 2" class="img-fluid">
+            <img src="{{ asset('frontend/images/imagef2.png') }}" alt="demo 2" class="img-fluid">
           </div>
           <div class="col-12 aboutss">
-            <img src="{{ asset('frontend/images/imagef3.png') }}" alt="Image 3" class="img-fluid">
+            <img src="{{ asset('frontend/images/imagef3.png') }}" alt="demo 3" class="img-fluid">
           </div>
         </div>
       </div>
@@ -449,40 +449,40 @@
 
 
   <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 imagetextrelative">
-    <img src="{{ asset('frontend/images/imagef1.png') }}" alt="Image 1">
+    <img src="{{ asset('frontend/images/imagef1.png') }}" alt="demo 1">
   </div>
 
   <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 secbothimg">
     <div class="column columnimage">
       <div class="col-12 imagetextrelative">
-        <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Image 2" class="img-fluid">
+        <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Imdemoage 2" class="img-fluid">
       </div>
       <div class="col-12 imagetextrelative">
-        <img src="{{ asset('frontend/images/imagef3.png') }}" alt="Image 3" class="img-fluid">
+        <img src="{{ asset('frontend/images/imagef3.png') }}" alt="demo 3" class="img-fluid">
       </div>
     </div>
   </div>
 
   <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 imagetextrelative">
-    <img src="{{ asset('frontend/images/imagef1.png') }}" alt="Image 1">
+    <img src="{{ asset('frontend/images/imagef1.png') }}" alt="demo 1">
   </div>
 
   <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 secbothimg" style="padding-right:unset;">
     <div class="column columnimage">
       <div class="col-12 imagetextrelative">
-        <img src="{{ asset('frontend/images/imagef2.png') }}" alt="Image 2" class="img-fluid">
+        <img src="{{ asset('frontend/images/imagef2.png') }}" alt="demo 2" class="img-fluid">
       </div>
       <div class="col-12 imagetextrelative">
-        <img src="{{ asset('frontend/images/imagef3.png') }}" alt="Image 3" class="img-fluid">
+        <img src="{{ asset('frontend/images/imagef3.png') }}" alt="demo 3" class="img-fluid">
       </div>
     </div>
   </div>
   <div class="col-md-2 col-sm-12 mb-3 mb-sm-0">
-    <img src="{{ asset('frontend/images/imagef4.png') }}" alt="Image 4">
+    <img src="{{ asset('frontend/images/imagef4.png') }}" alt="demo 4">
 
   </div>
   <div class="col-md-2 col-sm-12 mb-3 mb-sm-0 imagetextrelative">
-    <img src="{{ asset('frontend/images/imagef4.png') }}" alt="Image 4">
+    <img src="{{ asset('frontend/images/imagef4.png') }}" alt="demo 4">
 
   </div>
 </div>
@@ -507,7 +507,7 @@
             <div class="profile">
 
               <div class="profile-img">
-                <img src="{{ asset('frontend/images/ddd.png') }}" />
+                <img src="{{ asset('frontend/images/ddd.png') }}" alt="demo" />
               </div>
             </div>
 
@@ -531,9 +531,9 @@
 
               <div class="profile-img">
                 @if($testimonial_val->image != '')
-                <img src="{{ asset($testimonial_val->image) }}" />
+                <img src="{{ asset($testimonial_val->image) }}" alt="{{ $testimonial_val->name }}"/>
                 @else
-                <img src="{{ asset('frontend/images/girl.png') }}" />
+                <img src="{{ asset('frontend/images/girl.png') }}" alt="demo"/>
                 @endif
               </div>
 
@@ -644,7 +644,7 @@
           width="600" height="200" style="width: 100%;" allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"></iframe> -->
 
-          <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=200&amp;hl=en&amp;q=G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://sprunkin.com/">Sprunki</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:200px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:200px;}.gmap_iframe {height:200px!important;}</style></div>
+          <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" title="Sprunki" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=200&amp;hl=en&amp;q=G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://sprunkin.com/">Sprunki</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:200px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:200px;}.gmap_iframe {height:200px!important;}</style></div>
           
       </div>
 

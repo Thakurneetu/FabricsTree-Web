@@ -168,8 +168,10 @@
       <div class="row col-12 gallery">
         @foreach($product->images as $image)
         <div class="col-md-4 col-sm-6 position-relative">
-          <div class="position-absolute text-danger" style="right:20px;top:4px;" onclick="delete_image({{$image->id}})">
-            <i class="text-white icon icon-sm cil-trash"></i>
+          <div class="position-absolute" style="right:20px;top:4px;" >
+            <button class="btn bg-light px-1 py-0 m-0 rounded" onclick="delete_image({{$image->id}})">
+              <i class="text-danger icon cil-trash"></i>
+            </button>
           </div>
           <img src="{{asset($image->path)}}" alt="Gallery 1" class="img-fluid">
         </div>

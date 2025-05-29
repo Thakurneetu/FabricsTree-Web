@@ -120,16 +120,16 @@
     <!-- Outer Background Table -->
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
         <tr>
-            <td align="center">
+            <th align="center" style="font-weight: normal;">
                 <!-- Main Content Wrapper Table -->
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
 
                     <!-- Header -->
                     <tr>
-                        <td class="header">
+                        <th class="header">
                             <!-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> -->
                             <h1>New Quote</h1>
-                        </td>
+                        </th>
                     </tr>
 
                     <!-- Main Content Area -->
@@ -150,7 +150,7 @@
 
                 </table>
                 <!-- End Main Content Wrapper Table -->
-            </td>
+            </th>
         </tr>
     </table>
     <!-- End Outer Background Table -->
