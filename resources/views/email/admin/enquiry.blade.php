@@ -118,11 +118,11 @@
 </head>
 <body>
     <!-- Outer Background Table -->
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
+    <table border="0" width="100%" style="background-color: #f4f4f4;">
         <tr>
             <th align="center" style="font-weight: normal;">
                 <!-- Main Content Wrapper Table -->
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
+                <table border="0" width="100%" style="max-width: 600px;" class="wrapper">
 
                     <!-- Header -->
                     <tr>
@@ -140,7 +140,7 @@
 
                             <!-- Customer Details Section -->
                             <div class="section-title">Customer Details</div>
-                            <table border="0" cellpadding="0" cellspacing="0" class="details-table">
+                            <table border="0" class="details-table">
                                 <tr>
                                     <th colspan="2"> </th>
                                 </tr>
@@ -164,7 +164,7 @@
 
                             <!-- Enquiry Details Section -->
                             <div class="section-title">Enquiry Details</div>
-                            <table border="0" cellpadding="0" cellspacing="0" class="product-table">
+                            <table border="0" class="product-table">
                                 <thead>
                                     <tr>
                                         <th>Product</th>

@@ -118,11 +118,11 @@
 </head>
 <body>
     <!-- Outer Background Table -->
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
+    <table border="0" style="background-color: #f4f4f4;width:100%;">
         <tr>
             <th align="center" style="font-weight: normal;">
                 <!-- Main Content Wrapper Table -->
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
+                <table border="0" style="max-width: 600px;width:100%;" class="wrapper">
 
                     <!-- Header -->
                     <tr>

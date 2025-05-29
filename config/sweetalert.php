@@ -210,10 +210,3 @@ return [
     ],
 
 ];
-
-
-// Alert::info('Info Title', 'Info Message');
-// Alert::warning('Warning Title', 'Warning Message');
-// Alert::error('Error Title', 'Error Message');
-// Alert::question('Question Title', 'Question Message');
-// Alert::toast('Your Post as been submited!','success');
