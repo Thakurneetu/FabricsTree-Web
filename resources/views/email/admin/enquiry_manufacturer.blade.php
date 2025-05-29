@@ -120,7 +120,7 @@
     <!-- Outer Background Table -->
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
         <tr>
-            <td align="center" style="font-weight: normal;">
+            <th align="center" style="font-weight: normal;">
                 <!-- Main Content Wrapper Table -->
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
 
@@ -180,7 +180,7 @@
 
                 </table>
                 <!-- End Main Content Wrapper Table -->
-            </td>
+            </th>
         </tr>
     </table>
     <!-- End Outer Background Table -->
