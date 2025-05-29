@@ -36,22 +36,29 @@ class ProductsController extends Controller
       $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id',
                                'requirement_id','subcategory_id','width','count','reed','pick');
       
-      if (count($categoryId) > 0)
+      if (count($categoryId) > 0) {
         $query->whereIn('category_id', $categoryId);
-      if (count($requirementId) > 0)
+      }
+      if (count($requirementId) > 0) {
         $query->whereIn('requirement_id', $requirementId);
-      if (count($subcategoryId) > 0)
+      }
+      if (count($subcategoryId) > 0) {
         $query->whereIn('subcategory_id', $subcategoryId);
-      if (count($width) > 0)
+      }
+      if (count($width) > 0) {
         $query->whereIn('width', $width);
-      if (count($count) > 0)
+      }
+      if (count($count) > 0) {
         $query->whereIn('count', $count);
-      if (count($reed) > 0)
+      }
+      if (count($reed) > 0) {
         $query->whereIn('reed', $reed);
-      if (count($pick) > 0)
+      }
+      if (count($pick) > 0) {
         $query->whereIn('pick', $pick);
+      }
 
-      $products = $query->paginate(); 
+      $products = $query->paginate();
       
       return response()->json([
           'status' => true,

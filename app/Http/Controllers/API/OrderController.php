@@ -96,7 +96,7 @@ class OrderController extends Controller
         $enquiry_data['customer_id'] = $request->user()->id;
         $enquiry = Enquiry::create($enquiry_data);
         $item['enquery_id'] = $enquiry->id;
-        foreach ($request->user()->carts as $key => $cart) {
+        foreach ($request->user()->carts as $cart) {
           $item['product_id'] = $cart->product_id;
           $item['quantity'] = $cart->quantity;
           $item['color_code'] = $cart->color_code;
@@ -141,7 +141,7 @@ class OrderController extends Controller
       $data['user'] = $request->user();
       $data['items'] = $enquiry->items;
       $admin = User::first();
-      $mail = Mail::to($admin->email)->send(new EnquiryInvoked($data));
+      Mail::to($admin->email)->send(new EnquiryInvoked($data));
       return response()->json([
         'status' => true,
         'message' => 'Quote revoked successfully.',
@@ -153,7 +153,7 @@ class OrderController extends Controller
       $query = Enquiry::where('enquery_type', 'selected')->where('customer_id', $request->user()->id);
       if($request->status == 2){
         $query->whereIn('status', ['submitted']);
-      }else if($request->status == 3){
+      }elseif($request->status == 3){
         $query->whereIn('status', ['accepted']);
       }else {
         $query->whereIn('status', ['invoiced','invoked']);
@@ -237,7 +237,7 @@ class OrderController extends Controller
         $item['pick'] = $enquiry->category_id;
         OrderItems::create($item);
       }else {
-        foreach ($enquiry->items as $key => $item_data) {
+        foreach ($enquiry->items as $item_data) {
           $item['product_id'] = $item_data->product_id;
           $item['quantity'] = $item_data->quantity;
           $item['category'] = $item_data->category->name;
@@ -261,7 +261,7 @@ class OrderController extends Controller
         $data['user'] = $request->user();
         $data['items'] = $order->items;
         $admin = User::first();
-        $mail = Mail::to($admin->email)->send(new NewOrder($data));
+        Mail::to($admin->email)->send(new NewOrder($data));
       }
       $enquiry->update(['status' => 'accepted']);
       return response()->json([
@@ -298,7 +298,11 @@ class OrderController extends Controller
           $items[$_key]['reed'] = $item->reed ;
           $items[$_key]['category'] = $item->category ;
           $items[$_key]['subcategory'] = $item->subcategory ;
-          $items[$_key]['image'] = $item->product ? (count($item->product->image_list) > 0 ? $item->product->image_list[0] : null) : null;
+          $image = null;
+          if( $item->product && count($item->product?->image_list) > 0) {
+            $image = $item->product->image_list[0];
+          }
+          $items[$_key]['image'] = $image;
         }
         $orders[$key]['items'] = $items;
       }
@@ -317,12 +321,10 @@ class OrderController extends Controller
       $data['order'] = Enquiry::find($request->order_id);
       $data['user'] = $request->user();
       $admin = User::first();
-      $mail = Mail::to($admin->email)->send(new OrderInvoked($data));
+      Mail::to($admin->email)->send(new OrderInvoked($data));
       return response()->json([
         'status' => true,
         'message' => 'Order revoked successfully.',
       ]);
     }
-
-
 }

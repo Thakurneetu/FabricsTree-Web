@@ -83,7 +83,7 @@ class RequirementController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**

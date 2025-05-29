@@ -16,7 +16,7 @@ class DashboardController extends Controller
       $orders = Order::where('manufacturer_id', $request->user()->id)->count();
       $products = ManufacturerProduct::where('customer_id', $request->user()->id)->count();
       $entries = ManufacturerEnquiry::where('customer_id', $request->user()->id)->latest()->take(5)->get();
-      foreach ($entries as $_key => $entry) {
+      foreach ($entries as $entry) {
         $items_list = array();
         $entry->type = $entry->enquery->enquery_type;
         if($entry->enquery->enquery_type == 'selected') {

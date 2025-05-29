@@ -64,7 +64,7 @@ class ManufacturerAuthController extends Controller
         ]);
 
         if($request->hasFile('store_logo')){
-          $logo = $this->save_image($request->store_logo, '/uploads/store_logo');
+          $logo = $this->saveImage($request->store_logo, '/uploads/store_logo');
           $user->store_logo = $logo;
           $user->save();
         }
@@ -97,7 +97,7 @@ class ManufacturerAuthController extends Controller
         if($request->password != ''){
           $data['password'] = Hash::make($request->password);
         }
-        $customer = $request->user()->update($data);
+        $request->user()->update($data);
 
         // Return response with the token
         return response()->json([
@@ -123,7 +123,7 @@ class ManufacturerAuthController extends Controller
         ]);
     }
 
-    private function save_image($file, $store_path){
+    private function saveImage($file, $store_path){
       $extension = File::extension($file->getClientOriginalName());
       $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
       $file->move(public_path($store_path), $filename);

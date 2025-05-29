@@ -30,7 +30,7 @@ class OrderDataTable extends DataTable
         ->editColumn('status', function ($data) {
           if($data->status == 'Pending') {
             return '<span class="badge text-bg-warning text-white">'.ucfirst($data->status).'</span>';
-          }else if($data->status == 'Revoked') {
+          }elseif($data->status == 'Revoked') {
             return '<span class="badge text-bg-danger text-white">'.ucfirst($data->status).'</span>';
           }
           else {

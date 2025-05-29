@@ -54,7 +54,6 @@ class DashboardController extends Controller
         ->orderBy('order_products_count', 'asc')
         ->take(10)
         ->get();
-        // dd($topProducts);
       return view('admin.dashboard', compact('customers_count', 'manufacturers_count' ,'products_count',
                                     'orders_count', 'topCustomers', 'topManufacturers','topProducts',
                                     'topLeastProducts'));

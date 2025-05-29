@@ -56,7 +56,7 @@ class ProductController extends Controller
         if($request->has('images')){
           $image['product_id'] = $product->id;
           foreach ($request->images as $image_file) {
-            $image['path'] = $this->save_image($image_file, '/uploads/product/image');
+            $image['path'] = $this->saveImage($image_file, '/uploads/product/image');
             ProductImage::create($image);
           }
         }
@@ -112,7 +112,7 @@ class ProductController extends Controller
         if($request->has('images')){
           $image['product_id'] = $product->id;
           foreach ($request->images as $image_file) {
-            $image['path'] = $this->save_image($image_file, '/uploads/product/image');
+            $image['path'] = $this->saveImage($image_file, '/uploads/product/image');
             ProductImage::create($image);
           }
         }
@@ -177,7 +177,7 @@ class ProductController extends Controller
       }
     }
 
-    private function save_image($file, $store_path){
+    private function saveImage($file, $store_path){
       $extension = File::extension($file->getClientOriginalName());
       $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
       $file->move(public_path($store_path), $filename);

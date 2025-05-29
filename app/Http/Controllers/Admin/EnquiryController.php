@@ -59,7 +59,7 @@ class EnquiryController extends Controller
       try{
         DB::beginTransaction();
         if($request->hasFile('qutation')){
-          $data['qutation'] = $this->save_image($request->qutation, '/uploads/qutation');
+          $data['qutation'] = $this->saveImage($request->qutation, '/uploads/qutation');
           $data['status'] = 'invoiced';
           $enquiry->update($data);
           Notification::create([
@@ -73,7 +73,7 @@ class EnquiryController extends Controller
           ]);
           $mail_data['user'] = $enquiry->customer;
           $mail_data['quotation'] = public_path($data['qutation']);
-          $mail = Mail::to($enquiry->customer->email)->send(new NewEnquiryQuote($mail_data));
+          Mail::to($enquiry->customer->email)->send(new NewEnquiryQuote($mail_data));
           Alert::toast('Qutation Sent Successfully','success');
         }
         if($request->has('manufacturures')){
@@ -81,7 +81,7 @@ class EnquiryController extends Controller
           $mail_data['items'] = $enquiry->items;
           $manufacturers_ids = ManufacturerEnquiry::where('enquery_id', $enquiry->id)->pluck('customer_id')->toArray();
           ManufacturerEnquiry::where('enquery_id', $enquiry->id)->whereNotIn('customer_id', $request->manufacturures)->delete();
-          foreach ($request->manufacturures as $key => $customer_id) {
+          foreach ($request->manufacturures as $customer_id) {
             $data = [
               'enquery_id' => $enquiry->id,
               'customer_id' => $customer_id,
@@ -89,7 +89,7 @@ class EnquiryController extends Controller
             ManufacturerEnquiry::updateOrCreate($data);
             if(!in_array($customer_id, $manufacturers_ids)) {
               $mail_data['user'] = Customer::find($customer_id);
-              $mail = Mail::to($mail_data['user']->email)->send(new NewManufacturerEnquiry($mail_data));
+              Mail::to($mail_data['user']->email)->send(new NewManufacturerEnquiry($mail_data));
               Notification::create([
                 'data' => [
                     'enquiry_id' => $enquiry->id,
@@ -102,7 +102,7 @@ class EnquiryController extends Controller
             }
           }
           Alert::toast('Requirement Sent Successfully','success');
-        }else if($request->has('manufacturur_assign') && $request->manufacturur_assign == 1){
+        }elseif($request->has('manufacturur_assign') && $request->manufacturur_assign == 1){
           ManufacturerEnquiry::where('enquery_id', $enquiry->id)->delete();
         }
         if($request->has('manufacturer_id')){
@@ -116,7 +116,7 @@ class EnquiryController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -127,7 +127,7 @@ class EnquiryController extends Controller
         //
     }
 
-    private function save_image($file, $store_path){
+    private function saveImage($file, $store_path){
       $extension = File::extension($file->getClientOriginalName());
       $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
       $file->move(public_path($store_path), $filename);

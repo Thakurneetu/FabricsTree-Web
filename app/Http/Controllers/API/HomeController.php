@@ -47,7 +47,9 @@ class HomeController extends Controller
     {
       $testimonials = Testimonial::select('name', 'designation', 'comment', 'rating', 'image')->get();
       foreach($testimonials as $testimonial)
-      $testimonial->image = url('/').$testimonial->image;
+      {
+        $testimonial->image = url('/').$testimonial->image;
+      }
         return response()->json([
             'status' => true,
             'testimonials' => $testimonials,

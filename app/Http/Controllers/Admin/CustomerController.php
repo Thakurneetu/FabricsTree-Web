@@ -46,7 +46,7 @@ class CustomerController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -91,7 +91,7 @@ class CustomerController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**

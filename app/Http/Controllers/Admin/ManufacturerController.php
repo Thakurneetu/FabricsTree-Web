@@ -57,7 +57,7 @@ class ManufacturerController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -66,7 +66,6 @@ class ManufacturerController extends Controller
     public function show(Customer $manufacturer, ManufacturerProductDataTable $dataTable)
     {
       return $dataTable->with('id', $manufacturer->id)->render('admin.manufacturer.show', compact('manufacturer'));
-      // return view('admin.manufacturer.show', compact('manufacturer'));
     }
     /**
      * Display the specified resource.
@@ -100,9 +99,9 @@ class ManufacturerController extends Controller
         }
         DB::beginTransaction();
         $data = $request->except('_token', '_method', 'password');
-        if($request->password)
-        $data['password'] = $request->password;
-        
+        if($request->password) {
+          $data['password'] = $request->password;
+        }
         if ($request->hasFile('store_logo')) {
           $image = $request->file('store_logo');
           $imageName = time().'_'.$image->getClientOriginalName();
@@ -119,7 +118,7 @@ class ManufacturerController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**

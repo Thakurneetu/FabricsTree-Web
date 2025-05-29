@@ -63,7 +63,7 @@ class CustomEnquiryController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -72,12 +72,5 @@ class CustomEnquiryController extends Controller
     public function destroy(Enquiry $enquiry)
     {
         //
-    }
-
-    private function save_image($file, $store_path){
-      $extension = File::extension($file->getClientOriginalName());
-      $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
-      $file->move(public_path($store_path), $filename);
-      return $store_path.'/'.$filename;
     }
 }

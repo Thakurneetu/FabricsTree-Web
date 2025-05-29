@@ -49,7 +49,7 @@ class CategoryController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryController extends Controller
         DB::beginTransaction();
         $data = $request->only('name');
         if($request->hasFile('image')){
-          $data['image'] = $this->save_image($request->image, '/uploads/category');
+          $data['image'] = $this->saveImage($request->image, '/uploads/category');
         }
         $category->update($data);
         DB::commit();
@@ -87,7 +87,7 @@ class CategoryController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -106,7 +106,7 @@ class CategoryController extends Controller
       }
     }
 
-    private function save_image($file, $store_path){
+    private function saveImage($file, $store_path){
       $extension = File::extension($file->getClientOriginalName());
       $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
       $file->move(public_path($store_path), $filename);

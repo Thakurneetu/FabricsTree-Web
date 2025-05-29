@@ -39,17 +39,22 @@ class EnquiryDataTable extends DataTable
         })
         ->editColumn('status', function ($data) {
           if($data->status == 'invoked') {
-            return '<span class="badge text-bg-danger text-white">Invoked</span>';
+            $status = 'Invoked';
+            $class = 'danger';
           }
-          else if($data->status == 'invoiced') {
-            return '<span class="badge text-bg-primary text-white">Qutation Sent</span>';
+          elseif($data->status == 'invoiced') {
+            $status = 'Qutation Sent';
+            $class = 'primary';
           }
-          else if($data->status == 'accepted') {
-            return '<span class="badge text-bg-primary text-white">'.ucfirst($data->status).'</span>';
+          elseif($data->status == 'accepted') {
+            $status = ucfirst($data->status);
+            $class = 'primary';
           }
           else{
-            return '<span class="badge text-bg-warning text-white">'.ucfirst($data->status).'</span>';
+            $status = ucfirst($data->status);
+            $class = 'warning';
           }
+          return '<span class="badge text-bg-'.$class.' text-white">'.$status.'</span>';
         })
         ->rawColumns(['action','enquery_type','status'])
         ->addIndexColumn();

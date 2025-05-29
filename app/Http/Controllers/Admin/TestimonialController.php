@@ -37,7 +37,7 @@ class TestimonialController extends Controller
         DB::beginTransaction();
         $data = $request->except('_token','image');
         if($request->hasFile('image')){
-          $data['image'] = $this->save_image($request->image, '/uploads/testimonials');
+          $data['image'] = $this->saveImage($request->image, '/uploads/testimonials');
         }
         Testimonial::create($data);
         DB::commit();
@@ -47,7 +47,7 @@ class TestimonialController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -75,7 +75,7 @@ class TestimonialController extends Controller
         DB::beginTransaction();
         $data = $request->except('_token', '_method','image');
         if($request->hasFile('image')){
-          $data['image'] = $this->save_image($request->image, '/uploads/testimonials');
+          $data['image'] = $this->saveImage($request->image, '/uploads/testimonials');
         }
         $testimonial->update($data);
         DB::commit();
@@ -85,7 +85,7 @@ class TestimonialController extends Controller
         DB::rollback();
         Alert::error($th->getMessage());
         return redirect()->back();
-      } 
+      }
     }
 
     /**
@@ -104,7 +104,7 @@ class TestimonialController extends Controller
       }
     }
 
-    private function save_image($file, $store_path){
+    private function saveImage($file, $store_path){
       $extension = File::extension($file->getClientOriginalName());
       $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
       $file->move(public_path($store_path), $filename);

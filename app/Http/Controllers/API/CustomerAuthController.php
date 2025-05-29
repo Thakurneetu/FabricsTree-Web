@@ -142,16 +142,18 @@ class CustomerAuthController extends Controller
     {
         try {
             $customer = Customer::where(['email'=>$request->email, 'otp'=>$request->otp])->first();
-            if($customer)
-            return response()->json([
-                'status' => true,
-                'message' => 'OTP matched Successfully!'
-            ],200);
-            else
-            return response()->json([
-              'status' => false,
-              'message' => 'Please enter a valid OTP!',
-            ],500);
+            if($customer){
+              return response()->json([
+                  'status' => true,
+                  'message' => 'OTP matched Successfully!'
+              ],200);
+            }
+            else{
+              return response()->json([
+                'status' => false,
+                'message' => 'Please enter a valid OTP!',
+              ],500);
+            }
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => false,
@@ -166,7 +168,7 @@ class CustomerAuthController extends Controller
         if($request->password != ''){
           $data['password'] = Hash::make($request->password);
         }
-        $customer = $request->user()->update($data);
+        $request->user()->update($data);
 
         // Return response with the token
         return response()->json([
