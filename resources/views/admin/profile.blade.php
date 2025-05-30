@@ -15,7 +15,7 @@
               <!-- Name -->
               <div class="form-group col-md-3 col-12 mb-3">
                 <label for="name">Name</label>
-                <input type="text"  name="name" value="{{old('name') ?? (@$user->name ?? '')}}" 
+                <input type="text"  name="name" value="{{old('name') ?? (@$user->name ?? '')}}"
                 class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name">
                 @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -24,7 +24,7 @@
               <!-- Email -->
               <div class="form-group col-md-3 col-12 mb-3">
                 <label for="email">Email</label>
-                <input type="email"  name="email" value="{{old('email') ?? (@$user->email ?? '')}}" 
+                <input type="email"  name="email" value="{{old('email') ?? (@$user->email ?? '')}}"
                 class="form-control @error('email') is-invalid @enderror" placeholder="Enter Email">
                 @error('email')
                 <div class="text-danger">{{ $message }}</div>

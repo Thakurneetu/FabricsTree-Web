@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Add Subcategory | 
+  Add Subcategory |
 @endsection
 
 @section('content')

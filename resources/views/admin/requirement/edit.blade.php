@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Edit Requirement | 
+  Edit Requirement |
 @endsection
 
 @section('content')

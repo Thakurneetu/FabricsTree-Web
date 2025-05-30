@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-Orders | 
+Orders |
 @endsection
 
 @section('style')
-  @include('layouts.includes.datatablesCss') 
+  @include('layouts.includes.datatablesCss')
 @endsection
 
 @section('content')
@@ -24,6 +24,6 @@ Orders |
 @endsection
 
 @section('script')
-  @include('layouts.includes.datatablesJs') 
+  @include('layouts.includes.datatablesJs')
   @include('layouts.includes.deleteFunction')
 @endsection

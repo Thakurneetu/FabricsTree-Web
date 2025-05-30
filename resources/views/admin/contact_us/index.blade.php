@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-Contact Us | 
+Contact Us |
 @endsection
 
 @section('style')
-  @include('layouts.includes.datatablesCss') 
+  @include('layouts.includes.datatablesCss')
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@ Contact Us |
 @endsection
 
 @section('script')
-  @include('layouts.includes.datatablesJs') 
+  @include('layouts.includes.datatablesJs')
   <script>
   function reviewed(id){
     swal({
@@ -34,7 +34,7 @@ Contact Us |
                   confirm: { text: "Yes Reviewed", value: true, className: "bg-warning"},
                 },
       icon: "warning",
-      text: 'Message will be marked as reviewed!', 
+      text: 'Message will be marked as reviewed!',
       className: "btn-danger",
       closeModal: true
     })
@@ -52,7 +52,7 @@ Contact Us |
           swal({title:response.message, timer: 2000, icon:"error"});
         })
         .fail(function (err) {
-            console.log(err);              
+            console.log(err);
         });
       }
     });

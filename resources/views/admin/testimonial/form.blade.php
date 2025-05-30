@@ -27,7 +27,7 @@
     <!-- Comment -->
     <div class="form-group col-md-6 col-12 mb-3">
       <label for="name">Comment</label>
-      <textarea name="comment" placeholder="Enter Comment" 
+      <textarea name="comment" placeholder="Enter Comment"
       class="form-control">{{old('comment') ?? (@$testimonial->comment ?? '')}}</textarea>
       @error('comment')
       <div class="text-danger">{{ $message }}</div>

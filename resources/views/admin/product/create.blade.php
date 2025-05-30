@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Add Product | 
+  Add Product |
 @endsection
 
 @section('style')
@@ -92,7 +92,7 @@
         allowClear: true,
         theme: 'classic'
       });
-      jQuery.getScript('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js', function () 
+      jQuery.getScript('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js', function ()
        { jQuery('.summernote').summernote(); });
 
        Coloris({

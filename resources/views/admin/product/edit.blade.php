@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Edit Product | 
+  Edit Product |
 @endsection
 
 @section('style')
@@ -101,7 +101,7 @@
         allowClear: true,
         theme: 'classic'
       });
-      jQuery.getScript('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js', function () 
+      jQuery.getScript('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js', function ()
        { jQuery('.summernote').summernote(); });
 
       Coloris({
@@ -150,7 +150,7 @@
                     confirm: { text: "Delete", value: true, className: "bg-warning"},
                   },
         icon: "warning",
-        text: 'Image will be deleted permanently!', 
+        text: 'Image will be deleted permanently!',
         className: "btn-danger",
         closeModal: true
       })
@@ -159,7 +159,7 @@
           jQuery.ajax({
               method: "POST",
               url: "{{ route('admin.delete-product-image') }}",
-              data: {_token: "{{csrf_token()}}", id: id},              
+              data: {_token: "{{csrf_token()}}", id: id},
           })
           .done(function (response) {
             if(response.success)
@@ -168,7 +168,7 @@
             swal({title:response.message, timer: 2000, icon:"error"});
           })
           .fail(function (err) {
-              console.log(err);              
+              console.log(err);
           });
         }
       });

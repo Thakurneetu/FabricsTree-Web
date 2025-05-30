@@ -6,7 +6,7 @@
 
                 <div class="card-body">
                 @session('success')
-                    <div class="alert alert-success" role="alert"> 
+                    <div class="alert alert-success" role="alert">
                     {{ $value }}
                     </div>
                 @endsession

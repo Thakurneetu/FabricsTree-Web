@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-  Manufacturer Details | 
+  Manufacturer Details |
 @endsection
 
 @section('style')
-  @include('layouts.includes.datatablesCss') 
+  @include('layouts.includes.datatablesCss')
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Order Details | 
+Order Details |
 @endsection
 
 @section('content')

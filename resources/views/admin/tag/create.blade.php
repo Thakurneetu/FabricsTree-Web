@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Add Tag | 
+  Add Tag |
 @endsection
 
 @section('content')

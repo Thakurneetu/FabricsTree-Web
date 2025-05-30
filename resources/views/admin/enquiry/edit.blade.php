@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Enquiry Details | 
+  Enquiry Details |
 @endsection
 
 @section('style')

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-Subcategory | 
+Subcategory |
 @endsection
 
 @section('style')
-  @include('layouts.includes.datatablesCss') 
+  @include('layouts.includes.datatablesCss')
 @endsection
 
 @section('content')
@@ -25,6 +25,6 @@ Subcategory |
 @endsection
 
 @section('script')
-  @include('layouts.includes.datatablesJs') 
+  @include('layouts.includes.datatablesJs')
   @include('layouts.includes.deleteFunction')
 @endsection

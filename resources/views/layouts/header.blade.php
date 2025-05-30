@@ -32,7 +32,7 @@
         <li class="nav-item py-1">
           <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
         </li>
-        <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
             <div class="avatar avatar-md"><img class="avatar-img" src="{{ asset('frontend/images/avatar.jpg') }}" alt="admin"></div>
           </a>
           <div class="dropdown-menu dropdown-menu-end pt-0">

@@ -24,10 +24,10 @@
         @foreach($categories as $category)
         <option value="{{$category->id}}" {{old('category_id', @$product->category_id) == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
         @endforeach
-      </select>     
+      </select>
       @error('category_id')
       <div class="text-danger">{{ $message }}</div>
-      @enderror 
+      @enderror
     </div>
     <!-- Requirement -->
     <div class="form-group col-md-6 col-12 mb-3">
@@ -37,7 +37,7 @@
         @foreach($requirements as $requirement)
         <option value="{{$requirement->id}}" {{old('requirement_id', @$product->requirement_id) == $requirement->id ? 'selected' : '' }}>{{$requirement->name}}</option>
         @endforeach
-      </select>      
+      </select>
       @error('requirement_id')
       <div class="text-danger">{{ $message }}</div>
       @enderror
@@ -50,10 +50,10 @@
         @foreach($subcategories as $subcategory)
         <option value="{{$subcategory->id}}" {{old('subcategory_id', @$product->subcategory_id) == $subcategory->id ? 'selected' : '' }}>{{$subcategory->name}}</option>
         @endforeach
-      </select>    
+      </select>
       @error('subcategory_id')
       <div class="text-danger">{{ $message }}</div>
-      @enderror  
+      @enderror
     </div>
     {{--
     <!-- Tags -->
@@ -63,7 +63,7 @@
         @foreach($tags as $tag)
         <option value="{{$tag->id}}" {{ in_array($tag->id, old('tag_ids', @$product?->tags()->pluck('id')->toArray() ?? [])) ? 'selected' : '' }}>{{$tag->name}}</option>
         @endforeach
-      </select>      
+      </select>
     </div>
     --}}
     <!-- Width -->

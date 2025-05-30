@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Edit Testimonial | 
+  Edit Testimonial |
 @endsection
 
 @section('content')

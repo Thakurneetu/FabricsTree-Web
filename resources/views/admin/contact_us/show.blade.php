@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  View Message | 
+  View Message |
 @endsection
 
 @section('content')
@@ -51,7 +51,7 @@
                   confirm: { text: "Yes Reviewed", value: true, className: "bg-warning"},
                 },
       icon: "warning",
-      text: 'Message will be marked as reviewed!', 
+      text: 'Message will be marked as reviewed!',
       className: "btn-danger",
       closeModal: true
     })
@@ -69,7 +69,7 @@
           swal({title:response.message, timer: 2000, icon:"error"});
         })
         .fail(function (err) {
-            console.log(err);              
+            console.log(err);
         });
       }
     });

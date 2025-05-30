@@ -11,7 +11,7 @@
 
     <div class="Maindiv mt-3">
         <form method="POST" id="profileform" name="profileform" enctype='multipart/form-data'>
-            @csrf 
+            @csrf
             <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Personal Detail</h1>
             <div class="row">
                 <div class="col-md-6 col-sm-12" style="display:none ;">
@@ -59,7 +59,7 @@
                     @else
                     <img class="p-3" src="{{asset('frontend/images/Layer 2.png')}}" alt="store logo" width="150">
                     @endif
-                </div> 
+                </div>
                 @endif
 
                 <div class="col-md-6 col-sm-12">
@@ -83,7 +83,7 @@
     </div>
     <div class="Maindivtwo mt-5 mb-5">
         <form method="POST" id="changepwdform" name="changepwdform" >
-            @csrf 
+            @csrf
             <h1 class="modal-title fs-4" id="exampleModalLabel loginheding">Change Password</h1>
             <div class="row">
                 <div class="col-md-6 col-sm-12">
@@ -106,7 +106,7 @@
 
 <script>
     
-    $('#save_profile').click(function () { 
+    $('#save_profile').click(function () {
       
         let form = $('#profileform')[0];
         let formData = new FormData(form);
@@ -115,7 +115,7 @@
         url: "{{ route('customer.updateprofile') }}",
         container: '#profileform',
         type: "POST",
-        file: true,  
+        file: true,
         processData: false,
         contentType: false,
         data: formData,
@@ -128,11 +128,11 @@
               window.location.reload();
             }, 2000);
           }
-        }                    
+        }
       })
     });
 
-    $('#save_chnagepwd').click(function () {               
+    $('#save_chnagepwd').click(function () {
       $.easyAjax({
         url: "{{ route('customer.changepassword') }}",
         container: '#changepwdform',
@@ -146,7 +146,7 @@
               window.location.reload();
             }, 2000);
           }
-        }                    
+        }
       })
     });
 </script>

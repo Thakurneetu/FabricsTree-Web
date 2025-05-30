@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Add Buyers | 
+  Add Buyers |
 @endsection
 
 @section('content')
