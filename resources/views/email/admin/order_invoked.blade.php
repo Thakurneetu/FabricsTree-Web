@@ -118,16 +118,16 @@
 </head>
 <body>
     <!-- Outer Background Table -->
-    <table border="0" width="100%" style="background-color: #f4f4f4;">
+    <table style="background-color: #f4f4f4; width: 100%; border: 0;">
         <tr>
-            <th align="center" style="font-weight: normal;">
+            <th style="font-weight: normal; text-align: left;">
                 <!-- Main Content Wrapper Table -->
-                <table border="0" width="100%" style="max-width: 600px;" class="wrapper">
+                <table style="max-width: 600px; width: 100%; border: 0;" class="wrapper">
 
                     <!-- Header -->
                     <tr>
                         <th class="header">
-                            <!-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> -->
+                            {{-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> --}}
                             <h1>Order Revoked</h1>
                         </th>
                     </tr>

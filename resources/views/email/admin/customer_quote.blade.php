@@ -120,14 +120,14 @@
     <!-- Outer Background Table -->
     <table border="0" style="background-color: #f4f4f4;width:100%;">
         <tr>
-            <th align="center" style="font-weight: normal;">
+            <th style="font-weight: normal; text-align: left;">
                 <!-- Main Content Wrapper Table -->
                 <table border="0" style="max-width: 600px;width:100%;" class="wrapper">
 
                     <!-- Header -->
                     <tr>
                         <th class="header">
-                            <!-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> -->
+                            {{-- <img src="YOUR_LOGO_URL" alt="Your Company Logo" width="150" style="display: block; margin: 0 auto 10px auto;"> --}}
                             <h1>New Quote</h1>
                         </th>
                     </tr>

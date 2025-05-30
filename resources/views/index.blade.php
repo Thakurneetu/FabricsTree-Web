@@ -668,5 +668,3 @@
         add_to_cart(id,qty);
     });
   </script>
-
-    
