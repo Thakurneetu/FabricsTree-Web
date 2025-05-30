@@ -85,8 +85,13 @@
                             </tr>
                             </tbody>
                             </table>
-                            <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$customer->enquiry[0]->created_at))}}</span></button> 
-                                        </div>
+                            <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;">
+                              <span style="color:#000;">Created On:</span>
+                              <span style="color:#78239B;">
+                                {{date('d M, Y h:i A',strtotime(@$customer->enquiry[0]->created_at))}}
+                              </span>
+                            </button>
+                          </div>
                     </div>
                 @else
                     @if(count($enquiry_items)>0)
@@ -138,14 +143,21 @@
                             @if($customer)
                                 @if($customer->user_type=='Manufacturer')
                                     @if(@$enquiry_data[0]['manufacturer_qutation']!='')
-                                        <a href="{{@asset($enquiry_data[0]['manufacturer_qutation'])}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
+                                        <a href="{{@asset($enquiry_data[0]['manufacturer_qutation'])}}" target="_blank">
+                                          <button style="width:150px;">Uploaded Quote</button>
+                                        </a>
                                     @else
                                         <button class="upload_quote" id="{{@$enquiry_items[0]['enquery_id']}}" style="width:150px;">Upload Quote</button>
-                                    @endif    
-                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span></button> 
+                                    @endif
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;">
+                                      <span style="color:#000;">Received On :</span>
+                                      <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data[0]['created_at']))}}</span>
+                                    </button>
                                 @else
-                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created On:</span> <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span></button> 
-                                       
+                                    <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;">
+                                      <span style="color:#000;">Created On:</span>
+                                      <span style="color:#78239B;">{{date('d M, Y h:i A',strtotime(@$enquiry_data->created_at))}}</span>
+                                    </button>
                                 @endif
                             @endif
                             </div>

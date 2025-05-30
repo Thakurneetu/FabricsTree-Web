@@ -113,7 +113,7 @@
         <form method="POST" id="loginfrom" name="loginfrom">
           @csrf
           @session('error')
-              <div class="alert alert-danger" role="alert"> 
+              <div class="alert alert-danger" role="alert">
                   {{ $value }}
               </div>
           @endsession
@@ -347,7 +347,7 @@
         
         <!-- action="{{ route('customer.register') }}" -->
         <form method="POST" id="registerform" name="registerform" enctype='multipart/form-data'>
-        @csrf  
+        @csrf
         
         <div class="row">
             <div class="col-md-12 col-sm-12">
@@ -439,7 +439,7 @@
               </div>
             </div>
 
-             <label for="exampleFormControlInput1" class="form-label manuf">{{ __('Store Logo') }}*</label> 
+             <label for="exampleFormControlInput1" class="form-label manuf">{{ __('Store Logo') }}*</label>
              <div class="col-md-12 col-sm-12 manuf" >
               <div class="mb-3">
                 
@@ -453,7 +453,7 @@
                     </span>
                 @enderror
               </div>
-            </div> 
+            </div>
 
             <div class="col-md-12 col-sm-12 cust">
               <div class="mb-3">
@@ -849,7 +849,7 @@
 
     function onlyNumbers(e)
     {
-      var c=e.which?e.which:e.keyCode; 
+      var c=e.which?e.which:e.keyCode;
       if(c<48||c>57)
       {
         return false;
@@ -860,7 +860,7 @@
       $('.manuf').hide();
     });
 
-    $('.user_type').click(function () { 
+    $('.user_type').click(function () {
       var val = $(this).val();
       if(val=='Customer'){
         $('.cust').show();
@@ -871,7 +871,7 @@
       }
     });
     
-    $('#save_register').click(function () {  
+    $('#save_register').click(function () {
 
         let form = $('#registerform')[0];
         let formData = new FormData(form);
@@ -881,7 +881,7 @@
         container: '#registerform',
         type: "POST",
         redirect: true,
-        file: true,  
+        file: true,
         processData: false,
         contentType: false,
         data: formData,
@@ -896,11 +896,11 @@
               window.location.reload();
             }, 2000);
           }
-        }                    
+        }
       })
     });
 
-    $('#save_login').click(function () {               
+    $('#save_login').click(function () {
       $.easyAjax({
         url: "{{ route('customer.login') }}",
         container: '#loginfrom',
@@ -923,11 +923,11 @@
             $('#exampleModal').modal('hide');
             
           }
-        }                    
+        }
       })
     });
 
-    $('#save_forgotpwd').click(function () {               
+    $('#save_forgotpwd').click(function () {
       $.easyAjax({
         url: "{{ route('customer.forgetpassword') }}",
         container: '#forgotpwdform',
@@ -941,11 +941,11 @@
             $('#email_otp').val(response.data.email);
             $('#exampleModalverify').modal('show');
           }
-        }                    
+        }
       })
     });
 
-    $('#resend_btn').click(function () {               
+    $('#resend_btn').click(function () {
       $.easyAjax({
         url: "{{ route('customer.resent_otp') }}",
         container: '#forgotpwdverifyform',
@@ -956,11 +956,11 @@
           if (response.status) {
             swal("Sent!", response.message, "success");
           }
-        }                    
+        }
       })
     });
 
-    $('#save_forgotpwd_verify').click(function () {               
+    $('#save_forgotpwd_verify').click(function () {
       $.easyAjax({
         url: "{{ route('customer.forgototpverify') }}",
         container: '#forgotpwdverifyform',
@@ -974,11 +974,11 @@
             $('#reset_email').val(response.data.email);
             $('#exampleModalforgetnew').modal('show');
           }
-        }                    
+        }
       })
     });
 
-    $('#save_reset_password').click(function () {               
+    $('#save_reset_password').click(function () {
       $.easyAjax({
         url: "{{ route('customer.resetpassword') }}",
         container: '#resetpasswordform',
@@ -993,11 +993,11 @@
               window.location.assign('/');
             }, 2000);
           }
-        }                    
+        }
       })
     });
 
-    $('#save_contactus').click(function () {               
+    $('#save_contactus').click(function () {
       $.easyAjax({
         url: "{{ route('save.contactus') }}",
         container: '#contactForm',
@@ -1011,11 +1011,11 @@
               window.location.reload();
             }, 4000);
           }
-        }                    
+        }
       })
     });
 
-    function add_to_cart(product_id,quantity=1,msg='') {   
+    function add_to_cart(product_id,quantity=1,msg='') {
   
       var color_code = '';
       $.easyAjax({
@@ -1047,13 +1047,13 @@
             swal("Error!", response.message, "error");
             $('#exampleModal').modal('show');
           }
-        }                    
+        }
       })
     }
 
    
     $('.delete_cart').click(function () {
-      if (confirm("Are you sure want to delete this cart item?") == true) {  
+      if (confirm("Are you sure want to delete this cart item?") == true) {
       var cart_id = $(this).attr('cartid');
       $.easyAjax({
         url: "{{ route('product.deletecart') }}",
@@ -1066,7 +1066,7 @@
               window.location.reload();
             }, 1000);
           }
-        }                    
+        }
       })
       }else{
         return false;
@@ -1074,7 +1074,7 @@
     });
 
     $('#submit_revoke_quote').click(function () {
-      if (confirm("Are you sure want to revoke this request quote?") == true) {  
+      if (confirm("Are you sure want to revoke this request quote?") == true) {
         $.easyAjax({
             url: "{{ route('product.requestaquotesrevoke') }}",
             container: '#revoke_form',
@@ -1089,7 +1089,7 @@
                     window.location.assign('{{ route("product.productquotes");}} ');
                 }, 3000);
             }
-            }                    
+            }
         })
       }else{
         return false;
@@ -1098,7 +1098,7 @@
 
 
     $('#submit_revoke_order').click(function () {
-      if (confirm("Are you sure want to revoke this order?") == true) {  
+      if (confirm("Are you sure want to revoke this order?") == true) {
         $.easyAjax({
             url: "{{ route('product.revokeorder') }}",
             container: '#revoke_order_form',
@@ -1113,7 +1113,7 @@
                     window.location.assign('{{ route("product.orders");}} ');
                 }, 3000);
             }
-            }                    
+            }
         })
       }else{
         return false;
@@ -1121,7 +1121,7 @@
     });
 
     $('.submit_accept_quotes').click(function () {
-      if (confirm("Are you sure want to accept this invoice quote?") == true) {  
+      if (confirm("Are you sure want to accept this invoice quote?") == true) {
         $.easyAjax({
             url: "{{ route('product.acceptquotes') }}",
            // type: "POST",
@@ -1136,7 +1136,7 @@
                     window.location.assign('{{ route("product.productquotes");}} ');
                 }, 3000);
             }
-            }                    
+            }
         })
       }else{
         return false;
@@ -1216,7 +1216,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
       console.log( "ready-3" );
     //$('#exampleModalregistation').modal('show');
   });
-</script>      
+</script>
 @endsession
 @endif -->
 <!-- @session('success') -->
@@ -1226,7 +1226,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
       $( document ).ready(function() {
         $('#exampleModalWelcome').modal('show');
       });
-    </script>  
+    </script>
   @endif
 @endif -->
 <!-- @endsession -->
@@ -1237,7 +1237,7 @@ if (window.matchMedia("(min-width:576px)").matches) {
       console.log( "ready-2" );
     $('#exampleModal').modal('show');
   });
-</script>   
+</script>
 @endsession
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 <script>

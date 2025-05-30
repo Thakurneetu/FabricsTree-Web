@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="col-lg-8 col-md-8 col-sm-12" id="proHtml">
-                 @include('product.quotesData') 
+                 @include('product.quotesData')
                 </div>
                 
         </section>
@@ -110,7 +110,7 @@
                 });
               
             }
-          }                    
+          }
         })
     }
 </script>

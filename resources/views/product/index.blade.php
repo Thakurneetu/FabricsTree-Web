@@ -567,4 +567,3 @@ crossorigin="anonymous"></script>
     });
 
   </script>
-  

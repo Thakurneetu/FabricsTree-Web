@@ -91,7 +91,7 @@ class ContactController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;

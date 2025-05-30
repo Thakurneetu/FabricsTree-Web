@@ -65,13 +65,13 @@
                                         @endif
 
                                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;"><span style="color:#000;">Created :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
-                                    @else 
+                                    @else
                                         @if($value['qutation']!='')
                                             <a href="{{asset($value['qutation'])}}" target="_blank"><button style="width:150px;">Uploaded Quote</button></a>
                                         @else
                                             <button class="upload_quote" id="{{$value['enquiry_id']}}" style="width:150px;">Upload Quote</button>
                                         @endif
-                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>            
+                                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9; font-weight: bold;width:350px;"><span style="color:#000;">Received On :</span> <span style="color:#78239B;">{{$value['created_at']}}</span></button>
                                     @endif
                                     </div>
 
