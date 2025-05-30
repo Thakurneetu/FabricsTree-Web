@@ -10,7 +10,7 @@ use App\Http\Requests\API\CustomerLoginRequest;
 use App\Http\Requests\API\CustomerRegisterRequest;
 use App\Http\Requests\API\ForgotPasswordRequest;
 use App\Http\Requests\API\ResetPasswordRequest;
-use App\Http\Requests\API\verifyOtpRequest;
+use App\Http\Requests\API\VerifyOtpRequest;
 use App\Http\Requests\API\ProfileRequest;
 use App\Http\Requests\API\ChangePasswordRequest;
 use App\Mail\OtpMail;
@@ -138,7 +138,7 @@ class CustomerAuthController extends Controller
         }
     }
 
-    public function verifyOTP(verifyOtpRequest $request)
+    public function verifyOTP(VerifyOtpRequest $request)
     {
         try {
             $customer = Customer::where(['email'=>$request->email, 'otp'=>$request->otp])->first();

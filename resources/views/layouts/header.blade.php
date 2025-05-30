@@ -44,12 +44,12 @@
                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-user') }}"></use>
               </svg> Profile
             </a>
-            <a class="dropdown-item" href="#"
+            <button class="dropdown-item"
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <svg class="icon me-2">
                 <use xlink:href="{{ asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout') }}"></use>
               </svg> Logout
-            </a>
+            </button>
             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
