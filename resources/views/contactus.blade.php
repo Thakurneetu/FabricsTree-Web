@@ -14,7 +14,7 @@
                 <div class="col-md-6 testimonialfluid">
                     <h2 style="font-weight: bold mb-2">Get in Touch</h2>
                     <form method="POST" id="contactForm" name="contactForm" >
-                        @csrf 
+                        @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="mb-3">

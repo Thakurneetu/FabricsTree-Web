@@ -1,5 +1,5 @@
 @include('web.layouts.header')
-<style> 
+<style>
   #testimonialCarousel.carousel img {
   /* width: 70px; */
   max-height: 70px;
@@ -35,7 +35,7 @@
 #testimonialCarousel.carousel .card {
   margin: 0 0.5em;
   border: 0;
-} 
+}
 
 #testimonialCarousel.carousel-control-prev,
 #testimonialCarousel.carousel-control-next {
@@ -45,11 +45,11 @@
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
-} 
+}
  
   </style>
   @session('success')
-      <div class="alert alert-success msg" style="text-align: center;" role="alert"> 
+      <div class="alert alert-success msg" style="text-align: center;" role="alert">
         {{ $value }}
       </div>
   @endsession
@@ -499,7 +499,7 @@
     <div class="container-fluid bg-body-tertiary py-3">
       <div id="testimonialCarousel" class="carousel">
         <div class="carousel-inner1 ">
-        @foreach($testimonials as $testimonial_val)  
+        @foreach($testimonials as $testimonial_val)
         <div class="testimonial-box carousel-item1 active">
 
           <div class="box-top">
@@ -512,10 +512,10 @@
             </div>
 
             <div class="reviews">
-            @for ($x = 1; $x <= $testimonial_val->rating ; $x++) 
+            @for ($x = 1; $x <= $testimonial_val->rating ; $x++)
               <i class="fa fa-star"></i>
             @endfor
-            @for ($x = 1; $x <= (5-$testimonial_val->rating) ; $x++) 
+            @for ($x = 1; $x <= (5-$testimonial_val->rating) ; $x++)
               <i class="far fa-star"></i>
             @endfor
             </div>
@@ -543,7 +543,7 @@
             </div>
           </div>
         </div>
-        @endforeach 
+        @endforeach
         
         </div>
         

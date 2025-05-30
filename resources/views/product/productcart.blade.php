@@ -17,7 +17,7 @@
                     </div>
                     <div class=" col-lg-4 col-md-5 col-sm-12 alignment">
                         <div class="fouesec">
-                        @if($customer) 
+                        @if($customer)
                             @if($customer->user_type=='Customer')
                             <div class="">
                                 Quantity
@@ -61,7 +61,7 @@
                                 <button type="button" class="badge badge-light"><span class="badge badge-light"><i
                                             class="fa fa-plus" aria-hidden="true"></i></span></button>
                             </div> -->
-                            @if($customer) 
+                            @if($customer)
                                 @if($customer->user_type=='Customer')
                                 <div style="display: flex;" class="sp-quantity">
                                     
@@ -87,7 +87,7 @@
                 @endif
             </div>
             <div class="row">
-                @if($customer) 
+                @if($customer)
                     @if($customer->user_type=='Customer')
                     <div class="bottom col-md-2" >
                         <button @if(count($carts)>0) id="request_a_quote" @else onclick="alert('Please add to cart at least one item.');" @endif >Request a quote</button>
@@ -128,7 +128,7 @@
     });
 
     $('#request_a_quote').click(function () {
-      if (confirm("Are you sure want to request a quote for this cart item?") == true) {  
+      if (confirm("Are you sure want to request a quote for this cart item?") == true) {
       $.easyAjax({
         url: "{{ route('product.requestaquotes') }}",
         type: "POST",
@@ -144,7 +144,7 @@
                 window.location.assign('{{ route("product.index");}} ');
             }, 5000);
           }
-        }                    
+        }
       })
       }else{
         return false;

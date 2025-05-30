@@ -31,7 +31,7 @@ class ProductOrderController extends Controller
         if(@$customer->user_type=='Customer'){
             //$orders = Order::where('customer_id',$id)->get();
             $query = Order::where('customer_id', $id);
-        }else if(@$customer->user_type=='Manufacturer'){
+        }elseif(@$customer->user_type=='Manufacturer'){
             //$orders = Order::where('manufacturer_id',$id)->get();
             $query = Order::where('manufacturer_id', $id);
         }else{
@@ -97,7 +97,7 @@ class ProductOrderController extends Controller
         $data['order_items'] = array();
         if(@$customer->user_type=='Customer'){
             $data['order_items'] = OrderItems::where(['customer_id'=>$id,'order_id'=>$order_id])->get();
-        }else if(@$customer->user_type=='Manufacturer'){
+        }elseif(@$customer->user_type=='Manufacturer'){
             $data['order_items'] = OrderItems::where(['order_id'=>$order_id])->get();
         }else{
             return redirect('/')->withError('Session Expired');

@@ -158,8 +158,8 @@ class CustomerRegisterController extends Controller
             }else{
                 $this->validator_manufacture($request->all())->validate();
             }
-        
-        event(new Registered($user = $request->all()));
+        $user = $request->all();
+        event(new Registered($user));
 
             try{
                 $customer = new Customer();
@@ -235,7 +235,7 @@ class CustomerRegisterController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;

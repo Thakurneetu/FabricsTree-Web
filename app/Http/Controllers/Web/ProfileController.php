@@ -101,7 +101,7 @@ class ProfileController extends Controller
 
                 if($request->user_type=='Customer')
                 {
-                    $user = Customer::where('email', $request->email)->update(['name' => $request->name,'address' => $request->address,'pincode' => $request->pincode]);
+                    Customer::where('email', $request->email)->update(['name' => $request->name,'address' => $request->address,'pincode' => $request->pincode]);
 
                 }else{
 
@@ -111,11 +111,11 @@ class ProfileController extends Controller
                         $image->move(public_path('uploads/store_logo'), $imageName);
                         $store_logo = 'uploads/store_logo/' . $imageName;
                        
-                        $user = Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact,'store_logo' => $store_logo]);
+                        Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact,'store_logo' => $store_logo]);
 
                     }else{
                         
-                        $user = Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact]);
+                        Customer::where('email', $request->email)->update(['name' => $request->manufacturer_name,'address' => $request->store_address,'pincode' => $request->pincode,'firm_name' => $request->store_name,'gst_number' => $request->gst_no,'store_contact' => $request->store_contact]);
                     }
                 }
 
@@ -168,7 +168,7 @@ class ProfileController extends Controller
 
             $customer = Customer::where('email', $request->reset_email)->first();
             if($customer){
-                $user = Customer::where('email', $request->reset_email)->update(['password' => Hash::make($request->new_password)]);
+                Customer::where('email', $request->reset_email)->update(['password' => Hash::make($request->new_password)]);
 
                 return response()->json([
                     'status' => true,
@@ -203,7 +203,7 @@ class ProfileController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;

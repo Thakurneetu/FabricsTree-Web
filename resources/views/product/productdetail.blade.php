@@ -42,7 +42,7 @@
                 @endforeach
                 @endif
             </div> -->
-            @if($customer) 
+            @if($customer)
                 @if($customer->user_type=='Customer')
                 <div style="display: flex;" class="sp-quantity">
                     <div>Quantity: &nbsp;</div>
@@ -78,7 +78,7 @@
                 @if($customer && $customer->user_type=='Customer') <a href="{{route('product.productcart') }}" > @else  <a href="{{route('product.myproduct') }}" > @endif
 
                 <button style="width:155px">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif</button></a>
-            </div>    
+            </div>
             @endif
 
             <hr>

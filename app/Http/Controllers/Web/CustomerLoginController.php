@@ -47,7 +47,7 @@ class CustomerLoginController extends Controller
      * @return response()
      */
     public function login(Request $request)
-    {   
+    {
         try {
             $this->validator($request->all())->validate();
             
@@ -109,7 +109,7 @@ class CustomerLoginController extends Controller
         if(Auth::guard('customer')->check()){
             return view('customer.dashboard');
         }
-        return Redirect('/');   
+        return Redirect('/');
     }
 
     /**
@@ -136,7 +136,7 @@ class CustomerLoginController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;

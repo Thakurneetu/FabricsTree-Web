@@ -179,7 +179,7 @@
             </li>
           </ul>
           <br/>
-          @if($customer) 
+          @if($customer)
             @if($customer->user_type=='Customer')
             <button class="btn-outline-success KnowMore maincolor" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCustomizeRequirement">Customize</button>
             @endif
@@ -210,7 +210,7 @@
               <hr>
             </div>
             <div class="row Productscat mt-4" id="proHtml">
-                 @include('product.productData') 
+                 @include('product.productData')
             </div>
           </div>
         </div>
@@ -263,7 +263,7 @@
                                   <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                   @endforeach
                                 </select>
-                                <br/>      
+                                <br/>
                                 <label for="FabricCategory" style="font-weight: bold;">Width</label>
                                 <input type="text" id="cwidth" name="width" placeholder="Please enter width" class="form-control"/>
 
@@ -301,7 +301,7 @@
     </div>
 
 @include('web.layouts.footer')
-<!-- 
+<!--
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -348,7 +348,7 @@ crossorigin="anonymous"></script>
           }else{
             swal("Error!", response.message, "error");
           }
-        }                    
+        }
       })
       
     });
@@ -359,11 +359,11 @@ crossorigin="anonymous"></script>
       });
       search_filter();
       $("#filterVal").html('');
-      $('.search_filter').change(function () {  
+      $('.search_filter').change(function () {
         search_filter();
       });
 
-      // $('#resetFilter').click(function () { 
+      // $('#resetFilter').click(function () {
       //   $("#filterVal").html('') ;
       //   //search_filter();
       // });
@@ -389,7 +389,7 @@ crossorigin="anonymous"></script>
               if (response.status) {
                 $('#subcategoriesHtml').html(response.data);
               }
-            }                    
+            }
           })
 
           $.easyAjax({
@@ -403,7 +403,7 @@ crossorigin="anonymous"></script>
               if (response.status) {
                 $('#requirementsHtml').html(response.data);
               }
-            }                    
+            }
           })
         }
 
@@ -540,7 +540,7 @@ crossorigin="anonymous"></script>
               });
 
                   $('.delete_pro').click(function () {
-                    if (confirm("Are you sure want to delete this product item?") == true) {  
+                    if (confirm("Are you sure want to delete this product item?") == true) {
                     var cart_id = $(this).attr('cartid');
                     $.easyAjax({
                       url: "{{ route('product.deletecart') }}",
@@ -553,17 +553,18 @@ crossorigin="anonymous"></script>
                             window.location.reload();
                           }, 1000);
                         }
-                      }                    
+                      }
                     })
                     }else{
                       return false;
                     }
                   });
             }
-          }                    
+          }
         })
       }
 
     });
 
   </script>
+  

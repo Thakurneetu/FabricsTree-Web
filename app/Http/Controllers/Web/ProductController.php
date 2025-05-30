@@ -27,7 +27,7 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request)
-    {   
+    {
         DB::enableQueryLog();
         $id = Auth::guard('customer')->id();
         $customer = Customer::find($id);
@@ -47,7 +47,7 @@ class ProductController extends Controller
             $prodIdArray = [];
             if(count($manufacturer_prod_data) >0)
             {
-                foreach($manufacturer_prod_data as $key=>$val){
+                foreach($manufacturer_prod_data as $val){
                 $prodIdArray[] = $val->product_id;
                 }
             }
@@ -112,7 +112,7 @@ class ProductController extends Controller
                     $prodIdArray = [];
                     if(count($manufacturer_prod_data) >0)
                     {
-                        foreach($manufacturer_prod_data as $key=>$val){
+                        foreach($manufacturer_prod_data as $val){
                         $prodIdArray[] = $val->product_id;
                         }
                     }
@@ -444,7 +444,7 @@ class ProductController extends Controller
                 $enquiry->save();
                 $enquery_id = $enquiry->id;
                 $carts = [];
-                foreach ($customer->carts as $key => $cart) {
+                foreach ($customer->carts as $cart) {
 
                     $enquiryItems = new EnquiryItems();
                     $enquiryItems->enquery_id = $enquery_id;
@@ -496,7 +496,7 @@ class ProductController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;

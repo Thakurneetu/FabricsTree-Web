@@ -1,4 +1,4 @@
-<?php 
+<?php
 use App\Models\Cart;
 use App\Models\ManufacturerProduct;
 
@@ -7,7 +7,7 @@ use App\Models\ManufacturerProduct;
         $i=1;
         foreach($products as $products_val){
             if(@$customer){
-                if($customer->user_type=='Customer') 
+                if($customer->user_type=='Customer')
                 {
                     $items = Cart::where('customer_id',$id)->where('product_id',$products_val->id)->get();
                 }else{
@@ -31,13 +31,13 @@ use App\Models\ManufacturerProduct;
             // </div>';
         if(count($items)==0){
             $html .= '<button class="btn-outline-success add_to_cart maincolor KnowMore" productid="'.$products_val->id.'" id="add_to_cart_'.$products_val->id.'" type="submit">';
-            if($customer) 
+            if($customer)
             {
-                if($customer->user_type=='Customer') 
+                if($customer->user_type=='Customer')
                 {
                     $html .= 'Add to Cart';
-                }  
-                else 
+                }
+                else
                 {
                     $html .= 'Add to My Product';
                 }
@@ -59,13 +59,13 @@ use App\Models\ManufacturerProduct;
                 $url = route('product.productcart');
             }
             $html .='<a href="'.$url.'" '.$attr.'><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="display:none;margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
-            if($customer) 
+            if($customer)
             {
-                if($customer->user_type=='Customer') 
+                if($customer->user_type=='Customer')
                 {
                     $html .= 'Go to Cart';
-                }  
-                else 
+                }
+                else
                 {
                     if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct'){
                         $html .= 'Delete';
@@ -78,7 +78,7 @@ use App\Models\ManufacturerProduct;
             else
             {
                 $html .= 'Go to Cart';
-            } 
+            }
             
             $html .= '</button></a>';
 
@@ -95,13 +95,13 @@ use App\Models\ManufacturerProduct;
                 $url = route('product.productcart');
             }
             $html .='<a href="'.$url.'" '.$attr.'><button class="btn-outline-success maincolor KnowMore" id="go_to_cart_'.$products_val->id.'" style="margin: 0px 10px;" productid="'.$products_val->id.'" type="submit">';
-            if($customer) 
+            if($customer)
             {
-                if($customer->user_type=='Customer') 
+                if($customer->user_type=='Customer')
                 {
                     $html .= 'Go to Cart';
-                }  
-                else 
+                }
+                else
                 {
                     if($customer && $customer->user_type=='Manufacturer' && $page_url=='myproduct'){
                         $html .= 'Delete';
@@ -113,7 +113,7 @@ use App\Models\ManufacturerProduct;
             else
             {
                 $html .= 'Go to Cart';
-            } 
+            }
             
             $html .= '</button></a>';
         }

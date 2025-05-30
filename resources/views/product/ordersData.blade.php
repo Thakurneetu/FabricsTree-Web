@@ -34,15 +34,15 @@
                         @endif
                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>
                     @elseif($value['status']=='Delivered')
-                        <button class="return_order" id="{{$value['id']}}">Return Order</button> 
-                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>  
-                    @elseif($value['status']=='Cancelled') 
+                        <button class="return_order" id="{{$value['id']}}">Return Order</button>
+                        <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>
+                    @elseif($value['status']=='Cancelled')
                         <button>Cancelled</button>
                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Created:</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>
-                    @elseif($value['status']=='Returned') 
+                    @elseif($value['status']=='Returned')
                         <button>Returned</button>
                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Returned on :</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>
-                    @elseif($value['status']=='Revoked') 
+                    @elseif($value['status']=='Revoked')
                         <button>Revoked</button>
                         <button style="background: #EEF1F6; border: 1px solid #B2BAC9;"><span style="color:#000;">Revoked on:</span><span style="color:#78239B;">{{date('M d, Y h:i A',strtotime($value->created_at))}}</span> </button>
                     @endif

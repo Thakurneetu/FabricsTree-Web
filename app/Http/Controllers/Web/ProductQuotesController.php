@@ -59,7 +59,7 @@ class ProductQuotesController extends Controller
             $enquiries = $query->latest()->get();
             $enquiry = [];
             $enquiry_items_data = [];
-            foreach ($enquiries as $key => $val) 
+            foreach ($enquiries as $key => $val)
             {
                 if($val->enquery_type == 'custom')
                 {
@@ -250,7 +250,7 @@ class ProductQuotesController extends Controller
 
         if($request->status)
         {
-            $dataHtml  = view('product.quotesData',$data)->render();;
+            $dataHtml  = view('product.quotesData',$data)->render();
 
             return response()->json([
             'status' => true,
@@ -347,15 +347,15 @@ class ProductQuotesController extends Controller
         //$data['customer'] = $customer;
         if($request->hasFile('upload_quatation')){
 
-            $data['qutation'] = $this->save_image($request->upload_quatation, '/uploads/qutation');
+            $data['qutation'] = $this->saveImage($request->upload_quatation, '/uploads/qutation');
 
             ManufacturerEnquiry::where(['enquery_id'=>$request->upload_enquiry_id,'customer_id'=>$manufacturer_id])->update($data);
            
-            return redirect('productquotes')->with('success', 'Qutation Uploaded Successfully');   
+            return redirect('productquotes')->with('success', 'Qutation Uploaded Successfully');
         }
     }
 
-    private function save_image($file, $store_path){
+    private function saveImage($file, $store_path){
         $extension = File::extension($file->getClientOriginalName());
         $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
         $file->move(public_path($store_path), $filename);
@@ -388,7 +388,7 @@ class ProductQuotesController extends Controller
         $item['pick'] = $enquiry->category_id;
         OrderItems::create($item);
       }else {
-        foreach ($enquiry->items as $key => $item_data) {
+        foreach ($enquiry->items as $item_data) {
           $item['product_id'] = $item_data->product_id;
           $item['quantity'] = $item_data->quantity;
           $item['category'] = $item_data->category->name;

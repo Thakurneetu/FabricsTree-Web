@@ -49,7 +49,7 @@ class CustomerForgotPasswordController extends Controller
      */
     public function forgetpassword(Request $request)
     {
-        try {    
+        try {
             $this->validator($request->all())->validate();
                 
             $customer = Customer::where('email', $request->email_address)->first();
@@ -200,7 +200,7 @@ class CustomerForgotPasswordController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;

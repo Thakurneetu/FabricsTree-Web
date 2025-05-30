@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="col-lg-8 col-md-8 col-sm-12" id="proHtml">
-                    @include('product.ordersData') 
+                    @include('product.ordersData')
                 </div>
 
         </section>
@@ -90,7 +90,7 @@
 
         $('.return_order').click(function () {
                 var order_id = $(this).attr('id');
-                if (confirm("Are you sure want to return this order?") == true) {  
+                if (confirm("Are you sure want to return this order?") == true) {
                 $.easyAjax({
                     url: "{{ route('product.returnorder') }}",
                     //container: '#revoke_order_form',
@@ -105,7 +105,7 @@
                             window.location.assign('{{ route("product.orders");}} ');
                         }, 3000);
                     }
-                    }                    
+                    }
                 })
             }else{
                 return false;
@@ -148,7 +148,7 @@
 
                 $('.return_order').click(function () {
                         var order_id = $(this).attr('id');
-                        if (confirm("Are you sure want to return this order?") == true) {  
+                        if (confirm("Are you sure want to return this order?") == true) {
                         $.easyAjax({
                             url: "{{ route('product.returnorder') }}",
                             //container: '#revoke_order_form',
@@ -163,15 +163,15 @@
                                     window.location.assign('{{ route("product.orders");}} ');
                                 }, 3000);
                             }
-                            }                    
+                            }
                         })
                     }else{
                         return false;
                     }
-                });  
+                });
               
             }
-          }                    
+          }
         })
     }
 

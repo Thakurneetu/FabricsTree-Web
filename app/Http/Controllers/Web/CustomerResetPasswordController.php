@@ -61,7 +61,7 @@ class CustomerResetPasswordController extends Controller
 
             $customer = Customer::where('email', $request->reset_email)->first();
             if($customer){
-                $user = Customer::where('email', $request->reset_email)->update(['password' => Hash::make($request->new_password)]);
+                Customer::where('email', $request->reset_email)->update(['password' => Hash::make($request->new_password)]);
 
                 return response()->json([
                     'status' => true,
@@ -96,7 +96,7 @@ class CustomerResetPasswordController extends Controller
             //        'field' => $field,
             //        'message' => $message,
             //    ];
-            $errors[] = $message;     
+            $errors[] = $message;
         }
 
         return $errors;
