@@ -443,7 +443,6 @@ class ProductController extends Controller
                 $enquiry->customer_id = $id;
                 $enquiry->save();
                 $enquery_id = $enquiry->id;
-                $carts = [];
                 foreach ($customer->carts as $cart) {
 
                     $enquiryItems = new EnquiryItems();

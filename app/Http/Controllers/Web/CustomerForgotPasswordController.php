@@ -120,18 +120,20 @@ class CustomerForgotPasswordController extends Controller
         try {
             $this->otpvalidator($request->all())->validate();
             $customer = Customer::where(['email'=>$request->email_otp, 'otp'=>$request->otp])->first();
-            if($customer)
+            if($customer) {
                 return response()->json([
                     'status' => true,
                     'message' => 'OTP matched successfully',
                     'data' => array('otp'=>$request->otp,'email'=>$request->email_otp),
                 ], 200);
-            else
-            return response()->json([
-                'status' => false,
-                'message' => 'Please enter a valid OTP!',
-                'errors' => 'Please enter a valid OTP!',
-            ], 400);
+            }
+            else {
+              return response()->json([
+                  'status' => false,
+                  'message' => 'Please enter a valid OTP!',
+                  'errors' => 'Please enter a valid OTP!',
+              ], 400);
+            }
         } catch(\Exception $e) {
             return response()->json([
                 'status' => false,

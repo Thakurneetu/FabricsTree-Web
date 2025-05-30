@@ -56,12 +56,14 @@ class CustomerLoginController extends Controller
             $data['email'] = $credentials['email_id'];
             $data['password'] = $credentials['pwd'];
             $customer = Customer::where('email', $data['email'])->first();
+            $message_1 = 'Your account is inactive. please contact administrator!';
+            $message_2 = 'Oops! You have entered invalid credentials.';
             if($customer){
                 if ($customer->status != 1) {
                     return response()->json([
                         'status' => false,
-                        'message' => 'Your account is inactive. please contact administrator!',
-                        'errors' =>  'Your account is inactive. please contact administrator!',
+                        'message' => $message_1,
+                        'errors' =>  $message_1,
                     ], 400);
                 }else{
                     if(Auth::guard('customer')->attempt($data)){
@@ -73,16 +75,16 @@ class CustomerLoginController extends Controller
                     }else{
                         return response()->json([
                             'status' => false,
-                            'message' => 'Oops! You have entered invalid credentials.',
-                            'errors' => 'Oops! You have entered invalid credentials.',
+                            'message' => $message_2,
+                            'errors' => $message_2,
                         ], 400);
                     }
                 }
             }else{
                 return response()->json([
                     'status' => false,
-                    'message' => 'Oops! You have entered invalid credentials.',
-                    'errors' => 'Oops! You have entered invalid credentials.',
+                    'message' => $message_2,
+                    'errors' => $message_2,
                 ], 400);
             }
             // return redirect()->intended(route("customer.dashboard"))->withSuccess('You have Successfully loggedin');
