@@ -200,51 +200,6 @@
           <p class="mt-2 slidername">{{$categories_val->name}}</p>
         </div>
       @endforeach
-        {{-- <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/cotton.jpeg') }}">
-          <p class="mt-2 slidername">Cotton</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
-          <p class="mt-2 slidername">Nylon</p>
-        </div>
-
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
-          <p class="mt-2 slidername">Polyester</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/rayon.png') }}">
-          <p class="mt-2 slidername">Rayon</p>
-        </div>
-
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/denim.jpg') }}">
-          <p class="mt-2 slidername">Denim</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/linen.jpg') }}">
-          <p class="mt-2 slidername">Linen</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/sustainable.jpg') }}">
-          <p class="mt-2 slidername">Sustainable</p>
-        </div>
-        
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/cotton.jpeg') }}">
-          <p class="mt-2 slidername">Cotton</p>
-        </div>
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/nylon.png') }}">
-          <p class="mt-2 slidername">Nylon</p>
-        </div>
-
-        <div class="text-center">
-          <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
-          <p class="mt-2 slidername">Polyester</p>
-        </div> --}}
-
         <div class="text-center">
           <img class="item" src="{{ asset('frontend/images/nylon.png') }}" alt="Nylon">
           <p class="mt-2 slidername">Nylon</p>
@@ -639,10 +594,6 @@
       </div>
 
       <div>
-        {{-- <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30145.17140331232!2d72.80210472571645!3d19.188805882169866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6914fe3a8e5%3A0x73f264109c4db9d4!2sMalad%2C%20Malad%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1730286440157!5m2!1sen!2sin"
-          width="600" height="200" style="width: 100%;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
 
           <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" title="Sprunki" width="100%" style="border: 0;overflow: hidden;padding: 0;margin: 0;" src="https://maps.google.com/maps?width=600&amp;height=200&amp;hl=en&amp;q=G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://sprunkin.com/">Sprunki</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:200px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:200px;}.gmap_iframe {height:200px!important;}</style></div>
           
