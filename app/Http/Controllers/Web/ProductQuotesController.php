@@ -357,7 +357,7 @@ class ProductQuotesController extends Controller
 
     private function saveImage($file, $store_path){
         $extension = File::extension($file->getClientOriginalName());
-        $filename = rand(10,99).date('YmdHis').rand(10,99).'.'.$extension;
+        $filename = random_int(10,99).date('YmdHis').random_int(10,99).'.'.$extension;
         $file->move(public_path($store_path), $filename);
         return $store_path.'/'.$filename;
     }

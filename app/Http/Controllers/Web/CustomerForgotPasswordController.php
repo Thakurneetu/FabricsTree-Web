@@ -54,7 +54,7 @@ class CustomerForgotPasswordController extends Controller
                 
             $customer = Customer::where('email', $request->email_address)->first();
             if($customer){
-                $otp = rand(1000, 9999);
+                $otp = random_int(1000, 9999);
                 $customer->update([
                     'otp' => $otp
                 ]);
@@ -153,7 +153,7 @@ class CustomerForgotPasswordController extends Controller
         try {
             $customer = Customer::where('email', $request->email_otp)->first();
             if($customer){
-                $otp = rand(1000, 9999);
+                $otp = random_int(1000, 9999);
                 $customer->update([
                     'otp' => $otp
                 ]);

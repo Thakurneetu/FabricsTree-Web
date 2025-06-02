@@ -92,7 +92,7 @@ class CustomerAuthController extends Controller
     {
         try {
             $customer = Customer::where('email', $request->email)->first();
-            $otp = rand(1000, 9999);
+            $otp = random_int(1000, 9999);
             $customer->update([
                 'otp' => $otp
             ]);
