@@ -76,7 +76,7 @@
             </div>
             <div class="row">
                 <div class="bottom col-md-2" >
-                    <!-- <a class="dropdown-item" href="{{ route('product.index')}}"><button style="background: #83848A;">Add more product </button></a> -->
+                    {{-- <a class="dropdown-item" href="{{ route('product.index')}}"><button style="background: #83848A;">Add more product </button></a> --}}
 
                     <a class="dropdown-item" href="{{ route('product.orders')}}"><button style="background: #83848A;">Back </button></a>
                 </div>

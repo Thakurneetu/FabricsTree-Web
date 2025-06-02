@@ -21,8 +21,8 @@
                                     </div>
                             
                                     <div class="bottom">
-                                        <!-- <button type="button" class="btn btn-light"
-                                            style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button> -->
+                                        {{-- <button type="button" class="btn btn-light"
+                                            style="background: #fff; color:#78239B;margin: 5px;">LFB-31095</button> --}}
                                         <a href="{{ route('product.quotesitems')}}/{{$value['enquiry_id']}}" ><button type="button" class="btn btn-light"
                                             style="background: #fff; color:#78239B;margin: 5px;">View Items</button></a>
                                     </div>
@@ -31,10 +31,10 @@
 
                                     <div class="top">
                                     @if($customer->user_type=='Customer')
-                                        <!-- <div>
+                                        {{-- <div>
                                             <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 14px;"></i>
                                             Quotes are being prepared
-                                        </div> -->
+                                        </div> --}}
                                         @if($value['status']=='invoiced')
                                             <a href="{{asset($value['qutation'])}}" target="_blank"><button style="background: #fff; color:#78239B;margin: 5px;border: none;border-radius:4px;padding: 2px 16px;"><i class="fa fa-paperclip" aria-hidden="true"></i> Invoice</button></a>
                                             <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" enquiryid="{{$value['enquiry_id']}}" class="submit_accept_quotes">Accept</button>
@@ -48,18 +48,18 @@
                                             <i class="fa fa-exclamation-circle" aria-hidden="true" style="font-size: 14px;"></i>
                                             Quotes are being prepared
                                         </div>
-                                        <!-- <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button> -->
+                                        {{-- <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button> --}}
                                         @endif
                                     @endif
                                     </div>
 
                                     <div class="bottom">
                                     @if($customer->user_type=='Customer')
-                                        <!-- @if($value['status']=='invoked')
+                                        {{-- @if($value['status']=='invoked')
                                         <button>Revoked</button>
                                         @else
                                         <button class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
-                                        @endif -->
+                                        @endif --}}
                                         @if($value['status']=='submitted')
                                         <button style="background: #78239B; color: #fff; border: none; border-radius:4px;padding: 2px 16px;" class="revoke_quote" id="{{$value['enquiry_id']}}" >Revoke Quote</button>
                                         @endif
@@ -82,7 +82,7 @@
                     @else
                     <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Request Quote List Found</div></div>
                     @endif
-                    <!-- <div class="row mt-2 headparagraphbg">
+                    {{-- <div class="row mt-2 headparagraphbg">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="headparagraph" style="border-bottom:unset;margin: unset;">
                                 <img src="{{ asset('frontend/images/Frame 176.png') }}" alt="a" style="width: 70px;">
@@ -110,7 +110,7 @@
 
 
                         </div>
-                    </div> -->
+                    </div> --}}
                     </br>
                     </br>
                     <div class="row">

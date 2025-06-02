@@ -44,7 +44,7 @@
                 <div class="col-md-6 col-sm-12">
                     <input type="text" class="form-control" placeholder="Enter store contact number" value="{{ $customer->store_contact }}" name="store_contact" id="store_contact" >
                 </div>
-                <!-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Logo') }}*</label>  -->
+                {{-- <label for="exampleFormControlInput1" class="form-label">{{ __('Store Logo') }}*</label>  --}}
                 <div class="col-md-6 col-sm-12" >
                 <div class="mb-3">
                     <input style="height: 1.8rem;" type="file" name="store_logo" id="store_logo" accept="image/*" class="form-control @error('store_logo') is-invalid @enderror" placeholder="upload store logo" title="{{ __('Store Logo') }}" value="{{ old('store_logo') }}">
@@ -89,11 +89,11 @@
                 <div class="col-md-6 col-sm-12">
                     <input type="hidden" readonly class="form-control" placeholder="Enter email" name="reset_email" id="reset_email" value="{{ $customer->email }}" >
                     <input type="password" class="form-control"  placeholder="Please enter your password" name="new_password" id="new_password">
-                    <!-- <span class="password-toggle-icon3"><i class="fas fa-eye"></i></span> -->
+                    {{-- <span class="password-toggle-icon3"><i class="fas fa-eye"></i></span> --}}
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <input type="password" class="form-control" placeholder="Please enter confirm password" name="confirm_password" id="confirm_password">
-                    <!-- <span class="password-toggle-icon4"><i class="fas fa-eye"></i></span> -->
+                    {{-- <span class="password-toggle-icon4"><i class="fas fa-eye"></i></span> --}}
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center  mt-3">

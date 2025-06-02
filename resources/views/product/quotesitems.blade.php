@@ -161,7 +161,7 @@
                                 @endif
                             @endif
                             </div>
-                        <!-- <div class="col-lg-8 col-md-2 col-sm-12">
+                        {{-- <div class="col-lg-8 col-md-2 col-sm-12">
                             <div class="alignment">
                                 @if($val['image_url'])
                                 <img src="{{ $val['image_url'] }}" alt="">
@@ -180,7 +180,7 @@
                                     <span style="font-weight: bold; margin: 4px;"><input type="number" value="{{ $val['quantity'] }}" min="1" style="width:50px;background: #EEF1F6; border: none;text-align:center" readonly/></span>
                                 </div>
                             </div>
-                        </div> -->
+                        </div> --}}
                     </div>
                     @else
                     <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Request Quote item list Found</div></div>

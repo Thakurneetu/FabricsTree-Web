@@ -55,7 +55,7 @@
                     </p>
                 </div>
 
-                <!-- <button class="btn-outline-success maincolor KnowMore" type="submit">Know More</button> -->
+                {{-- <button class="btn-outline-success maincolor KnowMore" type="submit">Know More</button> --}}
 
                 </div>
 

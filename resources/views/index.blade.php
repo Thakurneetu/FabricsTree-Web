@@ -113,23 +113,23 @@
             </div>
           </div>
         </div>
-        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
-        </button> -->
+        </button> --}}
 
         <button class="carousel-control-prev ctrl-btn" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span> -->
+          {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span> --}}
           <i class="fa fa-arrow-left"></i>
         </button>
         <button class="carousel-control-next ctrl-btn" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span> -->
+          {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span> --}}
           <i class="fa fa-arrow-right"></i>
         </button>
         
@@ -200,7 +200,7 @@
           <p class="mt-2 slidername">{{$categories_val->name}}</p>
         </div>
       @endforeach
-        <!-- <div class="text-center">
+        {{-- <div class="text-center">
           <img class="item" src="{{ asset('frontend/images/cotton.jpeg') }}">
           <p class="mt-2 slidername">Cotton</p>
         </div>
@@ -243,7 +243,7 @@
         <div class="text-center">
           <img class="item" src="{{ asset('frontend/images/polyster.jpg') }}">
           <p class="mt-2 slidername">Polyester</p>
-        </div> -->
+        </div> --}}
 
         <div class="text-center">
           <img class="item" src="{{ asset('frontend/images/nylon.png') }}" alt="Nylon">
@@ -345,13 +345,13 @@
       @endif
       <div class="card-body">
         <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
-        <!-- <div class="reviews">
+        {{-- <div class="reviews">
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="far fa-star"></i>
-        </div> -->
+        </div> --}}
         @if(!in_array($products_val->id, $carts))
         <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" type="submit" style="margin: 0px 25px;"> @if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
 
@@ -364,7 +364,7 @@
 
           <button class="btn-outline-success KnowMore maincolor" id="go_to_cart_{{$products_val->id}}" style="margin: 0px 25px;" productid="{{$products_val->id}}" type="submit">@if($customer) @if($customer->user_type=='Customer') Go to Cart @else Go to My Products @endif @else Go to Cart @endif </button></a>
         @endif
-        <!--  -->
+
       </div>
       @endif
     </div>
@@ -549,13 +549,13 @@
         
 
         <button class="carousel-control-prev ctrl-btn pro-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-          <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span> -->
+          {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span> --}}
           <i class="fa fa-arrow-left"></i>
         </button>
         <button class="carousel-control-next ctrl-btn pro-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-          <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span> -->
+          {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span> --}}
           <i class="fa fa-arrow-right"></i>
         </button>
       </div>
@@ -639,12 +639,12 @@
       </div>
 
       <div>
-        <!-- <iframe
+        {{-- <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30145.17140331232!2d72.80210472571645!3d19.188805882169866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6914fe3a8e5%3A0x73f264109c4db9d4!2sMalad%2C%20Malad%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1730286440157!5m2!1sen!2sin"
           width="600" height="200" style="width: 100%;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+          referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
 
-          <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" title="Sprunki" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=200&amp;hl=en&amp;q=G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://sprunkin.com/">Sprunki</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:200px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:200px;}.gmap_iframe {height:200px!important;}</style></div>
+          <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" title="Sprunki" width="100%" style="border: 0;overflow: hidden;padding: 0;margin: 0;" src="https://maps.google.com/maps?width=600&amp;height=200&amp;hl=en&amp;q=G-179, Ground Floor, RIICO Industrial Area, Mansarovar Jaipur - 302020 (Rajasthan)&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://sprunkin.com/">Sprunki</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:200px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:200px;}.gmap_iframe {height:200px!important;}</style></div>
           
       </div>
 

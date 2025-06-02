@@ -54,13 +54,13 @@
                     </div>
                     <div class=" col-lg-4 col-md-5 col-sm-12 alignment">
                         <div class="fouesec">
-                            <!-- <div style="display: flex;">
+                            {{-- <div style="display: flex;">
                                 <button type="button" class="badge badge-light"><span class="badge badge-light"><i
                                             class="fa fa-minus" aria-hidden="true"></i></span></button>
                                 <span style="font-weight: bold;">1</span>
                                 <button type="button" class="badge badge-light"><span class="badge badge-light"><i
                                             class="fa fa-plus" aria-hidden="true"></i></span></button>
-                            </div> -->
+                            </div> --}}
                             @if($customer)
                                 @if($customer->user_type=='Customer')
                                 <div style="display: flex;" class="sp-quantity">

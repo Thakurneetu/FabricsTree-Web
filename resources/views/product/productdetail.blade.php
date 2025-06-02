@@ -34,14 +34,14 @@
 
             <p>68 x 58 | 48” | Air Jet</p>
 
-            <!-- <div class="colorhed">
+            {{-- <div class="colorhed">
                 <div>Color:</div>
                 @if(isset($products_data) && count($products_data->colors) > 0)
                 @foreach($products_data->colors as $color)
                     <div class="colorpicker" style="background: {{$color->code}}">&nbsp;</div>
                 @endforeach
                 @endif
-            </div> -->
+            </div> --}}
             @if($customer)
                 @if($customer->user_type=='Customer')
                 <div style="display: flex;" class="sp-quantity">
@@ -83,17 +83,17 @@
 
             <hr>
             <ul class="nav nav-pills mb-3 mt-3" id="pills-tab">
-                <li class="nav-item" role="presentation">
+                <li class="nav-item">
                     <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">Descriptions</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item">
                     <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">Key Features</button>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item">
                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">Disclaimers</button>
@@ -145,13 +145,13 @@
                         @endif
                         <div class="card-body">
                             <h5 class="card-titles"><a href="{{route('product.productdetail')}}/{{$products_val->id}}">{{$products_val->title}}</a></h5>
-                            <!-- <div class="reviews">
+                            {{-- <div class="reviews">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="far fa-star"></i>
-                            </div> -->
+                            </div> --}}
                             <!-- maincolor -->
                             @if(!in_array($products_val->id, $carts))
                             <button class="btn-outline-success add_to_cart maincolor KnowMore" productid="{{$products_val->id}}" id="add_to_cart_{{$products_val->id}}" style="margin: 0px 20px;" type="submit">@if($customer) @if($customer->user_type=='Customer') Add to Cart @else Add to My Product @endif @else Add to Cart @endif</button>
