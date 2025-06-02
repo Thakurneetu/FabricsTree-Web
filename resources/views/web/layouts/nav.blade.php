@@ -120,7 +120,7 @@
                     @endif @else My Carts @endif
 
                     
-                        <!-- <a class="dropdown-item" href="{{ route('product.productcart')}}"><i class="fas fa-search-dollar"></i>@if($customer) @if($customer->user_type=='Customer') My Carts @else Products @endif @else My Carts @endif</a> -->
+                        {{-- <a class="dropdown-item" href="{{ route('product.productcart')}}"><i class="fas fa-search-dollar"></i>@if($customer) @if($customer->user_type=='Customer') My Carts @else Products @endif @else My Carts @endif</a> --}}
                     
                     </li>
                     <li><a class="dropdown-item" href="{{ route('product.productquotes')}}"><i class="fa fa-tasks"></i> My Quotes</a></li>

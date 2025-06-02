@@ -55,7 +55,7 @@
     @else
     <div class="row headparagraph"><div class="col-lg-8 col-md-2 col-sm-12">No Order List Found</div></div>
     @endif
-    {{-- 
+    {{--
     <div class="row mt-2 headparagraphbg">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="headparagraph" style="border-bottom:unset;margin: unset;">
@@ -120,7 +120,7 @@
 
 
         </div>
-    </div> 
+    </div>
     --}}
     </br>
     </br>

@@ -35,7 +35,6 @@ class ProductController extends Controller
         $data['id'] = $id;
         $data['page_url'] = $request->segment(1);
 
-        //$data['products'] = Product::select("*")->paginate(50);
         $query = Product::select('id','title','subtitle','description','key_features','disclaimer','category_id','requirement_id','subcategory_id','width','count','reed','pick');
 
         if($customer && $customer->user_type=='Manufacturer' && $request->segment(1)=='myproduct'){
@@ -51,14 +50,16 @@ class ProductController extends Controller
                 $prodIdArray[] = $val->product_id;
                 }
             }
-            if ($prodIdArray)
+            if ($prodIdArray) {
                 $query->whereIn('id', $prodIdArray);
-            else
+            }
+            else {
                 $query->whereIn('id', array('10000000000000000'));
+            }
         }
 
         $products = $query->paginate(50, ['*'], 'page',$request->input('page', 1));
-        //dd(DB::getQueryLog());
+        
             
         $data['products'] = $products;
         
@@ -116,10 +117,12 @@ class ProductController extends Controller
                         $prodIdArray[] = $val->product_id;
                         }
                     }
-                    if ($prodIdArray)
+                    if ($prodIdArray) {
                         $query->whereIn('id', $prodIdArray);
-                    else
+                    }
+                    else {
                     $query->whereIn('id', array('10000000000000000'));
+                    }
                 }
 
                 if ($categoryId)

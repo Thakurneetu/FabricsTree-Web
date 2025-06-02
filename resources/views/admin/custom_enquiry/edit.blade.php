@@ -35,7 +35,10 @@
 @endsection
 
 @section('script')
- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"
+  integrity="sha512-4MvcHwcbqXKUHB6Lx3Zb5CEAVoE9u84qN+ZSMM6s7z8IeJriExrV3ND5zRze9mxNlABJ6k864P/Vl8m0Sd3DtQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"></script>
   <script>
    jQuery(document).ready(function() {
       jQuery('.select2').select2({
